@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Filter 和 LIstener 是 JavaWeb 的两个重要组成部分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Filter &amp; Listener">
+<meta property="og:url" content="http://yoursite.com/2020/06/29/Java/2.JavaWeb/Filter%20&%20Listener/index.html">
+<meta property="og:site_name" content="Pikachu&#39;s Blog">
+<meta property="og:description" content="Filter 和 LIstener 是 JavaWeb 的两个重要组成部分">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-29T10:13:37.000Z">
+<meta property="article:modified_time" content="2020-07-05T08:58:58.202Z">
+<meta property="article:author" content="pikachu">
+<meta property="article:tag" content="Filter">
+<meta property="article:tag" content="Listener">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/29/Java/2.JavaWeb/Filter%20&%20Listener/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Filter & Listener | Pikachu's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pikachu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/29/Java/2.JavaWeb/Filter%20&%20Listener/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pikachu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pikachu's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Filter & Listener
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-29 18:13:37" itemprop="dateCreated datePublished" datetime="2020-06-29T18:13:37+08:00">2020-06-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-05 16:58:58" itemprop="dateModified" datetime="2020-07-05T16:58:58+08:00">2020-07-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Filter 和 LIstener 是 JavaWeb 的两个重要组成部分</p>
+<a id="more"></a>
+
+<h1 id="Filter-amp-Listener"><a href="#Filter-amp-Listener" class="headerlink" title="Filter &amp; Listener"></a>Filter &amp; Listener</h1><blockquote>
+<p>Filter： 过滤器</p>
+<p>Listener：监听器</p>
+</blockquote>
+<h2 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h2><p><strong>概念：</strong>在web中，当访问服务器的资源时，过滤器可以将请求拦截下来，完成一些特殊的功能</p>
+<p><strong>作用：</strong>一般用于完成一些通用的操作，如：登录验证，统一编码处理，敏感字符过滤…</p>
+<p><strong>快速入门：</strong>(基于注解)</p>
+<ol>
+<li><p>新建一个java文件，实现 <code>Filter</code> 接口（<code>javax.Servlet</code>包），实现方法（<code>init()</code>, <code>doFilter()</code>, <code>destroy()</code>）</p>
+</li>
+<li><p>然后用 <code>@WebFilter(&quot;/*&quot;)</code> 注解标识这个类是一个过滤器，并配置过滤资源路径</p>
+</li>
+<li><p>在 <code>doFilter()</code> 方法里面添加过滤器的功能，并使用 <code>filterChain.doFilter()</code> 执行<strong>放行</strong></p>
+</li>
+</ol>
+<h4 id="Filter细节"><a href="#Filter细节" class="headerlink" title="Filter细节"></a>Filter细节</h4><p><strong>Filter的xml配置：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>filterDemo1<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>cn.pika.FilterDemo1<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>filterDemo1<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>Filter的执行流程：</strong></p>
+<ol>
+<li>执行过滤器放行前代码</li>
+<li>执行放行后访问的资源</li>
+<li>执行过滤器放行代码下面的代码</li>
+</ol>
+<p><strong>Filter的生命周期：</strong></p>
+<ol>
+<li>init：服务器启动，init方法执行，创建Filter对象</li>
+<li>doFilter：每一次访问被该拦截器拦截的资源时，都会执行</li>
+<li>destroy：服务器正常关闭时，执行destroy方法，销毁Filter对象</li>
+</ol>
+<p><strong>Filter配置详解：</strong></p>
+<ol>
+<li>拦截路径的配置：<ul>
+<li>具体资源路径：<code>/index.jsp</code>  只有访问index.jsp 时，过滤器才会执行 （一般不常用）</li>
+<li>目录拦截：<code>/user/*</code>  访问user下的所有资源时，过滤器都会执行</li>
+<li>后缀名拦截：<code>*.jsp</code> 访问所有后缀名为 jsp 的资源时，过滤器都会执行</li>
+<li>拦截所有资源：<code>/*</code>  访问所有资源时，过滤器都会执行</li>
+</ul>
+</li>
+<li>拦截方式的配置：资源被访问的方式<ul>
+<li>注解配置：设置 <code>dispatcherTypes</code> 属性<ol>
+<li><code>REQUEST</code>: 默认值， 浏览器直接请求资源</li>
+<li><code>FORWARD</code>: 转发访问资源</li>
+<li><code>INCLUDE</code>: 包含访问资源</li>
+<li><code>ERROR</code>: 错误跳转资源</li>
+<li><code>ASYNC</code>: 异步访问资源</li>
+</ol>
+</li>
+<li>web.xml配置<ul>
+<li>设置<code>&lt;dispatcher&gt;&lt;/dispatcher&gt;</code>标签</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>过滤器链（配置多个过滤器）</strong></p>
+<ol>
+<li>执行过程：如果有两个过滤器（过滤器1 和 过滤器2）<ol>
+<li>过滤器1</li>
+<li>过滤器2</li>
+<li>资源执行</li>
+<li>过滤器2</li>
+<li>过滤器1</li>
+</ol>
+</li>
+<li>执行顺序：<ul>
+<li>注解配置：按照过滤器的类名字符串比较规则比较，值小的先执行</li>
+<li>web.xml 配置：按照<code>&lt;filter-mapping&gt;</code>的定义顺序执行, 写在上面的先执行</li>
+</ul>
+</li>
+</ol>
+<h2 id="Listener"><a href="#Listener" class="headerlink" title="Listener"></a>Listener</h2><blockquote>
+<p>Listener 是 JavaWeb 的三大组件之一</p>
+</blockquote>
+<p>事件监听机制:</p>
+<ul>
+<li>事件: 一件事情</li>
+<li>事件源: 事件发生的地方</li>
+<li>监听器: 事件发生时执行的动作</li>
+<li>注册监听: 将事件, 事件源, 监听器绑定在一块. 当事件源上发生某件事情后, 执行监听器代码</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Filter/" rel="tag"># Filter</a>
+              <a href="/tags/Listener/" rel="tag"># Listener</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/15/Python/Python_new/14_%E9%AB%98%E7%BA%A7%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/" rel="prev" title="Python高级变量类型">
+      <i class="fa fa-chevron-left"></i> Python高级变量类型
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/25/Java/3.SSM%E6%A1%86%E6%9E%B6/SpringMVC_%E8%AF%B7%E6%B1%82/" rel="next" title="SpringMVC_请求">
+      SpringMVC_请求 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Filter-amp-Listener"><span class="nav-number">1.</span> <span class="nav-text">Filter &amp; Listener</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Filter"><span class="nav-number">1.1.</span> <span class="nav-text">Filter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Filter细节"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">Filter细节</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Listener"><span class="nav-number">1.2.</span> <span class="nav-text">Listener</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">pikachu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">102</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pikachu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

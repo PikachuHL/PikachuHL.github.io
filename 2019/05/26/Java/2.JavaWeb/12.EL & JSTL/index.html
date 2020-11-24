@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="EL : Expression Language : 替换和简化jsp页面中Java代码的编写 JSTL : Java Server pages Tag Library : jsp标签库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EL &amp; JSTL">
+<meta property="og:url" content="http://yoursite.com/2019/05/26/Java/2.JavaWeb/12.EL%20&%20JSTL/index.html">
+<meta property="og:site_name" content="Pikachu&#39;s Blog">
+<meta property="og:description" content="EL : Expression Language : 替换和简化jsp页面中Java代码的编写 JSTL : Java Server pages Tag Library : jsp标签库">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-26T09:56:36.000Z">
+<meta property="article:modified_time" content="2020-10-13T13:01:25.428Z">
+<meta property="article:author" content="pikachu">
+<meta property="article:tag" content="EL">
+<meta property="article:tag" content="JSTL">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/05/26/Java/2.JavaWeb/12.EL%20&%20JSTL/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>EL & JSTL | Pikachu's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pikachu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/Java/2.JavaWeb/12.EL%20&%20JSTL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pikachu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pikachu's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          EL & JSTL
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-05-26 17:56:36" itemprop="dateCreated datePublished" datetime="2019-05-26T17:56:36+08:00">2019-05-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-13 21:01:25" itemprop="dateModified" datetime="2020-10-13T21:01:25+08:00">2020-10-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>EL : Expression Language : 替换和简化jsp页面中Java代码的编写</p>
+<p>JSTL : Java Server pages Tag Library : jsp标签库</p>
+<a id="more"></a>
+
+<h1 id="EL表达式"><a href="#EL表达式" class="headerlink" title="EL表达式"></a>EL表达式</h1><p>概念：Expression Language  表达式语言</p>
+<p>作用：替换和简化jsp页面中Java代码的编写</p>
+<p>语法：<code>${表达式}</code></p>
+<p>注意：在jsp页面中默认支持EL表达式，如果想忽略EL表达式，有两种方法</p>
+<ul>
+<li>在<code>page</code>指令中添加属性 <code>isElIgnored=&quot;true&quot;</code>，可以忽略当前页面中所有的EL表达式</li>
+<li>在EL表达式前加<code>\</code> ,即 <code>\${表达式}</code>，可以忽略这个表达式</li>
+</ul>
+<h3 id="EL表达式的使用"><a href="#EL表达式的使用" class="headerlink" title="EL表达式的使用"></a>EL表达式的使用</h3><p><strong>1、运算符</strong></p>
+<p>在EL表达式中可以直接进行运算，可以使用的运算符有以下几种：</p>
+<ul>
+<li>算术运算符：+ - * / %</li>
+<li>比较运算符：&gt;  &lt;  &gt;=  &lt;=  == !=</li>
+<li>逻辑运算符：&amp;&amp;  ||  !</li>
+<li>空运算符：empty<ul>
+<li>作用：用于判断字符串、集合、数组对象 <strong>是否为null</strong> 或者 <strong>长度是否为0</strong>，返回true或false</li>
+<li>用法：<code>${empty list}</code> / <code>${not empty list}</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>2、获取值</strong></p>
+<p>EL表达式只能从<strong>域对象</strong>中获取值</p>
+<p>语法：</p>
+<ul>
+<li><p><code>${域名称.键名}</code>：从指定域中获取指定键的值</p>
+<table>
+<thead>
+<tr>
+<th align="center">域名称（从小到大）</th>
+<th align="center">对象名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">pageScope</td>
+<td align="center">pageContext</td>
+</tr>
+<tr>
+<td align="center">requestScope</td>
+<td align="center">request</td>
+</tr>
+<tr>
+<td align="center">sessionScope</td>
+<td align="center">session</td>
+</tr>
+<tr>
+<td align="center">applicationScope</td>
+<td align="center">application</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><code>${键名}</code>：从最小的域开始往大的域查找是否有该键，直到找到为止</p>
+</li>
+</ul>
+<p>获取对象、List集合、Map集合中的值：</p>
+<ul>
+<li><p>获取对象的值：<code>${域名称.键名.属性名}</code></p>
+<ul>
+<li>这种获取方法本质上会去调用对象的getter方法，</li>
+<li>属性名其实是getter方法名去掉getter后剩余部分首字母变小写，通常情况下就和成员变量名一样</li>
+</ul>
+</li>
+<li><p>获取List集合中的值：<code>${域名称.键名[索引]}</code></p>
+</li>
+<li><p>获取Map集合中的值：</p>
+<ul>
+<li><code>${域名称.键名.key}</code></li>
+<li><code>${域名称.键名[&quot;key&quot;]}</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="隐式对象"><a href="#隐式对象" class="headerlink" title="隐式对象"></a>隐式对象</h3><p>EL表达式中共有11个隐式对象，类似于jsp的内置对象</p>
+<ul>
+<li>pageContext：最常用的隐式对象就这一个<ul>
+<li>作用：获取jsp的其它8个内置对象</li>
+<li>使用：<code>${pageContext.request.contextPath}</code>：动态获取虚拟目录 ☆</li>
+</ul>
+</li>
+</ul>
+<h1 id="JSTL"><a href="#JSTL" class="headerlink" title="JSTL"></a>JSTL</h1><p>概念：Java Server pages Tag Library ：jsp标签库</p>
+<p>作用：用于简化和替换jsp页面上的Java代码</p>
+<p>使用：在使用之前需要先引入标签库</p>
+<ul>
+<li><code>&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;</code></li>
+</ul>
+<hr>
+<h3 id="常用的-JSTL-标签"><a href="#常用的-JSTL-标签" class="headerlink" title="常用的 JSTL 标签"></a>常用的 JSTL 标签</h3><h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><p>相当于Java代码的 <strong>if语句</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;%-- test属性为必须的，当test中表达式为<span class="keyword">true</span>时，执行标签体中的代码 --%&gt;</span><br><span class="line">&lt;c:<span class="keyword">if</span> test=<span class="string">"boolean表达式"</span>&gt;</span><br><span class="line">    &lt;h1&gt;jstl的if标签&lt;/h1&gt;</span><br><span class="line">&lt;/c:if&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="choose"><a href="#choose" class="headerlink" title="choose"></a>choose</h4><p>相当于Java代码的 <strong>switch语句</strong></p>
+<ul>
+<li>choose –&gt; switch</li>
+<li>when –&gt; case</li>
+<li>otherwise –&gt; default</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">	request.setAttribute(<span class="string">"number"</span>,<span class="number">3</span>);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;c:choose&gt;</span><br><span class="line">	&lt;c:when test="$&#123;number == 1&#125;"&gt;星期一&lt;/c:when&gt;</span><br><span class="line">    &lt;c:when test="$&#123;number == 2&#125;"&gt;星期二&lt;/c:when&gt;</span><br><span class="line">    &lt;c:when test="$&#123;number == 3&#125;"&gt;星期三&lt;/c:when&gt;</span><br><span class="line">    &lt;c:when test="$&#123;number == 4&#125;"&gt;星期四&lt;/c:when&gt;</span><br><span class="line">    &lt;c:when test="$&#123;number == 5&#125;"&gt;星期五&lt;/c:when&gt;</span><br><span class="line">    &lt;c:when test="$&#123;number == 6&#125;"&gt;星期六&lt;/c:when&gt;</span><br><span class="line">    &lt;c:when test="$&#123;number == 7&#125;"&gt;星期七&lt;/c:when&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;c:otherwise&gt;数据输入有误&lt;/c:otherwise&gt;</span><br><span class="line">&lt;/c:choose&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h4><p>相当于Java代码的 <strong>for语句</strong></p>
+<p>foreach 标签具有两个功能：</p>
+<ul>
+<li><p>完成重复的操作</p>
+<ul>
+<li>begin：开始值</li>
+<li>end：结束值（也包括）</li>
+<li>var：临时变量</li>
+<li>step：步长</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:foreach begin=<span class="string">"0"</span> end=<span class="string">"9"</span> <span class="keyword">var</span>=<span class="string">"i"</span> step=<span class="string">"1"</span>&gt;</span><br><span class="line">	$&#123;i&#125;</span><br><span class="line">&lt;/c:foreach&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>遍历容器</p>
+<ul>
+<li>items：容器对象</li>
+<li>var：临时变量</li>
+<li>varStatus：循环状态对象<ul>
+<li>index：容器中元素的索引，从0开始</li>
+<li>count：循环次数，从1开始</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;c:foreach items=<span class="string">"list"</span> <span class="keyword">var</span>=<span class="string">"str"</span> varStatus=<span class="string">"s"</span>&gt;</span><br><span class="line">	$&#123;str&#125;</span><br><span class="line">&lt;/c:foreach&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/EL/" rel="tag"># EL</a>
+              <a href="/tags/JSTL/" rel="tag"># JSTL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/05/26/Java/2.JavaWeb/11.JSP/" rel="prev" title="JSP">
+      <i class="fa fa-chevron-left"></i> JSP
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/05/28/Java/2.JavaWeb/jQuery-%E5%9F%BA%E7%A1%80/" rel="next" title="jQuery基础">
+      jQuery基础 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#EL表达式"><span class="nav-number">1.</span> <span class="nav-text">EL表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EL表达式的使用"><span class="nav-number">1.0.1.</span> <span class="nav-text">EL表达式的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐式对象"><span class="nav-number">1.0.2.</span> <span class="nav-text">隐式对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSTL"><span class="nav-number">2.</span> <span class="nav-text">JSTL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的-JSTL-标签"><span class="nav-number">2.0.1.</span> <span class="nav-text">常用的 JSTL 标签</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#if"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">if</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#choose"><span class="nav-number">2.0.1.2.</span> <span class="nav-text">choose</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#foreach"><span class="nav-number">2.0.1.3.</span> <span class="nav-text">foreach</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">pikachu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">102</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pikachu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

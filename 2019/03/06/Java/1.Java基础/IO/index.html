@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Java.IO基本概念及File类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IO">
+<meta property="og:url" content="http://yoursite.com/2019/03/06/Java/1.Java%E5%9F%BA%E7%A1%80/IO/index.html">
+<meta property="og:site_name" content="Pikachu&#39;s Blog">
+<meta property="og:description" content="Java.IO基本概念及File类">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/images/3.6.jpg">
+<meta property="article:published_time" content="2019-03-06T12:56:32.000Z">
+<meta property="article:modified_time" content="2020-05-26T07:16:38.000Z">
+<meta property="article:author" content="pikachu">
+<meta property="article:tag" content="IO">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/3.6.jpg">
+
+<link rel="canonical" href="http://yoursite.com/2019/03/06/Java/1.Java%E5%9F%BA%E7%A1%80/IO/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>IO | Pikachu's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pikachu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/06/Java/1.Java%E5%9F%BA%E7%A1%80/IO/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pikachu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pikachu's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          IO
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-06 20:56:32" itemprop="dateCreated datePublished" datetime="2019-03-06T20:56:32+08:00">2019-03-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-26 15:16:38" itemprop="dateModified" datetime="2020-05-26T15:16:38+08:00">2020-05-26</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Java.IO基本概念及File类</p>
+<a id="more"></a>
+<p><img src="/images/3.6.jpg" alt=""></p>
+<hr>
+<h2 id="Java-IO"><a href="#Java-IO" class="headerlink" title="Java.IO"></a>Java.IO</h2><h3 id="Java-IO包中最重要的就是5个类和三个接口"><a href="#Java-IO包中最重要的就是5个类和三个接口" class="headerlink" title="Java.IO包中最重要的就是5个类和三个接口"></a>Java.IO包中最重要的就是5个类和三个接口</h3><ul>
+<li>File  文件类</li>
+<li>InputStream  字节输入流</li>
+<li>OutputStream  字节输出流</li>
+<li>Reader  字符输入流</li>
+<li>Writer  字符输出流</li>
+<li>Closeable  关闭流接口</li>
+<li>Flushable  刷新流接口</li>
+<li>Serializable  序列化接口</li>
+</ul>
+<h3 id="流的分类"><a href="#流的分类" class="headerlink" title="流的分类"></a>流的分类</h3><p>按方向分：</p>
+<ul>
+<li>输入流</li>
+<li>输出流</li>
+</ul>
+<p>按功能分：</p>
+<ul>
+<li>节点流：直接操作数据源，所有的IO操作必须经过节点流进行</li>
+<li>处理流（包装流）：为了简化操作和提高性能</li>
+</ul>
+<p>按数据分：</p>
+<ul>
+<li>字节流</li>
+<li>字符流（底层还是基于字节流操作，自动搜寻了指定的码表）</li>
+</ul>
+<h3 id="API的使用"><a href="#API的使用" class="headerlink" title="API的使用"></a>API的使用</h3><ul>
+<li>先看继承体系</li>
+<li>再看构造器（有/无）</li>
+<li>最后看方法（方法名、接收参数、返回类型、调用者）</li>
+</ul>
+<h3 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h3><h4 id="构建File对象："><a href="#构建File对象：" class="headerlink" title="构建File对象："></a>构建File对象：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// File(String Path)</span></span><br><span class="line">File src = <span class="keyword">new</span> File(<span class="string">"C:/Users/pikachu/eclipse-workspace/sxt.Io/Java学习路线图.jpg"</span>);</span><br><span class="line"><span class="comment">// File(String parent, String child)</span></span><br><span class="line">File src = <span class="keyword">new</span> File(<span class="string">"C:/Users/pikachu/eclipse-workspace/sxt.Io"</span>,<span class="string">"Java学习路线图.jpg"</span>);</span><br><span class="line"><span class="comment">// File(File parent, String child)</span></span><br><span class="line">File src = <span class="keyword">new</span> File(<span class="keyword">new</span> File(<span class="string">"C:/Users/pikachu/eclipse-workspace/sxt.Io"</span>),<span class="string">"Java学习路线图.jpg"</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="File类的常用方法："><a href="#File类的常用方法：" class="headerlink" title="File类的常用方法："></a>File类的常用方法：</h4><p>1.基本信息：</p>
+<ul>
+<li>getName -&gt;  获得文件名</li>
+<li>getPath -&gt;    获得传入的路径</li>
+<li>getAbsolutePath -&gt; 获得绝对路径</li>
+<li>getParent -&gt; 获得父路径</li>
+</ul>
+<p>2.文件状态：</p>
+<ul>
+<li>exists -&gt; 是否存在</li>
+<li>isFile -&gt; 是否是文件</li>
+<li>isDirectory -&gt; 是否是文件夹<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断文件状态的标准代码</span></span><br><span class="line">File src = <span class="keyword">new</span> File(<span class="string">"xxx"</span>);</span><br><span class="line"><span class="keyword">if</span>(src == <span class="keyword">null</span> || !src.exists()) &#123;</span><br><span class="line">	System.out.println(<span class="string">"文件不存在"</span>);</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(src.isFile()) &#123;</span><br><span class="line">	System.out.println(<span class="string">"文件操作"</span>);</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">	System.out.println(<span class="string">"目录操作"</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>3.文件长度：</p>
+<ul>
+<li>length() -&gt; 返回文件的长度（字节数），文件夹的length()返回0</li>
+</ul>
+<p>4.创建&amp;删除文件：</p>
+<ul>
+<li>createNewFile() -&gt; 不存在创建成功，已存在创建失败</li>
+<li>delete()<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建文件</span></span><br><span class="line">File src = <span class="keyword">new</span> File(<span class="string">"C:/Users/pikachu/eclipse-workspace/sxt.Io/Java学习路线图02.jpg"</span>);</span><br><span class="line"><span class="keyword">boolean</span> flag = src.createNewFile(); <span class="comment">// 返回是否创建成功</span></span><br><span class="line"><span class="comment">// 删除文件</span></span><br><span class="line">flag = src.delete(); <span class="comment">// 返回是否删除成功</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>5.创建目录（文件夹）：</p>
+<ul>
+<li>mkdir() -&gt; 如果上级目录不存在，则会创建失败</li>
+<li>mkdirs() -&gt; 如果上级目录不存在，则一同创建</li>
+</ul>
+<p>6.列出下级目录：</p>
+<ul>
+<li>list() -&gt; 列出下级文件名，返回一个数组</li>
+<li>listFiles() -&gt; 列出下级文件对象，返回一个数组</li>
+<li>listRoots() -&gt; 列出所有根目录，返回一个数组</li>
+</ul>
+<p>7.统计文件夹大小</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> sxt.IO;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 统计文件夹的大小</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> pikachu</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DirCount</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">long</span> Count;</span><br><span class="line">	<span class="keyword">private</span> String path;</span><br><span class="line">	<span class="keyword">private</span> File src;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">DirCount</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.path = path;</span><br><span class="line">		<span class="keyword">this</span>.src = <span class="keyword">new</span> File(path);</span><br><span class="line">		count(<span class="keyword">this</span>.src);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 统计文件夹大小</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">count</span><span class="params">(File src)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">null</span> != src &amp;&amp; src.exists()) &#123;</span><br><span class="line">			<span class="keyword">if</span>(src.isFile()) &#123;</span><br><span class="line">				Count += src.length();</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(src.isDirectory()) &#123;</span><br><span class="line">				<span class="keyword">for</span>(File s:src.listFiles()) &#123;</span><br><span class="line">					count(s);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// get方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> Count;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 测试</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		DirCount dc = <span class="keyword">new</span> DirCount(<span class="string">"C:\\Users\\pikachu\\eclipse-workspace\\sxt.Io"</span>);</span><br><span class="line">		System.out.println(dc.getCount());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="编码与解码"><a href="#编码与解码" class="headerlink" title="编码与解码"></a>编码与解码</h2><ul>
+<li>编码： 字符 -&gt; 字节</li>
+<li>解码： 字节 -&gt; 字符</li>
+</ul>
+<h2 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h2><ul>
+<li>UTF-8</li>
+<li>GBK</li>
+<li>Unicode</li>
+<li>……</li>
+</ul>
+<h2 id="字符串进行编码"><a href="#字符串进行编码" class="headerlink" title="字符串进行编码"></a>字符串进行编码</h2><p>getBytes() 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"哈哈你好"</span>;</span><br><span class="line"><span class="keyword">byte</span>[] b = s.getBytes(); <span class="comment">// 返回一个字节数组</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="字节进行解码"><a href="#字节进行解码" class="headerlink" title="字节进行解码"></a>字节进行解码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="keyword">new</span> String(b); <span class="comment">// 调用String类的构造器，传入一个字节数组</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="乱码的原因"><a href="#乱码的原因" class="headerlink" title="乱码的原因"></a>乱码的原因</h2><ul>
+<li>字节数不够</li>
+<li>字符集不统一</li>
+</ul>
+<h2 id="IO中的四大抽象基类"><a href="#IO中的四大抽象基类" class="headerlink" title="IO中的四大抽象基类"></a>IO中的四大抽象基类</h2><ul>
+<li>InputStream –&gt; 字节输入流</li>
+<li>OutputStream –&gt; 字节输出流</li>
+<li>Reader –&gt; 字符输入流</li>
+<li>Writer –&gt; 字符输出流</li>
+</ul>
+<h2 id="IO流操作的标准步骤"><a href="#IO流操作的标准步骤" class="headerlink" title="IO流操作的标准步骤"></a>IO流操作的标准步骤</h2><ol>
+<li>创建源</li>
+<li>选择流</li>
+<li>操作</li>
+<li>释放资源</li>
+</ol>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestInputStream01</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 创建源</span></span><br><span class="line">		File src = <span class="keyword">new</span> File(<span class="string">"C:/Users/pikachu/eclipse-workspace/sxt.Io/src/sxt.txt"</span>);</span><br><span class="line">		<span class="comment">// 选择流</span></span><br><span class="line">		InputStream is = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			is = <span class="keyword">new</span> FileInputStream(src);</span><br><span class="line">			<span class="keyword">int</span> temp;</span><br><span class="line">			<span class="comment">// 操作</span></span><br><span class="line">			<span class="keyword">while</span>((temp=is.read())!=-<span class="number">1</span>) &#123;</span><br><span class="line">				System.out.print((<span class="keyword">char</span>)temp);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">			<span class="comment">// 释放资源</span></span><br><span class="line">			<span class="keyword">if</span>(is!=<span class="keyword">null</span>) &#123;</span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					is.close();</span><br><span class="line">				&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">					<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">					e.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="文件字节流"><a href="#文件字节流" class="headerlink" title="文件字节流"></a>文件字节流</h2><ul>
+<li><p>FileInputStream </p>
+<p>文件字节输入流，通过字节方式读取文件<br>全字符请考虑：FileReader</p>
+</li>
+<li><p>FileOutputStream</p>
+<p>文件字节输出流，通过字节的方式写出或追加数据到文件<br>全字符请考虑：FileWriter</p>
+</li>
+</ul>
+<h2 id="文件拷贝"><a href="#文件拷贝" class="headerlink" title="文件拷贝"></a>文件拷贝</h2><p>利用FileInputStream和FileOutputStream进行文件的拷贝</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 创建源</span></span><br><span class="line">	File src = <span class="keyword">new</span> File(<span class="string">"C:/Users/pikachu/eclipse-workspace/sxt.Io/Java学习路线图.jpg"</span>);</span><br><span class="line">	File dest = <span class="keyword">new</span> File(<span class="string">"dest2.jpg"</span>);</span><br><span class="line">	<span class="comment">// 选择流</span></span><br><span class="line">	InputStream is = <span class="keyword">null</span>;</span><br><span class="line">	OutputStream os = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		is = <span class="keyword">new</span> FileInputStream(src);</span><br><span class="line">		os = <span class="keyword">new</span> FileOutputStream(dest<span class="comment">/*,true*/</span>);</span><br><span class="line">		<span class="comment">// 操作</span></span><br><span class="line">		<span class="keyword">byte</span>[] datas = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">		<span class="keyword">int</span> len = -<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span>((len = is.read(datas))!= -<span class="number">1</span>) &#123;</span><br><span class="line">			os.write(datas, <span class="number">0</span>, len); <span class="comment">// 写入	</span></span><br><span class="line">		&#125;</span><br><span class="line">		os.flush(); <span class="comment">// 强制刷新</span></span><br><span class="line">	&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">		<span class="comment">// 释放资源</span></span><br><span class="line">		<span class="keyword">if</span>(os!=<span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				os.close();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(is!=<span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				is.close();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>IO流其实就是一个管子，把字节或字符放到管子里面进行操作</p>
+</blockquote>
+<h2 id="文件字符流"><a href="#文件字符流" class="headerlink" title="文件字符流"></a>文件字符流</h2><blockquote>
+<p>文件字符流可以消除不同字符集的编码差异</p>
+</blockquote>
+<ul>
+<li>FileReader</li>
+<li>FileWriter<br>FileWriter中有一个需要注意的方法：<br><code>append() // 返回值类型为Writer，可以以‘流模式’来添加</code></li>
+</ul>
+<p>文件字符流操作的是<strong>字符数组</strong><br>文件字节流操作的是<strong>字节数组</strong></p>
+<h2 id="字节数组流"><a href="#字节数组流" class="headerlink" title="字节数组流"></a>字节数组流</h2><ul>
+<li>ByteArrayInputStream</li>
+<li>ByteArrayOutputStream</li>
+</ul>
+<blockquote>
+<p>字节数组流操作的是内存中的字节数组，不与OS打交道，故可由gc自动回收，不用关闭<br>任何东西都可以转成字节数组，可以方便后期进行网络传输等操作</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/IO/" rel="tag"># IO</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/03/03/Java/1.Java%E5%9F%BA%E7%A1%80/%E5%BC%82%E5%B8%B8/" rel="prev" title="异常">
+      <i class="fa fa-chevron-left"></i> 异常
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/03/16/Java/1.Java%E5%9F%BA%E7%A1%80/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="next" title="多线程">
+      多线程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-IO"><span class="nav-number">1.</span> <span class="nav-text">Java.IO</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-IO包中最重要的就是5个类和三个接口"><span class="nav-number">1.1.</span> <span class="nav-text">Java.IO包中最重要的就是5个类和三个接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流的分类"><span class="nav-number">1.2.</span> <span class="nav-text">流的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API的使用"><span class="nav-number">1.3.</span> <span class="nav-text">API的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#File类"><span class="nav-number">1.4.</span> <span class="nav-text">File类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构建File对象："><span class="nav-number">1.4.1.</span> <span class="nav-text">构建File对象：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#File类的常用方法："><span class="nav-number">1.4.2.</span> <span class="nav-text">File类的常用方法：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编码与解码"><span class="nav-number">2.</span> <span class="nav-text">编码与解码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符集"><span class="nav-number">3.</span> <span class="nav-text">字符集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串进行编码"><span class="nav-number">4.</span> <span class="nav-text">字符串进行编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字节进行解码"><span class="nav-number">5.</span> <span class="nav-text">字节进行解码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乱码的原因"><span class="nav-number">6.</span> <span class="nav-text">乱码的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO中的四大抽象基类"><span class="nav-number">7.</span> <span class="nav-text">IO中的四大抽象基类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO流操作的标准步骤"><span class="nav-number">8.</span> <span class="nav-text">IO流操作的标准步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件字节流"><span class="nav-number">9.</span> <span class="nav-text">文件字节流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件拷贝"><span class="nav-number">10.</span> <span class="nav-text">文件拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件字符流"><span class="nav-number">11.</span> <span class="nav-text">文件字符流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字节数组流"><span class="nav-number">12.</span> <span class="nav-text">字节数组流</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">pikachu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">102</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pikachu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

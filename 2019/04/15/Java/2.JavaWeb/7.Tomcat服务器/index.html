@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Tomcat服务器是一款免费、开源的轻量级Web应用服务器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tomcat服务器">
+<meta property="og:url" content="http://yoursite.com/2019/04/15/Java/2.JavaWeb/7.Tomcat%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
+<meta property="og:site_name" content="Pikachu&#39;s Blog">
+<meta property="og:description" content="Tomcat服务器是一款免费、开源的轻量级Web应用服务器">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-15T13:59:21.000Z">
+<meta property="article:modified_time" content="2020-10-13T12:55:31.698Z">
+<meta property="article:author" content="pikachu">
+<meta property="article:tag" content="Tomcat服务器">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/04/15/Java/2.JavaWeb/7.Tomcat%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Tomcat服务器 | Pikachu's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pikachu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/Java/2.JavaWeb/7.Tomcat%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pikachu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pikachu's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Tomcat服务器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-15 21:59:21" itemprop="dateCreated datePublished" datetime="2019-04-15T21:59:21+08:00">2019-04-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-13 20:55:31" itemprop="dateModified" datetime="2020-10-13T20:55:31+08:00">2020-10-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Tomcat服务器是一款免费、开源的轻量级Web应用服务器</p>
+<a id="more"></a>
+
+<h2 id="Tomcat服务器"><a href="#Tomcat服务器" class="headerlink" title="Tomcat服务器"></a>Tomcat服务器</h2><p><strong>什么是服务器？</strong></p>
+<p>​    服务器其实就是一个代码编写的可以根据用户请求实时的调用执行对应逻辑代码的一个容器。</p>
+<p><strong>Tomcat 服务器各文件夹作用：</strong></p>
+<ul>
+<li>\bin –&gt; 存放 Tomcat 的可执行文件</li>
+<li>\conf –&gt; 存 Ttoncat 的配置文件</li>
+<li>\lib –&gt; 存放Tomcat运行依赖的jar包</li>
+<li>\logs  –&gt; 存放日志文件</li>
+<li>\temp –&gt; 存放临时文件</li>
+<li>\webapps –&gt; 存放web应用</li>
+<li>work –&gt; 存放 JSP 转换后的 Servlet 文件</li>
+</ul>
+<blockquote>
+<p>双击startup.bat启动Tomcat服务器时黑窗口一闪而过：</p>
+<ul>
+<li>原因：JAVA_HOME 环境变量配置的问题</li>
+<li>解决：正确配置 JAVA_HOME 环境变量</li>
+</ul>
+</blockquote>
+<blockquote>
+<p> Tomcat默认端口号为8080，可在<code>conf/server.xml</code>配置文件中修改端口</p>
+<p>后期常用的端口号为80，因为这是HTTP协议的默认端口号，访问时ip后面可以不输端口号</p>
+</blockquote>
+<p><strong>在Tomcat服务器上部署项目的方式：</strong></p>
+<ol>
+<li><p>直接将项目放到<code>webapps</code>目录下</p>
+<ul>
+<li>直接将项目文件夹放到<code>webapps</code>目录下（/项目文件夹名：项目的访问路径 &lt; 虚拟目录&gt;）</li>
+<li>将项目打成<code>war</code>包，放到<code>webapps</code>目录下，此时war包会自动解压缩</li>
+</ul>
+</li>
+<li><p>配置<code>conf/server.xml</code>文件</p>
+<p>在<code>&lt;host&gt;</code>标签中配置：<code>&lt;Context docBase = &quot;项目路径&quot; path = &quot;虚拟目录&quot;/&gt;</code></p>
+</li>
+<li><p>在<code>conf/Catalina/localhost</code> 目录下创建任意名称的xml文件</p>
+<p>在文件中编写：<code>&lt;Context docBase=&quot;项目路径&quot;/&gt;</code></p>
+<p>此时<u>虚拟目录为xml文件的名称</u></p>
+</li>
+</ol>
+<p><strong>webapps中java动态项目的目录结构：</strong></p>
+<ul>
+<li>项目根目录<ul>
+<li>WEB-INF目录<ul>
+<li>web.xml：web项目的核心配置文件</li>
+<li>classes目录：放置字节码文件</li>
+<li>lib目录：放置依赖的jar包</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Tomcat线程池概述：</strong></p>
+<p>Tomcat自带线程池机制，线程都是由线程池进行管理。</p>
+<h2 id="web开发中的常见问题"><a href="#web开发中的常见问题" class="headerlink" title="web开发中的常见问题"></a>web开发中的常见问题</h2><h3 id="服务器启动报错，如何进行错误排查"><a href="#服务器启动报错，如何进行错误排查" class="headerlink" title="服务器启动报错，如何进行错误排查"></a>服务器启动报错，如何进行错误排查</h3><p><strong>两种情况：</strong></p>
+<ul>
+<li>服务器中没有项目，服务器启动时报错，二话不说，删掉原来的服务器，重新解压一份新的。</li>
+<li>服务器中有项目，服务器启动报错，则一定是项目中 web.xml 中的配置出现了错误<ul>
+<li>url-pattern 前面没有加 / </li>
+<li>servlet-name 没有匹配项</li>
+</ul>
+</li>
+<li>servlet-class 配置错误，不会影响服务器的启动，但是在访问的时候会报 500 错误</li>
+</ul>
+<h3 id="修改哪些文件，需要重新启动服务器"><a href="#修改哪些文件，需要重新启动服务器" class="headerlink" title="修改哪些文件，需要重新启动服务器"></a>修改哪些文件，需要重新启动服务器</h3><p><strong>不需要</strong>重新启动的两种情况：</p>
+<ul>
+<li>修改了前端资源，不需要重新启动服务器</li>
+<li>修改servlet，不用重新启动服务器，但是需要等待 Java 文件重新编译成 .class 文件后，才能访问到新的内容</li>
+</ul>
+<p><strong>需要</strong>重新启动的情况：</p>
+<ul>
+<li>修改了 web.xml 文件，必须重新启动服务器</li>
+</ul>
+<blockquote>
+<p>在未来的工作中，会大量的在服务器中部署或移除项目，在部署和移除之前，必须关闭服务器</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Tomcat%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag"># Tomcat服务器</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/04/15/Java/1.Java%E5%9F%BA%E7%A1%80/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="prev" title="设计模式">
+      <i class="fa fa-chevron-left"></i> 设计模式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/04/16/Java/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="next" title="MySQL数据库">
+      MySQL数据库 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat服务器"><span class="nav-number">1.</span> <span class="nav-text">Tomcat服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web开发中的常见问题"><span class="nav-number">2.</span> <span class="nav-text">web开发中的常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器启动报错，如何进行错误排查"><span class="nav-number">2.1.</span> <span class="nav-text">服务器启动报错，如何进行错误排查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改哪些文件，需要重新启动服务器"><span class="nav-number">2.2.</span> <span class="nav-text">修改哪些文件，需要重新启动服务器</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">pikachu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">102</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pikachu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

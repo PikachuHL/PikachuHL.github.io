@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="快速排序非常重要，一定要烂熟于心！！！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="哈希表&amp;排序">
+<meta property="og:url" content="http://yoursite.com/2019/04/02/Java/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%93%88%E5%B8%8C%E8%A1%A8&%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:site_name" content="Pikachu&#39;s Blog">
+<meta property="og:description" content="快速排序非常重要，一定要烂熟于心！！！">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/images/4.2.jpg">
+<meta property="og:image" content="http://yoursite.com/images/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.png">
+<meta property="article:published_time" content="2019-04-02T01:06:54.000Z">
+<meta property="article:modified_time" content="2020-05-26T07:16:33.000Z">
+<meta property="article:author" content="pikachu">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="哈希表">
+<meta property="article:tag" content="排序">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/4.2.jpg">
+
+<link rel="canonical" href="http://yoursite.com/2019/04/02/Java/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%93%88%E5%B8%8C%E8%A1%A8&%E6%8E%92%E5%BA%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>哈希表&排序 | Pikachu's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pikachu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/Java/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%93%88%E5%B8%8C%E8%A1%A8&%E6%8E%92%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pikachu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pikachu's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          哈希表&排序
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-02 09:06:54" itemprop="dateCreated datePublished" datetime="2019-04-02T09:06:54+08:00">2019-04-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-26 15:16:33" itemprop="dateModified" datetime="2020-05-26T15:16:33+08:00">2020-05-26</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>快速排序</strong>非常重要，一定要烂熟于心！！！</p>
+<a id="more"></a>
+
+<p><img src="/images/4.2.jpg" alt=""></p>
+<h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><h3 id="结构和特点"><a href="#结构和特点" class="headerlink" title="结构和特点"></a>结构和特点</h3><p>哈希表（hashtable）：也叫散列表</p>
+<p><strong>结构：</strong>有很多种，最流行的是<strong>顺序表</strong>+<strong>链表</strong></p>
+<p><strong>特点：</strong>快，<strong>很快</strong>，非常快</p>
+<h3 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h3><p><strong>三步：</strong></p>
+<ul>
+<li>1、计算哈希码（hashcode，调用hashCode()方法获得）</li>
+<li>2、计算在哈希表中的存储位置</li>
+<li>3、存入哈希表</li>
+</ul>
+<p>存入哈希表中的数据<strong>唯一</strong>且<strong>无序</strong></p>
+<h3 id="hashCode-和equals-的作用"><a href="#hashCode-和equals-的作用" class="headerlink" title="hashCode()和equals()的作用"></a>hashCode()和equals()的作用</h3><p><strong>hashCode()：</strong>获取哈希码，返回一个<strong>int</strong>，根据哈希码计算出数据在哈希表中的存储位置</p>
+<p><strong>equals()：</strong>添加或查询数据是需要使用equals()进行对比，判断是否有相同数据</p>
+<h3 id="如何获取哈希码"><a href="#如何获取哈希码" class="headerlink" title="如何获取哈希码"></a>如何获取哈希码</h3><p><strong>int：</strong>调用hashCode()方法，其实就是取自身</p>
+<p><strong>其他类型：</strong>调用默认的hashCode()方法获取</p>
+<h3 id="如何减少冲突"><a href="#如何减少冲突" class="headerlink" title="如何减少冲突"></a>如何减少冲突</h3><p><strong>1、装填因子</strong>：</p>
+<p>装填因子 = 表中的记录数 / 哈希表的长度</p>
+<p>装填因子越小，发生冲突的可能性就越小</p>
+<p>研究标明：当装填因子为0.5时，哈希表的性能达到最优</p>
+<p><strong>因此，一般情况下，装填因子取0.5</strong></p>
+<hr>
+<p><strong>2、哈希函数的选择</strong></p>
+<p>直接定址法、平方取中法、折叠法、除留取余法等</p>
+<hr>
+<p><strong>3、处理冲突的方法</strong></p>
+<p>链地址法、开放地址法、再散列法等</p>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="排序的分类"><a href="#排序的分类" class="headerlink" title="排序的分类"></a>排序的分类</h3><p><strong>1、内部排序和外部排序</strong></p>
+<ul>
+<li>内部排序：整个排序过程都在<strong>内存</strong>中进行。<em>本章介绍的排序都是内部排序</em></li>
+<li>外部排序：数据量太大，无法全部放入内存，需要<strong>借助外存</strong>完成。</li>
+</ul>
+<p><strong>2、稳定排序和不稳定排序</strong></p>
+<ul>
+<li>稳定排序：排序完成后，相同关键字的<strong>前后</strong>相对位置<strong>没有发生变化</strong>。</li>
+<li>不稳定排序：排序完成后，相同关键字的<strong>前后</strong>相对位置<strong>发生变化</strong>。</li>
+</ul>
+<p><strong>3、比较排序和非比较排序</strong></p>
+<ul>
+<li>比较排序：通过比较来判断大小，作为排序的依据。</li>
+<li>非比较排序：不需要通过比较就能排序，如基数排序，计数排序。</li>
+</ul>
+<h3 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h3><ul>
+<li><p>比较排序</p>
+<ul>
+<li>插入排序<ul>
+<li>直接插入排序（基本）</li>
+<li>希尔排序（完善）</li>
+</ul>
+</li>
+<li>选择排序<ul>
+<li>直接选择排序（基本）</li>
+<li>堆排序（完善）</li>
+</ul>
+</li>
+<li>交换排序<ul>
+<li>冒泡排序（基本）</li>
+<li><strong>快速排序</strong>（完善）</li>
+</ul>
+</li>
+<li>归并排序<ul>
+<li>归并排序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>非比较排序</p>
+<ul>
+<li>计数排序</li>
+<li>基数排序</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>建议先掌握：直接插入排序、直接选择排序、冒泡排序、快速排序</p>
+</blockquote>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><blockquote>
+<p>快速排序是冒泡排序的改进版，也是最好的一种内部排序，涉及分治和递归的思想，必须掌握</p>
+</blockquote>
+<p><strong>基本思想：</strong></p>
+<ul>
+<li>1、先从数列中取出一个数作为<strong>基准数</strong>（第一个数）</li>
+<li>2、将比基准数小的放到它的左边，大于或等于它的放到右边（<strong>分区</strong>）</li>
+<li>3、对左、右分区重复第一步、第二步，直到各区间只有一个数（<strong>递归</strong>）</li>
+</ul>
+<p><strong>代码实现:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 实现排序算法</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuickSort</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="排序总结"><a href="#排序总结" class="headerlink" title="排序总结"></a>排序总结</h3><p><img src="/images/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.png" alt=""></p>
+<p><strong>1、</strong>直接插入排序，直接选择排序，冒泡排序是三种最简单、最基本的排序，时间复杂度也最高（O(n<sup>2</sup>)）,三种都必须熟练掌握。</p>
+<p><strong>2、</strong>快速排序和归并排序都使用了<strong>归并</strong>和<strong>递归</strong>的思想，面试时可能会被问到。</p>
+<p><strong>3、</strong>在数据不大的情况下，从时间性能来看，快速排序时实际性能最优的排序算法。</p>
+<p><strong>4、</strong>堆排序在任何情况下的时间复杂度都为O(nlog<sub>2</sub>n)，在元素较多时是很有效的排序算法。</p>
+<p><strong>5、</strong>基于<strong>比较</strong>的排序的时间复杂度下限是<strong>Ω(nlog<sub>2</sub>n))</strong>，这已经是最高的效率了。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+              <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" rel="tag"># 哈希表</a>
+              <a href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag"># 排序</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/04/01/Java/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%9F%A5%E6%89%BE/" rel="prev" title="查找">
+      <i class="fa fa-chevron-left"></i> 查找
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/04/03/Java/Linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="Java学习笔记_4.3">
+      Java学习笔记_4.3 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希表"><span class="nav-number">1.</span> <span class="nav-text">哈希表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构和特点"><span class="nav-number">1.1.</span> <span class="nav-text">结构和特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加数据"><span class="nav-number">1.2.</span> <span class="nav-text">添加数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hashCode-和equals-的作用"><span class="nav-number">1.3.</span> <span class="nav-text">hashCode()和equals()的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何获取哈希码"><span class="nav-number">1.4.</span> <span class="nav-text">如何获取哈希码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何减少冲突"><span class="nav-number">1.5.</span> <span class="nav-text">如何减少冲突</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">2.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#排序的分类"><span class="nav-number">2.1.</span> <span class="nav-text">排序的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序算法"><span class="nav-number">2.2.</span> <span class="nav-text">排序算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序"><span class="nav-number">2.3.</span> <span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序总结"><span class="nav-number">2.4.</span> <span class="nav-text">排序总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">pikachu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">102</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pikachu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

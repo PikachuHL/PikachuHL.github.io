@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="注解和注释有相似之处，但也有比较大的差别反射是实现Java动态性的方法之一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="注解&amp;反射&amp;junit">
+<meta property="og:url" content="http://yoursite.com/2019/03/27/Java/1.Java%E5%9F%BA%E7%A1%80/%E6%B3%A8%E8%A7%A3_%E5%8F%8D%E5%B0%84_junit/index.html">
+<meta property="og:site_name" content="Pikachu&#39;s Blog">
+<meta property="og:description" content="注解和注释有相似之处，但也有比较大的差别反射是实现Java动态性的方法之一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/images/3.27.jpg">
+<meta property="article:published_time" content="2019-03-26T22:54:43.000Z">
+<meta property="article:modified_time" content="2020-05-26T07:16:40.000Z">
+<meta property="article:author" content="pikachu">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="注解">
+<meta property="article:tag" content="反射">
+<meta property="article:tag" content="junit">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/3.27.jpg">
+
+<link rel="canonical" href="http://yoursite.com/2019/03/27/Java/1.Java%E5%9F%BA%E7%A1%80/%E6%B3%A8%E8%A7%A3_%E5%8F%8D%E5%B0%84_junit/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>注解&反射&junit | Pikachu's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pikachu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/27/Java/1.Java%E5%9F%BA%E7%A1%80/%E6%B3%A8%E8%A7%A3_%E5%8F%8D%E5%B0%84_junit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pikachu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pikachu's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          注解&反射&junit
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-27 06:54:43" itemprop="dateCreated datePublished" datetime="2019-03-27T06:54:43+08:00">2019-03-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-26 15:16:40" itemprop="dateModified" datetime="2020-05-26T15:16:40+08:00">2020-05-26</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>注解和注释有相似之处，但也有比较大的差别<br>反射是实现Java动态性的方法之一</p>
+<a id="more"></a>
+<p><img src="/images/3.27.jpg" alt=""></p>
+<h1 id="一、注解"><a href="#一、注解" class="headerlink" title="一、注解"></a>一、注解</h1><h2 id="注解-Annotation"><a href="#注解-Annotation" class="headerlink" title="注解-Annotation"></a>注解-Annotation</h2><blockquote>
+<p>注解本质上就是一个接口，该接口默认继承 Annotation 接口</p>
+</blockquote>
+<p>1、注解的作用</p>
+<ul>
+<li>不是程序本身，可以对程序进行解释</li>
+<li>可以被其他程序读取</li>
+</ul>
+<p>2、注解的格式</p>
+<blockquote>
+<p>@注解名</p>
+</blockquote>
+<p>3、注解的使用范围<br>package、class、method、field</p>
+<p>4、内置注解</p>
+<ul>
+<li>@Override –&gt; 该注解只适用于修饰方法，表示该方法重写了父类(或接口)的方法</li>
+<li>@Deprecated –&gt; 该注解可用于修饰方法、属性、类，表示不推荐使用这样的元素</li>
+<li>@SuppressWarnings –&gt; 用来抑制编译时的警告信息</li>
+</ul>
+<h2 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h2><p>定义<strong>关键字</strong>：使用 <strong>@interface</strong> 定义注解</p>
+<p><strong>属性</strong>：注解中的抽象方法</p>
+<ul>
+<li><p>由于注解是接口，所以注解内可以定义 抽象方法</p>
+<p>在注解内，抽象方法又被称为属性</p>
+</li>
+<li><p>抽象方法（属性）的返回值类型仅可为以下几种：</p>
+<ul>
+<li>基本数据类型</li>
+<li>String </li>
+<li>枚举</li>
+<li>注解</li>
+<li>以上类型的数组</li>
+</ul>
+</li>
+<li><p>定义了属性，在使用时需要对属性进行赋值</p>
+<ul>
+<li>如果定义属性时，使用default关键字给属性默认初始化值，则使用注解时，可以不进行属性的赋值</li>
+<li>如果<strong>只有一个</strong>属性需要赋值，并且属性的名称是<strong>value</strong>，则value可以省略，直接定义值即可</li>
+<li>数组赋值时，值使用{}包裹。如果数组中只有一个值，则{}可以省略</li>
+</ul>
+</li>
+</ul>
+<p><strong>元注解：</strong></p>
+<ul>
+<li><p><strong>@Target</strong>：表示注解可以修饰的范围</p>
+<ul>
+<li>PACKAGE –&gt; 包</li>
+<li>TYPE –&gt; 类、接口、枚举、注解</li>
+<li>CONSTRUCTOR –&gt; 构造器</li>
+<li>FIELD –&gt; 域</li>
+<li>METHOD –&gt; 方法</li>
+<li>LOCAL_VARIABLE –&gt; 局部变量</li>
+<li>PRARMETER –&gt; 参数</li>
+</ul>
+</li>
+<li><p><strong>@Retention</strong>：描述注解的生命周期</p>
+<ul>
+<li>SOURCE –&gt; 在源文件中有效</li>
+<li>CLASS –&gt; 在class文件中有效</li>
+<li>RUNTIME –&gt; 在运行时有效</li>
+</ul>
+</li>
+<li><p><strong>@Documented</strong>：描述注解是否被抽取到 API 文档中</p>
+</li>
+<li><p><strong>@Inherited</strong>：描述注解是否被子类继承</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(value=&#123;ElementType.METHOD,ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyAnnotation&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用反射机制读取注解"><a href="#使用反射机制读取注解" class="headerlink" title="使用反射机制读取注解"></a>使用反射机制读取注解</h2><blockquote>
+<p>只有将注解读取出来，注解才有实际的使用意义。</p>
+</blockquote>
+<h1 id="二、反射"><a href="#二、反射" class="headerlink" title="二、反射"></a>二、反射</h1><p><strong>概念：</strong>将类的组成部分封装为其他对象，这就是反射</p>
+<p><strong>好处：</strong></p>
+<ul>
+<li>在程序运行过程中，可以动态的操作这些对象（成员属性、构造方法、成员方法等）</li>
+<li>可以解耦，提高程序的可扩展性</li>
+</ul>
+<h3 id="获取-Class-对象的方法："><a href="#获取-Class-对象的方法：" class="headerlink" title="获取 Class 对象的方法："></a>获取 Class 对象的方法：</h3><p>1、通过 Class 的 forName() 方法获取</p>
+<ul>
+<li><code>Class clazz = Class.forName(&quot;包名.类名&quot;);</code></li>
+</ul>
+<p>2、通过类的 class 静态成员变量获取</p>
+<ul>
+<li><code>Class clazz = 类名.class;</code></li>
+</ul>
+<p>3、通过对象的 getClass() 方法获取</p>
+<ul>
+<li><code>Class clazz = 对象名.getClass();</code></li>
+</ul>
+<h3 id="通过-Class-对象，获取类的信息（类名，属性，构造器，方法等）"><a href="#通过-Class-对象，获取类的信息（类名，属性，构造器，方法等）" class="headerlink" title="通过 Class 对象，获取类的信息（类名，属性，构造器，方法等）"></a>通过 Class 对象，获取类的信息（类名，属性，构造器，方法等）</h3><p>1、<strong>类名</strong>相关</p>
+<ul>
+<li><code>public String getName()</code> –&gt; 获取 包名+类名</li>
+<li><code>public String getSimpleName()</code> –&gt; 仅获取类名</li>
+</ul>
+<p>2、<strong>成员变量</strong>相关</p>
+<ul>
+<li><p><code>public Field getField(&quot;成员变量名&quot;)</code> –&gt; 指定名称，获取 public 成员变量</p>
+</li>
+<li><p><code>public Field[] getFields()</code> –&gt; 获取所有 public 成员变量</p>
+</li>
+</ul>
+<ul>
+<li><p><code>public Field getDeclaredField(&quot;成员变量名&quot;)</code> –&gt; 指定名称，获取成员变量</p>
+</li>
+<li><p><code>public Field[] getDeclaredFields()</code> –&gt; 获取所有成员变量</p>
+</li>
+</ul>
+<p>3、<strong>构造方法</strong>相关</p>
+<ul>
+<li><code>public Constructor getConstructor(参数...)</code> –&gt; 指定参数，获取 public 构造方法</li>
+<li><code>public Constructor[] getConstructors()</code> –&gt; 获取所有 public 构造方法</li>
+</ul>
+<ul>
+<li><code>public Constructor getDeclaredConstructor(参数...)</code> –&gt; 指定参数，获取构造方法</li>
+<li><code>public Constructor[] getDeclaredConstrustors()</code> –&gt; 获取所有构造方法</li>
+</ul>
+<p>4、<strong>成员方法</strong>相关</p>
+<ul>
+<li><code>getMethod(&quot;方法名&quot;,参数)</code> –&gt; 指定方法名和参数，获取 public 成员方法</li>
+<li><code>getMethods()</code> –&gt; 获取所有 public 成员方法</li>
+</ul>
+<ul>
+<li><code>getDeclaredMethod(&quot;方法名&quot;,参数)</code> –&gt; 指定方法名和参数，获取成员方法</li>
+<li><code>getDeclaredMethods()</code> –&gt; 获取所有成员方法</li>
+</ul>
+<blockquote>
+<p><strong>使用反射创建对象：</strong></p>
+<p>1、通过 Class 对象创建(调用类的无参构造) –&gt; <code>clazz.newInstance()</code></p>
+<p>2、通过 Constructor 对象创建(可调用无参，也可调用有参构造) –&gt; <code>constructor.newInstance(...)</code></p>
+<p><strong>获取到方法后执行方法：</strong></p>
+<p><code>method.invoke(对象名, 参数...)</code></p>
+<p><strong>暴力反射：</strong></p>
+<p><code>setAccessible(true)</code> –&gt; 可将（成员变量/构造方法/成员方法）设置为不需要做安全检查，直接可以访问。</p>
+</blockquote>
+<h3 id="测试反射API动态操作：构造器、方法、属性"><a href="#测试反射API动态操作：构造器、方法、属性" class="headerlink" title="测试反射API动态操作：构造器、方法、属性"></a>测试反射API动态操作：构造器、方法、属性</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	String path = <span class="string">"test01.User"</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="comment">// 通过 forName 方法创建 Class 对象</span></span><br><span class="line">		Class&lt;User&gt; clazz = (Class&lt;User&gt;) Class.forName(path);</span><br><span class="line">		<span class="comment">// 通过 Class对象 创建 User类的对象</span></span><br><span class="line">		User u1 = clazz.newInstance(); <span class="comment">// 其实是调用了User的无参构造器，所以JavaBean必须要有无参构造器</span></span><br><span class="line">		</span><br><span class="line">		Constructor&lt;User&gt; c = clazz.getDeclaredConstructor(<span class="keyword">int</span><span class="class">.<span class="keyword">class</span>,<span class="title">int</span>.<span class="title">class</span>,<span class="title">String</span>.<span class="title">class</span>)</span>;</span><br><span class="line">		User u2 = c.newInstance(<span class="number">1001</span>,<span class="number">22</span>,<span class="string">"小强"</span>); <span class="comment">// 调用有参构造器创建对象</span></span><br><span class="line">		System.out.println(u2.getUname());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 通过反射API调用普通方法</span></span><br><span class="line">		User u3 = clazz.newInstance();</span><br><span class="line">		Method m = clazz.getDeclaredMethod(<span class="string">"setUname"</span>,String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">		m.invoke(u3, <span class="string">"小明"</span>); <span class="comment">// 激活该方法，传入对象及参数</span></span><br><span class="line">		System.out.println(u3.getUname());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 通过反射API操作属性</span></span><br><span class="line">		User u4 = clazz.newInstance();</span><br><span class="line">		Field f = clazz.getDeclaredField(<span class="string">"uname"</span>);</span><br><span class="line">		f.setAccessible(<span class="keyword">true</span>); <span class="comment">// 将属性设置为不需要做安全检查，直接可以访问。</span></span><br><span class="line">		f.set(u4, <span class="string">"小红"</span>); <span class="comment">// 通过反射直接写属性的值</span></span><br><span class="line">		</span><br><span class="line">		System.out.println(u4.getUname());</span><br><span class="line">		System.out.println(f.get(u4)); <span class="comment">// 通过反射直接读属性的值</span></span><br><span class="line">		</span><br><span class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="反射效率问题"><a href="#反射效率问题" class="headerlink" title="反射效率问题"></a>反射效率问题</h3><p>反射是一把双刃剑，在<strong>提升了编程灵活性</strong>的同时<strong>降低了程序运行效率</strong></p>
+<blockquote>
+<p>通过 setAccessible(boolean flag) 来设置是否要进行访问安全检查<br>关闭访问安全检查可以比较大的提高程序运行的效率</p>
+</blockquote>
+<h2 id="三、junit-测试工具"><a href="#三、junit-测试工具" class="headerlink" title="三、junit 测试工具"></a>三、junit 测试工具</h2><p>测试分类：</p>
+<ul>
+<li>黑盒测试：不需要写代码，只关心输入输出值</li>
+<li>白盒测试：需要写代码，关心程序的具体执行流程</li>
+</ul>
+<p>使用 junit 的方法：</p>
+<ul>
+<li>给需要测试的方法加上 @Test</li>
+<li>导入 junit 依赖环境</li>
+</ul>
+<p>使用断言操作来处理结果：<br><code>Assert.assertEquals(期望的结果,运算的结果);</code></p>
+<p>补充：</p>
+<ul>
+<li>@Before:<ul>
+<li>修饰的方法会在测试方法之前被自动执行</li>
+</ul>
+</li>
+<li>@After:<ul>
+<li>修饰的方法会在测试方法执行之后自动被执行</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/%E6%B3%A8%E8%A7%A3/" rel="tag"># 注解</a>
+              <a href="/tags/%E5%8F%8D%E5%B0%84/" rel="tag"># 反射</a>
+              <a href="/tags/junit/" rel="tag"># junit</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/03/18/Java/1.Java%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="prev" title="网络编程">
+      <i class="fa fa-chevron-left"></i> 网络编程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/03/28/Java/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" rel="next" title="数据结构与算法基本概念">
+      数据结构与算法基本概念 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、注解"><span class="nav-number">1.</span> <span class="nav-text">一、注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注解-Annotation"><span class="nav-number">1.1.</span> <span class="nav-text">注解-Annotation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义注解"><span class="nav-number">1.2.</span> <span class="nav-text">自定义注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用反射机制读取注解"><span class="nav-number">1.3.</span> <span class="nav-text">使用反射机制读取注解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、反射"><span class="nav-number">2.</span> <span class="nav-text">二、反射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-Class-对象的方法："><span class="nav-number">2.0.1.</span> <span class="nav-text">获取 Class 对象的方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-Class-对象，获取类的信息（类名，属性，构造器，方法等）"><span class="nav-number">2.0.2.</span> <span class="nav-text">通过 Class 对象，获取类的信息（类名，属性，构造器，方法等）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试反射API动态操作：构造器、方法、属性"><span class="nav-number">2.0.3.</span> <span class="nav-text">测试反射API动态操作：构造器、方法、属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反射效率问题"><span class="nav-number">2.0.4.</span> <span class="nav-text">反射效率问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、junit-测试工具"><span class="nav-number">2.1.</span> <span class="nav-text">三、junit 测试工具</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">pikachu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">102</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pikachu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
