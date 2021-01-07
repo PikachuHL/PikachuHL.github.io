@@ -1,6 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JSON</title>
+    <url>/2021/01/05/Java/JSON/</url>
+    <content><![CDATA[<p>JSON：<strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation <code>JavaScript对象表示法</code></p>
+<a id="more"></a>
+
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><p>简介：</p>
+<ul>
+<li><p>JSON 是纯文本的信息</p>
+</li>
+<li><p>JSON 是存储和交换文本信息的语法，类似于XML</p>
+</li>
+<li><p>JSON 比 XML 更小，更快，更易解析</p>
+</li>
+</ul>
+<h4 id="JSON定义："><a href="#JSON定义：" class="headerlink" title="JSON定义："></a>JSON定义：</h4><ul>
+<li><p>对象形式 : <code>{&quot;name&quot;:&quot;jack&quot;, &quot;age&quot;:22, &quot;gender&quot;:true}</code></p>
+<ul>
+<li>键 : 只能是字符串</li>
+<li>值:<ol>
+<li>数字（整数或浮点数）</li>
+<li>字符串（在双引号中）</li>
+<li>逻辑值（true 或 false）</li>
+<li>数组（在中括号中）</li>
+<li>对象（在大括号中）</li>
+<li>null</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>数组形式 : <code>[&quot;dog&quot;, &quot;cat&quot;]</code></p>
+<ul>
+<li>键: 数组索引(从0开始的数字)</li>
+<li>值: 数组中的元素</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 基本定义格式</span></span><br><span class="line">&#123;"name":"jack","age":22,"gender":true&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 嵌套定义格式</span></span><br><span class="line">&#123;<span class="attr">"persons"</span>:[</span><br><span class="line">    &#123;<span class="attr">"name"</span>:<span class="string">"张三"</span>,<span class="attr">"age"</span>:<span class="number">22</span>,<span class="attr">"gender"</span>:<span class="literal">true</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">"name"</span>:<span class="string">"李四"</span>,<span class="attr">"age"</span>:<span class="number">23</span>,<span class="attr">"gender"</span>:<span class="literal">true</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">"name"</span>:<span class="string">"王五"</span>,<span class="attr">"age"</span>:<span class="number">24</span>,<span class="attr">"gender"</span>:<span class="literal">true</span>&#125;</span><br><span class="line">]&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="获取-JSON-中的数据"><a href="#获取-JSON-中的数据" class="headerlink" title="获取 JSON 中的数据"></a>获取 JSON 中的数据</h4><ol>
+<li><code>JSON对象.键名</code></li>
+<li><code>JSON对象[&quot;键名&quot;]</code></li>
+</ol>
+<hr>
+<h4 id="JSON-和-Java对象-相互转换"><a href="#JSON-和-Java对象-相互转换" class="headerlink" title="JSON 和 Java对象 相互转换"></a>JSON 和 Java对象 相互转换</h4><ul>
+<li><p>JSON 解析器：</p>
+<ul>
+<li>Jsonlib：官方提供</li>
+<li>fastjson：阿里提供</li>
+<li>Jackson：SpringMVC内置</li>
+<li>Gson：谷歌提供</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>JSON 转为 Java 对象 (使用 Jackson)</p>
+<ol>
+<li><p>导入 Jackson 的相关坐标</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--以下【三个jar包紧密依赖】同时存在--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-annotations<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+</li>
+</ul>
+<ol start="2">
+<li><p>创建 Jackson 核心对象 <code>ObjectMapper</code></p>
+</li>
+<li><p>调用 <code>ObjectMapper</code> 的相关方法进行转换 : <code>readValue( JSON 字符串数据,Class)</code></p>
+</li>
+</ol>
+<ul>
+<li><p>Java 对象转换 JSON</p>
+<ol>
+<li><p>导坐标 (同上)</p>
+</li>
+<li><p>创建 Jackson 核心对象 <code>ObjectMapper</code></p>
+</li>
+<li><p>调用 <code>ObjectMapper</code> 的相关方法进行转换</p>
+<ol>
+<li><code>writeValue(参数1，obj)</code> : 把 obj 对象转换为 JSON 字符串, 然后<pre><code>根据参数1不同：
+    File：把 JSON 并保存到指定的文件
+    Writer：把 JSON 放到字符输出流
+    OutputStream：把 JSON 放到字节输出流</code></pre></li>
+<li><code>writeValueAsString(obj)</code>：将对象转为 JSON 字符串</li>
+</ol>
+</li>
+<li><p>注解：</p>
+<ol>
+<li><code>@JsonIgnore</code>：排除属性</li>
+<li><code>@JsonFormat</code>：属性值的格式化<ul>
+<li><code>@JsonFormat(pattern = &quot;yyyy-MM-dd&quot;)</code></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>复杂 Java 对象转换</p>
+<ol>
+<li>List: 转换后为 JSON 数组</li>
+<li>Map: 转换后为 JSON 对象</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JSON</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL 安装过程&amp;遇到的问题</title>
+    <url>/2020/11/25/Java/Mysql%20%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B&amp;%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>MySQL安装过程及遇到的问题</p>
+<a id="more"></a>
+
+
+
+<h3 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h3><blockquote>
+<p>安装方式:命令行安装的方式</p>
+</blockquote>
+<ol>
+<li><p>把下载的压缩包解压到一个文件夹(<code>D:\develop\MySQL</code>)里面, 此时文件夹中没有<code>data目录</code>和<code>ini文件</code></p>
+</li>
+<li><p>在MySQL目录下新建 <code>my.ini</code> 文件, 并复制以下内容</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">#设置3306端</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">port</span> = <span class="number">3306</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 设置mysql的安装目录</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">basedir</span>=D:\develop\MySQL</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 设置mysql数据库的数据的存放目录</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">datadir</span>=D:\develop\MySQL\data</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">200</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 服务端使用的字符集默认为8比特编码的latin1字符集</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br><span class="line"> </span><br><span class="line"><span class="attr">sql_mode</span>=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line"> </span><br><span class="line"><span class="section">[mysql]</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置MySQL的环境变量</p>
+<ul>
+<li>在系统变量中新建:<ul>
+<li>变量名: <code>MySQL_HOME</code> </li>
+<li>变量值: <code>D:\develop\MySQL</code></li>
+</ul>
+</li>
+<li>在系统变量 –&gt; Path 中新建: <code>D:\develop\MySQL\bin</code></li>
+</ul>
+</li>
+<li><p>以管理员身份打开cmd</p>
+<ol>
+<li>cd 到 <code>D:\develop\MySQL\bin</code></li>
+<li>运行 <code>mysqld --install</code> , 提示 <code>Services successfully installed</code> 说明安装成功, 如果提示已存在, 先运行 <code>mysqld --remove</code>, 再运行 <code>mysqld --install</code></li>
+<li>运行 <code>mysqld --initialize</code>, 生成 <code>data</code> 目录</li>
+<li>运行 <code>net start mysql</code> 启动服务</li>
+</ol>
+</li>
+<li><p>修改MySQL密码</p>
+<ol>
+<li>运行 <code>net stop mysql</code> 停止服务</li>
+<li>运行 <code>mysqld --skip-grant-tables</code> 开启无密码的mysql</li>
+<li>以管理员身份打开另一个cmd窗口, 运行 <code>mysql -u root -p</code> 回车, 不用输入密码, 直接回车</li>
+<li>运行 <code>update mysql.user set authentication_string=password(&quot;root&quot;) where user=&quot;root&quot;;</code> 更新root账户的密码为root</li>
+<li>运行 <code>flush privileges;</code> 执行刷新权限</li>
+<li>运行 <code>quit;</code> 结束本次操作</li>
+</ol>
+</li>
+<li><p>在密码的情况下修改密码</p>
+<ol>
+<li>运行 <code>mysql -u root -p</code>, 输入密码 root, 进入mysql操作界面</li>
+<li>依次运行下面命令, 就把密码更新成了 123456<ol>
+<li><code>SET PASSWORD = PASSWORD(&#39;123456&#39;);</code></li>
+<li><code>ALTER USER &#39;root&#39;@&#39;localhost&#39; PASSWORD EXPIRE NEVER;</code></li>
+<li><code>flush privileges;</code></li>
+</ol>
+</li>
+<li>运行 <code>quit;</code> 退出, 大功告成!</li>
+</ol>
+</li>
+</ol>
+<h3 id="遇到的问题及解决方案"><a href="#遇到的问题及解决方案" class="headerlink" title="遇到的问题及解决方案:"></a>遇到的问题及解决方案:</h3><ol>
+<li><p>运行 <code>mysqld --install</code> 时弹窗提示</p>
+<ul>
+<li>“无法启动此程序，因为计算机丢失<code>MSVCP120.dll</code>“;  </li>
+<li>“无法启动此程序，因为计算机丢失<code>MSVCR120.dll</code>“;</li>
+</ul>
+<p>解决方案:</p>
+<ul>
+<li>这种错误是由于未安装<code>vcredist</code>引起的（而且版本是 2013版，32位/64位）；</li>
+<li>从微软官网下载 <code>vcredist 2013</code>: <a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=40784" target="_blank" rel="noopener">https://www.microsoft.com/zh-CN/download/details.aspx?id=40784</a></li>
+<li>根据电脑选择 32 or 64 位进行安装</li>
+<li>然后重新运行<code>mysqld --install</code>，成功解决.</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>bugfix</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python第三方库</title>
     <url>/2020/09/22/Python/Python_old/Python%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1395,8 +1589,6 @@
     <url>/2020/04/24/Python/Python_new/Python%E6%A8%A1%E5%9D%97&amp;%E5%8C%85/</url>
     <content><![CDATA[<p>模块是工具的集合, 包是模块的集合</p>
 <a id="more"></a>
-
-
 
 <h1 id="Python模块-amp-包"><a href="#Python模块-amp-包" class="headerlink" title="Python模块 &amp; 包"></a>Python模块 &amp; 包</h1><p>模块的概念:</p>
 <p>导入模块:</p>
@@ -3029,29 +3221,34 @@
       </tags>
   </entry>
   <entry>
-    <title>AJAX&amp;JSON</title>
+    <title>AJAX</title>
     <url>/2019/05/30/Java/2.JavaWeb/AJAX&amp;JSON/</url>
-    <content><![CDATA[<p>AJAX：Asynchronous JavaScript and XML</p>
-<p>JSON：JavaScript Object Notation</p>
+    <content><![CDATA[<p>AJAX：Asynchronous JavaScript and XML <code>异步的 JavaScript和XML</code></p>
 <a id="more"></a>
 
-<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>概念：AJAX：Asynchronous JavaScript and XML： <strong>异步的 JavaScript和XML</strong></p>
+<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术</p>
+<blockquote>
 <p>浏览器和服务器通信中的<strong>同步和异步</strong>：</p>
 <ul>
 <li>同步：浏览器发出请求后必须等待服务器的响应，在等待期间不能做任何操作</li>
 <li>异步： 浏览器不需要等待服务器的响应，在等待期间可以进行其他操作</li>
 </ul>
-<p>AJAX是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术</p>
-<h3 id="使用jQuery实现AJAX"><a href="#使用jQuery实现AJAX" class="headerlink" title="使用jQuery实现AJAX"></a>使用jQuery实现AJAX</h3><ol>
-<li><p>$.ajax()</p>
-<p>语法：<code>$.ajax({键值对});</code></p>
-</li>
+</blockquote>
+<p>AJAX 不是新的语言, 而是一种基于现有Internet标准的新方法, 并联合使用它们:</p>
+<ul>
+<li>XMLHttpRequest 对象(异步与服务器交换数据, 该对象为浏览器内置)</li>
+<li>JavaScript / DOM</li>
+<li>CSS</li>
+<li>XML</li>
+</ul>
+<h3 id="使用-jQuery-实现AJAX"><a href="#使用-jQuery-实现AJAX" class="headerlink" title="使用 jQuery 实现AJAX"></a>使用 jQuery 实现AJAX</h3><ol>
+<li>基础语法：<code>$.ajax({name:value, name:value, ...});</code></li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    url:<span class="string">"请求路径"</span>,</span><br><span class="line">    type:<span class="string">"POST"</span>, <span class="comment">// 请求方式，默认为GET</span></span><br><span class="line">    data:&#123;<span class="string">"username"</span>:<span class="string">"tom"</span>,<span class="string">"age"</span>:<span class="number">23</span>&#125;, <span class="comment">// 请求参数</span></span><br><span class="line">    success:<span class="function"><span class="keyword">function</span> (<span class="params">a</span>)</span>&#123; <span class="comment">// 响应成功后执行的回调函数，a 表示服务器响应的数据</span></span><br><span class="line">        alert(a);</span><br><span class="line">    &#125;,</span><br><span class="line">    error:<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">"出错了"</span>); <span class="comment">// 请求响应出错时执行的回调函数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 
 <ol start="2">
-<li><p>$.get()</p>
+<li><p><code>$.get()</code></p>
 <p>语法：<code>$.get(url, [data], [callback], [type]);</code></p>
 <ul>
 <li>url：请求路径</li>
@@ -3062,112 +3259,13 @@
 </li>
 </ol>
 <ol start="3">
-<li><p>$.post()</p>
+<li><p><code>$.post()</code></p>
 <p>语法：<code>$.get(url, [data], [callback], [type]);</code></p>
 </li>
 </ol>
-<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><p>概念：JavaScript Object Notation： <strong>JavaScript对象表示法</strong></p>
-<p>JSON 是存储和交换文本信息的语法，类似于XML</p>
-<p>JSON 比XML更小，更快，更易解析</p>
-<h3 id="JSON的语法"><a href="#JSON的语法" class="headerlink" title="JSON的语法"></a>JSON的语法</h3><p><strong>JSON定义：</strong></p>
-<p><code>var p = {&quot;name&quot;:&quot;jack&quot;,&quot;age&quot;:22,&quot;gender&quot;:true}</code></p>
-<p>基本规则：</p>
-<ul>
-<li>数据是存储在键值对中<ul>
-<li>键用引号(单双都行)引起来，也可以不使用引号</li>
-<li>值的类型：<ol>
-<li>数字（整数或浮点数）</li>
-<li>字符串（在双引号中）</li>
-<li>逻辑值（true 或 false）</li>
-<li>数组（在方括号中）</li>
-<li>对象（在花括号中）</li>
-<li>null</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>多个键值对由逗号分隔</li>
-<li>使用 {} 定义JSON</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 基本定义格式</span></span><br><span class="line"><span class="keyword">var</span> p = &#123;<span class="string">"name"</span>:<span class="string">"jack"</span>,<span class="string">"age"</span>:<span class="number">22</span>,<span class="string">"gender"</span>:<span class="literal">true</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 嵌套定义格式</span></span><br><span class="line"><span class="keyword">var</span> p1 = &#123;<span class="string">"persons"</span>:[</span><br><span class="line">    &#123;<span class="string">"name"</span>:<span class="string">"张三"</span>,<span class="string">"age"</span>:<span class="number">22</span>,<span class="string">"gender"</span>:<span class="literal">true</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"name"</span>:<span class="string">"李四"</span>,<span class="string">"age"</span>:<span class="number">23</span>,<span class="string">"gender"</span>:<span class="literal">true</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"name"</span>:<span class="string">"王五"</span>,<span class="string">"age"</span>:<span class="number">24</span>,<span class="string">"gender"</span>:<span class="literal">true</span>&#125;</span><br><span class="line">]&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<p><strong>获取 JSON 中的数据</strong></p>
-<ol>
-<li>JSON对象.键名</li>
-<li>JSON对象[“键名”]</li>
-</ol>
-<p> <strong>JSON 数据和Java对象的相互转换</strong></p>
-<ul>
-<li><p>JSON 解析器：</p>
-<ul>
-<li>Jsonlib：官方提供</li>
-<li>Gson：谷歌提供</li>
-<li>fastjson：阿里提供</li>
-<li>Jackson：SpringMVC内置</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>JSON 转为Java对象</p>
-<ol>
-<li><p>导入 Jackson 的相关jar包</p>
-</li>
-<li><p>创建 Jackson 核心对象 ObjectMapper</p>
-</li>
-<li><p>调用ObjectMapper的相关方法进行转换</p>
-<ol>
-<li>readValue( JSON 字符串数据,Class)</li>
-</ol>
-</li>
-</ol>
-</li>
-</ul>
-<ul>
-<li><p><strong>Java对象转换JSON</strong>（<u>常用</u>）</p>
-<ol>
-<li>导入 Jackson 的相关jar包</li>
-<li>创建 Jackson 核心对象 <strong>ObjectMapper</strong></li>
-<li>调用ObjectMapper的相关方法进行转换<ol>
-<li>转换方法：<ul>
-<li><code>writeValue(参数1，obj)</code> <em>根据参数1 类型不同有三种重载</em><pre><code>参数1：
-    File：将obj对象转换为 JSON 字符串，并保存到指定的文件中
-    Writer：将obj对象转换为 JSON 字符串，并将 JSON 数据填充到字符输出流中
-    OutputStream：将obj对象转换为JSON字符串，并将 JSON 数据填充到字节输出流中</code></pre></li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-<ul>
-<li><p><code>writeValueAsString(obj)</code>：将对象转为 JSON 字符串</p>
-<ol start="2">
-<li><p>注解：</p>
-<ol>
-<li><code>@JsonIgnore</code>：排除属性。</li>
-<li><code>@JsonFormat</code>：属性值的格式化</li>
-</ol>
-<ul>
-<li><code>@JsonFormat(pattern = &quot;yyyy-MM-dd&quot;)</code></li>
-</ul>
-</li>
-<li><p>复杂 Java 对象转换</p>
-<ol>
-<li>List：转换后为<strong>数组</strong></li>
-<li>Map：转换后对象格式一致</li>
-</ol>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
 ]]></content>
       <tags>
         <tag>AJAX</tag>
-        <tag>JSON</tag>
       </tags>
   </entry>
   <entry>
@@ -6832,10 +6930,10 @@
 <ul>
 <li>使用<strong>script标签声明</strong> JS 代码域</li>
 </ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="actionscript">		alert(<span class="string">"去吧，皮卡丘"</span>);	</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    alert(<span class="string">"去吧，皮卡丘"</span>);	</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>使用<strong>script标签引入</strong>外部声明的 JS 文件<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"相对路径"</span> &gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li>使用<strong>script标签引入</strong>外部声明的 JS 文件<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"相对路径"</span> &gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -6930,7 +7028,7 @@
 <li>=== 判断<strong>值和类型</strong>是否相同，返回true/false</li>
 </ul>
 <h2 id="JS的语句"><a href="#JS的语句" class="headerlink" title="JS的语句"></a>JS的语句</h2><p>1、if判断语句</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> m = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">if</span>(m==<span class="number">5</span>)&#123;</span><br><span class="line">   alert(<span class="string">"m=5"</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    alert(<span class="string">"m!=5"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> m = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">if</span>(m==<span class="number">5</span>) &#123;</span><br><span class="line">   alert(<span class="string">"m=5"</span>);</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(m==<span class="number">6</span>) &#123;</span><br><span class="line">    alert(<span class="string">"m==5"</span>);</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    alert(<span class="string">"m!=5 &amp; m!=6"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 

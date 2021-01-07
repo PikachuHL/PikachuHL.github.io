@@ -45,18 +45,17 @@
   };
 </script>
 
-  <meta name="description" content="AJAX：Asynchronous JavaScript and XML JSON：JavaScript Object Notation">
+  <meta name="description" content="AJAX：Asynchronous JavaScript and XML 异步的 JavaScript和XML">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AJAX&amp;JSON">
+<meta property="og:title" content="AJAX">
 <meta property="og:url" content="http://yoursite.com/2019/05/30/Java/2.JavaWeb/AJAX&JSON/index.html">
 <meta property="og:site_name" content="Pikachu&#39;s Blog">
-<meta property="og:description" content="AJAX：Asynchronous JavaScript and XML JSON：JavaScript Object Notation">
+<meta property="og:description" content="AJAX：Asynchronous JavaScript and XML 异步的 JavaScript和XML">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-30T14:33:10.000Z">
-<meta property="article:modified_time" content="2020-05-26T07:16:37.000Z">
+<meta property="article:modified_time" content="2021-01-05T12:39:49.291Z">
 <meta property="article:author" content="pikachu">
 <meta property="article:tag" content="AJAX">
-<meta property="article:tag" content="JSON">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2019/05/30/Java/2.JavaWeb/AJAX&JSON/">
@@ -73,7 +72,7 @@
   };
 </script>
 
-  <title>AJAX&JSON | Pikachu's Blog</title>
+  <title>AJAX | Pikachu's Blog</title>
   
 
 
@@ -220,7 +219,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          AJAX&JSON
+          AJAX
         </h1>
 
         <div class="post-meta">
@@ -237,7 +236,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-26 15:16:37" itemprop="dateModified" datetime="2020-05-26T15:16:37+08:00">2020-05-26</time>
+                <time title="修改时间：2021-01-05 20:39:49" itemprop="dateModified" datetime="2021-01-05T20:39:49+08:00">2021-01-05</time>
               </span>
 
           
@@ -251,27 +250,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>AJAX：Asynchronous JavaScript and XML</p>
-<p>JSON：JavaScript Object Notation</p>
+        <p>AJAX：Asynchronous JavaScript and XML <code>异步的 JavaScript和XML</code></p>
 <a id="more"></a>
 
-<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>概念：AJAX：Asynchronous JavaScript and XML： <strong>异步的 JavaScript和XML</strong></p>
+<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术</p>
+<blockquote>
 <p>浏览器和服务器通信中的<strong>同步和异步</strong>：</p>
 <ul>
 <li>同步：浏览器发出请求后必须等待服务器的响应，在等待期间不能做任何操作</li>
 <li>异步： 浏览器不需要等待服务器的响应，在等待期间可以进行其他操作</li>
 </ul>
-<p>AJAX是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术</p>
-<h3 id="使用jQuery实现AJAX"><a href="#使用jQuery实现AJAX" class="headerlink" title="使用jQuery实现AJAX"></a>使用jQuery实现AJAX</h3><ol>
-<li><p>$.ajax()</p>
-<p>语法：<code>$.ajax({键值对});</code></p>
-</li>
+</blockquote>
+<p>AJAX 不是新的语言, 而是一种基于现有Internet标准的新方法, 并联合使用它们:</p>
+<ul>
+<li>XMLHttpRequest 对象(异步与服务器交换数据, 该对象为浏览器内置)</li>
+<li>JavaScript / DOM</li>
+<li>CSS</li>
+<li>XML</li>
+</ul>
+<h3 id="使用-jQuery-实现AJAX"><a href="#使用-jQuery-实现AJAX" class="headerlink" title="使用 jQuery 实现AJAX"></a>使用 jQuery 实现AJAX</h3><ol>
+<li>基础语法：<code>$.ajax({name:value, name:value, ...});</code></li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    url:<span class="string">"请求路径"</span>,</span><br><span class="line">    type:<span class="string">"POST"</span>, <span class="comment">// 请求方式，默认为GET</span></span><br><span class="line">    data:&#123;<span class="string">"username"</span>:<span class="string">"tom"</span>,<span class="string">"age"</span>:<span class="number">23</span>&#125;, <span class="comment">// 请求参数</span></span><br><span class="line">    success:<span class="function"><span class="keyword">function</span> (<span class="params">a</span>)</span>&#123; <span class="comment">// 响应成功后执行的回调函数，a 表示服务器响应的数据</span></span><br><span class="line">        alert(a);</span><br><span class="line">    &#125;,</span><br><span class="line">    error:<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">"出错了"</span>); <span class="comment">// 请求响应出错时执行的回调函数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 
 <ol start="2">
-<li><p>$.get()</p>
+<li><p><code>$.get()</code></p>
 <p>语法：<code>$.get(url, [data], [callback], [type]);</code></p>
 <ul>
 <li>url：请求路径</li>
@@ -282,108 +286,10 @@
 </li>
 </ol>
 <ol start="3">
-<li><p>$.post()</p>
+<li><p><code>$.post()</code></p>
 <p>语法：<code>$.get(url, [data], [callback], [type]);</code></p>
 </li>
 </ol>
-<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><p>概念：JavaScript Object Notation： <strong>JavaScript对象表示法</strong></p>
-<p>JSON 是存储和交换文本信息的语法，类似于XML</p>
-<p>JSON 比XML更小，更快，更易解析</p>
-<h3 id="JSON的语法"><a href="#JSON的语法" class="headerlink" title="JSON的语法"></a>JSON的语法</h3><p><strong>JSON定义：</strong></p>
-<p><code>var p = {&quot;name&quot;:&quot;jack&quot;,&quot;age&quot;:22,&quot;gender&quot;:true}</code></p>
-<p>基本规则：</p>
-<ul>
-<li>数据是存储在键值对中<ul>
-<li>键用引号(单双都行)引起来，也可以不使用引号</li>
-<li>值的类型：<ol>
-<li>数字（整数或浮点数）</li>
-<li>字符串（在双引号中）</li>
-<li>逻辑值（true 或 false）</li>
-<li>数组（在方括号中）</li>
-<li>对象（在花括号中）</li>
-<li>null</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>多个键值对由逗号分隔</li>
-<li>使用 {} 定义JSON</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基本定义格式</span></span><br><span class="line"><span class="keyword">var</span> p = &#123;<span class="string">"name"</span>:<span class="string">"jack"</span>,<span class="string">"age"</span>:<span class="number">22</span>,<span class="string">"gender"</span>:<span class="literal">true</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 嵌套定义格式</span></span><br><span class="line"><span class="keyword">var</span> p1 = &#123;<span class="string">"persons"</span>:[</span><br><span class="line">    &#123;<span class="string">"name"</span>:<span class="string">"张三"</span>,<span class="string">"age"</span>:<span class="number">22</span>,<span class="string">"gender"</span>:<span class="literal">true</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"name"</span>:<span class="string">"李四"</span>,<span class="string">"age"</span>:<span class="number">23</span>,<span class="string">"gender"</span>:<span class="literal">true</span>&#125;,</span><br><span class="line">    &#123;<span class="string">"name"</span>:<span class="string">"王五"</span>,<span class="string">"age"</span>:<span class="number">24</span>,<span class="string">"gender"</span>:<span class="literal">true</span>&#125;</span><br><span class="line">]&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<p><strong>获取 JSON 中的数据</strong></p>
-<ol>
-<li>JSON对象.键名</li>
-<li>JSON对象[“键名”]</li>
-</ol>
-<p> <strong>JSON 数据和Java对象的相互转换</strong></p>
-<ul>
-<li><p>JSON 解析器：</p>
-<ul>
-<li>Jsonlib：官方提供</li>
-<li>Gson：谷歌提供</li>
-<li>fastjson：阿里提供</li>
-<li>Jackson：SpringMVC内置</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>JSON 转为Java对象</p>
-<ol>
-<li><p>导入 Jackson 的相关jar包</p>
-</li>
-<li><p>创建 Jackson 核心对象 ObjectMapper</p>
-</li>
-<li><p>调用ObjectMapper的相关方法进行转换</p>
-<ol>
-<li>readValue( JSON 字符串数据,Class)</li>
-</ol>
-</li>
-</ol>
-</li>
-</ul>
-<ul>
-<li><p><strong>Java对象转换JSON</strong>（<u>常用</u>）</p>
-<ol>
-<li>导入 Jackson 的相关jar包</li>
-<li>创建 Jackson 核心对象 <strong>ObjectMapper</strong></li>
-<li>调用ObjectMapper的相关方法进行转换<ol>
-<li>转换方法：<ul>
-<li><code>writeValue(参数1，obj)</code> <em>根据参数1 类型不同有三种重载</em><pre><code>参数1：
-    File：将obj对象转换为 JSON 字符串，并保存到指定的文件中
-    Writer：将obj对象转换为 JSON 字符串，并将 JSON 数据填充到字符输出流中
-    OutputStream：将obj对象转换为JSON字符串，并将 JSON 数据填充到字节输出流中</code></pre></li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-<ul>
-<li><p><code>writeValueAsString(obj)</code>：将对象转为 JSON 字符串</p>
-<ol start="2">
-<li><p>注解：</p>
-<ol>
-<li><code>@JsonIgnore</code>：排除属性。</li>
-<li><code>@JsonFormat</code>：属性值的格式化</li>
-</ol>
-<ul>
-<li><code>@JsonFormat(pattern = &quot;yyyy-MM-dd&quot;)</code></li>
-</ul>
-</li>
-<li><p>复杂 Java 对象转换</p>
-<ol>
-<li>List：转换后为<strong>数组</strong></li>
-<li>Map：转换后对象格式一致</li>
-</ol>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
 
     </div>
 
@@ -394,7 +300,6 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/AJAX/" rel="tag"># AJAX</a>
-              <a href="/tags/JSON/" rel="tag"># JSON</a>
           </div>
 
         
@@ -447,7 +352,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX"><span class="nav-number">1.</span> <span class="nav-text">AJAX</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用jQuery实现AJAX"><span class="nav-number">1.1.</span> <span class="nav-text">使用jQuery实现AJAX</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON"><span class="nav-number">2.</span> <span class="nav-text">JSON</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON的语法"><span class="nav-number">2.1.</span> <span class="nav-text">JSON的语法</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX"><span class="nav-number">1.</span> <span class="nav-text">AJAX</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-jQuery-实现AJAX"><span class="nav-number">1.1.</span> <span class="nav-text">使用 jQuery 实现AJAX</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -461,7 +366,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -499,7 +404,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
