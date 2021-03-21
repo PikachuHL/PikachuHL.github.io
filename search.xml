@@ -8973,7 +8973,7 @@
     <content><![CDATA[<p>Integer &amp; StringBuilder</p>
 <a id="more"></a>
 
-<p><img src="D:%5Cdevelop%5Cblog%5Csource%5Cimages%5CInteger&StringBuilder%5C3.1.jpg" alt="3.1"></p>
+<p><img src="/images/Integer&StringBuilder/3.1.jpg" alt="3.1"></p>
 <h2 id="一、Integer"><a href="#一、Integer" class="headerlink" title="一、Integer"></a>一、Integer</h2><p>Integer为int的包装类，可创建对象</p>
 <ul>
 <li>Integer 与 int 类型的相互转换</li>
