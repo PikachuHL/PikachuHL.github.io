@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Typora+Hexo 图片设置</title>
+    <url>/2021/03/22/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="Typora-Hexo-图片相关设置"><a href="#Typora-Hexo-图片相关设置" class="headerlink" title="Typora + Hexo 图片相关设置"></a>Typora + Hexo 图片相关设置</h1><h3 id="需求"><a href="#需求" class="headerlink" title="需求:"></a>需求:</h3><ul>
+<li>在 Typora 中写笔记的时候能够方便的添加图片, 把需要添加的图片直接拖进去就可以, 而不需要手写图片路径</li>
+<li>直接拖到 Typora 里面的图片可以自动放到 <code>source/images</code> 文件夹中</li>
+<li>图片在 Typora 里面和 Hexo 渲染之后都可以正常的显示 (需要图片的路径适合两种情况)</li>
+</ul>
+<h3 id="设置"><a href="#设置" class="headerlink" title="设置:"></a>设置:</h3><ol>
+<li><p>在 Typora  <code>文件--&gt;偏好设置--&gt;图像</code>  设置如下: </p>
+<p>(直接拖入或者复制进Typora的图片会被复制到images文件夹下面的 以笔记文件名命名的文件夹中)</p>
+<p><img src="/images/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/image-20210322100052295.png" alt="image-20210322100052295"></p>
+</li>
+</ol>
+<ol start="2">
+<li><p>在 Typora <code>格式--&gt;图像--&gt;设置图片根目录</code> 中设置根目录为 <code>source</code> 目录</p>
+<p>设置了图片根目录之后, 在markdown笔记文件的头部信息中会出现 <code>typora-root-url</code></p>
+<p><img src="/images/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/image-20210322100713968.png" alt="image-20210322100713968"></p>
+</li>
+</ol>
+<p>经过以上两步设置之后就可以直接将图片放到markdown笔记中了</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项:"></a>注意事项:</h3><ul>
+<li>一定要先设置 <code>图片根目录</code>, 再往笔记中添加图片, 否则图片路径会不正确, 在 Hexo 渲染后就无法显示</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>JSON</title>
     <url>/2021/01/05/Java/JSON/</url>
     <content><![CDATA[<p>JSON：<strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation <code>JavaScript对象表示法</code></p>
@@ -6305,8 +6331,8 @@
 </ul>
 ]]></content>
       <tags>
-        <tag>MySQL</tag>
         <tag>数据库</tag>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>

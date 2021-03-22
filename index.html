@@ -201,6 +201,85 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/22/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pikachu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pikachu's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/22/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/" class="post-title-link" itemprop="url">Typora+Hexo 图片设置</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-22 09:57:26 / 修改时间：10:13:07" itemprop="dateCreated datePublished" datetime="2021-03-22T09:57:26+08:00">2021-03-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Typora-Hexo-图片相关设置"><a href="#Typora-Hexo-图片相关设置" class="headerlink" title="Typora + Hexo 图片相关设置"></a>Typora + Hexo 图片相关设置</h1><h3 id="需求"><a href="#需求" class="headerlink" title="需求:"></a>需求:</h3><ul>
+<li>在 Typora 中写笔记的时候能够方便的添加图片, 把需要添加的图片直接拖进去就可以, 而不需要手写图片路径</li>
+<li>直接拖到 Typora 里面的图片可以自动放到 <code>source/images</code> 文件夹中</li>
+<li>图片在 Typora 里面和 Hexo 渲染之后都可以正常的显示 (需要图片的路径适合两种情况)</li>
+</ul>
+<h3 id="设置"><a href="#设置" class="headerlink" title="设置:"></a>设置:</h3><ol>
+<li><p>在 Typora  <code>文件--&gt;偏好设置--&gt;图像</code>  设置如下: </p>
+<p>(直接拖入或者复制进Typora的图片会被复制到images文件夹下面的 以笔记文件名命名的文件夹中)</p>
+<p><img src="/images/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/image-20210322100052295.png" alt="image-20210322100052295"></p>
+</li>
+</ol>
+<ol start="2">
+<li><p>在 Typora <code>格式--&gt;图像--&gt;设置图片根目录</code> 中设置根目录为 <code>source</code> 目录</p>
+<p>设置了图片根目录之后, 在markdown笔记文件的头部信息中会出现 <code>typora-root-url</code></p>
+<p><img src="/images/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/image-20210322100713968.png" alt="image-20210322100713968"></p>
+</li>
+</ol>
+<p>经过以上两步设置之后就可以直接将图片放到markdown笔记中了</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项:"></a>注意事项:</h3><ul>
+<li>一定要先设置 <code>图片根目录</code>, 再往笔记中添加图片, 否则图片路径会不正确, 在 Hexo 渲染后就无法显示</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/05/Java/JSON/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -937,94 +1016,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/24/Python/Python_new/Python%E6%A8%A1%E5%9D%97&%E5%8C%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="pikachu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pikachu's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/24/Python/Python_new/Python%E6%A8%A1%E5%9D%97&%E5%8C%85/" class="post-title-link" itemprop="url">Python模块&包</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-24 14:20:16" itemprop="dateCreated datePublished" datetime="2020-04-24T14:20:16+08:00">2020-04-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-06 15:52:30" itemprop="dateModified" datetime="2020-12-06T15:52:30+08:00">2020-12-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>模块是工具的集合, 包是模块的集合</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/24/Python/Python_new/Python%E6%A8%A1%E5%9D%97&%E5%8C%85/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1068,7 +1064,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">81</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
