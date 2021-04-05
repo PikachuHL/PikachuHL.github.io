@@ -45,17 +45,16 @@
   };
 </script>
 
-  <meta name="description" content="request对象和response对象是由服务器创建，我们直接使用request对象用来获取请求消息；response对象用来设置响应消息">
+  <meta name="description" content="request 对象和 response 对象是由服务器创建，我们直接使用request 对象用来获取请求消息；response 对象用来设置响应消息">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Request &amp; Response">
 <meta property="og:url" content="http://yoursite.com/2020/03/26/Java/2.JavaWeb/9.Request&Response/index.html">
 <meta property="og:site_name" content="Pikachu&#39;s Blog">
-<meta property="og:description" content="request对象和response对象是由服务器创建，我们直接使用request对象用来获取请求消息；response对象用来设置响应消息">
+<meta property="og:description" content="request 对象和 response 对象是由服务器创建，我们直接使用request 对象用来获取请求消息；response 对象用来设置响应消息">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-26T10:10:02.000Z">
-<meta property="article:modified_time" content="2020-07-22T12:55:38.834Z">
+<meta property="article:modified_time" content="2021-04-05T03:14:47.024Z">
 <meta property="article:author" content="pikachu">
-<meta property="article:tag" content="Servlet">
 <meta property="article:tag" content="Request">
 <meta property="article:tag" content="Response">
 <meta name="twitter:card" content="summary">
@@ -238,7 +237,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-22 20:55:38" itemprop="dateModified" datetime="2020-07-22T20:55:38+08:00">2020-07-22</time>
+                <time title="修改时间：2021-04-05 11:14:47" itemprop="dateModified" datetime="2021-04-05T11:14:47+08:00">2021-04-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -263,30 +262,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>request对象和response对象是由<strong>服务器创建</strong>，我们直接使用<br>request对象用来获取<strong>请求消息</strong>；response对象用来设置<strong>响应消息</strong></p>
+        <p>request 对象和 response 对象是由<strong>服务器创建</strong>，我们直接使用<br>request 对象用来获取<strong>请求消息</strong>；response 对象用来设置<strong>响应消息</strong></p>
 <a id="more"></a>
 
 
-<h1 id="request对象"><a href="#request对象" class="headerlink" title="request对象"></a>request对象</h1><h3 id="Ⅰ-request对象的继承结构："><a href="#Ⅰ-request对象的继承结构：" class="headerlink" title="Ⅰ. request对象的继承结构："></a>Ⅰ. request对象的继承结构：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ServletRequest(接口) </span><br><span class="line">		↑</span><br><span class="line">HttpRequest(接口) </span><br><span class="line">		↑</span><br><span class="line">RequestFacade(实现类 --&gt; Tomcat提供)</span><br></pre></td></tr></table></figure>
-
-<h3 id="Ⅱ-request对象获取请求消息："><a href="#Ⅱ-request对象获取请求消息：" class="headerlink" title="Ⅱ. request对象获取请求消息："></a>Ⅱ. request对象获取请求消息：</h3><ol>
+<h1 id="request-对象"><a href="#request-对象" class="headerlink" title="request 对象"></a>request 对象</h1><h3 id="request-对象获取请求消息："><a href="#request-对象获取请求消息：" class="headerlink" title="request 对象获取请求消息："></a>request 对象获取请求消息：</h3><ol>
 <li><p>获取请求行中的数据：</p>
 <ul>
 <li><p>获取请求方式：<code>String getMethod()</code></p>
 </li>
 <li><p>★获取虚拟目录：<code>String getContextPath()</code></p>
+<ul>
+<li>也就是项目的根路径</li>
+</ul>
 </li>
-<li><p>★获取Servlet路径：<code>String getServletPath()</code></p>
+<li><p>★获取 Servlet 路径：<code>String getServletPath()</code></p>
+<ul>
+<li>也就是能和 url-patten 中完全匹配的路径（ * 不算）</li>
+</ul>
 </li>
-<li><p>获取get请求方式的请求参数：<code>String getQueryString()</code></p>
+<li><p>获取 get 请求方式的请求参数：<code>String getQueryString()</code></p>
 </li>
-<li><p>★获取URI/URL：</p>
+<li><p>★获取 URI / URL：</p>
 <p><code>String getRequestURI()</code></p>
 <p><code>StringBuffer getRequestURL()</code></p>
 </li>
 <li><p>获取协议及版本：<code>String getProtocol()</code></p>
 </li>
-<li><p>获取客户端的IP地址：<code>String getRemoteAddr()</code></p>
+<li><p>获取客户端的 IP 地址：<code>String getRemoteAddr()</code></p>
 </li>
 </ul>
 </li>
@@ -311,29 +314,29 @@
 </ol>
 </li>
 </ol>
-<h3 id="Ⅲ-request对象获取请求参数的通用方法："><a href="#Ⅲ-request对象获取请求参数的通用方法：" class="headerlink" title="Ⅲ. request对象获取请求参数的通用方法："></a>Ⅲ. request对象获取请求参数的通用方法：</h3><blockquote>
+<h3 id="request-对象获取请求参数："><a href="#request-对象获取请求参数：" class="headerlink" title="request 对象获取请求参数："></a>request 对象获取请求参数：</h3><blockquote>
 <p><strong>页面参数的传递：</strong></p>
 <p><code>url?key1=value1&amp;key2=value2</code></p>
 <p>参数是以<code>键值对</code>的方式进行提交（get和post都是）</p>
-<p>两者不同的是：get使用 <code>?</code> 将参数挂在url后面，post则是隐式提交</p>
+<p>两者不同的是：get 使用 <code>?</code> 将参数挂在 url 后面，post 则是隐式提交</p>
 </blockquote>
 <ul>
-<li><code>String getParameter(String name)</code>: 根据参数名称获取<strong>参数值</strong></li>
-<li><code>String[] getParameter(String name)</code>: 根据参数名称获取参数<strong>值的数组</strong>(多选框)</li>
-<li><code>Enumeration&lt;String&gt; getParameterNames()</code>: 获取所有请求参数的<strong>名称</strong></li>
-<li><code>Map&lt;String, String[]&gt; getParameterMap()</code>: 获取所有请求<strong>参数的map集合</strong></li>
+<li><code>String getParameter(String name)</code>: 根据参数名获取<strong>参数值</strong></li>
+<li><code>String[] getParameterValues(String name)</code>: 根据参数名获取参数<strong>值的数组</strong>（多选框）</li>
+<li><code>Enumeration&lt;String&gt; getParameterNames()</code>: 获取所有请求参数的<strong>名称</strong> （不常用）</li>
+<li><code>Map&lt;String, String[]&gt; getParameterMap()</code>: 获取所有请求<strong>参数的map集合</strong> （不常用）</li>
 </ul>
 <blockquote>
 <p>请求参数中有中文，乱码问题：</p>
 <ul>
-<li>get方式：Tomcat 8 就已经解决了 get 方式中文乱码的问题</li>
-<li>post方式：获取请求参数之前，设置 request 的编码：<ul>
+<li>get 方式：Tomcat 8 就已经解决了 get 方式中文乱码的问题</li>
+<li>post 方式：获取请求参数之前，设置 request 的编码：<ul>
 <li><code>request.setCharacterEncoding(&quot;utf-8&quot;)</code></li>
 </ul>
 </li>
 </ul>
 </blockquote>
-<h3 id="Ⅳ-转发"><a href="#Ⅳ-转发" class="headerlink" title="Ⅳ. 转发"></a>Ⅳ. 转发</h3><p><strong>原理：</strong>转发是服务器内部进行资源访问，一次请求，一次响应</p>
+<h3 id="转发"><a href="#转发" class="headerlink" title="转发"></a>转发</h3><p><strong>原理：</strong>转发是服务器内部进行资源访问，一次请求，一次响应</p>
 <p><strong>语法：</strong><code>request.getRequestDispatcher(&quot;路径&quot;).forward(request,response);</code></p>
 <p><strong>注意：</strong></p>
 <ul>
@@ -346,18 +349,18 @@
 
 
 
-<h3 id="Ⅴ-共享数据"><a href="#Ⅴ-共享数据" class="headerlink" title="Ⅴ. 共享数据"></a>Ⅴ. 共享数据</h3><p><strong>域对象：</strong>一个有作用范围的对象，可以在作用范围内共享数据</p>
-<p><strong>request域对象</strong>：代表一次请求的范围，一般用于请求转发的多个资源中共享数据</p>
+<h3 id="共享数据"><a href="#共享数据" class="headerlink" title="共享数据"></a>共享数据</h3><p><strong>域对象：</strong>一个有作用范围的对象，可以在作用范围内共享数据</p>
+<p><strong>request 域对象</strong>：代表一次请求的范围，一般用于请求转发的多个资源中共享数据</p>
 <p>方法：</p>
 <ul>
 <li><code>setAttribute(String name, Object obj)</code>: 存储数据（键值对形式）</li>
 <li><code>getAttribute(String name)</code>: 通过键获取值</li>
 <li><code>removeAttribute(String name)</code>: 通过键删除数据</li>
 </ul>
-<h3 id="Ⅵ-获取-ServletContext-对象"><a href="#Ⅵ-获取-ServletContext-对象" class="headerlink" title="Ⅵ. 获取 ServletContext 对象"></a>Ⅵ. 获取 ServletContext 对象</h3><p><code>ServletContext context = request.getServletContext()</code></p>
+<h3 id="获取-ServletContext-对象"><a href="#获取-ServletContext-对象" class="headerlink" title="获取 ServletContext 对象"></a>获取 ServletContext 对象</h3><p><code>ServletContext context = request.getServletContext()</code></p>
 <br/>
 
-<h1 id="response对象"><a href="#response对象" class="headerlink" title="response对象"></a>response对象</h1><h3 id="Ⅰ-response对象设置响应消息："><a href="#Ⅰ-response对象设置响应消息：" class="headerlink" title="Ⅰ. response对象设置响应消息："></a>Ⅰ. response对象设置响应消息：</h3><ol>
+<h1 id="response-对象"><a href="#response-对象" class="headerlink" title="response 对象"></a>response 对象</h1><h3 id="Ⅰ-response-对象设置响应消息："><a href="#Ⅰ-response-对象设置响应消息：" class="headerlink" title="Ⅰ. response 对象设置响应消息："></a>Ⅰ. response 对象设置响应消息：</h3><ol>
 <li><p>设置响应行</p>
 <p>设置状态码：<code>setStatus(int sc)</code></p>
 </li>
@@ -452,7 +455,6 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Servlet/" rel="tag"># Servlet</a>
               <a href="/tags/Request/" rel="tag"># Request</a>
               <a href="/tags/Response/" rel="tag"># Response</a>
           </div>
@@ -507,7 +509,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#request对象"><span class="nav-number">1.</span> <span class="nav-text">request对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ⅰ-request对象的继承结构："><span class="nav-number">1.0.1.</span> <span class="nav-text">Ⅰ. request对象的继承结构：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ⅱ-request对象获取请求消息："><span class="nav-number">1.0.2.</span> <span class="nav-text">Ⅱ. request对象获取请求消息：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ⅲ-request对象获取请求参数的通用方法："><span class="nav-number">1.0.3.</span> <span class="nav-text">Ⅲ. request对象获取请求参数的通用方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ⅳ-转发"><span class="nav-number">1.0.4.</span> <span class="nav-text">Ⅳ. 转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ⅴ-共享数据"><span class="nav-number">1.0.5.</span> <span class="nav-text">Ⅴ. 共享数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ⅵ-获取-ServletContext-对象"><span class="nav-number">1.0.6.</span> <span class="nav-text">Ⅵ. 获取 ServletContext 对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#response对象"><span class="nav-number">2.</span> <span class="nav-text">response对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ⅰ-response对象设置响应消息："><span class="nav-number">2.0.1.</span> <span class="nav-text">Ⅰ. response对象设置响应消息：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ⅱ-重定向"><span class="nav-number">2.0.2.</span> <span class="nav-text">Ⅱ. 重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ⅲ-response-输出数据"><span class="nav-number">2.0.3.</span> <span class="nav-text">Ⅲ. response 输出数据</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#request-对象"><span class="nav-number">1.</span> <span class="nav-text">request 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#request-对象获取请求消息："><span class="nav-number">1.0.1.</span> <span class="nav-text">request 对象获取请求消息：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#request-对象获取请求参数："><span class="nav-number">1.0.2.</span> <span class="nav-text">request 对象获取请求参数：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转发"><span class="nav-number">1.0.3.</span> <span class="nav-text">转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共享数据"><span class="nav-number">1.0.4.</span> <span class="nav-text">共享数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-ServletContext-对象"><span class="nav-number">1.0.5.</span> <span class="nav-text">获取 ServletContext 对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#response-对象"><span class="nav-number">2.</span> <span class="nav-text">response 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Ⅰ-response-对象设置响应消息："><span class="nav-number">2.0.1.</span> <span class="nav-text">Ⅰ. response 对象设置响应消息：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ⅱ-重定向"><span class="nav-number">2.0.2.</span> <span class="nav-text">Ⅱ. 重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ⅲ-response-输出数据"><span class="nav-number">2.0.3.</span> <span class="nav-text">Ⅲ. response 输出数据</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -521,14 +523,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

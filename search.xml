@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Spring Boot 项目放到 Tomcat 运行</title>
+    <url>/2021/04/05/Java/Spring%20Boot%E9%A1%B9%E7%9B%AE%E6%94%BE%E5%88%B0Tomcat/</url>
+    <content><![CDATA[<p>手动把 Spring Boot 项目打包并放到 Tomcat 中运行，记录一下需要调整的地方。</p>
+<a id="more"></a>
+
+<h2 id="Spring-Boot-项目放到-Tomcat-运行"><a href="#Spring-Boot-项目放到-Tomcat-运行" class="headerlink" title="Spring Boot 项目放到 Tomcat 运行"></a>Spring Boot 项目放到 Tomcat 运行</h2><p>Spring Boot 项目直接打包放到 Tomcat中是不能运行的，需要对 Spring Boot 的项目做一些修改。</p>
+<ol>
+<li><p><strong>修改打包方式</strong></p>
+<p>Spring Boot 的项目默认是打 jar 包，现在修改为打 war 包</p>
+<p><img src="/images/Spring%20Boot%E9%A1%B9%E7%9B%AE%E6%94%BE%E5%88%B0Tomcat/%E6%89%93%E5%8C%85%E6%96%B9%E5%BC%8F.png" alt="打包方式"></p>
+</li>
+<li><p><strong>屏蔽自带 Tomcat</strong></p>
+<p><img src="/images/Spring%20Boot%E9%A1%B9%E7%9B%AE%E6%94%BE%E5%88%B0Tomcat/%E5%B1%8F%E8%94%BD%E8%87%AA%E5%B8%A6tomcat.png" alt="屏蔽自带tomcat"></p>
+</li>
+<li><p><strong>修改 Spring Boot 主启动类</strong></p>
+<ol>
+<li>继承 SpringBootServletInitializer 类</li>
+<li>重写 configure 方法</li>
+<li>修改 return 为 <code>builder.sources(SpringbootDemoApplication.class);</code></li>
+</ol>
+<p><img src="/images/Spring%20Boot%E9%A1%B9%E7%9B%AE%E6%94%BE%E5%88%B0Tomcat/%E7%BB%A7%E6%89%BF%E7%B1%BB.png" alt="继承类"></p>
+</li>
+<li><p><strong>maven clean，maven package</strong></p>
+</li>
+<li><p><strong>把 war 包放到 Tomcat 目录下的 webapps 目录下</strong></p>
+</li>
+<li><p><strong>启动 Tomcat（启动 Tomcat 时会自动解压 Tomcat 目录下的 war 包）</strong></p>
+</li>
+<li><p><strong>浏览器访问（war 包解压后的文件夹名称就是项目的虚拟目录）</strong></p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Spring Boot</tag>
+        <tag>Tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java/微服务/Docker</title>
+    <url>/2021/04/05/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Docker/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>Java/微服务/Spring Cloud</title>
+    <url>/2021/04/05/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Spring%20Cloud/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>Typora+Hexo 图片设置</title>
     <url>/2021/03/22/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/</url>
     <content><![CDATA[<h1 id="Typora-Hexo-图片相关设置"><a href="#Typora-Hexo-图片相关设置" class="headerlink" title="Typora + Hexo 图片相关设置"></a>Typora + Hexo 图片相关设置</h1><h3 id="需求"><a href="#需求" class="headerlink" title="需求:"></a>需求:</h3><ul>
@@ -28,7 +76,7 @@
   </entry>
   <entry>
     <title>JSON</title>
-    <url>/2021/01/05/Java/JSON/</url>
+    <url>/2021/01/05/Java/2.JavaWeb/JSON/</url>
     <content><![CDATA[<p>JSON：<strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation <code>JavaScript对象表示法</code></p>
 <a id="more"></a>
 
@@ -36,7 +84,7 @@
 <ul>
 <li><p>JSON 是纯文本的信息</p>
 </li>
-<li><p>JSON 是存储和交换文本信息的语法，类似于XML</p>
+<li><p>JSON 是存储和交换文本信息的语法，类似于 XML</p>
 </li>
 <li><p>JSON 比 XML 更小，更快，更易解析</p>
 </li>
@@ -262,11 +310,11 @@
 
 <h1 id="SpringMVC-请求"><a href="#SpringMVC-请求" class="headerlink" title="SpringMVC_请求"></a>SpringMVC_请求</h1><h2 id="请求参数的绑定"><a href="#请求参数的绑定" class="headerlink" title="请求参数的绑定"></a>请求参数的绑定</h2><p><strong>绑定机制：</strong></p>
 <ul>
-<li><strong>请求参数 ==&gt; Controller中相关方法的参数</strong></li>
+<li><strong>请求参数 ==&gt; Controller 中相关方法的参数</strong></li>
 </ul>
 <p><strong>支持的数据类型：</strong></p>
 <ul>
-<li><p>基本数据类型 / String类型</p>
+<li><p>基本数据类型 / String 类型</p>
 <ul>
 <li><code>请求参数名称</code> 和 <code>方法中参数名</code>相同</li>
 <li>区分大小写</li>
@@ -274,23 +322,23 @@
 </li>
 <li><p>实体类（JavaBean）</p>
 </li>
-<li><p>Controller中方法的参数类型为JavaBean的类型</p>
+<li><p>Controller 中方法的参数类型为 JavaBean 的类型</p>
 <ul>
 <li><p><code>请求参数名称</code> 和 <code>JavaBean的属性名称</code>需要一致</p>
 </li>
-<li><p>如果一个JavaBean类中包含其他的引用类型，那么请求参数名称要写成：<code>对象.属性</code> 例如：<br><code>address.name</code></p>
+<li><p>如果一个 JavaBean 类中包含其他的引用类型，那么请求参数名称要写成：<code>对象.属性</code> 例如：<br><code>address.name</code></p>
 </li>
 </ul>
 </li>
-<li><p>集合数据类型（List、map集合等）</p>
+<li><p>集合数据类型（List、map 集合等）</p>
 <ul>
-<li>如果集合是JavaBean的一个属性, 请求参数名和集合属性名相同</li>
+<li>如果集合是 JavaBean 的一个属性, 请求参数名和集合属性名相同</li>
 </ul>
 </li>
 </ul>
 <hr>
 <p><strong>请求参数中文乱码的解决</strong>：</p>
-<p>在web.xml中配置一个filter</p>
+<p>在 web.xml 中使用 SpringMVC 提供的 CharacterEncodingFilter</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置过滤器，解决中文乱码的问题 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 指定字符集 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <hr>
@@ -312,7 +360,7 @@
 <ul>
 <li>只需要在控制器的方法参数定义<code>HttpServletRequest</code>和<code>HttpServletResponse</code>对象即可</li>
 </ul>
-<h2 id="SpringMVC常用注解"><a href="#SpringMVC常用注解" class="headerlink" title="SpringMVC常用注解"></a>SpringMVC常用注解</h2><p> <strong>RequestParam 注解</strong></p>
+<h2 id="SpringMVC常用注解"><a href="#SpringMVC常用注解" class="headerlink" title="SpringMVC常用注解"></a>SpringMVC常用注解</h2><p> <code>@RequestParam()</code></p>
 <ul>
 <li><p>作用：把请求中的指定名称的参数传递给控制器中的形参赋值</p>
 </li>
@@ -331,7 +379,7 @@
 
 </li>
 </ul>
-<p><strong>RequestBody 注解</strong></p>
+<p><code>@RequestBody()</code></p>
 <ul>
 <li><p>作用：用于获取请求体的内容（注意：get方法不可以）</p>
 </li>
@@ -347,7 +395,7 @@
 
 </li>
 </ul>
-<p><strong>PathVariable 注解</strong></p>
+<p><code>PathVariable()</code></p>
 <ul>
 <li><p>作用：拥有绑定url中的占位符的。例如：url中有/delete/{id}，{id}就是占位符</p>
 </li>
@@ -356,10 +404,10 @@
 <li>value：指定url中的占位符名称</li>
 </ul>
 </li>
-<li><p>Restful风格的URL</p>
+<li><p><strong>Restful</strong> 风格的 URL</p>
 <ul>
 <li>请求路径一样，可以根据不同的请求方式去执行后台的不同方法</li>
-<li>restful风格的URL优点<ul>
+<li>restful 风格的 URL 优点<ul>
 <li>结构清晰</li>
 <li>符合标准</li>
 <li>易于理解</li>
@@ -375,7 +423,7 @@
 
 </li>
 </ul>
-<p><strong>RequestHeader 注解</strong></p>
+<p><code>@RequestHeader()</code></p>
 <ul>
 <li><p>作用：获取指定请求头的值</p>
 </li>
@@ -391,7 +439,7 @@
 
 </li>
 </ul>
-<p><strong>CookieValue 注解</strong></p>
+<p><code>@CookieValue()</code></p>
 <ul>
 <li><p>作用：用于获取指定cookie的名称的值</p>
 </li>
@@ -406,7 +454,7 @@
 
 </li>
 </ul>
-<p> <strong>ModelAttribute 注解</strong></p>
+<p> <code>@ModelAttribute()</code></p>
 <ul>
 <li><p>作用</p>
 <ul>
@@ -430,7 +478,7 @@
 
 </li>
 </ul>
-<p><strong>SessionAttributes 注解</strong></p>
+<p><code>@SessionAttributes()</code></p>
 <ul>
 <li><p>作用：用于多次执行控制器方法间的参数共享</p>
 </li>
@@ -453,18 +501,18 @@
   <entry>
     <title>Filter &amp; Listener</title>
     <url>/2020/06/29/Java/2.JavaWeb/Filter%20&amp;%20Listener/</url>
-    <content><![CDATA[<p>Filter 和 LIstener 是 JavaWeb 的两个重要组成部分</p>
+    <content><![CDATA[<p>Filter 和 Listener 是 JavaWeb 的两个重要组成部分</p>
 <a id="more"></a>
 
 <h1 id="Filter-amp-Listener"><a href="#Filter-amp-Listener" class="headerlink" title="Filter &amp; Listener"></a>Filter &amp; Listener</h1><blockquote>
 <p>Filter： 过滤器</p>
 <p>Listener：监听器</p>
 </blockquote>
-<h2 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h2><p><strong>概念：</strong>在web中，当访问服务器的资源时，过滤器可以将请求拦截下来，完成一些特殊的功能</p>
+<h2 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h2><p><strong>概念：</strong>在 web 中，当访问服务器的资源时，过滤器可以将请求拦截下来，完成一些特殊的功能</p>
 <p><strong>作用：</strong>一般用于完成一些通用的操作，如：登录验证，统一编码处理，敏感字符过滤…</p>
 <p><strong>快速入门：</strong>(基于注解)</p>
 <ol>
-<li><p>新建一个java文件，实现 <code>Filter</code> 接口（<code>javax.Servlet</code>包），实现方法（<code>init()</code>, <code>doFilter()</code>, <code>destroy()</code>）</p>
+<li><p>新建一个 Java 类，实现 <code>Filter</code> 接口（<code>javax.Servlet</code> 包），实现方法（<code>init()</code>, <code>doFilter()</code>, <code>destroy()</code>）</p>
 </li>
 <li><p>然后用 <code>@WebFilter(&quot;/*&quot;)</code> 注解标识这个类是一个过滤器，并配置过滤资源路径</p>
 </li>
@@ -484,15 +532,15 @@
 </ol>
 <p><strong>Filter的生命周期：</strong></p>
 <ol>
-<li>init：服务器启动，init方法执行，创建Filter对象</li>
-<li>doFilter：每一次访问被该拦截器拦截的资源时，都会执行</li>
-<li>destroy：服务器正常关闭时，执行destroy方法，销毁Filter对象</li>
+<li>init：服务器启动，init 方法执行，创建 Filter 对象</li>
+<li>doFilter：每一次访问被该过滤器拦截的资源时，都会执行</li>
+<li>destroy：服务器正常关闭时，执行 destroy 方法，销毁 Filter 对象</li>
 </ol>
 <p><strong>Filter配置详解：</strong></p>
 <ol>
 <li>拦截路径的配置：<ul>
-<li>具体资源路径：<code>/index.jsp</code>  只有访问index.jsp 时，过滤器才会执行 （一般不常用）</li>
-<li>目录拦截：<code>/user/*</code>  访问user下的所有资源时，过滤器都会执行</li>
+<li>具体资源路径：<code>/index.jsp</code>  只有访问 index.jsp 时，过滤器才会执行 （一般不常用）</li>
+<li>目录拦截：<code>/user/*</code>  访问 user 下的所有资源时，过滤器都会执行</li>
 <li>后缀名拦截：<code>*.jsp</code> 访问所有后缀名为 jsp 的资源时，过滤器都会执行</li>
 <li>拦截所有资源：<code>/*</code>  访问所有资源时，过滤器都会执行</li>
 </ul>
@@ -1318,41 +1366,41 @@
 <h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h1><p><strong>概念：</strong>客户端会话技术，将数据保存在客户端</p>
 <p><strong>使用：</strong></p>
 <ol>
-<li><p>创建Cookie对象</p>
+<li><p>创建 Cookie 对象</p>
 <p><code>Cookie cookie = new Cookie(&quot;msg&quot;, &quot;hellocookie&quot;);</code></p>
 <blockquote>
 <p>发现一个小问题：</p>
 <p>Cookie对象的 value 字符串中不能有空格，不知缘由。。。</p>
 </blockquote>
 </li>
-<li><p>发送Cookie到客户端</p>
+<li><p>发送 Cookie 到客户端</p>
 <p><code>response.addCookie(cookie);</code></p>
 </li>
-<li><p>接收其它请求中携带的Cookie，</p>
+<li><p>接收其它请求中携带的 Cookie，</p>
 <p><code>Cookie[] cookies = request.getCookies();</code></p>
 </li>
 </ol>
 <p><strong>原理：</strong></p>
 <blockquote>
-<p>Cookie是基于响应头 <code>Set-Cookie</code> 和请求头 <code>Cookie</code> 来实现的</p>
+<p>Cookie 是基于响应头 <code>Set-Cookie</code> 和请求头 <code>Cookie</code> 来实现的</p>
 </blockquote>
-<p>发送Cookie到客户端：</p>
+<p>发送 Cookie 到客户端：</p>
 <ul>
 <li>在响应头里面有：<code>Set-Cookie: msg=hellocookie</code></li>
 <li>当浏览器看到 Set-Cookie 响应头时，会把该响应头的内容存到浏览器中</li>
 </ul>
-<p>再次发送其它请求时会携带浏览器中存储的所有Cookie</p>
+<p>再次发送其它请求时会携带浏览器中存储的所有 Cookie</p>
 <ul>
 <li>请求头中有：<code>Cookie: msg=hellocookie</code></li>
 </ul>
 <p><strong>Cookie 细节：</strong></p>
 <ol>
-<li><p>一次可不可以发送多个Cookie</p>
-<p>可以，创建多个Cookie对象，多次调用<code>response.addCookie(cookie);</code></p>
+<li><p>一次可不可以发送多个 Cookie</p>
+<p>可以，创建多个 Cookie 对象，多次调用<code>response.addCookie(cookie);</code></p>
 </li>
-<li><p>Cookie在浏览器的存活时间</p>
+<li><p>Cookie 在浏览器的存活时间</p>
 <ul>
-<li><p>默认情况下，浏览器关闭，Cookie数据销毁</p>
+<li><p>默认情况下，浏览器关闭，Cookie 数据销毁</p>
 </li>
 <li><p>持久化存储</p>
 <ul>
@@ -1365,28 +1413,28 @@
 </li>
 </ul>
 </li>
-<li><p>Cookie可不可以存中文</p>
+<li><p>Cookie 可不可以存中文</p>
 <ul>
-<li>在tomcat 8 之前，不能直接存储中文<ul>
-<li>需要将中文数据转码，一般转为url编码</li>
+<li>在 Tomcat 8 之前，不能直接存储中文<ul>
+<li>需要将中文数据转码，一般转为 url 编码</li>
 </ul>
 </li>
-<li>在tomcat 8 之后，可以直接存储中文</li>
+<li>在 Tomcat 8 之后，可以直接存储中文</li>
 </ul>
 </li>
-<li><p>Cookie共享数据的范围</p>
+<li><p>Cookie 共享数据的范围</p>
 <ul>
-<li><p>在一个tomcat服务器中部署的多个项目中共享数据？</p>
+<li><p>在一个 Tomcat 服务器中部署的多个项目中共享数据？</p>
 <ul>
 <li><p>默认情况下不能</p>
 </li>
-<li><p><code>setPath(String path)</code>设置同一个服务器中cookie的获取范围，默认为当前虚拟目录</p>
+<li><p><code>setPath(String path)</code>设置同一个服务器中 Cookie 的获取范围，默认为当前虚拟目录</p>
 <p><code>setPath(&quot;/&quot;)</code> –&gt; 设置获取范围为当前服务器</p>
 </li>
 </ul>
 </li>
-<li><p>在不同的tomcat服务器中共享数据</p>
-<p><code>setDomain(String path)</code> –&gt; 设置一级域名相同，多个服务器之间的cookie可以共享</p>
+<li><p>在不同的 Tomcat 服务器中共享数据</p>
+<p><code>setDomain(String path)</code> –&gt; 设置一级域名相同，多个服务器之间的 Cookie 可以共享</p>
 </li>
 </ul>
 </li>
@@ -1410,7 +1458,7 @@
 <li><p>获取 HttpSession 对象：</p>
 <p><code>HttpSession session = request.getSession();</code></p>
 </li>
-<li><p>使用 HttpSession 对象：</p>
+<li><p>使用 HttpSession 对象存取数据：</p>
 <ul>
 <li>存储数据：<code>setAttribute(String name, Object Value);</code></li>
 <li>获取数据：<code>getSttribute(String name);</code></li>
@@ -1419,47 +1467,48 @@
 </li>
 </ul>
 <p>原理：</p>
-<p>Session是<strong>依赖于Cookie</strong>实现的：</p>
+<p>Session 是<strong>依赖于 Cookie</strong> 实现的：</p>
 <ol>
-<li>使用 request.getSession() 获取Session对象</li>
+<li>使用 <code>request.getSession()</code> 获取 Session 对象</li>
+<li>Session 对象使用 <code>session.getId()</code> 获取 SessionId （String）</li>
 <li>服务器通过 HTTP 响应头 <code>Set-Cookie: JSESSIONID=8E56ADBC35</code></li>
-<li>同一次对话的其他请求访问服务器时，请求头 <code>Cookie: JSESSIONID=8E56ADBC35</code></li>
+<li>同一次会话的其他请求访问服务器时，请求头 <code>Cookie: JSESSIONID=8E56ADBC35</code></li>
 </ol>
 <blockquote>
-<p>session 在服务器中是 <strong>单例</strong> 的</p>
-<p>单例也是通过 cookie 来实现的</p>
+<p>Session 在服务器中是 <strong>单例</strong> 的</p>
+<p>单例也是通过 Cookie 来实现的</p>
 </blockquote>
-<p>Session的细节：</p>
+<p>Session 的细节：</p>
 <ol>
-<li><p>客户端关闭，服务器不关闭，两次获取的session是否为同一个？</p>
+<li><p>客户端关闭，服务器不关闭，两次获取的 Session 是否为同一个？</p>
 <ul>
 <li><p>默认情况下不是同一个，因为不是同一次会话了</p>
 </li>
-<li><p>如果想要是同一个，可以单独创建cookie，键名为 <code>JSESSIONID</code>，值为 <code>session.getId()</code>，并设置 <code>cookie.setMaxAge(int second)</code></p>
+<li><p>如果想要是同一个，可以单独创建 Cookie，键名为 <code>JSESSIONID</code>，值为 <code>session.getId()</code>，并设置 <code>cookie.setMaxAge(int second)</code></p>
 <p><code>Cookie cookie = new Cookie(&quot;JSESSIONID&quot;, session.getId())</code></p>
 <p><code>cookie.setMaxAge(int second)</code></p>
 </li>
 </ul>
 </li>
-<li><p>客户端不关闭，服务器关闭，两次获取的session是同一个吗</p>
-<p>两次获取的session对象不是同一个，但是要确保两个对象中的数据是一致的</p>
+<li><p>客户端不关闭，服务器关闭，两次获取的 Session 是同一个吗</p>
+<p>两次获取的 Session 对象不是同一个，但是要确保两个对象中的数据是一致的</p>
 <ul>
-<li>session的钝化：在服务器正常关闭之前，将session对象序列化到硬盘上</li>
-<li>session的活化：在服务器启动后，将硬盘上的session文件转化为内存中的session对象</li>
+<li>Session 的钝化：在服务器正常关闭之前，将 Session 对象序列化到硬盘上</li>
+<li>Session 的活化：在服务器启动后，将硬盘上的 Session 文件转化为内存中的 Session 对象</li>
 </ul>
 <blockquote>
-<p>Tomcat可以自动完成session的钝化和活化，但是idea不可以</p>
+<p>Tomcat 可以自动完成 Session 的钝化和活化，但是 idea 不可以</p>
 </blockquote>
 </li>
-<li><p>session对象的销毁时机：</p>
+<li><p>Session 对象的销毁：</p>
 <ul>
 <li><p>服务器关闭</p>
 </li>
-<li><p>session对象调用 <code>invalidate()</code>方法</p>
+<li><p>Session 对象调用 <code>invalidate()</code>方法</p>
 </li>
-<li><p>session的默认失效时间为 30min</p>
-<p>可以自定义session的失效时间：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">session-config</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">session-timeout</span>&gt;</span>30<span class="tag">&lt;/<span class="name">session-timeout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">session-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li><p>Session 的默认失效时间为 30 min</p>
+<p>可以在 web.xml 中自定义 Session 的失效时间：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">session-config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--单位为分钟--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">session-timeout</span>&gt;</span>60<span class="tag">&lt;/<span class="name">session-timeout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">session-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -1468,11 +1517,11 @@
 </li>
 </ol>
 <blockquote>
-<p>session 和 cookie 的区别</p>
+<p>Session 和 Cookie 的区别</p>
 <ol>
-<li>session数据存储在服务器，cookie存储在客户端</li>
-<li>session数据大小没有限制，cookie有限制</li>
-<li>session数据安全，cookie相对来说不太安全</li>
+<li>Session 数据存储在服务器，Cookie 存储在客户端</li>
+<li>Session 数据大小没有限制，Cookie 有限制</li>
+<li>Session 数据安全，Sookie 相对来说不太安全</li>
 </ol>
 </blockquote>
 ]]></content>
@@ -1831,30 +1880,34 @@
   <entry>
     <title>Request &amp; Response</title>
     <url>/2020/03/26/Java/2.JavaWeb/9.Request&amp;Response/</url>
-    <content><![CDATA[<p>request对象和response对象是由<strong>服务器创建</strong>，我们直接使用<br>request对象用来获取<strong>请求消息</strong>；response对象用来设置<strong>响应消息</strong></p>
+    <content><![CDATA[<p>request 对象和 response 对象是由<strong>服务器创建</strong>，我们直接使用<br>request 对象用来获取<strong>请求消息</strong>；response 对象用来设置<strong>响应消息</strong></p>
 <a id="more"></a>
 
 
-<h1 id="request对象"><a href="#request对象" class="headerlink" title="request对象"></a>request对象</h1><h3 id="Ⅰ-request对象的继承结构："><a href="#Ⅰ-request对象的继承结构：" class="headerlink" title="Ⅰ. request对象的继承结构："></a>Ⅰ. request对象的继承结构：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ServletRequest(接口) </span><br><span class="line">		↑</span><br><span class="line">HttpRequest(接口) </span><br><span class="line">		↑</span><br><span class="line">RequestFacade(实现类 --&gt; Tomcat提供)</span><br></pre></td></tr></table></figure>
-
-<h3 id="Ⅱ-request对象获取请求消息："><a href="#Ⅱ-request对象获取请求消息：" class="headerlink" title="Ⅱ. request对象获取请求消息："></a>Ⅱ. request对象获取请求消息：</h3><ol>
+<h1 id="request-对象"><a href="#request-对象" class="headerlink" title="request 对象"></a>request 对象</h1><h3 id="request-对象获取请求消息："><a href="#request-对象获取请求消息：" class="headerlink" title="request 对象获取请求消息："></a>request 对象获取请求消息：</h3><ol>
 <li><p>获取请求行中的数据：</p>
 <ul>
 <li><p>获取请求方式：<code>String getMethod()</code></p>
 </li>
 <li><p>★获取虚拟目录：<code>String getContextPath()</code></p>
+<ul>
+<li>也就是项目的根路径</li>
+</ul>
 </li>
-<li><p>★获取Servlet路径：<code>String getServletPath()</code></p>
+<li><p>★获取 Servlet 路径：<code>String getServletPath()</code></p>
+<ul>
+<li>也就是能和 url-patten 中完全匹配的路径（ * 不算）</li>
+</ul>
 </li>
-<li><p>获取get请求方式的请求参数：<code>String getQueryString()</code></p>
+<li><p>获取 get 请求方式的请求参数：<code>String getQueryString()</code></p>
 </li>
-<li><p>★获取URI/URL：</p>
+<li><p>★获取 URI / URL：</p>
 <p><code>String getRequestURI()</code></p>
 <p><code>StringBuffer getRequestURL()</code></p>
 </li>
 <li><p>获取协议及版本：<code>String getProtocol()</code></p>
 </li>
-<li><p>获取客户端的IP地址：<code>String getRemoteAddr()</code></p>
+<li><p>获取客户端的 IP 地址：<code>String getRemoteAddr()</code></p>
 </li>
 </ul>
 </li>
@@ -1879,29 +1932,29 @@
 </ol>
 </li>
 </ol>
-<h3 id="Ⅲ-request对象获取请求参数的通用方法："><a href="#Ⅲ-request对象获取请求参数的通用方法：" class="headerlink" title="Ⅲ. request对象获取请求参数的通用方法："></a>Ⅲ. request对象获取请求参数的通用方法：</h3><blockquote>
+<h3 id="request-对象获取请求参数："><a href="#request-对象获取请求参数：" class="headerlink" title="request 对象获取请求参数："></a>request 对象获取请求参数：</h3><blockquote>
 <p><strong>页面参数的传递：</strong></p>
 <p><code>url?key1=value1&amp;key2=value2</code></p>
 <p>参数是以<code>键值对</code>的方式进行提交（get和post都是）</p>
-<p>两者不同的是：get使用 <code>?</code> 将参数挂在url后面，post则是隐式提交</p>
+<p>两者不同的是：get 使用 <code>?</code> 将参数挂在 url 后面，post 则是隐式提交</p>
 </blockquote>
 <ul>
-<li><code>String getParameter(String name)</code>: 根据参数名称获取<strong>参数值</strong></li>
-<li><code>String[] getParameter(String name)</code>: 根据参数名称获取参数<strong>值的数组</strong>(多选框)</li>
-<li><code>Enumeration&lt;String&gt; getParameterNames()</code>: 获取所有请求参数的<strong>名称</strong></li>
-<li><code>Map&lt;String, String[]&gt; getParameterMap()</code>: 获取所有请求<strong>参数的map集合</strong></li>
+<li><code>String getParameter(String name)</code>: 根据参数名获取<strong>参数值</strong></li>
+<li><code>String[] getParameterValues(String name)</code>: 根据参数名获取参数<strong>值的数组</strong>（多选框）</li>
+<li><code>Enumeration&lt;String&gt; getParameterNames()</code>: 获取所有请求参数的<strong>名称</strong> （不常用）</li>
+<li><code>Map&lt;String, String[]&gt; getParameterMap()</code>: 获取所有请求<strong>参数的map集合</strong> （不常用）</li>
 </ul>
 <blockquote>
 <p>请求参数中有中文，乱码问题：</p>
 <ul>
-<li>get方式：Tomcat 8 就已经解决了 get 方式中文乱码的问题</li>
-<li>post方式：获取请求参数之前，设置 request 的编码：<ul>
+<li>get 方式：Tomcat 8 就已经解决了 get 方式中文乱码的问题</li>
+<li>post 方式：获取请求参数之前，设置 request 的编码：<ul>
 <li><code>request.setCharacterEncoding(&quot;utf-8&quot;)</code></li>
 </ul>
 </li>
 </ul>
 </blockquote>
-<h3 id="Ⅳ-转发"><a href="#Ⅳ-转发" class="headerlink" title="Ⅳ. 转发"></a>Ⅳ. 转发</h3><p><strong>原理：</strong>转发是服务器内部进行资源访问，一次请求，一次响应</p>
+<h3 id="转发"><a href="#转发" class="headerlink" title="转发"></a>转发</h3><p><strong>原理：</strong>转发是服务器内部进行资源访问，一次请求，一次响应</p>
 <p><strong>语法：</strong><code>request.getRequestDispatcher(&quot;路径&quot;).forward(request,response);</code></p>
 <p><strong>注意：</strong></p>
 <ul>
@@ -1914,18 +1967,18 @@
 
 
 
-<h3 id="Ⅴ-共享数据"><a href="#Ⅴ-共享数据" class="headerlink" title="Ⅴ. 共享数据"></a>Ⅴ. 共享数据</h3><p><strong>域对象：</strong>一个有作用范围的对象，可以在作用范围内共享数据</p>
-<p><strong>request域对象</strong>：代表一次请求的范围，一般用于请求转发的多个资源中共享数据</p>
+<h3 id="共享数据"><a href="#共享数据" class="headerlink" title="共享数据"></a>共享数据</h3><p><strong>域对象：</strong>一个有作用范围的对象，可以在作用范围内共享数据</p>
+<p><strong>request 域对象</strong>：代表一次请求的范围，一般用于请求转发的多个资源中共享数据</p>
 <p>方法：</p>
 <ul>
 <li><code>setAttribute(String name, Object obj)</code>: 存储数据（键值对形式）</li>
 <li><code>getAttribute(String name)</code>: 通过键获取值</li>
 <li><code>removeAttribute(String name)</code>: 通过键删除数据</li>
 </ul>
-<h3 id="Ⅵ-获取-ServletContext-对象"><a href="#Ⅵ-获取-ServletContext-对象" class="headerlink" title="Ⅵ. 获取 ServletContext 对象"></a>Ⅵ. 获取 ServletContext 对象</h3><p><code>ServletContext context = request.getServletContext()</code></p>
+<h3 id="获取-ServletContext-对象"><a href="#获取-ServletContext-对象" class="headerlink" title="获取 ServletContext 对象"></a>获取 ServletContext 对象</h3><p><code>ServletContext context = request.getServletContext()</code></p>
 <br/>
 
-<h1 id="response对象"><a href="#response对象" class="headerlink" title="response对象"></a>response对象</h1><h3 id="Ⅰ-response对象设置响应消息："><a href="#Ⅰ-response对象设置响应消息：" class="headerlink" title="Ⅰ. response对象设置响应消息："></a>Ⅰ. response对象设置响应消息：</h3><ol>
+<h1 id="response-对象"><a href="#response-对象" class="headerlink" title="response 对象"></a>response 对象</h1><h3 id="Ⅰ-response-对象设置响应消息："><a href="#Ⅰ-response-对象设置响应消息：" class="headerlink" title="Ⅰ. response 对象设置响应消息："></a>Ⅰ. response 对象设置响应消息：</h3><ol>
 <li><p>设置响应行</p>
 <p>设置状态码：<code>setStatus(int sc)</code></p>
 </li>
@@ -2016,7 +2069,6 @@
         <category>Java</category>
       </categories>
       <tags>
-        <tag>Servlet</tag>
         <tag>Request</tag>
         <tag>Response</tag>
       </tags>
@@ -2619,50 +2671,59 @@
       </tags>
   </entry>
   <entry>
-    <title>yaml</title>
-    <url>/2019/10/14/yaml/</url>
-    <content><![CDATA[<p>Yaml 主要用于配置文件</p>
+    <title>YAML</title>
+    <url>/2019/10/14/YAML/</url>
+    <content><![CDATA[<p>YAML 是Spring Boot 官方推荐的配置文件格式</p>
 <a id="more"></a>
 
-<h1 id="yaml"><a href="#yaml" class="headerlink" title="yaml"></a>yaml</h1><h3 id="基本介绍："><a href="#基本介绍：" class="headerlink" title="基本介绍："></a>基本介绍：</h3><p>是一种以<strong>数据</strong>为核心的语言</p>
-<h3 id="基本语法："><a href="#基本语法：" class="headerlink" title="基本语法："></a>基本语法：</h3><p>k:(空格)v  –&gt; 表示一堆键值对（空格必须要有）</p>
+
+
+<p>YAML 是一种以<strong>数据</strong>为核心的语言</p>
+<h3 id="基本语法："><a href="#基本语法：" class="headerlink" title="基本语法："></a>基本语法：</h3><p><code>k: v</code>： 表示一对键值对（冒号后面的空格是必须的）</p>
 <p>以<strong>空格的缩进</strong>来控制层级关系，只要一列数据左对齐，它们就属于同一个层级</p>
 <p>k，v 都是大小写敏感的</p>
+<p>文件后缀：yml / yaml</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span> </span><br><span class="line">    <span class="attr">port:</span> <span class="number">8090</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">/hello</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="值的类型："><a href="#值的类型：" class="headerlink" title="值的类型："></a>值的类型：</h4><ul>
-<li><p>字面量(数字，字符串，布尔)</p>
-<ul>
-<li>直接写，字符串不需要加引号</li>
-</ul>
-</li>
-<li><p>对象，map</p>
-</li>
-<li><p>集合(list, set) : 用 - 表示集合中的元素</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">fruits:</span> </span><br><span class="line">    <span class="bullet">-</span> <span class="string">apple</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">orange</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">banana</span></span><br></pre></td></tr></table></figure>
+<h4 id="值的类型及写法："><a href="#值的类型及写法：" class="headerlink" title="值的类型及写法："></a>值的类型及写法：</h4><ul>
+<li><p>数、字符串（不需要加引号）、布尔值</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">zhangsan</span></span><br><span class="line"><span class="attr">age:</span> <span class="number">18</span></span><br><span class="line"><span class="attr">gender:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
-<h3 id="获取配置文件中的值："><a href="#获取配置文件中的值：" class="headerlink" title="获取配置文件中的值："></a>获取配置文件中的值：</h3><p>在Javabean中获取yaml配置文件中的值：使用@ConfigurationProperties注解</p>
 <ul>
-<li>Javabean</li>
+<li><p>对象、Map</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 对象</span></span><br><span class="line"><span class="attr">people:</span></span><br><span class="line">	<span class="attr">name:</span> <span class="string">zhangsan</span></span><br><span class="line">	<span class="attr">age:</span> <span class="number">18</span></span><br><span class="line">	<span class="attr">gender:</span> <span class="literal">true</span></span><br><span class="line">	</span><br><span class="line"><span class="comment"># 对象的行内写法（也是Map的写法）</span></span><br><span class="line"><span class="attr">people:</span> <span class="string">&#123;name:</span> <span class="string">zhangsan,</span> <span class="attr">age:</span> <span class="number">18</span><span class="string">,</span> <span class="attr">gender:</span> <span class="literal">true</span><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span>  <span class="comment">// 将Javabean添加到容器中</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"people"</span>)  <span class="comment">// 获取yaml中值的注解</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isman;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Dog dog;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; list;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">// Getter &amp; Setter (必须要有)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
-<li>yaml配置文件</li>
+<li><p>数组：用 <code>-</code> 表示数组中的元素</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 数组</span></span><br><span class="line"><span class="attr">fruits:</span> </span><br><span class="line">    <span class="bullet">-</span> <span class="string">apple</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">orange</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">banana</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># 数组的行内写法</span></span><br><span class="line"><span class="attr">fruits:</span> <span class="string">[apple,</span> <span class="string">orange,</span> <span class="string">banana]</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ul>
+<h3 id="为-JavaBean-的属性赋值："><a href="#为-JavaBean-的属性赋值：" class="headerlink" title="为 JavaBean 的属性赋值："></a>为 JavaBean 的属性赋值：</h3><p>使用 <code>@ConfigurationProperties</code> 注解</p>
+<p>属性名称必须和配置文件中的名称一一对应</p>
+<p>YAML 配置文件</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">people:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">lisi</span></span><br><span class="line">  <span class="attr">age:</span> <span class="number">18</span></span><br><span class="line">  <span class="attr">isman:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">dog:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">niuer</span></span><br><span class="line">    <span class="attr">age:</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">list:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">haha</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">hehe</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">heihei</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">xixi</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="Value获取值和-ConfigurationProperties获取值的区别"><a href="#Value获取值和-ConfigurationProperties获取值的区别" class="headerlink" title="@Value获取值和@ConfigurationProperties获取值的区别"></a>@Value获取值和@ConfigurationProperties获取值的区别</h4><table>
+<p>JavaBean</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 只有将 JavaBean 作为容器的组件，才能使用容器提供的 @ConfigurationProperties 注解来为属性赋值</span></span><br><span class="line"><span class="meta">@Component</span>  <span class="comment">// 将 Javabean 作为组件添加到容器中</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"people"</span>)  <span class="comment">// 获取yaml中值的注解</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isman;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Dog dog;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; list;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">// Getter &amp; Setter (必须要有)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Value-获取值和-ConfigurationProperties-获取值的区别"><a href="#Value-获取值和-ConfigurationProperties-获取值的区别" class="headerlink" title="@Value 获取值和 @ConfigurationProperties 获取值的区别"></a><code>@Value</code> 获取值和 <code>@ConfigurationProperties</code> 获取值的区别</h4><table>
 <thead>
 <tr>
 <th></th>
@@ -2696,74 +2757,153 @@
 <td>不支持</td>
 </tr>
 </tbody></table>
+<blockquote>
+<p>松散绑定：在 YAML 中 <code>-</code> 后面的一个字母会自动变为大写，下面两个可以对应起来</p>
+<ul>
+<li>YAML 中：last-name</li>
+<li>JavaBean 中：lastName</li>
+</ul>
+<p>JSR303数据校验：可以在 JavaBean 的属性上添加过滤器验证，以保证数据的合法性。</p>
+<p>如何使用：</p>
+<ol>
+<li>在类上添加 <code>@Validated</code> 注解（Spring的这个注解，不要弄错了）</li>
+<li>在属性上面添加验证注解，如 <code>@Email()</code></li>
+</ol>
+</blockquote>
 <p><strong>使用哪一个？</strong></p>
 <ul>
-<li>如果只是在业务逻辑中获取配置文件中的某个值，用@Value</li>
-<li>如果专门写了一个Javabean来和配置文件进行映射时，用@ConfigurationProperties</li>
+<li>如果只是在业务逻辑中获取配置文件中的某个值，用 <code>@Value</code></li>
+<li>如果专门写了一个 JavaBean 来和配置文件进行映射时，果断用 <code>@ConfigurationProperties</code></li>
+</ul>
+<h3 id="YAML-文件中使用-EL表达式："><a href="#YAML-文件中使用-EL表达式：" class="headerlink" title="YAML 文件中使用 EL表达式："></a>YAML 文件中使用 EL表达式：</h3><p>获取随机数：<code>${random.value}</code>、<code>${random.int}</code></p>
+<p>占位符可以获取之间配置过的值，如果没有，可以指定默认值</p>
+<ul>
+<li><p><code>${app.name}</code> ：获取值</p>
+</li>
+<li><p><code>${app.name:默认值}</code>：没有值的情况下指定默认值</p>
+</li>
 </ul>
 ]]></content>
       <tags>
-        <tag>yaml</tag>
+        <tag>YAML</tag>
       </tags>
   </entry>
   <entry>
-    <title>springboot</title>
-    <url>/2019/10/09/Java/springboot/</url>
-    <content><![CDATA[<p>springboot入门</p>
+    <title>Spring Boot</title>
+    <url>/2019/10/09/Thymeleaf/</url>
+    <content><![CDATA[<p>Thymeleaf 是 Spring Boot 官方推荐使用的模板引擎</p>
 <a id="more"></a>
 
-<h1 id="Spring-Boot"><a href="#Spring-Boot" class="headerlink" title="Spring Boot"></a>Spring Boot</h1><p>Springboot项目的快速创建：使用 <strong>idea</strong> 里面的 *<em>Spring Initializr *</em></p>
-<h2 id="Spring中常用注解："><a href="#Spring中常用注解：" class="headerlink" title="Spring中常用注解："></a>Spring中常用注解：</h2><p><strong>@ConfigurationProperties(prefix = “people”)</strong>：获取主配置文件中people层级下的值，并把它赋给注解所在类。</p>
-<ul>
-<li><p>与 @Bean 结合为属性赋值</p>
-</li>
-<li><p>与 @PropertySource() 结合读取指定配置文件（只能是properties配置文件）中的值</p>
-</li>
-</ul>
-<p><strong>@ImportResource()</strong>：导入Spring的配置文件，让配置文件中的内容生效（因为Spring Boot里面没有Spring的配置文件，自己写的话就需要用这个注解导入使其生效）</p>
-<ul>
-<li>需要标注在主配置类上</li>
-<li><u>这个并不常用，因为Spring Boot中一般使用全注解的方式</u></li>
-</ul>
-<p>Spring Boot 推荐的给容器中添加组件的方式：在配置类中使用@Bean注解</p>
-<ul>
-<li>配置类：用于替代配置文件，一个普通的Java类加上@Configuration注解</li>
-<li>@Bean： 标注在配置类中的方法上，将方法的返回值作为组件添加到容器中，这个组件在容器中的默认id就是方法名</li>
-</ul>
-<h2 id="配置文件占位符："><a href="#配置文件占位符：" class="headerlink" title="配置文件占位符："></a>配置文件占位符：</h2><p><strong>在配置文件中获取随机数</strong>：${random.value}、${random.int}</p>
-<p>占位符可以获取之间配置过的值，如果没有，可以指定默认值</p>
-<ul>
-<li><p>${app.name} ：获取值</p>
-</li>
-<li><p>${app.name:默认值}：没有值的情况下指定默认值</p>
-</li>
-</ul>
-<h2 id="Profile-多环境支持"><a href="#Profile-多环境支持" class="headerlink" title="Profile 多环境支持"></a>Profile 多环境支持</h2><blockquote>
-<p>在Spring中可以使用Profile来快速切换环境，如生产环境，测试环境等，可以快速为每种环境设置不同的参数</p>
+<h3 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h3><p>概念：将页面和数据整合到一起的东西。</p>
+<p>常见的模板引擎：JSP、FreeMarker、Thymeleaf</p>
+<h3 id="Thymeleaf-语法"><a href="#Thymeleaf-语法" class="headerlink" title="Thymeleaf 语法"></a>Thymeleaf 语法</h3><blockquote>
+<p>要想使用 Thymeleaf 的提示功能，需要在 HTML 中引入 Thymeleaf 的 xmlns<br><code>xmlns:th = &quot;http://www.thymeleaf.org&quot;</code></p>
 </blockquote>
-<h3 id="多文件形式的Profile："><a href="#多文件形式的Profile：" class="headerlink" title="多文件形式的Profile："></a>多文件形式的Profile：</h3><ul>
-<li>可以新建多个配置文件，每一个配置文件对应一种使用环境，配置文件命名的要求：<ul>
-<li>application-{profile}.properties –&gt; application-dev.properties</li>
+<p><code>th:*</code>：* 几乎可以代表所有 HTML 的元素</p>
+<p>Simple Expression：</p>
+<ul>
+<li>Variable Expressions: <code>${...}</code></li>
+<li>Selection Variable Expressions: <code>*{...}</code></li>
+<li>Message Expressions: <code>#{...}</code></li>
+<li>Link URL Expressions: <code>@{...}</code></li>
+<li>Fragment Expressions: <code>~{...}</code></li>
 </ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--表达式基本使用演示--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- $&#123;&#125; 取值--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:text</span>=<span class="string">"$&#123;hello&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- @&#123;&#125; 链接--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/css/bootstrap.min.css&#125;"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- ~&#123;&#125; 提取模板--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container-fluid"</span> <span class="attr">th:fragment</span>=<span class="string">"sidebar"</span>&gt;</span> </span><br><span class="line">    <span class="comment">&lt;!--在需要提取的代码块上使用 th:fragment="sidebar"--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--在需要使用模板的地方使用 th:replace 或者 th:insert 导入模板--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:replace</span>=<span class="string">"~&#123;commons::sidebar&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>Thymeleaf 判断：<code>th:if=&quot;&quot;</code></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--回显错误信息，当错误信息不为空时才显示--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">"color: red"</span> <span class="attr">th:text</span>=<span class="string">"$&#123;errorMsg&#125;"</span> <span class="attr">th:if</span>=<span class="string">"$&#123;not #strings.isEmpty(errorMsg)&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<p>Thymeleaf 遍历：<code>th:each=&quot;item : ${items}&quot;</code></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--把后端返回的集合遍历出来--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tr</span> <span class="attr">th:each</span>=<span class="string">"emp:$&#123;emps&#125;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;emp.getId()&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;emp.getEmpName()&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--表达式内使用三元运算符--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;emp.getGender()==0?'女':'男'&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;emp.getDepartment().getDepName()&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--使用 # 来调用函数，完成一下高级操作--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#dates.format(emp.getBirth(), 'yyyy/MM/dd HH:mm')&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"btn btn-sm btn-primary"</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/emp/edit.do/&#125;+$&#123;emp.getId()&#125;"</span>&gt;</span>修改<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"btn btn-sm btn-danger"</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/emp/delete.do/&#125;+$&#123;emp.getId()&#125;"</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Java EE</category>
+      </categories>
+      <tags>
+        <tag>Spring Boot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring Boot</title>
+    <url>/2019/10/09/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Spring%20Boot/</url>
+    <content><![CDATA[<p>Spring Boot 是现在 Java 企业级开发最流行的框架</p>
+<blockquote>
+<p>约定大于配置</p>
+</blockquote>
+<blockquote>
+<p>自动装配</p>
+</blockquote>
+<a id="more"></a>
+
+<p>Spring Boot 是什么？</p>
+<ul>
+<li>Spring Boot 就是一个 JavaWeb 开发框架，相比于其他框架的优势是：<code>它极大程度的简化了开发</code></li>
+</ul>
+<p>核心思想：</p>
+<ul>
+<li>约定大于配置</li>
+</ul>
+<blockquote>
+<p>什么是微服务架构？</p>
+<p>​    微服务是一种架构风格</p>
+<p>单体架构：所有的模块都集成在同一个应用中（放在一个 jar / war 包中），想要提高单体应用的响应能力只能使用负载均衡。</p>
+<p>MVC 三层架构：把整个应用分为三层，可以把每一层放到一个服务器上。</p>
+<p>微服务架构：把应用中的每个模块都独立出来（比如可以把 UserService 单独拿出来），模块之间使用 http / rpc 进行通信。</p>
+<p>一张来自 Dubbo 官网的架构演进图：</p>
+<p><img src="/images/springboot/dubbo-architecture-roadmap.jpg" alt="dubbo-architecture-roadmap"></p>
+</blockquote>
+<p>Spring Boot 项目的快速创建：使用 <strong>idea</strong> 里面的 *<em>Spring Initializr *</em></p>
+<h2 id="Profile-多环境配置"><a href="#Profile-多环境配置" class="headerlink" title="Profile 多环境配置"></a>Profile 多环境配置</h2><blockquote>
+<p>在 Spring Boot 中可以使用 Profile 来快速切换环境，如生产环境，测试环境等，可以快速为每种环境设置不同的参数</p>
+</blockquote>
+<h3 id="YAML-配置文件的-Profile："><a href="#YAML-配置文件的-Profile：" class="headerlink" title="YAML 配置文件的 Profile："></a>YAML 配置文件的 Profile：</h3><p>yaml配置文件支持多文档块的形式</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不指定 active，默认走8081</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8081</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">profiles:</span> </span><br><span class="line">	<span class="attr">active:</span> <span class="string">dev</span></span><br><span class="line">	</span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8082</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">profiles:</span> <span class="string">dev</span></span><br><span class="line"></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8083</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">profiles:</span> <span class="string">test</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h3 id="Profile-的其他几种激活方式："><a href="#Profile-的其他几种激活方式：" class="headerlink" title="Profile 的其他几种激活方式："></a>Profile 的其他几种激活方式：</h3><ol>
+<li><p>properties 配置文件：</p>
+<p>新建多个配置文件，每一个配置文件对应一种环境</p>
+<ul>
+<li><p>application-dev.properties</p>
+</li>
+<li><p>application-test.properties</p>
 </li>
 </ul>
-<h3 id="文档块形式-yaml配置文件-的Profile："><a href="#文档块形式-yaml配置文件-的Profile：" class="headerlink" title="文档块形式(yaml配置文件)的Profile："></a>文档块形式(yaml配置文件)的Profile：</h3><p>yaml配置文件支持多文档块的形式</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">server</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">port</span>: <span class="string">8081</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">profiles</span>:<span class="string"></span></span><br><span class="line"></span><br><span class="line"><span class="attr">active</span>: <span class="string">dev</span></span><br><span class="line"></span><br><span class="line"><span class="attr">server</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">port</span>: <span class="string">8082</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">profiles</span>: <span class="string">dev</span></span><br><span class="line"></span><br><span class="line"><span class="attr">---</span></span><br><span class="line"></span><br><span class="line"><span class="attr">server</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">port</span>: <span class="string">8083</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">profiles</span>: <span class="string">prod</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Profile的激活方式："><a href="#Profile的激活方式：" class="headerlink" title="Profile的激活方式："></a>Profile的激活方式：</h3><p>配置文件：spring.profiles.active=dev</p>
-<p>命令行：–spring.profiles.active=dev</p>
-<p>jvm：-Dpring.profiles.active=dev</p>
-<h2 id="配置文件的加载位置"><a href="#配置文件的加载位置" class="headerlink" title="配置文件的加载位置"></a>配置文件的加载位置</h2><p>spring boot 启动之后会默认访问以下位置下的 application.properties 或 application.yaml来作为主配置文件</p>
+<p>激活：<code>spring.profiles.active=dev</code></p>
+</li>
+</ol>
+<ol start="2">
+<li><p>命令行：<code>–spring.profiles.active=dev</code></p>
+</li>
+<li><p>JVM：<code>-Dpring.profiles.active=dev</code></p>
+</li>
+</ol>
+</blockquote>
+<h2 id="配置文件的加载"><a href="#配置文件的加载" class="headerlink" title="配置文件的加载"></a>配置文件的加载</h2><p>Spring Boot 启动之后会默认访问以下位置下的 <code>application.properties</code> 或 <code>application.yaml</code> 来作为主配置文件</p>
+<blockquote>
+<p>配置文件名称叫 application 为约定。</p>
+</blockquote>
 <p>优先级由高到低：</p>
 <ol>
-<li>file:/config/</li>
-<li>file:/</li>
-<li>classpath:/config/</li>
-<li>classpath:/</li>
+<li><code>file:/config/</code></li>
+<li><code>file:/</code></li>
+<li><code>classpath:/config/</code></li>
+<li><code>classpath:/</code></li>
 </ol>
 <blockquote>
-<p>file:/ 文件下路径为 pom.xml 同级路径</p>
-<p>classpath:/ 类路径为 resources 文件夹下</p>
+<p><code>file:/</code>：为 pom.xml 同级路径</p>
+<p><code>classpath:/</code>：为 resources 文件夹下</p>
 </blockquote>
 <p>以上所有目录下的配置文件都会被加载，如果有相同的配置，优先级高的会覆盖优先级低的，也有可能形成互补配置。</p>
 <h2 id="外部配置的加载顺序"><a href="#外部配置的加载顺序" class="headerlink" title="外部配置的加载顺序"></a>外部配置的加载顺序</h2><p>优先级仍然是从高到低：</p>
@@ -2777,6 +2917,11 @@
 </ul>
 </li>
 </ol>
+<p>Spring Boot 推荐的给容器中添加组件的方式：在配置类中使用@Bean注解</p>
+<ul>
+<li>配置类：用于替代配置文件，一个普通的Java类加上@Configuration注解</li>
+<li><code>@Bean</code>： 标注在配置类中的方法上，将方法的返回值作为组件添加到容器中，这个组件在容器中的默认id就是方法名</li>
+</ul>
 <h2 id="日志框架"><a href="#日志框架" class="headerlink" title="日志框架"></a>日志框架</h2><p>springboot内部的使用的日志框架：</p>
 <ul>
 <li>日志抽象层：SLF4J</li>
@@ -2787,58 +2932,64 @@
 
 <h2 id="SpringBoot框架中使用日志框架"><a href="#SpringBoot框架中使用日志框架" class="headerlink" title="SpringBoot框架中使用日志框架"></a>SpringBoot框架中使用日志框架</h2><p>SpringBoot底层使用的是slf4j + logback进行日志记录，</p>
 <p>如果我们要在SpringBoot中引入其他的框架时，首先就要把这个框架依赖的日志框架移除</p>
-<h1 id="SpringBoot与web开发"><a href="#SpringBoot与web开发" class="headerlink" title="SpringBoot与web开发"></a>SpringBoot与web开发</h1><h2 id="一、SpringBoot对静态资源的映射规则"><a href="#一、SpringBoot对静态资源的映射规则" class="headerlink" title="一、SpringBoot对静态资源的映射规则"></a>一、SpringBoot对静态资源的映射规则</h2><ol>
-<li><p>所有的webjars/** ，都去classpath:/META-INF/resources/webjars/ 找资源</p>
-<p>webjars：以jar包的形式引入资源</p>
-</li>
-</ol>
+<h2 id="SpringBoot-与-web-开发"><a href="#SpringBoot-与-web-开发" class="headerlink" title="SpringBoot 与 web 开发"></a>SpringBoot 与 web 开发</h2><h3 id="SpringBoot-对静态资源的映射规则"><a href="#SpringBoot-对静态资源的映射规则" class="headerlink" title="SpringBoot 对静态资源的映射规则"></a>SpringBoot 对静态资源的映射规则</h3><ol>
+<li><p>webjars：以 jar 包的形式引入静态资源（<strong>了解即可，不常用</strong>）</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 通过在pom.xml中引入maven依赖的方式来引入静态资源 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.webjars<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jquery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<ol start="2">
-<li><p>/** 访问当前项目里的所有静态资源</p>
-<ul>
-<li>classpath:/META-INF/resources/</li>
-<li>classpath:/resources/</li>
-<li>classpath:/static/</li>
-<li>classpath:/public/</li>
-<li>/ ： ‘项目的根目录’</li>
-</ul>
-<p>以上文件夹为静态资源的文件夹，当使用 / 来访问项目中的资源时，如果资源没人处理，则会到上面文件夹中按先后顺序寻找**</p>
-<p>classpath:/ –&gt; resources文件夹</p>
-</li>
-<li><p>欢迎页：静态资源文件夹下的 index.html 文件, 被 /** 映射</p>
-</li>
-<li><p>网页图标：在静态资源文件夹下找 favicon.ico</p>
+<p>所有的 <code>webjars/**</code> ，都去 <code>classpath:/META-INF/resources/webjars/</code> 找资源</p>
 </li>
 </ol>
+<ol start="2">
+<li><p>项目中静态资源默认可以存放的位置</p>
+<ol>
+<li><p><code>classpath:/META-INF/resources/</code></p>
+</li>
+<li><p><code>classpath:/resources/</code></p>
+</li>
+<li><p><code>classpath:/static/</code></p>
+</li>
+<li><p><code>classpath:/public/</code></p>
 <blockquote>
-<p>自己修改静态资源文件夹的位置：在springboot的配置文件中这样配置：spring.resources.static-locations=</p>
+<p>为什么是这四个文件夹？</p>
+<p>因为 Spring Boot 在 <code>WebProperties.java</code> 中的静态内部类 <code>Resources</code> 中配置了这四个文件夹：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Resources</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] CLASSPATH_RESOURCE_LOCATIONS = &#123; <span class="string">"classpath:/META-INF/resources/"</span>,<span class="string">"classpath:/resources/"</span>, <span class="string">"classpath:/static/"</span>, <span class="string">"classpath:/public/"</span> &#125;;</span><br></pre></td></tr></table></figure>
+
+
 </blockquote>
-<h2 id="二、模板引擎"><a href="#二、模板引擎" class="headerlink" title="二、模板引擎"></a>二、模板引擎</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p> jsp、Freemarker、thymeleaf</p>
-<p> 模板引擎就是将页面和数据整合到一起的东西。</p>
-<p> SpringBoot 推荐使用：thymeleaf</p>
-<h3 id="引入thymeleaf"><a href="#引入thymeleaf" class="headerlink" title="引入thymeleaf"></a>引入thymeleaf</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 修改thymeleaf版本以及thymeleaf-layout-dialect版本 --&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">thymeleaf.version</span>&gt;</span>3.0.11.RELEASE<span class="tag">&lt;/<span class="name">thymeleaf.version</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">thymeleaf-layout-dialect.version</span>&gt;</span>2.4.1.RELEASE<span class="tag">&lt;/<span class="name">thymeleaf-layout-dialect.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="thymeleaf使用-amp-语法"><a href="#thymeleaf使用-amp-语法" class="headerlink" title="thymeleaf使用&amp;语法"></a>thymeleaf使用&amp;语法</h3><p>thymeleaf的使用：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Charset DEFAULT_ENCODING = StandardCharsets.UTF_8;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_PREFIX = <span class="string">"classpath:/templates/"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String DEFAULT_SUFFIX = <span class="string">".html"</span>;</span><br><span class="line"><span class="comment">// 只要在classpath:/templates/ 路径下的.html 文件，thymeleaf就能自动渲染</span></span><br></pre></td></tr></table></figure>
-
-<p>thymeleaf的语法：</p>
-<ul>
-<li><p>要想使用thymeleaf的提示功能，需要在页面的HTML文件中引入thymeleaf的xmlns<br><code>&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;</code></p>
+<blockquote>
+<p>以上文件夹为静态资源的文件夹，当使用 / 来访问项目中的资源时，如果资源没人处理，则会到上面文件夹中按先后顺序寻找</p>
+<p>例如：</p>
+<p>​    有 dog.jpg 图片文件，路径为 <code>classpath:/static/img/dog.jpg</code></p>
+<p>​    在 Spring Boot 中（未配置虚拟目录）可以直接使用 <code>localhost:8080/img/dog.jpg</code> 访问到文件，而不用写 static 目录，因为 Spring Boot 中会自动映射到静态文件夹中。</p>
+<p>​    这也是在 tmlplates 文件夹中的 html 文件中可以直接使用 <code>th:href=&quot;@{/css/bootstrap.min.css}&quot;</code> 获取到 static 文件夹中资源的原因（使用 <code>@{相对路径}</code> 时，Relative URLs starting with / (eg: /css/bootstrap.min.css ) will be automatically prefixed by the application context name）</p>
+</blockquote>
+<blockquote>
+<p>自己修改静态资源文件夹的位置：在 properties 配置文件中这样配置：</p>
+<p><code>spring.resources.static-locations=/mystatic</code></p>
+</blockquote>
 </li>
-<li><p>语法：th:**</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--使用th:text来获取controller中的文本内容，这里获取到的文本会覆盖div里面原本的文本--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:text</span>=<span class="string">"$&#123;hello&#125;"</span>&gt;</span>这是一个div<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
+</ol>
 </li>
-</ul>
+</ol>
+<p>首页和网站图标：</p>
+<ol>
+<li>首页：静态资源文件夹下的 <code>index.html</code> 文件</li>
+<li>网页图标：在静态资源文件夹下找 <code>favicon.ico</code> 文件</li>
+</ol>
+<h3 id="Spring-Boot-使用模板引擎"><a href="#Spring-Boot-使用模板引擎" class="headerlink" title="Spring Boot 使用模板引擎"></a>Spring Boot 使用模板引擎</h3><p>Spring Boot 推荐使用 Thymeleaf 作为项目的模板引擎</p>
+<h4 id="使用-Thymeleaf-步骤："><a href="#使用-Thymeleaf-步骤：" class="headerlink" title="使用 Thymeleaf 步骤："></a>使用 Thymeleaf 步骤：</h4><ol>
+<li><p>在 pom.xml 文件中引入 Thymeleaf 的启动器</p>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把  <code>.html</code> 文件放到 <code>classpath:/templates/</code> 路径下，Thymeleaf 就能自动渲染 。</p>
+</li>
+</ol>
 ]]></content>
       <categories>
-        <category>Java</category>
+        <category>Java EE</category>
       </categories>
       <tags>
-        <tag>springboot</tag>
+        <tag>Spring Boot</tag>
       </tags>
   </entry>
   <entry>
@@ -3138,45 +3289,57 @@
       </tags>
   </entry>
   <entry>
-    <title>容器</title>
-    <url>/2019/06/18/Java/1.Java%E5%9F%BA%E7%A1%80/%E5%AE%B9%E5%99%A8/</url>
-    <content><![CDATA[<p>Java容器一定要好好学习</p>
+    <title>集合</title>
+    <url>/2019/06/18/Java/1.Java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/</url>
+    <content><![CDATA[<p>Java 集合是所有知识点中最重要的</p>
 <a id="more"></a>
 
-<h2 id="Collection、List、ArrayList"><a href="#Collection、List、ArrayList" class="headerlink" title="Collection、List、ArrayList"></a>Collection、List、ArrayList</h2><h3 id="Collection接口的一些常见方法"><a href="#Collection接口的一些常见方法" class="headerlink" title="Collection接口的一些常见方法"></a>Collection接口的一些常见方法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Colection&lt;String&gt; c = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">c.add(<span class="string">"AA"</span>);</span><br><span class="line">c.add(<span class="string">"BB"</span>);</span><br><span class="line">c.add(<span class="string">"CC"</span>);</span><br><span class="line"></span><br><span class="line">c.size();</span><br><span class="line">c.isEmpty();</span><br><span class="line">c.remove(<span class="string">"BB"</span>);</span><br><span class="line">c.clear();</span><br></pre></td></tr></table></figure>
-
-<h3 id="Collection接口中的一些与集合相关的方法"><a href="#Collection接口中的一些与集合相关的方法" class="headerlink" title="Collection接口中的一些与集合相关的方法"></a>Collection接口中的一些与集合相关的方法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Colection&lt;String&gt; c1 = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">Colection&lt;String&gt; c2 = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"></span><br><span class="line">c1.add(<span class="string">"zz"</span>);</span><br><span class="line">c1.add(<span class="string">"ff"</span>);</span><br><span class="line">c1.add(<span class="string">"xx"</span>);</span><br><span class="line">	</span><br><span class="line">c2.add(<span class="string">"zz"</span>);</span><br><span class="line">c2.add(<span class="string">"hh"</span>);</span><br><span class="line">c2.add(<span class="string">"ll"</span>);</span><br><span class="line">		</span><br><span class="line">c1.addAll(c2); <span class="comment">// 将c2中的所有元素添加到c1中</span></span><br><span class="line">c1.removeAll(c2); <span class="comment">// 将c1中和c2相同的元素删除</span></span><br><span class="line">c1.retainAll(c2); <span class="comment">// 将c1中和c2相同的元素保留</span></span><br><span class="line">	</span><br><span class="line">c1.containsAll(c2); <span class="comment">// 判断c1是否包含了c2的全部元素，返回boolean</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="List接口中一些与索引有关的方法"><a href="#List接口中一些与索引有关的方法" class="headerlink" title="List接口中一些与索引有关的方法"></a>List接口中一些与索引有关的方法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">list.add(<span class="string">"A"</span>);</span><br><span class="line">list.add(<span class="string">"B"</span>);</span><br><span class="line">list.add(<span class="string">"C"</span>);</span><br><span class="line"></span><br><span class="line">list.add(<span class="number">2</span>,<span class="string">"H"</span>);</span><br><span class="line">list.remove(<span class="number">0</span>);</span><br><span class="line">list.set(<span class="number">1</span>,<span class="string">"S"</span>);</span><br><span class="line">list.get(<span class="number">1</span>);</span><br><span class="line">list.indexOf(<span class="string">"C"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="Collection、List、ArrayList"><a href="#Collection、List、ArrayList" class="headerlink" title="Collection、List、ArrayList"></a>Collection、List、ArrayList</h2><h3 id="Collection-接口的一些常见方法"><a href="#Collection-接口的一些常见方法" class="headerlink" title="Collection 接口的一些常见方法"></a>Collection 接口的一些常见方法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Colection&lt;String&gt; c = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"></span><br><span class="line">c.add(<span class="string">"AA"</span>);</span><br><span class="line">c.add(<span class="string">"BB"</span>);</span><br><span class="line">c.add(<span class="string">"CC"</span>);</span><br><span class="line"></span><br><span class="line">c.size();</span><br><span class="line">c.isEmpty();</span><br><span class="line">c.remove(<span class="string">"BB"</span>);</span><br><span class="line">c.clear();</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h2><p>LinkedList底层用双向链表实现储存<br>特点：查询效率低，增删效率高，线程不安全</p>
-<p>自己尝试实现LinkedList，详见代码</p>
-<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><p>Map使用“键（key）-值（value）对”来储存信息。<br>键值对信息通过键来标识，键不可重复。<br>HashMap实现类实现了Map接口。</p>
-<p>HashMap底层存储方式为<em>数组+链表</em>，<br>特点：查询效率高，增删效率高，线程不安全</p>
-<p>自己尝试实现HashMap，详见代码</p>
-<h2 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h2><p>TreeMap是<em>红黑二叉树</em>的典型实现<br>TreeMap和HashMap实现了同样的接口Map<br><strong>在需要排序的Map时才选用TreeMap</strong><br>按照<strong>Key递增</strong>的方向进行定义</p>
-<blockquote>
-<p>如果Key是自己定义的类，那么这个类必须实现Comparable接口，从而实现排序</p>
-</blockquote>
-<h2 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a>HashTable</h2><p>HashTable 同样是Map的一个实现类。<br>HashTab 和 HashMap用法几乎一样，区别在于</p>
+<h3 id="Collection-接口中的一些与集合相关的方法"><a href="#Collection-接口中的一些与集合相关的方法" class="headerlink" title="Collection 接口中的一些与集合相关的方法"></a>Collection 接口中的一些与集合相关的方法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Colection&lt;String&gt; c1 = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">Colection&lt;String&gt; c2 = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"></span><br><span class="line">c1.add(<span class="string">"zz"</span>);</span><br><span class="line">c1.add(<span class="string">"ff"</span>);</span><br><span class="line">c1.add(<span class="string">"xx"</span>);</span><br><span class="line"></span><br><span class="line">c2.add(<span class="string">"zz"</span>);</span><br><span class="line">c2.add(<span class="string">"hh"</span>);</span><br><span class="line">c2.add(<span class="string">"ll"</span>);</span><br><span class="line"></span><br><span class="line">c1.addAll(c2); <span class="comment">// 将c2中的所有元素添加到c1中</span></span><br><span class="line">c1.removeAll(c2); <span class="comment">// 将c1中和c2相同的元素删除</span></span><br><span class="line">c1.retainAll(c2); <span class="comment">// 将c1中和c2相同的元素保留</span></span><br><span class="line"></span><br><span class="line">c1.containsAll(c2); <span class="comment">// 判断c1是否包含了c2的全部元素，返回boolean</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="List-接口中一些与索引有关的方法"><a href="#List-接口中一些与索引有关的方法" class="headerlink" title="List 接口中一些与索引有关的方法"></a>List 接口中一些与索引有关的方法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"></span><br><span class="line">list.add(<span class="string">"A"</span>);</span><br><span class="line">list.add(<span class="string">"B"</span>);</span><br><span class="line">list.add(<span class="string">"C"</span>);</span><br><span class="line"></span><br><span class="line">list.add(<span class="number">2</span>,<span class="string">"H"</span>);</span><br><span class="line">list.remove(<span class="number">0</span>);</span><br><span class="line">list.set(<span class="number">1</span>,<span class="string">"S"</span>);</span><br><span class="line">list.get(<span class="number">1</span>);</span><br><span class="line">list.indexOf(<span class="string">"C"</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h2><p>LinkedList 底层用<code>双向链表</code>实现储存（ArrayList 底层是 Object 数组）<br>特点：</p>
 <ul>
-<li>HashMap 效率高，线程不安全，允许key和value为null</li>
-<li>HashTable 效率低，线程安全（方法中添加了<strong>synchronized</strong>关键字确保线程同步检查），不允许key和value为null</li>
+<li>查询效率低，增删效率高</li>
+<li>线程不安全</li>
 </ul>
-<h2 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h2><p>Set容器的特点：其中元素 <strong>无序</strong> &amp; <strong>不可重复</strong><br><strong>HashSet底层采用HashMap实现</strong><br>Set中所有的元素在Map中作为key</p>
-<p>手工实现HashSet：详见代码</p>
-<h2 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h2><p><strong>TreeSet底层采用TreeMap实现</strong><br>TreeSet会按照元素递增的方式实现排序</p>
+<p>自己尝试实现 LinkedList，详见代码</p>
+<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><p>Map 使用<strong>键值对</strong>来储存信息。<br>键值对信息通过键来标识，键不可重复。<br>HashMap 实现类实现了 Map 接口。</p>
+<p>HashMap 底层存储方式为<em>数组+链表</em>，<br>特点：</p>
+<ul>
+<li>查询效率高，增删效率高</li>
+<li>线程不安全</li>
+</ul>
+<p>自己尝试实现HashMap，详见代码</p>
+<h2 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h2><p>TreeMap 是<em>红黑二叉树</em>的典型实现<br>TreeMap 和 HashMap 实现了同样的接口 Map<br><strong>在需要排序的 Map 时才选用 TreeMap</strong><br>按照 <strong>Key 递增</strong>的方向进行定义</p>
 <blockquote>
-<p>如果TreeSet中是自己定义的类，那么这个类必须实现Comparable接口，从而实现排序</p>
+<p>如果 Key 是自己定义的类，那么这个类必须实现 Comparable 接口，从而实现排序</p>
+</blockquote>
+<h2 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a>HashTable</h2><p>HashTable 同样是 Map 的一个实现类。<br>HashTab 和 HashMap 用法几乎一样，区别在于</p>
+<ul>
+<li>HashMap 效率高，线程不安全，允许 key 和 value 为 null</li>
+<li>HashTable 效率低，线程安全（方法中添加了<strong>synchronized</strong>关键字确保线程同步检查），不允许 key 和 value 为 null</li>
+</ul>
+<h2 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h2><p>Set 容器的特点：其中元素 <strong>无序</strong> &amp; <strong>不可重复</strong><br><strong>HashSet 底层采用 HashMap 实现</strong><br>Set中 所有的元素在 Map 中作为 key</p>
+<p>手工实现 HashSet：详见代码</p>
+<h2 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h2><p><strong>TreeSet 底层采用 TreeMap 实现</strong><br>TreeSet 会按照元素递增的方式实现排序</p>
+<blockquote>
+<p>如果 TreeSet 中是自己定义的类，那么这个类必须实现 Comparable 接口，从而实现排序</p>
 </blockquote>
 ]]></content>
       <categories>
         <category>Java</category>
       </categories>
       <tags>
-        <tag>容器</tag>
+        <tag>集合</tag>
       </tags>
   </entry>
   <entry>
@@ -4160,12 +4323,12 @@
   <entry>
     <title>SSM整合</title>
     <url>/2019/05/17/Java/3.SSM%E6%A1%86%E6%9E%B6/SSM%E6%95%B4%E5%90%88/</url>
-    <content><![CDATA[<p>ssm整合起来, 实现前端页面可以对数据库进行增删改查</p>
+    <content><![CDATA[<p>SSM 整合起来, 实现前端页面可以对数据库进行增删改查</p>
 <a id="more"></a>
 
 <h1 id="SSM整合"><a href="#SSM整合" class="headerlink" title="SSM整合"></a>SSM整合</h1><p>Spring / SpringMVC / MyBatis 整合的基本要求：</p>
 <ul>
-<li>由Spring框架整合其他两个框架</li>
+<li>由 Spring 框架整合其他两个框架</li>
 <li>每个框架都需要可以独立运行</li>
 </ul>
 <h2 id="Spring整合SpringMVC"><a href="#Spring整合SpringMVC" class="headerlink" title="Spring整合SpringMVC"></a>Spring整合SpringMVC</h2><p>在web.xml 中设置监听器，当服务器启动时，由监听器完成加载spring 配置文件的动作。</p>
@@ -4173,11 +4336,11 @@
 
 
 
-<h2 id="Spring整合MyBatis"><a href="#Spring整合MyBatis" class="headerlink" title="Spring整合MyBatis"></a>Spring整合MyBatis</h2><p>在Spring 的配置文件中配置SqlSession 工厂，用于将代理dao放到Spring 容器中</p>
+<h2 id="Spring-整合-MyBatis"><a href="#Spring-整合-MyBatis" class="headerlink" title="Spring 整合 MyBatis"></a>Spring 整合 MyBatis</h2><p>在 Spring 的配置文件中配置 SqlSession 工厂，用于将代理 dao 放到 Spring 容器中</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Spring 整合 MyBatis --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 配置数据库连接池，用 c3p0 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"com.mchange.v2.c3p0.ComboPooledDataSource"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql:///springtest"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置SqlSession工厂 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"sqlSessionFactoryBean"</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.SqlSessionFactoryBean"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置AccountDao接口所在的包 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"mapperScanner"</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.mapper.MapperScannerConfigurer"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"basePackage"</span> <span class="attr">value</span>=<span class="string">"com.pika.dao"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>另外，因为对数据库的增删改操作需要事务的支持，</p>
-<p>所以需要在Spring 的配置文件中设置事务</p>
+<p>所以需要在 Spring 的配置文件中设置事务</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置Spring的声明式事务 --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 配置事务管理器 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置事务通知 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tx:advice</span> <span class="attr">id</span>=<span class="string">"txadvice"</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManager"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"find*"</span> <span class="attr">read-only</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置AOP增强 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">"txadvice"</span> <span class="attr">pointcut</span>=<span class="string">"execution(* com.pika.service.*.*(..))"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 ]]></content>
@@ -4204,6 +4367,11 @@
 <li>返回 <code>ModelAndView</code></li>
 <li>返回<code>json</code>格式数据（实际返回的是javabean，通过<code>@ResponseBody</code>注解实现转换为json数据）</li>
 </ul>
+<blockquote>
+<p>Model model，</p>
+<p>model.addAttribute(“username”, “zhangsan”);</p>
+<p>model 的作用域为 request 作品域</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>Java</category>
@@ -4220,25 +4388,16 @@
 
 <h1 id="SpringMVC-基础"><a href="#SpringMVC-基础" class="headerlink" title="SpringMVC_基础"></a>SpringMVC_基础</h1><p><strong>基本概念：</strong></p>
 <ul>
-<li><p><strong>三层架构：</strong></p>
+<li><p><strong>MVC 模型（Model View Controller）：</strong></p>
 <ul>
-<li>表现层</li>
-<li>业务层</li>
-<li>持久层</li>
-</ul>
-</li>
-<li><p><strong>MVC模型（Model View Controller）：</strong></p>
-<ul>
-<li>Model：数据模型，JavaBean的类，用来进行数据封装。</li>
-</ul>
-<ol start="3">
-<li>View：指JSP、HTML用来展示数据给用户</li>
+<li>Model：数据模型，JavaBean 的类，用来进行数据封装。</li>
+<li>View：指 JSP、HTML 用来展示数据给用户</li>
 <li>Controller：用来接收用户的请求，整个流程的控制器。用来进行数据校验等。 </li>
-</ol>
+</ul>
 </li>
-<li><p><strong>SpringMVC：</strong>基于MVC设计模式的轻量级web框架</p>
+<li><p><strong>SpringMVC：</strong>基于 MVC 设计模式的轻量级 web 框架</p>
 </li>
-<li><p><strong>SpringMVC有清晰的角色划分：</strong></p>
+<li><p><strong>SpringMVC 有清晰的角色划分：</strong></p>
 <ul>
 <li>前端控制器（DispatcherServlet）</li>
 <li>处理器映射器（HandlerMapping）</li>
@@ -4274,9 +4433,7 @@
 <p>配置成 <code>/*</code> 会导致访问<code>.jsp</code> 时出现<code>404</code>的情况</p>
 </blockquote>
 </li>
-<li><p>处理器映射器（HandlerMapping）</p>
-</li>
-<li><p>处理器适配器（HandlerAdapter）</p>
+<li><p>处理器映射器（HandlerMapping）&amp; 处理器适配器（HandlerAdapter）</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 开启SpringMVC框架注解的支持</span></span><br><span class="line"><span class="comment">使用此标签会自动加载 处理器映射器（RequestMappingHandlerMapping） 和 </span></span><br><span class="line"><span class="comment">处理器适配器（RequestMappingHandlerAdapter）</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
 
@@ -4285,7 +4442,7 @@
 </ul>
 <ul>
 <li><p>视图解析器（ViewResolver）</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在Spring的配置文件中进行配置 --&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- 配置视图解析器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"internalResourceViewResolver"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/pages/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在 SpringMVC 的配置文件中进行配置 --&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- 配置视图解析器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"internalResourceViewResolver"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/pages/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -4293,15 +4450,15 @@
 </ul>
 <hr>
 <p><strong>入门案例的流程总结:</strong></p>
-<p><img src="C:%5Cdevelop%5Cblog%5Csource%5Cimages%5Cspringmvc%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%8E%9F%E7%90%86.jpg" alt=""></p>
+<p><img src="/images/SpringMVC_%E5%9F%BA%E7%A1%80/springmvc%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%8E%9F%E7%90%86.jpg" alt="springmvc执行流程原理"></p>
 <p><strong>@RequestMapping注解：</strong></p>
 <p><strong>作用：</strong>用于建立 <strong>请求URL</strong> 和 <strong>处理请求方法</strong> 之间的对应关系</p>
 <p><strong>作用范围：类</strong> 和 <strong>方法</strong></p>
 <p><strong>属性：</strong></p>
 <ul>
-<li><code>path</code> –&gt; 指定请求路径的url</li>
-<li><code>value</code> –&gt; 和path属性是一样的</li>
-<li><code>method</code> –&gt; 指定该方法的请求方式(get/post/…)</li>
+<li><code>path</code> –&gt; 指定请求路径的 url</li>
+<li><code>value</code> –&gt; 和 path 属性是一样的</li>
+<li><code>method</code> –&gt; 指定该方法的请求方式( get / post /…)</li>
 <li><code>params</code> –&gt; 指定限制请求参数的条件</li>
 <li><code>headers</code> –&gt; 发送的请求中必须包含的请求头</li>
 </ul>
@@ -4320,7 +4477,7 @@
 <a id="more"></a>
 
 <h2 id="JdbcTemplate"><a href="#JdbcTemplate" class="headerlink" title="JdbcTemplate"></a>JdbcTemplate</h2><p>JdbcTemplate：Spring 提供的一个对 JDBC 的简单封装</p>
-<p>JdbcTemplate的使用：</p>
+<p>JdbcTemplate 的使用：</p>
 <ul>
 <li><p>导坐标（maven）</p>
 <ul>
@@ -4328,7 +4485,8 @@
 </ul>
 </li>
 <li><p>创建 JdbcTemplate 对象(<em>需要数据源，有参/无参创建</em>)</p>
-<pre><code><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="comment">// 有参创建	</span></span><br><span class="line">JdbcTemplate template = <span class="keyword">new</span> JdbcTemplate(DataSource ds);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 无参创建</span></span><br><span class="line">  JdbcTemplate template = <span class="keyword">new</span> JdbcTemplate();</span><br><span class="line">  template.setDataSource(ds);</span><br></pre></td></tr></table></figure></code></pre></li>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="comment">// 有参创建	</span></span><br><span class="line">JdbcTemplate template = <span class="keyword">new</span> JdbcTemplate(DataSource ds);</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 无参创建</span></span><br><span class="line"> JdbcTemplate template = <span class="keyword">new</span> JdbcTemplate();</span><br><span class="line"> template.setDataSource(ds);</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>调用 JdbcTemplate 中的方法完成 <strong>CRUD</strong> 操作</p>
 <ul>
 <li><code>update()</code> –&gt; 执行<strong>增、删、改</strong><ul>
@@ -4365,7 +4523,7 @@
 <h2 id="Spring-事务"><a href="#Spring-事务" class="headerlink" title="Spring 事务"></a>Spring 事务</h2><blockquote>
 <p>在 JavaEE 开发中，事务处理位于<strong>业务层</strong></p>
 <p>mavne项目坐标：spring-tx</p>
-<p>Spring的事务控制都是基于AOP的，可通过配置实现（常用），也可通过编程实现</p>
+<p>Spring 的事务控制都是基于 AOP 的，可通过配置实现（常用），也可通过编程实现</p>
 </blockquote>
 <p>Spring的事务管理器：</p>
 <ul>
@@ -4390,7 +4548,7 @@
     <content><![CDATA[<p>C3P0 &amp; druid</p>
 <a id="more"></a>
 
-<h2 id="JDBC-数据库连接池"><a href="#JDBC-数据库连接池" class="headerlink" title="JDBC_数据库连接池"></a>JDBC_数据库连接池</h2><p>1、数据库连接池的<strong>概念</strong>：数据库连接池就是一个容器，里面存放的是数据库的连接对象</p>
+<h2 id="JDBC-数据库连接池"><a href="#JDBC-数据库连接池" class="headerlink" title="JDBC 数据库连接池"></a>JDBC 数据库连接池</h2><p>1、数据库连接池的<strong>概念</strong>：数据库连接池就是一个容器，里面存放的是数据库的连接对象</p>
 <p>2、JDBC 中提供的接口：DataSource</p>
 <ul>
 <li>获取连接的方法：<code>getConnection()</code> </li>
@@ -4482,7 +4640,7 @@
 <p>注意：<code>super();</code>在子类的构造方法中如果存在，就必须是第一个语句</p>
 <hr>
 <p><strong>super &amp; this</strong></p>
-<p>super关键字的用法有三种：</p>
+<p>super 关键字的用法有三种：</p>
 <ul>
 <li><p>在子类的成员方法中，访问父类的成员变量。</p>
 </li>
@@ -4689,7 +4847,7 @@
 <li>局部内部类：<strong>不用</strong> 权限修饰符</li>
 </ul>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">局部内部类，如果希望访问所在方法的局部变量，那么这个局部变量必须是【有效final的】。</span><br><span class="line"></span><br><span class="line">备注：从Java 8+开始，只要局部变量事实不变，那么final关键字可以省略。</span><br><span class="line"></span><br><span class="line">原因：</span><br><span class="line">1. new出来的对象在堆内存当中。</span><br><span class="line">2. 局部变量是跟着方法走的，在栈内存当中。</span><br><span class="line">3. 方法运行结束之后，立刻出栈，局部变量就会立刻消失。</span><br><span class="line">4. 但是new出来的对象会在堆当中持续存在，直到垃圾回收消失。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">局部内部类，如果希望访问所在方法的局部变量，那么这个局部变量必须是【有效final的】。</span><br><span class="line"></span><br><span class="line">备注：从Java 8+开始，只要局部变量事实不变，那么final关键字可以省略。</span><br><span class="line"></span><br><span class="line">原因：</span><br><span class="line">1. new出来的对象在堆内存当中。</span><br><span class="line">2. 局部变量是跟着方法走的，在栈内存当中。</span><br><span class="line">3. 方法运行结束之后，立刻出栈，局部变量就会立刻消失。</span><br><span class="line">4. 但是 new 出来的对象会在堆当中持续存在，直到垃圾回收消失。</span><br></pre></td></tr></table></figure>
 
 
 
@@ -4720,8 +4878,8 @@
   </entry>
   <entry>
     <title>Java常用API</title>
-    <url>/2019/05/03/Java/1.Java%E5%9F%BA%E7%A1%80/Java%E5%B8%B8%E7%94%A8API/</url>
-    <content><![CDATA[<p>Scanner, Random, ArrayList, String, static关键字, Arrays, Math</p>
+    <url>/2019/05/03/Java/1.Java%E5%9F%BA%E7%A1%80/Java%20%E5%B8%B8%E7%94%A8%20API/</url>
+    <content><![CDATA[<p>Scanner, Random, ArrayList, static关键字, Arrays, Math</p>
 <a id="more"></a>
 
 <h1 id="Java常用API"><a href="#Java常用API" class="headerlink" title="Java常用API"></a>Java常用API</h1><p>API（<strong>A</strong>pplication <strong>P</strong>rogramming <strong>I</strong>nterface）：应用程序接口</p>
@@ -4782,81 +4940,7 @@
 <li><code>public E remove(int index);</code> –&gt; 根据索引删除元素，返回被删除的元素</li>
 <li><code>public int size();</code> –&gt; 返回ArrayList的长度</li>
 </ul>
-<h2 id="4、String"><a href="#4、String" class="headerlink" title="4、String"></a>4、String</h2><blockquote>
-<p>程序中出现的所有双引号字符串，都是String类的对象</p>
-</blockquote>
-<p>字符串的特点：</p>
-<ul>
-<li><p>字符串的内容永不变，所以字符串可以共享使用</p>
-</li>
-<li><p>字符串效果上是相当于 char[] 字符数组，但是<strong>底层原理是 byte[] 字节数组</strong></p>
-</li>
-</ul>
-<p>字符串的创建方式（3+1）：</p>
-<ul>
-<li><p>3种构造方法创建：</p>
-<ul>
-<li><code>public String();</code> –&gt; 创建一个空的字符串</li>
-<li><code>public String(char[] array)</code> –&gt; 根据字符数组创建字符串</li>
-<li><code>public String(byte[] array)</code> –&gt; 根据字节数组创建字符串</li>
-</ul>
-</li>
-<li><p>1种直接创建：</p>
-<ul>
-<li><code>String str = “Hello”；</code></li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p> 直接创建的字符串位于 堆内存中的<strong>常量池</strong> 中</p>
-<p>new 出来的字符串直接位于 <strong>堆内存</strong> 中</p>
-</blockquote>
-<p><img src="../images/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%B8%B8%E9%87%8F%E6%B1%A0.png" alt=""></p>
-<hr>
-<p>字符串的比较：</p>
-<blockquote>
-<p>对于基本数据类型，== 是进行<strong>数值</strong>的比较</p>
-<p>对于引用类型来说，== 是进行<strong>地址值</strong>的比较</p>
-</blockquote>
-<p>比较<strong>字符串内容</strong>的方法：</p>
-<ul>
-<li><code>public boolean equals(Object obj)</code><ul>
-<li>如果比较双方一个常量一个变量，推荐使用 <code>&quot;abc&quot;.equals(str);</code> –&gt; 可预防空指针异常</li>
-</ul>
-</li>
-<li><code>public boolean equalsIgnoreCase(String str)</code> –&gt; 忽略大小写比较字符串内容</li>
-</ul>
-<hr>
-<ul>
-<li><p>String 中与获取相关的方法：</p>
-<ul>
-<li><code>public int length();</code> –&gt; 获取字符串长度</li>
-<li><code>public String concat(string str);</code> –&gt; 拼接字符串，返回一个新字符串</li>
-<li><code>public char charAt(int index);</code> –&gt; 获取索引位置字符</li>
-<li><code>public int indexOf(String str);</code> –&gt; 获取参数字符串在本字符串中首次出现的索引位置，没有返回 -1</li>
-</ul>
-</li>
-<li><p>字符串的截取方法：</p>
-<ul>
-<li><code>public String substring(int index);</code> –&gt; 截取从 index 到字符串末尾，返回一个新字符串</li>
-<li><code>public String substring(int begin, int end);</code> –&gt; 截取 <strong>[ begin, end )</strong> 之间的字符串，返回一个新字符串 </li>
-</ul>
-</li>
-<li><p>与转换相关的方法：</p>
-<ul>
-<li><code>public char[] toCharArray();</code> –&gt; 将字符串转换成<strong>字符数组</strong>，并返回</li>
-<li><code>public byte[] getBytes();</code> –&gt; 将字符串转换成<strong>字节数组</strong>，并返回（<em>IO流中常用</em>）</li>
-<li><code>public String replace(charSequence oldString, charSequence newString);</code> –&gt; 将所有出现的老字符串替换成新字符串，并返回替换后的结果</li>
-</ul>
-</li>
-<li><p>分割字符串的方法：</p>
-<ul>
-<li><code>public String[] split(String regex);</code> –&gt; 按照参数的规则，对字符串进行切分，返回一个字符串数组</li>
-<li><strong>注意：</strong>正则表达式中有一些特殊字符需要转义后才能对字符串进行正常切分，如：<code>. --&gt; \\.</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="5、static-关键字"><a href="#5、static-关键字" class="headerlink" title="5、static 关键字"></a>5、static 关键字</h2><p>静态成员属于类，所以在静态方法中<strong>不能使用 this</strong> </p>
+<h2 id="4、static-关键字"><a href="#4、static-关键字" class="headerlink" title="4、static 关键字"></a>4、static 关键字</h2><p>静态成员属于类，所以在静态方法中<strong>不能使用 this</strong> </p>
 <blockquote>
 <p>静态不能直接访问非静态</p>
 <p>因为：在内存中<strong>先</strong>有静态内容，<strong>后</strong>有非静态内容</p>
@@ -4877,13 +4961,13 @@
 </ul>
 </li>
 </ul>
-<h2 id="6、Arrays"><a href="#6、Arrays" class="headerlink" title="6、Arrays"></a>6、Arrays</h2><p><code>inport java.util.Arrays;</code></p>
+<h2 id="5、Arrays"><a href="#5、Arrays" class="headerlink" title="5、Arrays"></a>5、Arrays</h2><p><code>inport java.util.Arrays;</code></p>
 <p>常用方法：</p>
 <ul>
 <li><code>public static String toString(数组)</code> –&gt; 将参数数组变成字符串（格式：[元素1, 元素2, 元素3]）</li>
 <li><code>public static void sort(数组)</code> –&gt; 按照默认升序对数组元素进行排序</li>
 </ul>
-<h2 id="7、Math"><a href="#7、Math" class="headerlink" title="7、Math"></a>7、Math</h2><p><code>inport java.util.Math;</code></p>
+<h2 id="6、Math"><a href="#6、Math" class="headerlink" title="6、Math"></a>6、Math</h2><p><code>inport java.util.Math;</code></p>
 <p>常用方法：</p>
 <ul>
 <li><code>public static double abs(double num);</code> –&gt; 获取绝对值</li>
@@ -4891,7 +4975,7 @@
 <li><code>public static double floor(double num);</code> –&gt; 向下取整</li>
 <li><code>public static long round(double num);</code> –&gt; 四舍五入  </li>
 </ul>
-<h2 id="8、main的签名-amp-system"><a href="#8、main的签名-amp-system" class="headerlink" title="8、main的签名 &amp; system"></a>8、main的签名 &amp; system</h2><h2 id="main-方法的签名"><a href="#main-方法的签名" class="headerlink" title="main 方法的签名"></a>main 方法的签名</h2><p>main 方法的签名：<code>public static void main(String[] args){}</code></p>
+<h2 id="7、main的签名-amp-system"><a href="#7、main的签名-amp-system" class="headerlink" title="7、main的签名 &amp; system"></a>7、main的签名 &amp; system</h2><h2 id="main-方法的签名"><a href="#main-方法的签名" class="headerlink" title="main 方法的签名"></a>main 方法的签名</h2><p>main 方法的签名：<code>public static void main(String[] args){}</code></p>
 <p>使用该签名的原因：</p>
 <ul>
 <li>public：程序运行的入口是main方法，为了让JVM可以自由的调用main方法，所以要将main方法暴露出来</li>
@@ -4937,7 +5021,7 @@
 <h2 id="MyBatis-概述："><a href="#MyBatis-概述：" class="headerlink" title="MyBatis 概述："></a><strong>MyBatis 概述：</strong></h2><p><strong>1、基本概念：</strong></p>
 <p><strong>MyBatis</strong> 是一款<strong>持久层</strong>框架，由 Java 编写</p>
 <p>它封装了 JDBC 操作的很多细节，使开发者只需要关注sql语句本身，而无需关注注册驱动，创建连接等繁杂过程</p>
-<p>它使用了<strong>ORM思想</strong>实现了结果集的封装</p>
+<p>它使用了 <strong>ORM 思想</strong>实现了结果集的封装</p>
 <blockquote>
 <p><strong>ORM：</strong><br>        Object Relational Mappging 对象关系映射<br>        简单的说：<br>                就是把数据库表和实体类及实体类的属性对应起来<br>                让我们可以操作实体类就实现操作数据库表。</p>
 <p><u>就是让类中的<strong>属性名</strong>称和数据库的<strong>列名</strong>相同</u></p>
@@ -4968,7 +5052,7 @@
 
 
 </blockquote>
-<h2 id="MyBatis-的基础使用"><a href="#MyBatis-的基础使用" class="headerlink" title="MyBatis 的基础使用"></a>MyBatis 的基础使用</h2><p>介绍使用maven来构建项目时，MyBatis该如何使用</p>
+<h2 id="MyBatis-的基础使用"><a href="#MyBatis-的基础使用" class="headerlink" title="MyBatis 的基础使用"></a>MyBatis 的基础使用</h2><p>介绍使用 maven 来构建项目时，MyBatis 该如何使用</p>
 <p><strong>1、在maven的配置文件pom.xml中配置依赖</strong></p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- mybatis的依赖 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- mysql的依赖 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- log4j的依赖，用于打印日志 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- junit的依赖，用于单元测试 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -5450,12 +5534,12 @@
 </ul>
 <hr>
 <h4 id="DI"><a href="#DI" class="headerlink" title="DI"></a><strong>DI</strong></h4><p><strong>DI：</strong>(Dependency Injection)：<strong>依赖注入</strong></p>
-<p><strong>概念：</strong>当一个类（A）中需要依赖另一个类（B）的对象时，将 B 的对象赋值给 A 的属性的过程称为依赖注入。</p>
+<p><strong>概念：</strong>当 A 类中需要依赖 B 类的对象时，将 B 的对象赋值给 A 的属性的过程称为依赖注入。</p>
 <hr>
 <p><strong>能注入的数据有三类：</strong></p>
 <ul>
-<li>基本类型和String</li>
-<li>其他bean类型</li>
+<li>基本类型 和 String</li>
+<li>其他 bean 类型</li>
 <li>集合类型/复杂类型</li>
 </ul>
 <hr>
@@ -5471,7 +5555,7 @@
 <li>ref：用于指定其他的bean类型数据，它指的是核心容器中出现过的bean</li>
 </ul>
 </li>
-<li><strong>优势：</strong>在获取bean对象时，必须传入数据，否则无法创建成功</li>
+<li><strong>优势：</strong>在获取 bean 对象时，必须传入数据，否则无法创建成功</li>
 <li><strong>劣势：</strong>即使用不到某些数据，也必须传入</li>
 </ul>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"now"</span> <span class="attr">class</span>=<span class="string">"java.util.Date"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"peo1"</span> <span class="attr">class</span>=<span class="string">"com.pika.sxt.People"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">"8"</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"pika"</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">constructor</span> <span class="attr">name</span>=<span class="string">"date"</span> <span class="attr">ref</span>=<span class="string">"now"</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -5481,13 +5565,13 @@
 </li>
 </ul>
 <ul>
-<li><p>通过<strong>set方法</strong>注入</p>
+<li><p>通过 <strong>set 方法</strong>注入</p>
 <ul>
 <li><p>在 bean 标签内部使用 <strong>property</strong> 标签</p>
 </li>
 <li><p>property 标签的属性：</p>
 <ul>
-<li>name：用于指定注入时所调用的set方法的名称（setName –&gt; name）</li>
+<li>name：用于指定注入时所调用的 set 方法的名称（setName –&gt; name）</li>
 <li>value：用于提供基本类型和String类型的数据</li>
 <li>ref： 用于指定其他的bean类型数据，它指的是核心容器中出现过的bean</li>
 </ul>
@@ -5531,11 +5615,11 @@
 <ul>
 <li>用于<u>创建对象</u>的<ul>
 <li><code>@Component</code><ul>
-<li>默认创建出的对象的id为：类名首字母改小写。</li>
-<li>可使用value属性自定义名称：<code>@Component(value=&quot;自定义名称&quot;)</code>，value可省略</li>
+<li>默认创建出的 bean 的 id 为：类名首字母改小写。</li>
+<li>可使用 value 属性自定义名称：<code>@Component(value=&quot;自定义名称&quot;)</code>，value 可省略</li>
 </ul>
 </li>
-<li><em>以下三个注解和Component作用完全一样，他们是Spring为我们提供三层架构的注解</em></li>
+<li><em>以下三个注解和 Component 作用完全一样，他们是 Spring 为我们提供三层架构的注解</em></li>
 <li><code>@Controller</code>：一般用在表现层</li>
 <li><code>@Service</code>：一般用在业务层</li>
 <li><code>@Repository</code>：一般用在持久层</li>
@@ -5547,8 +5631,8 @@
 <li>在给类成员注入时<strong>无法单独使用</strong>（需配合AutoWired使用），但在给方法参数注入时可以单独使用</li>
 </ul>
 </li>
-<li><code>@Resource</code>：直接按照bean的id注入，可以单独使用<ul>
-<li>属性：name，用于指定bean的id</li>
+<li><code>@Resource</code>：直接按照 bean 的 id 注入，可以单独使用<ul>
+<li>属性：name，用于指定 bean 的 id</li>
 </ul>
 </li>
 <li><em>以上三个注解都只能注入其他bean类型的数据，无法注入基本数据类型和String类型，且集合类型的注入只能通过XML来实现</em></li>
@@ -5593,7 +5677,7 @@
 <li>前置通知：在切点之前执行的功能，before advice</li>
 <li>后置通知：在切点之后执行的功能，after advice</li>
 <li>异常通知：切点执行过程中出现异常，会触发异常通知，throw advice</li>
-<li>切面：前置通知+切点+后置通知</li>
+<li>切面：前置通知 + 切点 + 后置通知</li>
 <li>织入：把切面嵌入到原有功能的过程</li>
 </ul>
 <h3 id="AOP-的实现"><a href="#AOP-的实现" class="headerlink" title="AOP 的实现"></a>AOP 的实现</h3><p>实现前置、后置、异常、最终通知</p>
@@ -5860,59 +5944,23 @@
       </tags>
   </entry>
   <entry>
-    <title>MySQL数据库</title>
-    <url>/2019/04/16/Java/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
-    <content><![CDATA[<p>MySQL数据库是最受欢迎的关系型数据库</p>
-<a id="more"></a>
+    <title>SQL</title>
+    <url>/2019/04/16/Java/SQL/</url>
+    <content><![CDATA[<a id="more"></a>
 
-<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="一、使用文件保存数据"><a href="#一、使用文件保存数据" class="headerlink" title="一、使用文件保存数据"></a>一、使用文件保存数据</h2><p><strong>序列化和反序列化：</strong></p>
-<ul>
-<li><p>序列化：将对象写入到文件中或网络中，</p>
-</li>
-<li><p>序列化的实质：将对象的信息（完整类名信息，实例属性信息等）写入到文件中或网络中</p>
-</li>
-<li><p>反序列化：将文件或者网络中的对象取出</p>
-</li>
-<li><p>反序列化的实质：从文件或者网络中读取对象信息，根据这些对象信息创建一个新的对象，相当于克隆了一份原对象</p>
-</li>
-</ul>
-<p>序列化和反序列化是使用文件保存数据的方式，</p>
-<p><strong>使用文件保存数据的缺点：</strong> </p>
-<ul>
-<li>文件不能被共享</li>
-<li>文件的安全性没有保障</li>
-</ul>
-<h2 id="二、使用数据库保存数据"><a href="#二、使用数据库保存数据" class="headerlink" title="二、使用数据库保存数据"></a>二、使用数据库保存数据</h2><p><strong>DBMS</strong>(DataBase Management System)：数据库管理系统</p>
-<ul>
-<li>用来管理数据库（一个DBMS下可以由多个DB）</li>
-</ul>
-<p><strong>DB</strong>(DataBase)：数据库</p>
-<ul>
-<li>通过一个个的表(table)来保存数据</li>
-</ul>
-<blockquote>
-<p>通常我们所说的数据库包含了<strong>数据库</strong>和<strong>数据库管理系统</strong></p>
-</blockquote>
-<p><strong>RDBMS</strong>：关系型数据库管理系统 = 管理员（manager）+仓库（database）</p>
-<p><strong>database：</strong>N个 table</p>
-<p><strong>table：</strong></p>
-<ul>
-<li>表结构：定义表的列名和列类型</li>
-<li>表记录：一行一行的记录</li>
-</ul>
-<h2 id="三、SQL"><a href="#三、SQL" class="headerlink" title="三、SQL"></a>三、SQL</h2><p><strong>SQL</strong>(Structured Query language)：结构化查询语句</p>
+<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><p><strong>SQL</strong>（Structured Query language）：结构化查询语句</p>
 <p><strong>作用：</strong></p>
 <ul>
-<li><p>客户端使用SQL来操作服务器，</p>
+<li><p>客户端使用 SQL 来操作服务器，</p>
 </li>
-<li><p>后期会使用Java程序连接服务器，然后使用SQL操作服务器</p>
+<li><p>后期会使用 Java 程序连接服务器，然后使用 SQL 操作服务器</p>
 </li>
 </ul>
-<p><strong>SQL语法：</strong></p>
+<p><strong>SQL 语法：</strong></p>
 <ul>
-<li>SQL语句可以在单行或多行进行书写，以分号结尾</li>
+<li>SQL 语句可以在单行或多行进行书写，以分号结尾</li>
 <li>可使用空格和缩进来增强语句的可读性</li>
-<li>MySQL中不区分SQL语句的大小写，关键字建议使用<strong>大写</strong></li>
+<li>MySQL 中不区分 SQL 语句的大小写，关键字建议使用<strong>大写</strong></li>
 </ul>
 <p><strong>SQL语句分类：</strong></p>
 <ul>
@@ -5957,7 +6005,7 @@
 <p><strong>表相关操作：</strong></p>
 <ul>
 <li><p>创建表：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名 (</span><br><span class="line">  列名 列类型,</span><br><span class="line">列名 列类型,</span><br><span class="line">  ....</span><br><span class="line">列名 列类型</span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名 (</span><br><span class="line">列名 列类型,</span><br><span class="line">列名 列类型,</span><br><span class="line">....</span><br><span class="line">列名 列类型</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查看数据库中所有的表：<code>SHOW TABLES;</code></p>
 </li>
@@ -6246,6 +6294,66 @@
 </ul>
 </li>
 </ul>
+]]></content>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL数据库</title>
+    <url>/2019/04/16/Java/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    <content><![CDATA[<p>MySQL数据库是最受欢迎的关系型数据库</p>
+<a id="more"></a>
+
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p><strong>DBMS</strong>(DataBase Management System)：数据库管理系统</p>
+<ul>
+<li>用来管理数据库（一个DBMS下可以由多个DB）</li>
+</ul>
+<p><strong>DB</strong>(DataBase)：数据库</p>
+<ul>
+<li>通过一个个的表(table)来保存数据</li>
+</ul>
+<blockquote>
+<p>通常我们所说的数据库包含了<strong>数据库</strong>和<strong>数据库管理系统</strong></p>
+</blockquote>
+<p><strong>RDBMS</strong>：关系型数据库管理系统 = 管理员（manager）+仓库（database）</p>
+<p><strong>database：</strong>N个 table</p>
+<p><strong>table：</strong></p>
+<ul>
+<li>表结构：定义表的列名和列类型</li>
+<li>表记录：一行一行的记录</li>
+</ul>
+<h2 id="MySQL数据库"><a href="#MySQL数据库" class="headerlink" title="MySQL数据库"></a>MySQL数据库</h2><p><strong>简介:</strong></p>
+<p>​    MySQL是一个数据库管理系统，现在属于Oracle公司，版本号5.5及以下不收费，以上收费。</p>
+<p><strong>启动MySQL服务：</strong></p>
+<ol>
+<li>我的电脑(右键) –&gt; 管理 –&gt; 服务和应用程序 –&gt; 服务 –&gt; MySQL（右键启动）</li>
+<li>cmd –&gt; services.msc –&gt; 服务和应用程序 –&gt; 服务 –&gt; MySQL（右键启动）</li>
+<li>cmd(<strong>以管理员模式打开</strong>) –&gt; net start mysql 【关闭服务：net stop mysql】</li>
+</ol>
+<p><strong>登录MySQL服务器：</strong></p>
+<ul>
+<li>（本地）cmd  –&gt; <u>mysql -uroot -proot</u></li>
+<li>（网络）cmd  –&gt; <u>mysql -uroot -proot <strong>-h192.168.137.4</strong> <strong>-P3306</strong></u></li>
+</ul>
+<p><strong>在cmd窗口退出mysql：</strong></p>
+<ul>
+<li><p>exit</p>
+</li>
+<li><p>quit</p>
+</li>
+</ul>
+<p>数据库的备份与还原：</p>
+<ul>
+<li>备份：<ul>
+<li>命令行形式：<code>mysqldump  -u用户名  -p密码  数据库名 &gt; 保存路径</code></li>
+</ul>
+</li>
+<li>还原：<ul>
+<li>登录数据库 –&gt; 创建数据库 –&gt; 使用数据库 –&gt; 执行文件：<code>source 文件路径</code></li>
+</ul>
+</li>
+</ul>
 <h3 id="Ⅵ、事务"><a href="#Ⅵ、事务" class="headerlink" title="Ⅵ、事务"></a>Ⅵ、事务</h3><p><strong>概念：</strong>如果一个包含多个步骤的业务操作，被事务管理，那么这些操作要么同时成功，要么同时失败</p>
 <p><strong>操作：</strong></p>
 <ul>
@@ -6282,6 +6390,24 @@
 <li>隔离性：多个事务之间相互独立</li>
 <li>一致性：事务操作前后，数据总量不变</li>
 </ul>
+<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>索引的类型：</p>
+<ul>
+<li><p>主键索引（PRIMARY KEY）</p>
+<p>一张表中只能有一个主键索引</p>
+</li>
+<li><p>唯一索引（UNIQUE KEY）</p>
+<p>一张表中可以有多个唯一索引</p>
+</li>
+<li><p>常规索引（KEY）</p>
+</li>
+<li><p>全文索引（FULLTEXT）</p>
+</li>
+</ul>
+<p>如何使用索引：</p>
+<ol>
+<li>在创建表的时候增加索引</li>
+<li>创建完表之后，增加索引</li>
+</ol>
 <h3 id="Ⅶ、三大范式"><a href="#Ⅶ、三大范式" class="headerlink" title="Ⅶ、三大范式"></a>Ⅶ、三大范式</h3><p>数据库范式：设计关系型数据库时，需要遵循的规范要求</p>
 <blockquote>
 <p>目前关系数据库有六种范式：第一范式（1NF）、第二范式（2NF）、第三范式（3NF）、巴斯-科德范式（BCNF）、第四范式(4NF）和第五范式（5NF，又称完美范式）</p>
@@ -6298,47 +6424,19 @@
 <li>第二范式：在存在多个主键（联合主键）的情况下才会发生不符合第二范式的情况，比如存在两个主键，如果有一个属性只依赖于一个主键而不依赖于另一个，这就是不符合第二范式</li>
 <li>第三范式：一张表中所有的非主键属性只能依赖主键属性</li>
 </ul>
-<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><p><strong>简介:</strong></p>
-<p>​    MySQL是一个数据库管理系统，现在属于Oracle公司，版本号5.5及以下不收费，以上收费。</p>
-<p><strong>启动MySQL服务：</strong></p>
-<ol>
-<li>我的电脑(右键) –&gt; 管理 –&gt; 服务和应用程序 –&gt; 服务 –&gt; MySQL（右键启动）</li>
-<li>cmd –&gt; services.msc –&gt; 服务和应用程序 –&gt; 服务 –&gt; MySQL（右键启动）</li>
-<li>cmd(<strong>以管理员模式打开</strong>) –&gt; net start mysql 【关闭服务：net stop mysql】</li>
-</ol>
-<p><strong>登录MySQL服务器：</strong></p>
 <ul>
-<li>（本地）cmd  –&gt; <u>mysql -uroot -proot</u></li>
-<li>（网络）cmd  –&gt; <u>mysql -uroot -proot <strong>-h192.168.137.4</strong> <strong>-P3306</strong></u></li>
-</ul>
-<p><strong>在cmd窗口退出mysql：</strong></p>
-<ul>
-<li><p>exit</p>
-</li>
-<li><p>quit</p>
-</li>
-</ul>
-<p>数据库的备份与还原：</p>
-<ul>
-<li>备份：<ul>
-<li>命令行形式：<code>mysqldump  -u用户名  -p密码  数据库名 &gt; 保存路径</code></li>
-</ul>
-</li>
-<li>还原：<ul>
-<li>登录数据库 –&gt; 创建数据库 –&gt; 使用数据库 –&gt; 执行文件：<code>source 文件路径</code></li>
-</ul>
-</li>
+<li>- </li>
 </ul>
 ]]></content>
       <tags>
-        <tag>数据库</tag>
         <tag>MySQL</tag>
+        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
     <title>Tomcat服务器</title>
     <url>/2019/04/15/Java/2.JavaWeb/7.Tomcat%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
-    <content><![CDATA[<p>Tomcat服务器是一款免费、开源的轻量级Web应用服务器</p>
+    <content><![CDATA[<p>Tomcat 服务器是一款免费、开源的轻量级Web应用服务器</p>
 <a id="more"></a>
 
 <h2 id="Tomcat服务器"><a href="#Tomcat服务器" class="headerlink" title="Tomcat服务器"></a>Tomcat服务器</h2><p><strong>什么是服务器？</strong></p>
@@ -6346,34 +6444,34 @@
 <p><strong>Tomcat 服务器各文件夹作用：</strong></p>
 <ul>
 <li>\bin –&gt; 存放 Tomcat 的可执行文件</li>
-<li>\conf –&gt; 存 Ttoncat 的配置文件</li>
-<li>\lib –&gt; 存放Tomcat运行依赖的jar包</li>
+<li>\conf –&gt; 存 Tomcat 的配置文件</li>
+<li>\lib –&gt; 存放 Tomcat 运行依赖的 jar 包</li>
 <li>\logs  –&gt; 存放日志文件</li>
 <li>\temp –&gt; 存放临时文件</li>
-<li>\webapps –&gt; 存放web应用</li>
+<li>\webapps –&gt; 存放 web 应用</li>
 <li>work –&gt; 存放 JSP 转换后的 Servlet 文件</li>
 </ul>
 <blockquote>
-<p>双击startup.bat启动Tomcat服务器时黑窗口一闪而过：</p>
+<p>双击 startup.bat 启动 Tomcat 服务器时黑窗口一闪而过：</p>
 <ul>
 <li>原因：JAVA_HOME 环境变量配置的问题</li>
 <li>解决：正确配置 JAVA_HOME 环境变量</li>
 </ul>
 </blockquote>
 <blockquote>
-<p> Tomcat默认端口号为8080，可在<code>conf/server.xml</code>配置文件中修改端口</p>
+<p> Tomcat 默认端口号为 8080，可在 <code>conf/server.xml</code> 配置文件中修改端口</p>
 <p>后期常用的端口号为80，因为这是HTTP协议的默认端口号，访问时ip后面可以不输端口号</p>
 </blockquote>
-<p><strong>在Tomcat服务器上部署项目的方式：</strong></p>
+<p><strong>在 Tomcat 服务器上部署项目的方式：</strong></p>
 <ol>
 <li><p>直接将项目放到<code>webapps</code>目录下</p>
 <ul>
-<li>直接将项目文件夹放到<code>webapps</code>目录下（/项目文件夹名：项目的访问路径 &lt; 虚拟目录&gt;）</li>
-<li>将项目打成<code>war</code>包，放到<code>webapps</code>目录下，此时war包会自动解压缩</li>
+<li>直接将项目文件夹放到 <code>webapps</code> 目录下（/项目文件夹名：项目的访问路径 &lt; 虚拟目录&gt;）</li>
+<li>将项目打成 <code>war</code> 包，放到 <code>webapps</code> 目录下，此时 war 包会自动解压缩</li>
 </ul>
 </li>
-<li><p>配置<code>conf/server.xml</code>文件</p>
-<p>在<code>&lt;host&gt;</code>标签中配置：<code>&lt;Context docBase = &quot;项目路径&quot; path = &quot;虚拟目录&quot;/&gt;</code></p>
+<li><p>配置 <code>conf/server.xml</code> 文件</p>
+<p>在 <code>&lt;host&gt;</code> 标签中配置：<code>&lt;Context docBase = &quot;项目路径&quot; path = &quot;虚拟目录&quot;/&gt;</code></p>
 </li>
 <li><p>在<code>conf/Catalina/localhost</code> 目录下创建任意名称的xml文件</p>
 <p>在文件中编写：<code>&lt;Context docBase=&quot;项目路径&quot;/&gt;</code></p>
@@ -6383,18 +6481,18 @@
 <p><strong>webapps中java动态项目的目录结构：</strong></p>
 <ul>
 <li>项目根目录<ul>
-<li>WEB-INF目录<ul>
-<li>web.xml：web项目的核心配置文件</li>
-<li>classes目录：放置字节码文件</li>
-<li>lib目录：放置依赖的jar包</li>
+<li>WEB-INF 目录<ul>
+<li>web.xml：web 项目的核心配置文件</li>
+<li>classes 目录：放置字节码文件</li>
+<li>lib 目录：放置依赖的jar包</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <p><strong>Tomcat线程池概述：</strong></p>
-<p>Tomcat自带线程池机制，线程都是由线程池进行管理。</p>
-<h2 id="web开发中的常见问题"><a href="#web开发中的常见问题" class="headerlink" title="web开发中的常见问题"></a>web开发中的常见问题</h2><h3 id="服务器启动报错，如何进行错误排查"><a href="#服务器启动报错，如何进行错误排查" class="headerlink" title="服务器启动报错，如何进行错误排查"></a>服务器启动报错，如何进行错误排查</h3><p><strong>两种情况：</strong></p>
+<p>Tomcat 自带线程池机制，线程都是由线程池进行管理。</p>
+<h2 id="web-开发中的常见问题"><a href="#web-开发中的常见问题" class="headerlink" title="web 开发中的常见问题"></a>web 开发中的常见问题</h2><h3 id="服务器启动报错，如何进行错误排查"><a href="#服务器启动报错，如何进行错误排查" class="headerlink" title="服务器启动报错，如何进行错误排查"></a>服务器启动报错，如何进行错误排查</h3><p><strong>两种情况：</strong></p>
 <ul>
 <li>服务器中没有项目，服务器启动时报错，二话不说，删掉原来的服务器，重新解压一份新的。</li>
 <li>服务器中有项目，服务器启动报错，则一定是项目中 web.xml 中的配置出现了错误<ul>
@@ -6421,7 +6519,7 @@
         <category>Java</category>
       </categories>
       <tags>
-        <tag>Tomcat服务器</tag>
+        <tag>Tomcat 服务器</tag>
       </tags>
   </entry>
   <entry>
@@ -6437,14 +6535,14 @@
 <ul>
 <li>饿汉式</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 直接创建好对象</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Person</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Person p = <span class="keyword">new</span> Person();</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Person <span class="title">getPerson</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> p;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 直接创建好对象</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 定义私有的构造方法</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Person</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Person p = <span class="keyword">new</span> Person();</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Person <span class="title">getPerson</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> p;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 <ul>
 <li>懒汉式</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 等待有需求时创建对象</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Person</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Person p = <span class="keyword">null</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Person <span class="title">getPerson</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(p == <span class="keyword">null</span>)&#123;</span><br><span class="line">            p = <span class="keyword">new</span> Person();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 等待有需求时创建对象</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 定义私有的构造方法</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Person</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Person p = <span class="keyword">null</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Person <span class="title">getPerson</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(p == <span class="keyword">null</span>)&#123;</span><br><span class="line">            p = <span class="keyword">new</span> Person();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -6455,7 +6553,7 @@
 <p>分类：</p>
 <ul>
 <li><p>简单工厂模式</p>
-<p>虽然某种成都不符合设计原则，但实际使用最多</p>
+<p>虽然某种程度不符合设计原则，但实际使用最多</p>
 </li>
 <li><p>工厂方法模式</p>
 <p>不修改已有类的前提下，通过增加新的工厂实现拓展</p>
@@ -6466,7 +6564,7 @@
 </ul>
 <p>核心本质：</p>
 <ul>
-<li>实例化对象，用工厂方法代替new进行操作</li>
+<li>实例化对象，用工厂方法代替 new 进行操作</li>
 <li>将选择实现类、创建对象统一管理和控制，从而将调用者与实现类解耦</li>
 </ul>
 <blockquote>
@@ -6492,11 +6590,11 @@
 <a id="more"></a>
 
 <h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><blockquote>
-<p><strong>Servlet：</strong>是指任何实现了Servlet接口的类<br><strong>作用：</strong>接收并处理浏览器发出的请求</p>
+<p><strong>Servlet：</strong>是指任何实现了 Servlet 接口的类<br><strong>作用：</strong>接收并处理浏览器发出的请求</p>
 </blockquote>
-<h3 id="一-Servlet基础及其生命周期"><a href="#一-Servlet基础及其生命周期" class="headerlink" title="一. Servlet基础及其生命周期"></a>一. Servlet基础及其生命周期</h3><p><strong>自定义一个Servlet：</strong></p>
+<h3 id="Servlet-基础及其生命周期"><a href="#Servlet-基础及其生命周期" class="headerlink" title="Servlet 基础及其生命周期"></a>Servlet 基础及其生命周期</h3><p><strong>自定义一个 Servlet：</strong></p>
 <ol>
-<li><p>创建普通的Java类，并实现Servlet接口</p>
+<li><p>创建普通的 Java 类，并实现 Servlet 接口</p>
 </li>
 <li><p>实现接口中的抽象方法</p>
 <ol>
@@ -6507,7 +6605,7 @@
 <li>getServletInfo</li>
 </ol>
 </li>
-<li><p>在web.xml 文件中配置 servlet</p>
+<li><p>在 web.xml 文件中配置 Servlet</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>myservlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>cn.hellopika.servlet.MyServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>myservlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/myservleturl<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
@@ -6515,90 +6613,90 @@
 </li>
 </ol>
 <blockquote>
-<p>Servlet可以不用xml配置，改用注解配置（Servlet 3.0 之后才有）</p>
-<p><code>@WebServlet(&quot;url-pattern&quot;)</code></p>
+<p>Servlet 也可以使用注解配置（Servlet 3.0 之后才有）：</p>
+<p>在类上添加注解：<code>@WebServlet(&quot;url-pattern&quot;)</code></p>
 </blockquote>
 <blockquote>
-<p>JavaWeb 项目中<strong>src目录下</strong>的文件部署到服务器后会被放在<strong>WEB-INF下的classes目录下</strong></p>
+<p>JavaWeb 项目中 <strong>src 目录下</strong>的文件部署到服务器后会被放在<strong>WEB-INF 下的 classes 目录下</strong></p>
 </blockquote>
 <p><strong>Servlet继承结构：</strong></p>
 <p>​    <code>Servlet(接口)</code> –实现–&gt; <code>GenericServlet</code> –继承–&gt; <code>HttpServlet</code> –继承–&gt;<code>MyServlet(自己写的)</code></p>
+<blockquote>
+<p>一般情况下我们自己的 Servlet 不会直接实现 Servlet 接口，而是继承 HttpServlet 类，然后重写 <code>doGet()</code> 和 <code>doPost()</code> 方法，从而可以处理 get 和 post 请求。</p>
+</blockquote>
 <p><strong>Servlet的生命周期（以及 load-on-startup 的用法）：</strong></p>
-<p>Servlet的生命周期是指Servlet对象从创建到销毁的全过程</p>
+<p>Servlet 的生命周期是指 Servle t对象从创建到销毁的全过程</p>
 <ol>
-<li>启动服务器，没有创建servlet对象</li>
-<li>当浏览器发出请求，用到了指定的servlet来处理请求的时候，servlet对象创建</li>
-<li>servlet对象创建后，立刻调用 <strong>init</strong> 方法执行初始化操作</li>
-<li>servlet对象创建后，始终以<strong>单例</strong>的形式存储在服务器上</li>
-<li>servlet以 doGet 和 doPost 方法来处理浏览器发出的请求</li>
-<li>关闭服务器，servlet对象销毁</li>
-<li>如果是正常关闭服务器，在servlet对象销毁前会调用 <strong>destory</strong> 方法执行最后的处理工作</li>
+<li>启动服务器，没有创建 Servlet 对象</li>
+<li>当浏览器发出请求，用到了指定的 Servlet 来处理请求的时候，Servlet 对象创建</li>
+<li>Servlet 对象创建后，立刻调用 <strong>init</strong> 方法执行初始化操作</li>
+<li>Servlet 对象创建后，始终以<strong>单例</strong>的形式存储在服务器上</li>
+<li>Servlet 以 doGet 和 doPost 方法来处理浏览器发出的请求</li>
+<li>关闭服务器，Servlet 对象销毁</li>
+<li>如果是正常关闭服务器，在 Servlet 对象销毁前会调用 <strong>destory</strong> 方法执行最后的处理工作</li>
 </ol>
 <blockquote>
-<p>加入 load-on-startup ，可以更改servlet对象的创建时机，在服务器启动期间创建对象</p>
+<p>加入 load-on-startup ，可以更改 Servlet 对象的创建时机，在服务器启动期间创建对象</p>
 <p>load-on-startup 标签放在 servlet-class 标签下面，其中的数字越小，越优先创建</p>
 </blockquote>
-<h3 id="二、servlet处理HTTP请求"><a href="#二、servlet处理HTTP请求" class="headerlink" title="二、servlet处理HTTP请求"></a>二、servlet处理HTTP请求</h3><blockquote>
-<p>在继承了<code>HttpServlet</code> 之后, 自己的servlet便可以处理<code>get</code>和<code>post</code>请求</p>
+<h3 id="Servlet-处理-HTTP-请求"><a href="#Servlet-处理-HTTP-请求" class="headerlink" title="Servlet 处理 HTTP 请求"></a>Servlet 处理 HTTP 请求</h3><blockquote>
+<p>在继承了<code>HttpServlet</code> 之后, 自己的 Servlet 便可以处理 get 和 post 请求</p>
 </blockquote>
-<p>处理get请求: <code>doGet()</code>方法</p>
+<p>处理 get 请求: <code>doGet()</code>方法</p>
 <blockquote>
-<p>使用get提交方式的操作：</p>
+<p>下列请求为 get 请求：</p>
 <ul>
-<li>直接在浏览器地址栏输入url</li>
-<li>点击超链接</li>
-<li>提交表单，如果不设置form标签中 method 属性的值，默认为get提交</li>
+<li>直接在浏览器地址栏输入 url</li>
+<li>点击超链接（HTML 的 a标签）</li>
+<li>提交表单，如果不设置 form 标签中 method 属性的值，默认为 get 提交</li>
 </ul>
 </blockquote>
-<p>处理post请求: <code>dopost()</code>方法 </p>
+<p>处理 post 请求: <code>dopost()</code>方法 </p>
 <blockquote>
-<p>使用get提交方式的操作：</p>
+<p>下列请求为 post 请求：</p>
 <ul>
-<li>提交表单，设置form标签中 method 属性的值为post</li>
+<li>提交表单，设置 form 标签中 method 属性的值为 post</li>
 </ul>
 </blockquote>
-<ul>
-<li>提交表单，设置 method = “post” .</li>
-</ul>
-<h3 id="三、对于Servlet代码结构的处理"><a href="#三、对于Servlet代码结构的处理" class="headerlink" title="三、对于Servlet代码结构的处理"></a>三、对于Servlet代码结构的处理</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"调用了doGet方法"</span>);</span><br><span class="line">    <span class="comment">// 参数的接收</span></span><br><span class="line">    String str1 = request.getParameter(<span class="string">"str1"</span>);</span><br><span class="line">    String str2 = request.getParameter(<span class="string">"str2"</span>);</span><br><span class="line">    System.out.println(str1);</span><br><span class="line">    System.out.println(str2);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    <span class="comment">// 在doPost中直接调用doGet</span></span><br><span class="line">    <span class="keyword">this</span>.doGet(request,response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="对于-Servlet-代码结构的处理"><a href="#对于-Servlet-代码结构的处理" class="headerlink" title="对于 Servlet 代码结构的处理"></a>对于 Servlet 代码结构的处理</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"调用了doGet方法"</span>);</span><br><span class="line">    <span class="comment">// 参数的接收</span></span><br><span class="line">    String str1 = request.getParameter(<span class="string">"str1"</span>);</span><br><span class="line">    String str2 = request.getParameter(<span class="string">"str2"</span>);</span><br><span class="line">    System.out.println(str1);</span><br><span class="line">    System.out.println(str2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    <span class="comment">// 在doPost中直接调用doGet</span></span><br><span class="line">    <span class="keyword">this</span>.doGet(request,response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="四、url-pattern"><a href="#四、url-pattern" class="headerlink" title="四、url-pattern"></a>四、url-pattern</h3><blockquote>
-<p>在<code>web.xml</code>中配置<code>&lt;servlet-mapping&gt;</code>时, 需要注意<code>url-pattern</code>的配置</p>
+<h3 id="url-pattern"><a href="#url-pattern" class="headerlink" title="url-pattern"></a>url-pattern</h3><blockquote>
+<p>在 <code>web.xml</code> 中配置 <code>&lt;servlet-mapping&gt;</code> 时, 需要注意 <code>url-pattern</code> 的配置</p>
 </blockquote>
 <ol>
-<li>url-pattern的<strong>配置方式</strong></li>
-</ol>
+<li><p>url-pattern 的<strong>配置方式</strong></p>
 <ul>
 <li>精确路径匹配 –&gt; <code>/abc/MyServlet</code></li>
 <li>部分路径匹配 –&gt; <code>/abc/*</code></li>
 <li>通配符匹配 –&gt; <code>/*</code></li>
 <li>后缀名匹配 –&gt; <code>*.do</code></li>
 </ul>
-<ol start="2">
-<li>url-pattern的<strong>优先级</strong></li>
-</ol>
+</li>
+<li><p>url-pattern 的<strong>优先级</strong></p>
 <p>精确路径匹配 &gt; 部分路径匹配 &gt; 通配符匹配 &gt; 后缀名匹配</p>
-<h3 id="五、ServletContext对象（上下文对象）"><a href="#五、ServletContext对象（上下文对象）" class="headerlink" title="五、ServletContext对象（上下文对象）"></a>五、ServletContext对象（上下文对象）</h3><p><strong>概念：</strong>代表整个web应用，可以和服务器通信</p>
+</li>
+</ol>
+<h3 id="ServletContext-对象（上下文对象）"><a href="#ServletContext-对象（上下文对象）" class="headerlink" title="ServletContext 对象（上下文对象）"></a>ServletContext 对象（上下文对象）</h3><p><strong>概念：</strong>代表整个 web 应用，可以和服务器通信</p>
 <p><strong>生命周期：</strong></p>
 <ul>
-<li>创建：服务器启动，创建 <strong>单例</strong> ServletContext对象，</li>
-<li>销毁：服务器关闭，ServletContext对象销毁</li>
+<li>创建：服务器启动，创建<strong>单例</strong> ServletContext 对象，</li>
+<li>销毁：服务器关闭，ServletContext 对象销毁</li>
 </ul>
 <p><strong>获取 ServletContext 对象</strong>:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 通过 request 对象来获取</span></span><br><span class="line">ServletContext application = request.getServletContext();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过 HttpServlet 获取 （实际开发中常用）</span></span><br><span class="line">ServletContext application = <span class="keyword">this</span>.getServletContext();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 通过 HttpServlet 获取 （实际开发中常用）</span></span><br><span class="line">ServletContext application = <span class="keyword">this</span>.getServletContext();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过 request 对象来获取</span></span><br><span class="line">ServletContext application = request.getServletContext();</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>注意：ServletContext对象的变量名必须叫 <strong>application</strong></p>
+<p>注意：ServletContext 对象的变量名必须叫 <strong>application</strong></p>
 </blockquote>
 <p><strong>功能：</strong></p>
 <ul>
-<li>使用ServletContext域对象存取值</li>
+<li>使用 ServletContext 域对象存取值（在 web 应用的所有 Servlet 中共享数据）</li>
 </ul>
 <ol>
 <li>上下文域对象<ul>
-<li>上下文域对象的取值范围最为广泛(服务器整个生命周期)</li>
+<li>上下文域对象的取值范围最为广泛（web 应用）</li>
 <li>上下文域对象中的值在服务器关闭时才会被销毁</li>
 </ul>
 </li>
@@ -6610,17 +6708,11 @@
 </li>
 </ol>
 <ul>
-<li><p>获取MIME类型: <code>String getMimeType(String file)</code></p>
+<li><p>获取 MIME 类型: <code>String getMimeType(String file)</code></p>
 <blockquote>
-<p>MIME类型</p>
-<ul>
-<li><p>概念：互联网通信过程中定义的一种文件数据类型</p>
-</li>
-<li><p>格式：<code>大类型/小类型</code></p>
-</li>
-<li><p>例：<code>text/html</code></p>
-</li>
-</ul>
+<p>MIME 类型</p>
+<p>概念：互联网通信过程中定义的一种文件数据类型</p>
+<p>格式：大类型/小类型（<code>text/html</code>）</p>
 </blockquote>
 </li>
 </ul>
@@ -6629,7 +6721,7 @@
 </ul>
 <ul>
 <li><p>使用上下文对象取得全局参数信息：</p>
-<p><strong>1、全局参数：</strong>可以应用于所有的 servlet， 全局参数在 web.xml 中进行配置</p>
+<p><strong>1、全局参数：</strong>可以应用于所有的 Servlet， 全局参数在 web.xml 中进行配置</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置全局参数，以键值对的方式呈现--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">content-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>str1<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>abcd<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">content-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>2、使用上下文对象取得全局参数</strong></p>
@@ -6639,19 +6731,19 @@
 
 </li>
 </ul>
-<h3 id="六、ServletConfig对象"><a href="#六、ServletConfig对象" class="headerlink" title="六、ServletConfig对象"></a>六、ServletConfig对象</h3><blockquote>
+<h3 id="ServletConfig-对象"><a href="#ServletConfig-对象" class="headerlink" title="ServletConfig 对象"></a>ServletConfig 对象</h3><blockquote>
 <p>ServletConfig 对象在企业级开发中用不到，在自己编写框架的时候会用到</p>
 </blockquote>
-<p><strong>概念：</strong>在Servlet对象创建出来之后，搭配每一个Servlet，会产生一个ServletConfig对象，ServletConfig对象是用来装饰Servlet对象的装饰对象</p>
+<p><strong>概念：</strong>在 Servlet 对象创建出来之后，搭配每一个 Servlet，会产生一个 ServletConfig 对象，ServletConfig 对象是用来装饰 Servlet 对象的装饰对象</p>
 <p><strong>取得方式：</strong><code>ServletConfig config = this.getServletConfig();</code></p>
-<p><strong>注意：</strong>ServletConfig对象的名字必须为：<strong>config</strong></p>
+<p><strong>注意：</strong>ServletConfig 对象的名字必须为：<strong>config</strong></p>
 <p><strong>常用方法：</strong></p>
 <ul>
-<li><p>获取 web.xml 文件中配置的servlet-name –&gt; <code>config.getServletName()</code></p>
+<li><p>获取 web.xml 文件中配置的 servlet-name –&gt; <code>config.getServletName()</code></p>
 </li>
-<li><p>取得Servlet的参数值 –&gt; <code>config.getInitParameter(&quot;key&quot;)</code></p>
+<li><p>取得 Servlet 的参数值 –&gt; <code>config.getInitParameter(&quot;key&quot;)</code></p>
 <ul>
-<li><p>取得的参数值是当前Servlet的<strong>局部参数</strong></p>
+<li><p>取得的参数值是当前 Servlet 的<strong>局部参数</strong></p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>str1<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>abcd<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
@@ -6660,24 +6752,24 @@
 </ul>
 </li>
 </ul>
-<h3 id="七、配置欢迎页-index-html"><a href="#七、配置欢迎页-index-html" class="headerlink" title="七、配置欢迎页(index.html)"></a>七、配置欢迎页(index.html)</h3><p>欢迎页是在 web.xml 自动生成配置的，当我们没有指定具体的访问资源时，默认访问欢迎页</p>
+<h3 id="欢迎页（index-html）和404页面"><a href="#欢迎页（index-html）和404页面" class="headerlink" title="欢迎页（index.html）和404页面"></a>欢迎页（index.html）和404页面</h3><p>欢迎页是在 web.xml 自动生成配置的，当我们没有指定具体的访问资源时，默认访问欢迎页</p>
 <p>欢迎页一般命名为：<code>index.html</code></p>
 <blockquote>
-<p>欢迎页的正确打开方式：</p>
+<p>欢迎页的正确使用方式：</p>
 <ul>
 <li>创建 index.html 文件，不做任何操作，只是跳转到一个作为欢迎页的网页（如登录页）</li>
 </ul>
 </blockquote>
-<h3 id="八、配置404页面"><a href="#八、配置404页面" class="headerlink" title="八、配置404页面"></a>八、配置404页面</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">error-page</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">error-code</span>&gt;</span>404<span class="tag">&lt;/<span class="name">error-code</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">location</span>&gt;</span>/error/error_404.html<span class="tag">&lt;/<span class="name">location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">error-page</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--404页面在 web.xml 中配置，当程序出现 error-code 对应的错误码时，就会跳转到相应的错误页--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">error-page</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">error-code</span>&gt;</span>404<span class="tag">&lt;/<span class="name">error-code</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">location</span>&gt;</span>/error/error_404.html<span class="tag">&lt;/<span class="name">location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">error-page</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="九、关于-Servlet-线程安全性的问题"><a href="#九、关于-Servlet-线程安全性的问题" class="headerlink" title="九、关于 Servlet 线程安全性的问题"></a>九、关于 Servlet 线程安全性的问题</h3><p>在 Servlet 中，<strong>成员变量</strong>会引起线程安全的问题，</p>
+<h3 id="关于-Servlet-线程安全性的问题"><a href="#关于-Servlet-线程安全性的问题" class="headerlink" title="关于 Servlet 线程安全性的问题"></a>关于 Servlet 线程安全性的问题</h3><p>在 Servlet 中，<strong>成员变量</strong>会引起线程安全的问题，</p>
 <p>要想解决这个问题，就<strong>不使用成员变量</strong>，因为在 Servlet 中一般也用不到成员变量</p>
 <blockquote>
-<p>在 idea 中不重启服务器就可以更新 servlet 到界面：</p>
+<p>在 IDEA 中不重启服务器就可以更新 Servlet 到界面：</p>
 <ul>
-<li>在启动 tomcat 时使用 debug 模式启动</li>
+<li>在启动 Tomcat 时使用 debug 模式</li>
 </ul>
 </blockquote>
 ]]></content>
@@ -7672,7 +7764,7 @@
   </entry>
   <entry>
     <title>Java动态代理</title>
-    <url>/2019/04/04/Java/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</url>
+    <url>/2019/04/04/Java/1.Java%E5%9F%BA%E7%A1%80/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</url>
     <content><![CDATA[<p>通过动态代理，可以在不修改源码的基础上对方法进行增强</p>
 <a id="more"></a>
 <h1 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h1><p>特点：字节码随用随创建，随用随加载</p>
@@ -7808,7 +7900,7 @@
     <content><![CDATA[<p>正则表达式适用于复杂的文本处理</p>
 <a id="more"></a>
 
-<p><img src="/images/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.jpg" alt=""></p>
+<p><img src="/images/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.jpg" alt="正则表达式"></p>
 <h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p><strong>1、正则表达式（Regular Expression）简介：</strong></p>
 <ul>
 <li><strong>定义</strong>：正则表达式描述了一个规则，通过这个规则可以匹配一类字符串</li>
@@ -8038,7 +8130,7 @@
     <content><![CDATA[<p><strong>快速排序</strong>非常重要，一定要烂熟于心！！！</p>
 <a id="more"></a>
 
-<p><img src="/images/4.2.jpg" alt=""></p>
+<p><img src="/images/%E5%93%88%E5%B8%8C%E8%A1%A8&%E6%8E%92%E5%BA%8F/4.2.jpg" alt="4.2"></p>
 <h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><h3 id="结构和特点"><a href="#结构和特点" class="headerlink" title="结构和特点"></a>结构和特点</h3><p>哈希表（hashtable）：也叫散列表</p>
 <p><strong>结构：</strong>有很多种，最流行的是<strong>顺序表</strong>+<strong>链表</strong></p>
 <p><strong>特点：</strong>快，<strong>很快</strong>，非常快</p>
@@ -8113,7 +8205,19 @@
 <blockquote>
 <p>建议先掌握：直接插入排序、直接选择排序、冒泡排序、快速排序</p>
 </blockquote>
-<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><blockquote>
+<h3 id="冒泡排序（Bubble-Sort）"><a href="#冒泡排序（Bubble-Sort）" class="headerlink" title="冒泡排序（Bubble Sort）"></a>冒泡排序（Bubble Sort）</h3><blockquote>
+<p>定义（摘自百度百科）：</p>
+<p>​        它重复地走访过要排序的元素列，依次比较两个相邻的元素，如果顺序（如从大到小、首字母从Z到A）错误就把他们交换过来。走访元素的工作是重复地进行直到没有相邻元素需要交换，也就是说该元素列已经排序完成。</p>
+</blockquote>
+<p>时间复杂度：O(n2)</p>
+<p>代码实现（ Java ）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 对一个数组进行冒泡排序</span></span><br><span class="line"><span class="keyword">int</span>[] arr = &#123;<span class="number">4</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">9</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;arr.length-<span class="number">1</span>; i++)&#123;</span><br><span class="line">    <span class="comment">// 每遍历一遍，则少循环一次</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;arr.length-<span class="number">1</span>-i; j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arr[j]&lt;arr[j+<span class="number">1</span>])&#123;</span><br><span class="line">            <span class="keyword">int</span> temp = arr[j];</span><br><span class="line">            arr[j] = arr[j+<span class="number">1</span>];</span><br><span class="line">            arr[j+<span class="number">1</span>] = temp;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">System.out.println(Arrays.toString(arr));</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="快速排序（Quicksort）"><a href="#快速排序（Quicksort）" class="headerlink" title="快速排序（Quicksort）"></a>快速排序（Quicksort）</h3><blockquote>
 <p>快速排序是冒泡排序的改进版，也是最好的一种内部排序，涉及分治和递归的思想，必须掌握</p>
 </blockquote>
 <p><strong>基本思想：</strong></p>
@@ -8123,11 +8227,11 @@
 <li>3、对左、右分区重复第一步、第二步，直到各区间只有一个数（<strong>递归</strong>）</li>
 </ul>
 <p><strong>代码实现:</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 实现排序算法</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuickSort</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 实现排序算法</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">int</span>[] quickSort(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)&#123;</span><br><span class="line">    <span class="comment">// 如果起点坐标大于等于终点坐标，则直接返回</span></span><br><span class="line">    <span class="keyword">if</span>(begin&gt;=end)&#123;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> left = begin;</span><br><span class="line">    <span class="keyword">int</span> right = end;</span><br><span class="line">    <span class="keyword">int</span> pivot = arr[left];  <span class="comment">// 把第一个值设为基准 </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right &amp;&amp; arr[right]&gt;=pivot)&#123;</span><br><span class="line">            right--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(left&lt;right)&#123;</span><br><span class="line">            arr[left] = arr[right];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(left&lt;right &amp;&amp; arr[left]&lt;pivot)&#123;</span><br><span class="line">            left++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(left&lt;right)&#123;</span><br><span class="line">            arr[right] = arr[left];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    arr[left] = pivot;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">// 递归排序pivot左边的元素</span></span><br><span class="line">    quickSort(arr, begin, right-<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 递归排序pivot右边的元素</span></span><br><span class="line">    quickSort(arr, right+<span class="number">1</span>, end);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="排序总结"><a href="#排序总结" class="headerlink" title="排序总结"></a>排序总结</h3><p><img src="/images/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.png" alt=""></p>
+<h3 id="排序总结"><a href="#排序总结" class="headerlink" title="排序总结"></a>排序总结</h3><p><img src="/images/%E5%93%88%E5%B8%8C%E8%A1%A8&%E6%8E%92%E5%BA%8F/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.png" alt="排序算法"></p>
 <p><strong>1、</strong>直接插入排序，直接选择排序，冒泡排序是三种最简单、最基本的排序，时间复杂度也最高（O(n<sup>2</sup>)）,三种都必须熟练掌握。</p>
 <p><strong>2、</strong>快速排序和归并排序都使用了<strong>归并</strong>和<strong>递归</strong>的思想，面试时可能会被问到。</p>
 <p><strong>3、</strong>在数据不大的情况下，从时间性能来看，快速排序时实际性能最优的排序算法。</p>
@@ -8621,6 +8725,125 @@
       </tags>
   </entry>
   <entry>
+    <title>String_StirngBuilder_StringBuffer</title>
+    <url>/2019/03/18/Java/1.Java%E5%9F%BA%E7%A1%80/String_StringBuilder_StringBuffer/</url>
+    <content><![CDATA[<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><blockquote>
+<p>程序中出现的所有双引号字符串，都是 String 类的对象</p>
+</blockquote>
+<p>字符串的特点：</p>
+<ul>
+<li><p>字符串的内容永不变，所以字符串可以共享使用</p>
+</li>
+<li><p>String 对象是不可变的，因为 String 类底层是使用 final 字符数组存放字符串</p>
+<p><code>private final char value[];</code></p>
+<blockquote>
+<p>JDK 8及之前使用的是字符数组，JDK 9之后使用的是字节数组</p>
+</blockquote>
+</li>
+</ul>
+<p>字符串的创建方式（3+1）：</p>
+<ul>
+<li><p>3种构造方法创建：</p>
+<ul>
+<li><code>public String();</code> –&gt; 创建一个空的字符串</li>
+<li><code>public String(char[] array)</code> –&gt; 根据字符数组创建字符串</li>
+<li><code>public String(byte[] array)</code> –&gt; 根据字节数组创建字符串</li>
+</ul>
+</li>
+<li><p>1种直接创建：</p>
+<ul>
+<li><code>String str = “Hello”；</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p> 直接创建的字符串位于 堆内存中的<strong>常量池</strong> 中</p>
+<p> new 出来的字符串直接位于 <strong>堆内存</strong> 中</p>
+</blockquote>
+<p><img src="/images/String_StringBuilder_StringBuffer/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%B8%B8%E9%87%8F%E6%B1%A0.png" alt="字符串的常量池"></p>
+<hr>
+<p>字符串的比较：</p>
+<blockquote>
+<p>对于基本数据类型，<code>==</code> 是进行<strong>数值</strong>的比较</p>
+<p>对于引用类型来说，<code>==</code> 是进行<strong>地址值</strong>的比较</p>
+</blockquote>
+<p>比较<strong>字符串内容</strong>的方法：</p>
+<ul>
+<li><code>public boolean equals(Object obj)</code><ul>
+<li>如果比较双方一个常量一个变量，推荐使用 <code>&quot;abc&quot;.equals(str);</code> –&gt; 可预防空指针异常</li>
+</ul>
+</li>
+<li><code>public boolean equalsIgnoreCase(String str)</code> –&gt; 忽略大小写比较字符串内容</li>
+</ul>
+<hr>
+<ul>
+<li><p>String 中与获取相关的方法：</p>
+<ul>
+<li><code>public int length();</code> –&gt; 获取字符串长度</li>
+<li><code>public String concat(string str);</code> –&gt; 拼接字符串，返回一个新字符串</li>
+<li><code>public char charAt(int index);</code> –&gt; 获取索引位置字符</li>
+<li><code>public int indexOf(String str);</code> –&gt; 获取参数字符串在本字符串中首次出现的索引位置，没有返回 -1</li>
+</ul>
+</li>
+<li><p>字符串的截取方法：</p>
+<ul>
+<li><code>public String substring(int index);</code> –&gt; 截取从 index 到字符串末尾，返回一个新字符串</li>
+<li><code>public String substring(int begin, int end);</code> –&gt; 截取 <strong>[ begin, end )</strong> 之间的字符串，返回一个新字符串 </li>
+</ul>
+</li>
+<li><p>与转换相关的方法：</p>
+<ul>
+<li><code>public char[] toCharArray();</code> –&gt; 将字符串转换成<strong>字符数组</strong>，并返回</li>
+<li><code>public byte[] getBytes();</code> –&gt; 将字符串转换成<strong>字节数组</strong>，并返回（<em>IO流中常用</em>）</li>
+<li><code>public String replace(charSequence oldString, charSequence newString);</code> –&gt; 将所有出现的老字符串替换成新字符串，并返回替换后的结果</li>
+</ul>
+</li>
+<li><p>分割字符串的方法：</p>
+<ul>
+<li><code>public String[] split(String regex);</code> –&gt; 按照参数的规则，对字符串进行切分，返回一个字符串数组</li>
+<li><strong>注意：</strong>正则表达式中有一些特殊字符需要转义后才能对字符串进行正常切分，如：<code>. --&gt; \\.</code></li>
+</ul>
+</li>
+<li><p>把其他类型转换成字符串：</p>
+<p><code>String.valueOf()</code> –&gt; 参数可以为基础数据类型（int，long，float，double，char，boolean）或 Object</p>
+<p>为对象时想当于：<code>object.toString()</code>，</p>
+<p><code>String.valueOf(Object obj)</code> 源码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns the string representation of the &#123;<span class="doctag">@code</span> Object&#125; argument.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>   obj   an &#123;<span class="doctag">@code</span> Object&#125;.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>  if the argument is &#123;<span class="doctag">@code</span> null&#125;, then a string equal to</span></span><br><span class="line"><span class="comment"> *          &#123;<span class="doctag">@code</span> "null"&#125;; otherwise, the value of</span></span><br><span class="line"><span class="comment"> *          &#123;<span class="doctag">@code</span> obj.toString()&#125; is returned.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>     java.lang.Object#toString()</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">valueOf</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (obj == <span class="keyword">null</span>) ? <span class="string">"null"</span> : obj.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h2><p>StringBuilder 对象是一个字符序列可变的字符串</p>
+<p>特点：</p>
+<ul>
+<li>性能好</li>
+<li>线程不安全</li>
+</ul>
+<p>StringBuilder 常用方法:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建 StringBuilder</span></span><br><span class="line">StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">sb.append(<span class="string">"aa"</span>);</span><br><span class="line">sb.setCharAt(<span class="number">1</span>,<span class="string">'bb'</span>);</span><br><span class="line">sb.insert(<span class="number">2</span>,<span class="string">'cc'</span>);</span><br><span class="line">sb.delete(<span class="number">1</span>,<span class="number">6</span>); <span class="comment">// 删除下标为1-5的元素</span></span><br><span class="line">sb.deleteCharAt(<span class="number">3</span>); <span class="comment">// 删除指定位置元素</span></span><br><span class="line">sb.reverse();  <span class="comment">// 逆序</span></span><br><span class="line">sb.length();</span><br><span class="line">sb.indexOf(<span class="string">"dd"</span>); <span class="comment">// 返回指定元素索引</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h2><p>StringBuilder 对象也是一个字符序列可变的字符串</p>
+<p>特点：</p>
+<ul>
+<li>性能不好（相对于 StringBuilder）</li>
+<li>线程安全</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>Java</tag>
+        <tag>String</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>网络编程</title>
     <url>/2019/03/18/Java/1.Java%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</url>
     <content><![CDATA[<p>网络编程基本概念</p>
@@ -8734,11 +8957,31 @@
 <ul>
 <li>lambda 表达式的推导</li>
 </ul>
-<h2 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h2><p>1.新生状态 –&gt; NEW<br>new 对象，就进入新生状态</p>
-<p>2.就绪状态 –&gt; RUNNABLE<br>以下四种情况会使线程进入就绪状态<br>    - start()<br>    - 阻塞状态解除<br>    - yield()<br>    - JVM干预</p>
-<p>3.运行状态 –&gt; RUNNABLE<br>cpu调度到了，就进入运行状态</p>
-<p>4.阻塞状态 –&gt; WAITING/TIMED_WAITING/BLOCKED<br>以下四种情况会使线程进入阻塞状态<br>    - sleep() –&gt; WAITING/TIMED_WAITING<br>    - join() –&gt;  WAITING/TIMED_WAITING<br>    - wait() –&gt; BLOCKED<br>    - read,write –&gt; BLOCKED</p>
-<p>5.死亡状态 –&gt; TERMINATED<br>不推荐使用stop()和destory()来停止线程，因为这两个存在bug<br>可以使用添加boolean标志的方法停止线程，方便外部进行控制</p>
+<h2 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h2><ol>
+<li><p>新生状态 –&gt; New</p>
+<p>new 对象，就进入新生状态</p>
+</li>
+<li><p>就绪状态 –&gt; RUNNABLE<br>以下四种情况会使线程进入就绪状态</p>
+<ul>
+<li>start()</li>
+<li>阻塞状态解除</li>
+<li>yield()</li>
+<li>JVM干预</li>
+</ul>
+</li>
+<li><p>运行状态 –&gt; RUNNABLE<br>cpu调度到了，就进入运行状态</p>
+</li>
+<li><p>阻塞状态 –&gt; Waiting / Timed_Waiting / Blocked<br>以下四种情况会使线程进入阻塞状态</p>
+<ul>
+<li>sleep() –&gt; WAITING/TIMED_WAITING</li>
+<li>join() –&gt;  WAITING/TIMED_WAITING</li>
+<li>wait() –&gt; BLOCKED</li>
+<li>read,write –&gt; BLOCKED</li>
+</ul>
+</li>
+<li><p>死亡状态 –&gt; TERMINATED<br>不推荐使用stop()和destory()来停止线程，因为这两个存在bug<br>可以使用添加boolean标志的方法停止线程，方便外部进行控制</p>
+</li>
+</ol>
 <h2 id="暂停sleep"><a href="#暂停sleep" class="headerlink" title="暂停sleep"></a>暂停sleep</h2><ul>
 <li>sleep为静态方法，可以直接在线程中调用</li>
 <li>sleep(毫秒数)指定当前线程阻塞的时间</li>
@@ -8960,15 +9203,94 @@
       </tags>
   </entry>
   <entry>
-    <title>异常</title>
-    <url>/2019/03/03/Java/1.Java%E5%9F%BA%E7%A1%80/%E5%BC%82%E5%B8%B8/</url>
-    <content><![CDATA[<p>异常</p>
+    <title>Java 异常</title>
+    <url>/2019/03/03/Java/1.Java%E5%9F%BA%E7%A1%80/Java%20%E5%BC%82%E5%B8%B8/</url>
+    <content><![CDATA[<p>理想状态下，用户输入的数据以及格式永远是正确的,，选择的文件一定可以打开，并且永远不会出现bug。</p>
+<p>然而，现实世界中却充满着不良的数据和带有问题的代码。</p>
+<p>一个程序在运行中遇到内部或者外部的问题时，应该做到以下三点：</p>
+<ul>
+<li>像用户通报错误</li>
+<li>保存所有工作结果</li>
+<li>允许用户以妥善的形式退出程序</li>
+</ul>
+<p>要做到以上几点，就需要在程序中引入 异常处理 和 错误捕获机制。</p>
 <a id="more"></a>
 
-<h2 id="一-异常"><a href="#一-异常" class="headerlink" title="一 异常"></a>一 异常</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">	<span class="comment">// 可能存在异常的代码</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">	<span class="comment">// 无论是否存在异常都要执行的语句</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="1-Java-异常基本概念"><a href="#1-Java-异常基本概念" class="headerlink" title="1. Java 异常基本概念"></a>1. Java 异常基本概念</h2><h3 id="1-1-异常基本结构"><a href="#1-1-异常基本结构" class="headerlink" title="1.1 异常基本结构"></a>1.1 异常基本结构</h3><p>Java 异常结构示意图：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">classDiagram</span><br><span class="line">      Throwable &lt;|-- Error</span><br><span class="line">      Throwable &lt;|-- Exception</span><br><span class="line">      Exception &lt;|-- RuntimeException</span><br><span class="line">      Exception &lt;|-- OtherException</span><br></pre></td></tr></table></figure>
+
+<p>Error 类：描述了 Java 运行时系统的内部错误和资源耗尽错误（Error 很少出现）</p>
+<p>Exception 类：</p>
+<ol>
+<li>RuntimeException：由于程序错误导致的异常<ul>
+<li>错误的类型转换</li>
+<li>数组访问越界</li>
+<li>访问 null 指针</li>
+</ul>
+</li>
+<li>OtherException：程序本身没有问题，由于像 I/O 这类的问题导致的异常属于其他异常<ul>
+<li>试图在文件尾部后面读取数据</li>
+<li>试图打开一个不存在的文件</li>
+<li>试图根据给定的字符串查找 Class 对象，但这个字符串表示的类不存在</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>如果出现 RuntimeException 异常，那么就一定是自己的问题。</p>
+</blockquote>
+<h3 id="1-2-受查异常-和-非受查异常"><a href="#1-2-受查异常-和-非受查异常" class="headerlink" title="1.2 受查异常 和 非受查异常"></a>1.2 受查异常 和 非受查异常</h3><p>非受查（unchecked）异常：派生于 Error 类或 RuntimeException 类的所有异常。</p>
+<p>受查（checked）异常：除了上面两种外，其他的异常。</p>
+<blockquote>
+<p>编译器将核查是否为所有的受查异常提供了异常处理器。</p>
+</blockquote>
+<h2 id="2-异常的声明、抛出和捕获"><a href="#2-异常的声明、抛出和捕获" class="headerlink" title="2. 异常的声明、抛出和捕获"></a>2. 异常的声明、抛出和捕获</h2><h3 id="2-1-声明异常"><a href="#2-1-声明异常" class="headerlink" title="2.1 声明异常"></a>2.1 声明异常</h3><p>方法应该在其首部声明所有可能抛出的<strong>受查异常</strong>，多个异常之间用逗号分隔。</p>
+<p>使用 throws 关键字声明异常，下面是 FileInputStream 类的一个构造器的声明：</p>
+<p><code>public FileInputStream(String name) throws FileNotFoundException</code></p>
+<p>需要使用 throws 声明异常的情况：</p>
+<ul>
+<li>调用了一个抛出受查异常的方法</li>
+<li>程序运行时发现错误，并使用 throw 语句抛出了一个受查异常</li>
+</ul>
+<blockquote>
+<p>注意：</p>
+<ol>
+<li>如果子类中覆盖了超类的一个方法，子类方法中声明的受查异常不能比超类中声明的更通用。</li>
+<li>如果超类没有抛出任何受查异常，子类也不能抛出任何受查异常。</li>
+</ol>
+</blockquote>
+<h3 id="2-2-抛出异常"><a href="#2-2-抛出异常" class="headerlink" title="2.2 抛出异常"></a>2.2 抛出异常</h3><p>在方法体中使用 throw 关键字抛出异常</p>
+<p>抛异常的步骤：</p>
+<ol>
+<li>找到一个合适的异常类</li>
+<li>创建这个异常类的对象</li>
+<li>将对象抛出</li>
+</ol>
+<h3 id="2-3-捕获异常"><a href="#2-3-捕获异常" class="headerlink" title="2.3 捕获异常"></a>2.3 捕获异常</h3><p>捕获异常的原则：捕获那些知道如何处理的异常，将不知道如何处理的异常继续传递</p>
+<blockquote>
+<p>如果一个方法覆盖了超类的方法，而超类的方法又没有抛出异常，那么这个方法就必须捕获方法代码中出现的每一个受查异常</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  捕获异常的基本代码结构</span></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="comment">// 可能存在异常的代码</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(FileNotFoundException | UnknownHostException e)&#123;</span><br><span class="line">    <span class="comment">// 处理异常的代码</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(IOException e)&#123;</span><br><span class="line">    <span class="comment">// 处理异常的代码</span></span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">    <span class="comment">// 无论是否存在异常都要执行的语句</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由上面的代码可以看出，try / catch 语句可以捕获多个异常，捕获多个异常有两种方式：</p>
+<ol>
+<li>使用多个 catch 子句捕获多个异常，可以对不同的异常做出不同的处理</li>
+<li>使用一个 catch 子句捕获多个异常（多个异常类型之间不存在子类关系时才可以）</li>
+</ol>
+<blockquote>
+<p>再次抛出异常：</p>
+<p>在 catch 子句中可以抛出一个异常，这样做的目的是改变异常的类型</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;<span class="keyword">catch</span>(SQLException e)&#123;</span><br><span class="line">    Throwable se = <span class="keyword">new</span> ServletException(<span class="string">"database error"</span>);</span><br><span class="line">    se.initCause(e);  <span class="comment">// 把捕获到的异常作为要抛出的异常的“原因”</span></span><br><span class="line">    <span class="keyword">throw</span> se;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当在其他地方捕获到抛出的 ServletException 异常时，可以使用下面的语句获取到原始异常：</p>
+<p><code>Throwable e = se.getCause();</code></p>
+<p>使用这种包装技术，可以让用户抛出子系统中的高级异常的同时不会丢失原始异常的细节。</p>
+</blockquote>
 ]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
       <tags>
-        <tag>异常</tag>
+        <tag>Java 异常</tag>
       </tags>
   </entry>
   <entry>
@@ -8994,13 +9316,13 @@
       </tags>
   </entry>
   <entry>
-    <title>Integer &amp; StringBuilder</title>
-    <url>/2019/03/01/Java/1.Java%E5%9F%BA%E7%A1%80/Integer&amp;StringBuilder/</url>
-    <content><![CDATA[<p>Integer &amp; StringBuilder</p>
+    <title>Integer</title>
+    <url>/2019/03/01/Java/1.Java%E5%9F%BA%E7%A1%80/Integer/</url>
+    <content><![CDATA[<p>Integer</p>
 <a id="more"></a>
 
 <p><img src="/images/Integer&StringBuilder/3.1.jpg" alt="3.1"></p>
-<h2 id="一、Integer"><a href="#一、Integer" class="headerlink" title="一、Integer"></a>一、Integer</h2><p>Integer为int的包装类，可创建对象</p>
+<h2 id="一、Integer"><a href="#一、Integer" class="headerlink" title="一、Integer"></a>一、Integer</h2><p>Integer 为 int 的包装类，可创建对象。</p>
 <ul>
 <li>Integer 与 int 类型的相互转换</li>
 </ul>
@@ -9016,20 +9338,8 @@
 
 <p><code>String s = a.toString();  // Integer to String</code></p>
 <blockquote>
-<p>创建Integer对象的时候要注意缓存区的问题。[-128,127]</p>
+<p>创建 Integer 对象的时候要注意缓存区的问题。[-128,127]</p>
 </blockquote>
-<h2 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h2><p>StringBuilder是一个存放String对象的数组，<strong>可自动扩容</strong><br>StringBuffer类似于StringBuilder,但是后者效率更高，故更常用</p>
-<p>StringBuilder常用方法:<br>StringBuilder sb = new StringBuilder();</p>
-<ul>
-<li>sb.append(“aa”);</li>
-<li>sb.setCharAt(1,’bb’);</li>
-<li>sb.insert(2,’cc’);</li>
-<li>sb.delete(1,6); // 删除下标为1-5的元素</li>
-<li>sb.deleteCharAt(3); // 删除指定位置元素</li>
-<li>sb.reverse();  // 逆序</li>
-<li>sb.length();</li>
-<li>sb.indexOf(“dd”); // 返回指定元素索引</li>
-</ul>
 ]]></content>
       <categories>
         <category>Java</category>
@@ -9039,7 +9349,6 @@
         <tag>Java</tag>
         <tag>包装类</tag>
         <tag>Integer</tag>
-        <tag>StringBuilder</tag>
       </tags>
   </entry>
   <entry>
@@ -9048,7 +9357,7 @@
     <content><![CDATA[<p>数组</p>
 <a id="more"></a>
 
-<p><img src="/images/2.28.jpg" alt=""></p>
+<p><img src="/images/%E6%95%B0%E7%BB%84/2.28.jpg" alt="2.28"></p>
 <h2 id="1、数组的定义"><a href="#1、数组的定义" class="headerlink" title="1、数组的定义"></a>1、数组的定义</h2><h2 id="2、数组的内存状态"><a href="#2、数组的内存状态" class="headerlink" title="2、数组的内存状态"></a>2、数组的内存状态</h2><h2 id="3、数组的初始化方式"><a href="#3、数组的初始化方式" class="headerlink" title="3、数组的初始化方式"></a>3、数组的初始化方式</h2><ul>
 <li>默认初始化<br><code>int[] arr1 = new int[3];</code></li>
 <li>静态初始化<br><code>int[] arr2 = {1,2,3};</code></li>
@@ -9071,7 +9380,7 @@
 </ul>
 <h2 id="6、Arrays工具类"><a href="#6、Arrays工具类" class="headerlink" title="6、Arrays工具类"></a>6、Arrays工具类</h2><p>Arrays工具类中常用的几种方法</p>
 <p><code>Arrays.toString();</code><br><code>Arrays.sort();</code><br><code>Arrays.binarySearch(a/*数组*/, int key);</code></p>
-<h2 id="7、多维数组"><a href="#7、多维数组" class="headerlink" title="7、多维数组"></a>7、多维数组</h2><h2 id="8、冒泡排序"><a href="#8、冒泡排序" class="headerlink" title="8、冒泡排序"></a>8、冒泡排序</h2><h2 id="9、二分法查找"><a href="#9、二分法查找" class="headerlink" title="9、二分法查找"></a>9、二分法查找</h2>]]></content>
+]]></content>
       <categories>
         <category>Java</category>
       </categories>

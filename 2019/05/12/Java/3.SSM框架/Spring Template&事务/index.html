@@ -53,7 +53,7 @@
 <meta property="og:description" content="JdbcTemplate：Spring 提供的一个对 JDBC 的简单封装">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-12T15:09:15.000Z">
-<meta property="article:modified_time" content="2020-10-13T13:07:29.167Z">
+<meta property="article:modified_time" content="2021-04-05T09:22:16.142Z">
 <meta property="article:author" content="pikachu">
 <meta property="article:tag" content="JDBCTemplate">
 <meta property="article:tag" content="Spring事务">
@@ -237,7 +237,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-13 21:07:29" itemprop="dateModified" datetime="2020-10-13T21:07:29+08:00">2020-10-13</time>
+                <time title="修改时间：2021-04-05 17:22:16" itemprop="dateModified" datetime="2021-04-05T17:22:16+08:00">2021-04-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,7 +266,7 @@
 <a id="more"></a>
 
 <h2 id="JdbcTemplate"><a href="#JdbcTemplate" class="headerlink" title="JdbcTemplate"></a>JdbcTemplate</h2><p>JdbcTemplate：Spring 提供的一个对 JDBC 的简单封装</p>
-<p>JdbcTemplate的使用：</p>
+<p>JdbcTemplate 的使用：</p>
 <ul>
 <li><p>导坐标（maven）</p>
 <ul>
@@ -274,7 +274,8 @@
 </ul>
 </li>
 <li><p>创建 JdbcTemplate 对象(<em>需要数据源，有参/无参创建</em>)</p>
-<pre><code><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 有参创建	</span></span><br><span class="line">JdbcTemplate template = <span class="keyword">new</span> JdbcTemplate(DataSource ds);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 无参创建</span></span><br><span class="line">  JdbcTemplate template = <span class="keyword">new</span> JdbcTemplate();</span><br><span class="line">  template.setDataSource(ds);</span><br></pre></td></tr></table></figure></code></pre></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 有参创建	</span></span><br><span class="line">JdbcTemplate template = <span class="keyword">new</span> JdbcTemplate(DataSource ds);</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 无参创建</span></span><br><span class="line"> JdbcTemplate template = <span class="keyword">new</span> JdbcTemplate();</span><br><span class="line"> template.setDataSource(ds);</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>调用 JdbcTemplate 中的方法完成 <strong>CRUD</strong> 操作</p>
 <ul>
 <li><code>update()</code> –&gt; 执行<strong>增、删、改</strong><ul>
@@ -311,7 +312,7 @@
 <h2 id="Spring-事务"><a href="#Spring-事务" class="headerlink" title="Spring 事务"></a>Spring 事务</h2><blockquote>
 <p>在 JavaEE 开发中，事务处理位于<strong>业务层</strong></p>
 <p>mavne项目坐标：spring-tx</p>
-<p>Spring的事务控制都是基于AOP的，可通过配置实现（常用），也可通过编程实现</p>
+<p>Spring 的事务控制都是基于 AOP 的，可通过配置实现（常用），也可通过编程实现</p>
 </blockquote>
 <p>Spring的事务管理器：</p>
 <ul>
@@ -398,14 +399,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
