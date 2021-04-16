@@ -45,16 +45,16 @@
   };
 </script>
 
-  <meta name="description" content="多线程在Java编程中无处不在，多应用于网络编程和服务器端应用开发">
+  <meta name="description" content="多线程在 Java 中多应用于网络编程和服务器端应用开发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程">
 <meta property="og:url" content="http://yoursite.com/2019/03/16/Java/1.Java%E5%9F%BA%E7%A1%80/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Pikachu&#39;s Blog">
-<meta property="og:description" content="多线程在Java编程中无处不在，多应用于网络编程和服务器端应用开发">
+<meta property="og:description" content="多线程在 Java 中多应用于网络编程和服务器端应用开发">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/3.16.jpg">
 <meta property="article:published_time" content="2019-03-15T23:19:03.000Z">
-<meta property="article:modified_time" content="2021-03-22T02:30:08.209Z">
+<meta property="article:modified_time" content="2021-04-16T03:10:22.606Z">
 <meta property="article:author" content="pikachu">
 <meta property="article:tag" content="多线程">
 <meta name="twitter:card" content="summary">
@@ -238,7 +238,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-22 10:30:08" itemprop="dateModified" datetime="2021-03-22T10:30:08+08:00">2021-03-22</time>
+                <time title="修改时间：2021-04-16 11:10:22" itemprop="dateModified" datetime="2021-04-16T11:10:22+08:00">2021-04-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -263,22 +263,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>多线程在Java编程中无处不在，多应用于网络编程和服务器端应用开发</p>
+        <p>多线程在 Java 中多应用于网络编程和服务器端应用开发</p>
 <a id="more"></a>
 <p><img src="/images/3.16.jpg" alt=""></p>
-<hr>
-<h1 id="Thread–多线程"><a href="#Thread–多线程" class="headerlink" title="Thread–多线程"></a>Thread–多线程</h1><h2 id="实现多线程的方法"><a href="#实现多线程的方法" class="headerlink" title="实现多线程的方法"></a>实现多线程的方法</h2><p>1.继承Thread类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> i;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.i = i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 重写run方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">	<span class="comment">// 创建线程并启动</span></span><br><span class="line">	Test t = <span class="keyword">new</span> Test(<span class="number">666</span>);</span><br><span class="line">	t.start(); <span class="comment">// 启动线程</span></span><br></pre></td></tr></table></figure>
-<p>2.实现Runnable接口</p>
+<h2 id="实现多线程的方法"><a href="#实现多线程的方法" class="headerlink" title="实现多线程的方法"></a>实现多线程的方法</h2><p>1.继承 Thread 类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> i;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.i = i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 重写run方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 创建线程并启动</span></span><br><span class="line">	Test t = <span class="keyword">new</span> Test(<span class="number">666</span>);</span><br><span class="line">	t.start(); <span class="comment">// 启动线程</span></span><br></pre></td></tr></table></figure>
+<p>2.实现 Runnable 接口</p>
 <blockquote>
 <p>优先使用接口实现多线程，可避免单继承带来的局限性</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> i;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.i = i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 重写run方法(线程入口点)</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">		...</span><br><span class="line">		<span class="comment">// run方法没有返回类型，也不能抛出异常，有异常只能try..catch</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">	<span class="comment">// 创建线程并启动</span></span><br><span class="line">	Test t = <span class="keyword">new</span> Test(<span class="number">666</span>);</span><br><span class="line">	<span class="keyword">new</span> Thread(t).start(); <span class="comment">// 启动线程</span></span><br></pre></td></tr></table></figure>
-<p>3.实现Callable接口<br>Callable接口比较高级，涉及到高并发的时候回比较常用。<br>实现Callable接口需要重写<strong>call()</strong>方法，该方法可以有返回值类型，也可以抛出异常</p>
-<h2 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h2><p>作用：避免匿名内部类定义过多<br>其实质属于函数式编程的概念</p>
-<ul>
-<li>lambda 表达式的推导</li>
-</ul>
+<p>3.实现 Callable 接口</p>
+<p>Callable 接口比较高级，涉及到高并发的时候回比较常用。</p>
+<p>实现 Callable 接口需要重写 <strong>call()</strong> 方法，该方法可以有返回值类型，也可以抛出异常</p>
 <h2 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h2><ol>
 <li><p>新生状态 –&gt; New</p>
 <p>new 对象，就进入新生状态</p>
@@ -288,12 +285,19 @@
 <li>start()</li>
 <li>阻塞状态解除</li>
 <li>yield()</li>
-<li>JVM干预</li>
 </ul>
 </li>
-<li><p>运行状态 –&gt; RUNNABLE<br>cpu调度到了，就进入运行状态</p>
-</li>
-<li><p>阻塞状态 –&gt; Waiting / Timed_Waiting / Blocked<br>以下四种情况会使线程进入阻塞状态</p>
+</ol>
+<ul>
+<li>JVM 干预</li>
+</ul>
+<ol start="3">
+<li>运行状态 –&gt; RUNNABLE</li>
+</ol>
+<p>cpu 调度到了，就进入运行状态</p>
+<ol start="4">
+<li><p>阻塞状态 –&gt; Waiting / Timed_Waiting / Blocked</p>
+<p>以下四种情况会使线程进入阻塞状态</p>
 <ul>
 <li>sleep() –&gt; WAITING/TIMED_WAITING</li>
 <li>join() –&gt;  WAITING/TIMED_WAITING</li>
@@ -301,41 +305,43 @@
 <li>read,write –&gt; BLOCKED</li>
 </ul>
 </li>
-<li><p>死亡状态 –&gt; TERMINATED<br>不推荐使用stop()和destory()来停止线程，因为这两个存在bug<br>可以使用添加boolean标志的方法停止线程，方便外部进行控制</p>
+<li><p>死亡状态 –&gt; TERMINATED</p>
+<p>不推荐使用 stop() 和 destory() 来停止线程，因为这两个存在 bug</p>
+<p>可以使用添加 boolean 标志的方法停止线程，方便外部进行控制</p>
 </li>
 </ol>
-<h2 id="暂停sleep"><a href="#暂停sleep" class="headerlink" title="暂停sleep"></a>暂停sleep</h2><ul>
-<li>sleep为静态方法，可以直接在线程中调用</li>
-<li>sleep(毫秒数)指定当前线程阻塞的时间</li>
-<li>sleep存在异常InterruptedException</li>
-<li>sleep时间达到后线程进入就绪状态</li>
-<li>sleep可以模拟网络延时、倒计时等</li>
-<li>每一个对象都有一个锁，sleep不会释放锁（抱着对象睡觉）</li>
+<h2 id="暂停-sleep"><a href="#暂停-sleep" class="headerlink" title="暂停 sleep"></a>暂停 sleep</h2><ul>
+<li>sleep 为静态方法，可以直接在线程中调用</li>
+<li>sleep (毫秒数)指定当前线程阻塞的时间</li>
+<li>sleep 存在异常 InterruptedException</li>
+<li>sleep 时间达到后线程进入就绪状态</li>
+<li>sleep 可以模拟网络延时、倒计时等</li>
+<li>每一个对象都有一个锁，sleep 不会释放锁（抱着对象睡觉）</li>
 </ul>
-<h2 id="礼让yield"><a href="#礼让yield" class="headerlink" title="礼让yield"></a>礼让yield</h2><ul>
-<li>yield也是静态方法，可以在线程中直接调用</li>
+<h2 id="礼让-yield"><a href="#礼让-yield" class="headerlink" title="礼让 yield"></a>礼让 yield</h2><ul>
+<li>yield 也是静态方法，可以在线程中直接调用</li>
 <li>礼让线程，让当前正在执行的线程从<strong>运行状态</strong>转入<strong>就绪状态</strong></li>
-<li>让cpu调度器重新调度<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">YieldTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// lambda表达式</span></span><br><span class="line">		<span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++) &#123;</span><br><span class="line">				System.out.println(<span class="string">"lambda..."</span>+i);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;).start();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(i%<span class="number">10</span> == <span class="number">0</span>) &#123;</span><br><span class="line">				Thread.yield(); <span class="comment">// 礼让，可能不成功</span></span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println(<span class="string">"main..."</span>+i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>让 cpu 调度器重新调度<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">YieldTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// lambda表达式</span></span><br><span class="line">		<span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++) &#123;</span><br><span class="line">				System.out.println(<span class="string">"lambda..."</span>+i);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;).start();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(i%<span class="number">10</span> == <span class="number">0</span>) &#123;</span><br><span class="line">				Thread.yield(); <span class="comment">// 礼让，可能不成功</span></span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println(<span class="string">"main..."</span>+i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
-<h2 id="插队join"><a href="#插队join" class="headerlink" title="插队join"></a>插队join</h2><blockquote>
-<p>使用join后，需要等插队的线程执行完成后才能执行其他线程，<strong>其他线程阻塞</strong></p>
+<h2 id="插队-join"><a href="#插队-join" class="headerlink" title="插队 join"></a>插队 join</h2><blockquote>
+<p>使用 join 后，需要等插队的线程执行完成后才能执行其他线程，<strong>其他线程阻塞</strong></p>
 </blockquote>
 <h2 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h2><ul>
-<li>优先级的取值范围在1-10之间</li>
+<li>优先级的取值范围在 1-10 之间</li>
 <li>优先级有三个常量<ul>
 <li>MAX_PRIORITY –&gt; 10</li>
 <li>MIN_PRIORITY –&gt; 1</li>
 <li>NORM_PRIORITY –&gt; 5</li>
 </ul>
 </li>
-<li>在start()之前设置优先级</li>
+<li>在 start() 之前设置优先级</li>
 <li>优先级高的不一定先执行，优先级只是代表执行的概率</li>
 </ul>
 <h2 id="守护线程"><a href="#守护线程" class="headerlink" title="守护线程"></a>守护线程</h2><ul>
 <li>所有的线程默认都是用户线程，守护线程需要手动设置</li>
-<li>JVM停止不用考虑守护线程</li>
+<li>JVM 停止不用考虑守护线程</li>
 </ul>
 <p>设置守护线程<br><code>t.setDaemon(true)</code></p>
 <h2 id="线程的基本信息"><a href="#线程的基本信息" class="headerlink" title="线程的基本信息"></a>线程的基本信息</h2><ul>
@@ -354,10 +360,10 @@
 <ul>
 <li><p>锁机制保证了线程的安全，但是带来了性能的问题</p>
 </li>
-<li><p>用法：<br>synchronized方法 –&gt;  同步方法<br>synchronized块 –&gt; 同步块</p>
-<p>使用synchronized要注意：</p>
+<li><p>用法：<br>synchronized 方法 –&gt;  同步方法<br>synchronized 块 –&gt; 同步块</p>
+<p>使用 synchronized  要注意：</p>
 <pre><code>- 锁准对象，否则不能保证线程安全
-- 锁准范围，如果将一个大的方法声明为synchronized，将会大大影响效率</code></pre><p>同步块：<strong>synchronized（obj）{ }</strong> ， obj称之为同步监视器<br>obj就是被锁的对象，就是要修改的那个对象<br>多用同步块，少用同步方法，因为同步块在保证线程安全的前提下，性能更优</p>
+- 锁准范围，如果将一个大的方法声明为 synchronized，将会大大影响效率</code></pre><p>同步块：<strong>synchronized（obj）{ }</strong> ， obj 称之为同步监视器<br>obj 就是被锁的对象，就是要修改的那个对象<br>多用同步块，少用同步方法，因为同步块在保证线程安全的前提下，性能更优</p>
 </li>
 <li><p>死锁<br>过多的同步可能造成相互不释放资源，从而相互等待，一般发生于同步中持有多个对象的锁。<br>避免死锁：不要在同一个代码块中同时持有多个对象的锁</p>
 </li>
@@ -430,7 +436,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Thread–多线程"><span class="nav-number">1.</span> <span class="nav-text">Thread–多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现多线程的方法"><span class="nav-number">1.1.</span> <span class="nav-text">实现多线程的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lambda表达式"><span class="nav-number">1.2.</span> <span class="nav-text">Lambda表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程状态"><span class="nav-number">1.3.</span> <span class="nav-text">线程状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暂停sleep"><span class="nav-number">1.4.</span> <span class="nav-text">暂停sleep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#礼让yield"><span class="nav-number">1.5.</span> <span class="nav-text">礼让yield</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插队join"><span class="nav-number">1.6.</span> <span class="nav-text">插队join</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优先级"><span class="nav-number">1.7.</span> <span class="nav-text">优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#守护线程"><span class="nav-number">1.8.</span> <span class="nav-text">守护线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程的基本信息"><span class="nav-number">1.9.</span> <span class="nav-text">线程的基本信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程同步"><span class="nav-number">1.10.</span> <span class="nav-text">线程同步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并发的三个条件"><span class="nav-number">1.10.1.</span> <span class="nav-text">并发的三个条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程同步-1"><span class="nav-number">1.10.2.</span> <span class="nav-text">线程同步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程通信"><span class="nav-number">1.11.</span> <span class="nav-text">线程通信</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现多线程的方法"><span class="nav-number">1.</span> <span class="nav-text">实现多线程的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程状态"><span class="nav-number">2.</span> <span class="nav-text">线程状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暂停-sleep"><span class="nav-number">3.</span> <span class="nav-text">暂停 sleep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#礼让-yield"><span class="nav-number">4.</span> <span class="nav-text">礼让 yield</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插队-join"><span class="nav-number">5.</span> <span class="nav-text">插队 join</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优先级"><span class="nav-number">6.</span> <span class="nav-text">优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#守护线程"><span class="nav-number">7.</span> <span class="nav-text">守护线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程的基本信息"><span class="nav-number">8.</span> <span class="nav-text">线程的基本信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程同步"><span class="nav-number">9.</span> <span class="nav-text">线程同步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并发的三个条件"><span class="nav-number">9.1.</span> <span class="nav-text">并发的三个条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程同步-1"><span class="nav-number">9.2.</span> <span class="nav-text">线程同步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程通信"><span class="nav-number">10.</span> <span class="nav-text">线程通信</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -444,20 +450,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">102</span>
+        <span class="site-state-item-count">97</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

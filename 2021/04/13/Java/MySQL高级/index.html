@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="MySQL高级MySQL 存储引擎简介： MySQL 的存储引擎是可插拔的，有很多引擎可供使用，常见的有两个：  MyISAM：MySQL 5.5之前的默认存储引擎 InnoDB：MySQL 5.5及之后默认存储引擎      MyISAM InnoDB    外键 不支持 支持   事务 不支持 支持   行表锁 表锁 行锁   缓存 只缓存索引，不缓存真实数据 既缓存索引，又缓存真实数据，内存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL高级">
+<meta property="og:url" content="http://yoursite.com/2021/04/13/Java/MySQL%E9%AB%98%E7%BA%A7/index.html">
+<meta property="og:site_name" content="Pikachu&#39;s Blog">
+<meta property="og:description" content="MySQL高级MySQL 存储引擎简介： MySQL 的存储引擎是可插拔的，有很多引擎可供使用，常见的有两个：  MyISAM：MySQL 5.5之前的默认存储引擎 InnoDB：MySQL 5.5及之后默认存储引擎      MyISAM InnoDB    外键 不支持 支持   事务 不支持 支持   行表锁 表锁 行锁   缓存 只缓存索引，不缓存真实数据 既缓存索引，又缓存真实数据，内存">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/images/MySQL%E9%AB%98%E7%BA%A7/%E6%99%AE%E9%80%9A%E7%B4%A2%E5%BC%95%E6%9F%A5%E8%AF%A2%E8%BF%87%E7%A8%8B-1618329557573.jpg">
+<meta property="og:image" content="http://yoursite.com/images/MySQL%E9%AB%98%E7%BA%A7/image-20210413122223656.png">
+<meta property="article:published_time" content="2021-04-13T01:00:00.000Z">
+<meta property="article:modified_time" content="2021-04-13T17:22:38.834Z">
+<meta property="article:author" content="pikachu">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/MySQL%E9%AB%98%E7%BA%A7/%E6%99%AE%E9%80%9A%E7%B4%A2%E5%BC%95%E6%9F%A5%E8%AF%A2%E8%BF%87%E7%A8%8B-1618329557573.jpg">
+
+<link rel="canonical" href="http://yoursite.com/2021/04/13/Java/MySQL%E9%AB%98%E7%BA%A7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>MySQL高级 | Pikachu's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pikachu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/13/Java/MySQL%E9%AB%98%E7%BA%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pikachu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pikachu's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL高级
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-13 09:00:00" itemprop="dateCreated datePublished" datetime="2021-04-13T09:00:00+08:00">2021-04-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-14 01:22:38" itemprop="dateModified" datetime="2021-04-14T01:22:38+08:00">2021-04-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="MySQL高级"><a href="#MySQL高级" class="headerlink" title="MySQL高级"></a>MySQL高级</h1><p>MySQL 存储引擎简介：</p>
+<p>MySQL 的存储引擎是可插拔的，有很多引擎可供使用，常见的有两个：</p>
+<ul>
+<li>MyISAM：MySQL 5.5之前的默认存储引擎</li>
+<li>InnoDB：MySQL 5.5及之后默认存储引擎</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">MyISAM</th>
+<th align="center">InnoDB</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">外键</td>
+<td align="center">不支持</td>
+<td align="center">支持</td>
+</tr>
+<tr>
+<td align="center">事务</td>
+<td align="center">不支持</td>
+<td align="center">支持</td>
+</tr>
+<tr>
+<td align="center">行表锁</td>
+<td align="center">表锁</td>
+<td align="center">行锁</td>
+</tr>
+<tr>
+<td align="center">缓存</td>
+<td align="center">只缓存索引，不缓存真实数据</td>
+<td align="center">既缓存索引，又缓存真实数据，内存要求较高</td>
+</tr>
+<tr>
+<td align="center">表空间</td>
+<td align="center">小</td>
+<td align="center">大</td>
+</tr>
+<tr>
+<td align="center">关注点</td>
+<td align="center">性能</td>
+<td align="center">事务</td>
+</tr>
+<tr>
+<td align="center">默认安装</td>
+<td align="center">是</td>
+<td align="center">是</td>
+</tr>
+</tbody></table>
+<p>SQL 性能下降的原因：</p>
+<ul>
+<li>查询语句写的烂</li>
+<li>索引失效</li>
+<li>join 语句太多</li>
+<li>数据库的配置问题</li>
+</ul>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p><strong>什么是索引？</strong></p>
+<p>MySQL 官方定义：索引是帮助 MySQL 高效获取数据的数据结构</p>
+<p>一句话：<strong>索引是排好序的快速查找数据结构</strong></p>
+<p>MySQL 数据库中的索引的底层结构为 <strong>B+ 树</strong>，可以帮助我们可以快速的查找数据库中的数据</p>
+<p>一般来说索引本身也很大，通常存储在硬盘上。</p>
+<p><strong>索引的优劣势：</strong></p>
+<ul>
+<li>优势：<ol>
+<li>提高查询效率，降低 IO 开销</li>
+<li>降低排序成本，降低 CPU 开销</li>
+</ol>
+</li>
+<li>劣势：降低更新表的效率</li>
+</ul>
+<p><strong>索引的种类</strong></p>
+<ul>
+<li>单值索引：一个索引只包含单个列，一个表可以有多个单值索引</li>
+<li>唯一索引：索引列的值必须唯一，但允许有空值</li>
+<li>复合索引：一个索引包含多个列</li>
+</ul>
+<p><strong>MySQL有哪些索引：</strong></p>
+<ul>
+<li><p>主键索引（PRIMARY KEY）</p>
+<p>一张表中只能有一个主键索引</p>
+</li>
+<li><p>唯一索引（UNIQUE KEY）</p>
+<p>一张表中可以有多个唯一索引</p>
+</li>
+<li><p>常规索引（KEY）</p>
+</li>
+<li><p>全文索引（FULLTEXT）</p>
+</li>
+</ul>
+<p><strong>索引相关语句：</strong></p>
+<p>创建：</p>
+<ul>
+<li>创建表时创建索引：<code>CREATE INDEX indexName ON tableName(columnName)</code></li>
+<li>创建表后增加索引：<code>ALTER table_name ADD INDEX/KEY index_name ON (column_name_list)</code></li>
+</ul>
+<p>查看：</p>
+<ul>
+<li><code>SHOW INDEX FROM table_name</code></li>
+</ul>
+<p>删除：</p>
+<ul>
+<li><code>DROP INDEX index_name ON table_name</code></li>
+</ul>
+<blockquote>
+<p>InnoDB 引擎的索引分为两类：</p>
+<ol>
+<li>聚集索引（clustered index）：叶子节点存储<strong>行记录</strong></li>
+<li>普通索引（secondary index）：叶子节点存储<strong>主键值</strong></li>
+</ol>
+<p>因为聚集索引中直接就有行记录，所以通过聚集索引查询很快。</p>
+<p>而普通索引无法直接定位行记录，所以通常情况下使用普通索引查询需要扫描两遍索引树，如图：</p>
+<p><img src="/images/MySQL%E9%AB%98%E7%BA%A7/%E6%99%AE%E9%80%9A%E7%B4%A2%E5%BC%95%E6%9F%A5%E8%AF%A2%E8%BF%87%E7%A8%8B-1618329557573.jpg" alt="普通索引查询过程"></p>
+<p>粉红色的路径：</p>
+<ol>
+<li>先通过普通索引定位到主键值</li>
+<li>再通过聚集索引定位到行记录</li>
+</ol>
+<p>上面这个过程就是回表查询。</p>
+</blockquote>
+<p><strong>什么情况下建立索引：</strong></p>
+<ol>
+<li>主键自动建立唯一索引</li>
+<li>频繁作为查询条件的字段应该创建索引</li>
+<li>查询中与其他表关联的字段，外键关系建立索引</li>
+</ol>
+<p><strong>哪些情况不需要建立索引？</strong></p>
+<ol>
+<li>数据量比较小（百万级别以下）</li>
+<li>频繁更新的表</li>
+<li>某些列包含许多重复的内容（比如国籍列，性别列），建立索引也没啥效果</li>
+</ol>
+<h2 id="SQL-性能分析"><a href="#SQL-性能分析" class="headerlink" title="SQL 性能分析"></a>SQL 性能分析</h2><p>使用 explain 关键字对 SQL 语句进行性能分析</p>
+<blockquote>
+<p>explain 在 MySQL 5.5 中只能分析 select 语句</p>
+<p>在 MySQL 5.6 之后可以分析 update、delete 等语句</p>
+<p>但是用的最多的还是对 select 语句的分析</p>
+</blockquote>
+<p>使用 explain：</p>
+<p><img src="/images/MySQL%E9%AB%98%E7%BA%A7/image-20210413122223656.png" alt="image-20210413122223656"></p>
+<h4 id="expalin-结果字段："><a href="#expalin-结果字段：" class="headerlink" title="expalin 结果字段："></a>expalin 结果字段：</h4><ol>
+<li><strong>id</strong>：标识多个表的执行顺序，有三种情况：<ul>
+<li><strong>id 相同</strong>：相同 id 的表为一组，按照从上到下顺序执行</li>
+<li><strong>id 不同</strong>：按照 id 从大到小的顺序执行，id 越大优先级越高</li>
+<li><strong>id 有相同有不同</strong>：id 越大优先级越高，相同 id 按顺序执行</li>
+</ul>
+</li>
+</ol>
+<ol start="2">
+<li><strong>select_type</strong>：查询操作类型，有下面几种：<ul>
+<li>SIMPLE：简单查询，不含子查询和 union</li>
+<li>PRIMARY：复杂查询中最外层查询</li>
+<li>SUBQUERY：子查询语句</li>
+<li>DERIVED：表示派生表（如果子查询的结果是一张表，这张表就是 derived）</li>
+<li>UNION：标记 union 后面的 select，若 union 包含在 from 子句的子查询中，外层 select 将被标记为 derived </li>
+<li>UNION RESULT：从 union 后的表中获取结果的 select</li>
+</ul>
+</li>
+</ol>
+<ol start="3">
+<li><strong>table</strong>：查询的表</li>
+</ol>
+<ol start="4">
+<li><p><strong>type</strong>：访问类型，有很多种，常用的有下面几种：</p>
+<ul>
+<li>system：表只有一行记录（等于系统表），是 const 类型的特例，一般情况下不会出现，可以忽略</li>
+<li>const：表示通过索引一次就找到了，用于比较主键索引或唯一索引。因为只匹配一行数据，所以很快。如果将主键置于 where 列表中，MySQL 就能将该查询转换为一个常量。  <code>???</code></li>
+<li>eq_ref：唯一索引扫描，对于每个索引键，表中只有一条记录与之匹配，常见于主键或唯一索引扫描</li>
+<li>ref：非唯一性索引扫描，返回匹配某个单独值的所有行</li>
+<li>range：只检索给定范围的行，使用一个索引来选择行，key 列显示使用了哪个索引。一般就是在 where 子句中出现了 <code>between and</code>、<code>&gt;</code>、<code>&lt;</code>、<code>in</code></li>
+<li>index：遍历索引树，查询数据</li>
+<li>ALL：遍历表，查询数据</li>
+</ul>
+<blockquote>
+<p>type 从最好到最坏：system &gt;  const &gt; eq_ref &gt; ref &gt; renge &gt; index &gt; ALL</p>
+</blockquote>
+</li>
+</ol>
+<ol start="5">
+<li><strong>possible_keys</strong>：查询中可能会用到的索引（只是 MySQL 自己推测的，并不一定真的用到）</li>
+</ol>
+<ol start="6">
+<li><strong>key</strong>：查询中实际用到的索引</li>
+</ol>
+<ol start="7">
+<li><strong>key_len</strong>：表示索引中使用的字节数，不损失精度的情况下，字节数越小越好  <code>???</code></li>
+</ol>
+<ol start="8">
+<li><strong>ref</strong>：显示索引的哪一列被使用了，如果可能的话，是一个常数，哪些列或常量被用于查找索引列上的值</li>
+</ol>
+<ol start="9">
+<li><strong>rows</strong>：显示查询的行数</li>
+</ol>
+<ol start="10">
+<li><p><strong>Extra</strong>：额外的信息</p>
+<ul>
+<li><strong>Using filesort</strong>：表示 MySQL 无法利用索引完成排序（<strong>bad</strong>）</li>
+<li><strong>Using temporary</strong>：表示使用了中间表，会极大的影响速度，因为表的拷贝会消耗大量的时间（<strong>bad</strong>）</li>
+<li><strong>Using index</strong>：表示使用了索引（<strong>good</strong>）</li>
+<li>Using where</li>
+<li>Using join buffer</li>
+<li>impossible where</li>
+<li>select tables optimized away</li>
+<li>distinct</li>
+</ul>
+</li>
+</ol>
+<h2 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h2><p><strong>索引添加规则：</strong>在 where 子句后面出现的列上面加上索引（不一定全加），一般情况下添加复合索引</p>
+<ul>
+<li><p>单表：根据实际情况添加，从而达到最优</p>
+</li>
+<li><p>多表：在 join 的情况下，左连接，加右表；右连接，加左表。</p>
+<blockquote>
+<p>join 优化：</p>
+<ol>
+<li>永远是小表驱动大表</li>
+<li>优先优化 NestedLoop 的内循环</li>
+<li>保证 join 语句被驱动表的 join 条件字段已经被索引</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p><strong>索引失效的几种情况：</strong>（索引为什么会失效呢？？？）</p>
+<ol>
+<li>复合索引的最左列不在查询条件中</li>
+<li>对索引列进行计算、使用函数、进行类型转换</li>
+<li>范围条件后面索引会失效</li>
+<li>like 子句中以通配符开头 <code>%om</code></li>
+<li>使用 or 连接会导致索引失效</li>
+</ol>
+<p><strong>☆☆☆☆☆ 索引优化：</strong>（ 就是让索引不失效）</p>
+<ol>
+<li>全值匹配我最爱</li>
+<li>最佳左前缀法则</li>
+<li>不在索引列上做任何的计算，函数，（自动、手动）类型转换。（因为会导致索引失效）</li>
+<li>范围条件后面的列索引失效 </li>
+<li>尽量使用覆盖索引</li>
+<li>like 子句尽量不使用通配符开头</li>
+<li>字符串不加单引号会导致索引失效（因为这时候 MySQL 会自动进行类型转换）</li>
+<li>尽量少用 or 连接</li>
+</ol>
+<blockquote>
+<p>几个问题点：</p>
+<ol>
+<li>使用不等于（ <code>!=</code>， <code>&lt;&gt;</code>）时不一定会导致索引失效</li>
+<li>使用 <code>is null</code>，<code>is not null</code> 也不一定会导致索引失效</li>
+</ol>
+</blockquote>
+<p>order by 排序优化：尽量使用 Index 方式排序，避免使用 FileSort 方式排序。</p>
+<p>order by 满足两种情况会使用 Index 排序：</p>
+<ol>
+<li>order by 子句条件满足索引最左前缀法则</li>
+<li>where 子句和 order by 子句条件组合满足索引最左前缀法则</li>
+</ol>
+<h2 id="MySQL-锁"><a href="#MySQL-锁" class="headerlink" title="MySQL 锁"></a>MySQL 锁</h2><p>数据库的锁机制：为了共享资源在并发访问的时候能够保证数据的一致性。</p>
+<h3 id="表锁"><a href="#表锁" class="headerlink" title="表锁"></a>表锁</h3><blockquote>
+<p>MyISAM 存储引擎使用的是表锁（该表锁由 MySQL 提供）</p>
+</blockquote>
+<p>表锁有两种模式：</p>
+<ul>
+<li>读锁（共享锁）：不会阻塞其他用户对同一表的读请求，但会阻塞对同一表的写请求。</li>
+<li>写锁（排他锁）：会阻塞其他用户对同一表的读请求和写请求。</li>
+</ul>
+<p>如何给表加锁：</p>
+<ul>
+<li><p>执行查询操作前，会自动给涉及的表加读锁。</p>
+</li>
+<li><p>执行更新操作前，会自动给涉及的表加写锁。</p>
+</li>
+</ul>
+<p>表锁的特点：</p>
+<ul>
+<li>颗粒度最大</li>
+<li>获取锁释放锁速度快</li>
+<li>可以避免死锁问题</li>
+<li>阻塞概率大，很难高并发</li>
+</ul>
+<h3 id="行锁"><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h3><blockquote>
+<p>InnoDB 存储引擎使用的是行锁（InnoDB 自己实现）</p>
+<p>InnoDB 行锁实现方式：通过给索引上的索引项加锁来实现的，只有通过索引条件检索数据，InnoDB才使用行级锁，否则，InnoDB将使用表锁。也就有了 <strong>索引失效导致行锁变表锁</strong>。（实际使用中一定要特别注意）</p>
+</blockquote>
+<p><strong>间隙锁</strong>：当我们用范围条件检索数据，并请求共享锁或排他锁时，InnoDB 会给符合条件的已有数据记录索引项加锁，对于键值符合条件但并不存在的记录（间隙），也会加锁，这种锁机制就是间隙锁</p>
+<p>行锁的特点：</p>
+<ul>
+<li>颗粒度最小</li>
+<li>可能出现死锁</li>
+<li>容易实现高并发</li>
+</ul>
+<blockquote>
+<p>为何 MyISAM 的表锁不会出现死锁，而 InnoDB 的行锁可能出现死锁？</p>
+<p>MyISAM表锁是deadlock free的，这是因为MyISAM总是一次获得所需的全部锁，要么全部满足，要么等待，因此不会出现死锁。但在InnoDB中，除单个SQL组成的事务外，锁是逐步获得的，当两个事务都需要获得对方持有的排他锁才能继续完成事务，这种循环锁等待就是典型的死锁。</p>
+</blockquote>
+<p><strong>如何锁定一行</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">begin</span>;  <span class="comment">-- 先 begin</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">3</span> <span class="keyword">for</span> <span class="keyword">update</span>;  <span class="comment">-- 使用 for update 锁定一行</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>分析行锁情况：</strong><code>show status like &#39;innodb_row_lock%&#39;;</code></p>
+<ul>
+<li>Innodb_row_lock_time_avg（等待平均时长）</li>
+<li>Innodb_row_lock_waits（等待总次数）</li>
+<li>Innodb_row_lock_time（等待总时长）</li>
+</ul>
+<p><strong>如何优化行锁：</strong></p>
+<ul>
+<li>让数据检索都通过索引来完成</li>
+<li>合理设计索引，尽量缩小锁的范围</li>
+<li>尽可能减少检索条件，避免间隙锁</li>
+<li>尽量控制事务大小，减少锁定资源量和锁定时间</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/05/Java/Spring%20Boot%E9%A1%B9%E7%9B%AE%E6%94%BE%E5%88%B0Tomcat/" rel="prev" title="Spring Boot 项目放到 Tomcat 运行">
+      <i class="fa fa-chevron-left"></i> Spring Boot 项目放到 Tomcat 运行
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL高级"><span class="nav-number">1.</span> <span class="nav-text">MySQL高级</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">1.1.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-性能分析"><span class="nav-number">1.2.</span> <span class="nav-text">SQL 性能分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#expalin-结果字段："><span class="nav-number">1.2.0.1.</span> <span class="nav-text">expalin 结果字段：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引优化"><span class="nav-number">1.3.</span> <span class="nav-text">索引优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-锁"><span class="nav-number">1.4.</span> <span class="nav-text">MySQL 锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#表锁"><span class="nav-number">1.4.1.</span> <span class="nav-text">表锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行锁"><span class="nav-number">1.4.2.</span> <span class="nav-text">行锁</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">pikachu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">97</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pikachu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

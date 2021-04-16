@@ -53,7 +53,7 @@
 <meta property="og:description" content="深入理解设计模式能够帮助自己更好的体会编程的思想">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-04-15T06:16:05.000Z">
-<meta property="article:modified_time" content="2021-04-01T13:50:34.133Z">
+<meta property="article:modified_time" content="2021-04-11T15:58:22.547Z">
 <meta property="article:author" content="pikachu">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
@@ -236,7 +236,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-01 21:50:34" itemprop="dateModified" datetime="2021-04-01T21:50:34+08:00">2021-04-01</time>
+                <time title="修改时间：2021-04-11 23:58:22" itemprop="dateModified" datetime="2021-04-11T23:58:22+08:00">2021-04-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -264,9 +264,11 @@
         <p>深入理解设计模式能够帮助自己更好的体会编程的思想</p>
 <a id="more"></a>
 
-<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><p><strong>设计模式</strong>（Design Pattern）是一套被反复使用、多人知晓的经过分类的代码设计经验的总结</p>
+
+
+<p><strong>设计模式</strong>（Design Pattern）是一套被反复使用、多人知晓的经过分类的代码设计经验的总结</p>
 <p>使用设计模式的目的：为了代码的可重用性、可维护性</p>
-<h2 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h2><p>单例模式，是最常用的一种软件设计模式，在它的核心结构中只包含一个被称为单例的特殊类，通过过单例模式可以保证系统中：应用该模式的一个类只有一个实例。</p>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p>单例模式，是最常用的一种软件设计模式，在它的核心结构中只包含一个被称为单例的特殊类，通过过单例模式可以保证系统中：应用该模式的一个类只有一个实例。</p>
 <p><strong>单例由两种实现形式：</strong></p>
 <ul>
 <li>饿汉式</li>
@@ -285,7 +287,7 @@
 <blockquote>
 <p>在实际开发中一般用的都时饿汉式，因为懒汉式存在<strong>线程安全</strong>的问题</p>
 </blockquote>
-<h2 id="工厂设计模式"><a href="#工厂设计模式" class="headerlink" title="工厂设计模式"></a>工厂设计模式</h2><p>作用：实现了<strong>创建者</strong>和<strong>调用者</strong>的分离</p>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>作用：实现了<strong>创建者</strong>和<strong>调用者</strong>的分离</p>
 <p>分类：</p>
 <ul>
 <li><p>简单工厂模式</p>
@@ -311,7 +313,7 @@
 <li>LoD（迪米特法则，Law of Demeter）：只与直接朋友通信，而避免和陌生人通信</li>
 </ul>
 </blockquote>
-
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2>
     </div>
 
     
@@ -373,7 +375,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式"><span class="nav-number">1.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单例设计模式"><span class="nav-number">1.1.</span> <span class="nav-text">单例设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂设计模式"><span class="nav-number">1.2.</span> <span class="nav-text">工厂设计模式</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-number">1.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式"><span class="nav-number">2.</span> <span class="nav-text">工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理模式"><span class="nav-number">3.</span> <span class="nav-text">代理模式</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -387,20 +389,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">102</span>
+        <span class="site-state-item-count">97</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

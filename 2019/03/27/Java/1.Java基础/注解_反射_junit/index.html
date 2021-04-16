@@ -45,16 +45,16 @@
   };
 </script>
 
-  <meta name="description" content="注解和注释有相似之处，但也有比较大的差别反射是实现Java动态性的方法之一">
+  <meta name="description" content="注解和注释有相似之处，但也有比较大的差别反射是实现 Java 动态性的方法之一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="注解&amp;反射&amp;junit">
 <meta property="og:url" content="http://yoursite.com/2019/03/27/Java/1.Java%E5%9F%BA%E7%A1%80/%E6%B3%A8%E8%A7%A3_%E5%8F%8D%E5%B0%84_junit/index.html">
 <meta property="og:site_name" content="Pikachu&#39;s Blog">
-<meta property="og:description" content="注解和注释有相似之处，但也有比较大的差别反射是实现Java动态性的方法之一">
+<meta property="og:description" content="注解和注释有相似之处，但也有比较大的差别反射是实现 Java 动态性的方法之一">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/3.27.jpg">
 <meta property="article:published_time" content="2019-03-26T22:54:43.000Z">
-<meta property="article:modified_time" content="2020-05-26T07:16:40.000Z">
+<meta property="article:modified_time" content="2021-04-16T03:11:31.137Z">
 <meta property="article:author" content="pikachu">
 <meta property="article:tag" content="学习笔记">
 <meta property="article:tag" content="Java">
@@ -242,7 +242,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-26 15:16:40" itemprop="dateModified" datetime="2020-05-26T15:16:40+08:00">2020-05-26</time>
+                <time title="修改时间：2021-04-16 11:11:31" itemprop="dateModified" datetime="2021-04-16T11:11:31+08:00">2021-04-16</time>
               </span>
 
           
@@ -256,7 +256,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>注解和注释有相似之处，但也有比较大的差别<br>反射是实现Java动态性的方法之一</p>
+        <p>注解和注释有相似之处，但也有比较大的差别<br>反射是实现 Java 动态性的方法之一</p>
 <a id="more"></a>
 <p><img src="/images/3.27.jpg" alt=""></p>
 <h1 id="一、注解"><a href="#一、注解" class="headerlink" title="一、注解"></a>一、注解</h1><h2 id="注解-Annotation"><a href="#注解-Annotation" class="headerlink" title="注解-Annotation"></a>注解-Annotation</h2><blockquote>
@@ -295,9 +295,9 @@
 </li>
 <li><p>定义了属性，在使用时需要对属性进行赋值</p>
 <ul>
-<li>如果定义属性时，使用default关键字给属性默认初始化值，则使用注解时，可以不进行属性的赋值</li>
-<li>如果<strong>只有一个</strong>属性需要赋值，并且属性的名称是<strong>value</strong>，则value可以省略，直接定义值即可</li>
-<li>数组赋值时，值使用{}包裹。如果数组中只有一个值，则{}可以省略</li>
+<li>如果定义属性时，使用 default 关键字给属性默认初始化值，则使用注解时，可以不进行属性的赋值</li>
+<li>如果<strong>只有一个</strong>属性需要赋值，并且属性的名称是 <strong>value</strong>，则 value 可以省略，直接定义值即可</li>
+<li>数组赋值时，值使用 <code>{}</code> 包裹。如果数组中只有一个值，则 <code>{}</code> 可以省略</li>
 </ul>
 </li>
 </ul>
@@ -317,7 +317,7 @@
 <li><p><strong>@Retention</strong>：描述注解的生命周期</p>
 <ul>
 <li>SOURCE –&gt; 在源文件中有效</li>
-<li>CLASS –&gt; 在class文件中有效</li>
+<li>CLASS –&gt; 在 class 文件中有效</li>
 <li>RUNTIME –&gt; 在运行时有效</li>
 </ul>
 </li>
@@ -394,7 +394,7 @@
 <p><strong>暴力反射：</strong></p>
 <p><code>setAccessible(true)</code> –&gt; 可将（成员变量/构造方法/成员方法）设置为不需要做安全检查，直接可以访问。</p>
 </blockquote>
-<h3 id="测试反射API动态操作：构造器、方法、属性"><a href="#测试反射API动态操作：构造器、方法、属性" class="headerlink" title="测试反射API动态操作：构造器、方法、属性"></a>测试反射API动态操作：构造器、方法、属性</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	String path = <span class="string">"test01.User"</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="comment">// 通过 forName 方法创建 Class 对象</span></span><br><span class="line">		Class&lt;User&gt; clazz = (Class&lt;User&gt;) Class.forName(path);</span><br><span class="line">		<span class="comment">// 通过 Class对象 创建 User类的对象</span></span><br><span class="line">		User u1 = clazz.newInstance(); <span class="comment">// 其实是调用了User的无参构造器，所以JavaBean必须要有无参构造器</span></span><br><span class="line">		</span><br><span class="line">		Constructor&lt;User&gt; c = clazz.getDeclaredConstructor(<span class="keyword">int</span><span class="class">.<span class="keyword">class</span>,<span class="title">int</span>.<span class="title">class</span>,<span class="title">String</span>.<span class="title">class</span>)</span>;</span><br><span class="line">		User u2 = c.newInstance(<span class="number">1001</span>,<span class="number">22</span>,<span class="string">"小强"</span>); <span class="comment">// 调用有参构造器创建对象</span></span><br><span class="line">		System.out.println(u2.getUname());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 通过反射API调用普通方法</span></span><br><span class="line">		User u3 = clazz.newInstance();</span><br><span class="line">		Method m = clazz.getDeclaredMethod(<span class="string">"setUname"</span>,String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">		m.invoke(u3, <span class="string">"小明"</span>); <span class="comment">// 激活该方法，传入对象及参数</span></span><br><span class="line">		System.out.println(u3.getUname());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 通过反射API操作属性</span></span><br><span class="line">		User u4 = clazz.newInstance();</span><br><span class="line">		Field f = clazz.getDeclaredField(<span class="string">"uname"</span>);</span><br><span class="line">		f.setAccessible(<span class="keyword">true</span>); <span class="comment">// 将属性设置为不需要做安全检查，直接可以访问。</span></span><br><span class="line">		f.set(u4, <span class="string">"小红"</span>); <span class="comment">// 通过反射直接写属性的值</span></span><br><span class="line">		</span><br><span class="line">		System.out.println(u4.getUname());</span><br><span class="line">		System.out.println(f.get(u4)); <span class="comment">// 通过反射直接读属性的值</span></span><br><span class="line">		</span><br><span class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="测试反射-API-动态操作：构造器、方法、属性"><a href="#测试反射-API-动态操作：构造器、方法、属性" class="headerlink" title="测试反射 API 动态操作：构造器、方法、属性"></a>测试反射 API 动态操作：构造器、方法、属性</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	String path = <span class="string">"test01.User"</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="comment">// 通过 forName 方法创建 Class 对象</span></span><br><span class="line">		Class&lt;User&gt; clazz = (Class&lt;User&gt;) Class.forName(path);</span><br><span class="line">		<span class="comment">// 通过 Class对象 创建 User类的对象</span></span><br><span class="line">		User u1 = clazz.newInstance(); <span class="comment">// 其实是调用了User的无参构造器，所以JavaBean必须要有无参构造器</span></span><br><span class="line">		</span><br><span class="line">		Constructor&lt;User&gt; c = clazz.getDeclaredConstructor(<span class="keyword">int</span><span class="class">.<span class="keyword">class</span>,<span class="title">int</span>.<span class="title">class</span>,<span class="title">String</span>.<span class="title">class</span>)</span>;</span><br><span class="line">		User u2 = c.newInstance(<span class="number">1001</span>,<span class="number">22</span>,<span class="string">"小强"</span>); <span class="comment">// 调用有参构造器创建对象</span></span><br><span class="line">		System.out.println(u2.getUname());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 通过反射API调用普通方法</span></span><br><span class="line">		User u3 = clazz.newInstance();</span><br><span class="line">		Method m = clazz.getDeclaredMethod(<span class="string">"setUname"</span>,String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">		m.invoke(u3, <span class="string">"小明"</span>); <span class="comment">// 激活该方法，传入对象及参数</span></span><br><span class="line">		System.out.println(u3.getUname());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 通过反射API操作属性</span></span><br><span class="line">		User u4 = clazz.newInstance();</span><br><span class="line">		Field f = clazz.getDeclaredField(<span class="string">"uname"</span>);</span><br><span class="line">		f.setAccessible(<span class="keyword">true</span>); <span class="comment">// 将属性设置为不需要做安全检查，直接可以访问。</span></span><br><span class="line">		f.set(u4, <span class="string">"小红"</span>); <span class="comment">// 通过反射直接写属性的值</span></span><br><span class="line">		</span><br><span class="line">		System.out.println(u4.getUname());</span><br><span class="line">		System.out.println(f.get(u4)); <span class="comment">// 通过反射直接读属性的值</span></span><br><span class="line">		</span><br><span class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="反射效率问题"><a href="#反射效率问题" class="headerlink" title="反射效率问题"></a>反射效率问题</h3><p>反射是一把双刃剑，在<strong>提升了编程灵活性</strong>的同时<strong>降低了程序运行效率</strong></p>
 <blockquote>
@@ -407,7 +407,7 @@
 </ul>
 <p>使用 junit 的方法：</p>
 <ul>
-<li>给需要测试的方法加上 @Test</li>
+<li>给需要测试的方法加上 <code>@Test</code></li>
 <li>导入 junit 依赖环境</li>
 </ul>
 <p>使用断言操作来处理结果：<br><code>Assert.assertEquals(期望的结果,运算的结果);</code></p>
@@ -444,8 +444,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/03/18/Java/1.Java%E5%9F%BA%E7%A1%80/String_StringBuilder_StringBuffer/" rel="prev" title="String_StirngBuilder_StringBuffer">
-      <i class="fa fa-chevron-left"></i> String_StirngBuilder_StringBuffer
+    <a href="/2019/03/18/Java/1.Java%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="prev" title="网络编程">
+      <i class="fa fa-chevron-left"></i> 网络编程
     </a></div>
       <div class="post-nav-item">
     <a href="/2019/03/28/Java/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" rel="next" title="数据结构与算法基本概念">
@@ -488,7 +488,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、注解"><span class="nav-number">1.</span> <span class="nav-text">一、注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注解-Annotation"><span class="nav-number">1.1.</span> <span class="nav-text">注解-Annotation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义注解"><span class="nav-number">1.2.</span> <span class="nav-text">自定义注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用反射机制读取注解"><span class="nav-number">1.3.</span> <span class="nav-text">使用反射机制读取注解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、反射"><span class="nav-number">2.</span> <span class="nav-text">二、反射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-Class-对象的方法："><span class="nav-number">2.0.1.</span> <span class="nav-text">获取 Class 对象的方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-Class-对象，获取类的信息（类名，属性，构造器，方法等）"><span class="nav-number">2.0.2.</span> <span class="nav-text">通过 Class 对象，获取类的信息（类名，属性，构造器，方法等）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试反射API动态操作：构造器、方法、属性"><span class="nav-number">2.0.3.</span> <span class="nav-text">测试反射API动态操作：构造器、方法、属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反射效率问题"><span class="nav-number">2.0.4.</span> <span class="nav-text">反射效率问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、junit-测试工具"><span class="nav-number">2.1.</span> <span class="nav-text">三、junit 测试工具</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、注解"><span class="nav-number">1.</span> <span class="nav-text">一、注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注解-Annotation"><span class="nav-number">1.1.</span> <span class="nav-text">注解-Annotation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义注解"><span class="nav-number">1.2.</span> <span class="nav-text">自定义注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用反射机制读取注解"><span class="nav-number">1.3.</span> <span class="nav-text">使用反射机制读取注解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、反射"><span class="nav-number">2.</span> <span class="nav-text">二、反射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-Class-对象的方法："><span class="nav-number">2.0.1.</span> <span class="nav-text">获取 Class 对象的方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-Class-对象，获取类的信息（类名，属性，构造器，方法等）"><span class="nav-number">2.0.2.</span> <span class="nav-text">通过 Class 对象，获取类的信息（类名，属性，构造器，方法等）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试反射-API-动态操作：构造器、方法、属性"><span class="nav-number">2.0.3.</span> <span class="nav-text">测试反射 API 动态操作：构造器、方法、属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反射效率问题"><span class="nav-number">2.0.4.</span> <span class="nav-text">反射效率问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、junit-测试工具"><span class="nav-number">2.1.</span> <span class="nav-text">三、junit 测试工具</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -502,20 +502,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">102</span>
+        <span class="site-state-item-count">97</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

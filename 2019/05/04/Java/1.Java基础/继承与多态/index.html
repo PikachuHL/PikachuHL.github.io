@@ -53,7 +53,7 @@
 <meta property="og:description" content="继承是多态的前提">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-04T03:45:21.000Z">
-<meta property="article:modified_time" content="2021-04-05T09:26:47.212Z">
+<meta property="article:modified_time" content="2021-04-08T07:26:23.778Z">
 <meta property="article:author" content="pikachu">
 <meta property="article:tag" content="继承">
 <meta property="article:tag" content="多态">
@@ -242,7 +242,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-05 17:26:47" itemprop="dateModified" datetime="2021-04-05T17:26:47+08:00">2021-04-05</time>
+                <time title="修改时间：2021-04-08 15:26:23" itemprop="dateModified" datetime="2021-04-08T15:26:23+08:00">2021-04-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -291,20 +291,20 @@
 <li>父类成员变量：super.成员变量名</li>
 </ul>
 <hr>
-<p>在子类构造方法中，通过<code>super();</code>调用父类的构造方法，</p>
-<p>注意：<code>super();</code>在子类的构造方法中如果存在，就必须是第一个语句</p>
+<p>在子类构造方法中，通过 <code>super();</code> 调用父类的构造方法，</p>
+<p>注意：<code>super();</code> 在子类的构造方法中如果存在，就必须是第一个语句</p>
 <hr>
 <p><strong>super &amp; this</strong></p>
 <p>super 关键字的用法有三种：</p>
 <ul>
+<li><p>在子类的构造方法中，访问父类的构造方法。</p>
+</li>
 <li><p>在子类的成员方法中，访问父类的成员变量。</p>
 </li>
 <li><p>在子类的成员方法中，访问父类的成员方法。</p>
 </li>
-<li><p>在子类的构造方法中，访问父类的构造方法。</p>
-</li>
 </ul>
-<p>super关键字用来访问父类内容，而this关键字用来访问本类内容。用法也有三种：</p>
+<p>super 关键字用来访问父类内容，而 this 关键字用来访问本类内容。用法也有三种：</p>
 <ul>
 <li><p>在本类的成员方法中，访问本类的成员变量。</p>
 </li>
@@ -313,13 +313,25 @@
 <li><p>在本类的构造方法中，访问本类的另一个构造方法。</p>
 <ul>
 <li>在第三种用法当中要注意：<ul>
-<li>this(…)调用也必须是构造方法的第一个语句，唯一一个。</li>
-<li>super和this两种构造调用，不能同时使用。</li>
+<li>this(…) 调用也必须是构造方法的第一个语句，唯一一个。</li>
+<li>super 和 this 两种构造调用，不能同时使用。</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+<blockquote>
+<p><strong>静态代码块，构造代码块，构造方法</strong> 的执行顺序：</p>
+<ol>
+<li>静态代码块：静态代码块属于类，在类载入内存时执行，只执行一次，优先级最高（高于 main 方法）。</li>
+<li>构造代码块：在 new 对象时执行，在静态代码块之后，构造方法之前执行。</li>
+<li>构造方法：在 new 对象时执行。</li>
+</ol>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Parent</span><span class="params">()</span></span>&#123;</span><br><span class="line">       System.out.println(<span class="string">"Parent的构造方法"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">static</span>&#123;</span><br><span class="line">       System.out.println(<span class="string">"Parent的静态代码块"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   &#123;</span><br><span class="line">       System.out.println(<span class="string">"Parent的构造代码块"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&gt;&#125;</span><br><span class="line"></span><br><span class="line">&gt;<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Parent</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Son</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	System.out.println(<span class="string">"Son的构造方法"</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">static</span> &#123;</span><br><span class="line">	System.out.println(<span class="string">"Son的静态代码块"</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   &#123;</span><br><span class="line">	System.out.println(<span class="string">"Son的构造代码块"</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       System.out.println(<span class="string">"main方法"</span>);</span><br><span class="line">       Son son = <span class="keyword">new</span> Son();</span><br><span class="line">   &#125;</span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;<span class="comment">// 运行结果</span></span><br><span class="line">&gt;<span class="comment">// Parent的静态代码块</span></span><br><span class="line">&gt;<span class="comment">// Son的静态代码块</span></span><br><span class="line">&gt;<span class="comment">// main方法</span></span><br><span class="line">&gt;<span class="comment">// Parent的构造代码块</span></span><br><span class="line">&gt;<span class="comment">// Parent的构造方法</span></span><br><span class="line">&gt;<span class="comment">// Son的构造代码块</span></span><br><span class="line">&gt;<span class="comment">// Son的构造方法</span></span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
 <h3 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h3><p>关键字：<strong>abstract</strong></p>
 <p><strong>抽象方法</strong>和<strong>抽象类</strong>：</p>
 <ul>
@@ -339,19 +351,32 @@
 </ul>
 <p><strong>接口中的内容：</strong></p>
 <ol>
-<li><p>成员变量其实是<strong>常量</strong>，格式：<br>[public] [static] [final] 数据类型 常量名称 = 数据值;<br>注意：<br> 常量必须进行赋值，而且一旦赋值不能改变。<br> 常量名称完全大写，用下划线进行分隔。</p>
+<li>成员变量其实是<strong>常量</strong>，格式：<br><code>[public] [static] [final] 数据类型 常量名称 = 数据值;</code><br>注意：<ul>
+<li>常量必须进行赋值，而且一旦赋值不能改变。</li>
+<li>常量名称完全大写，用下划线进行分隔。</li>
+</ul>
 </li>
-<li><p>接口中最重要的就是<strong>抽象方法</strong>，格式：<br>[public] [abstract] 返回值类型 方法名称(参数列表);<br>注意：实现类必须覆盖重写接口所有的抽象方法，除非实现类是抽象类。</p>
+<li>接口中最重要的就是<strong>抽象方法</strong>，格式：<br><code>[public] [abstract] 返回值类型 方法名称(参数列表);</code><br>注意：</li>
+</ol>
+<ul>
+<li>实现类必须覆盖重写接口所有的抽象方法，除非实现类是抽象类。</li>
+</ul>
+<ol start="3">
+<li>从 Java 8 开始，接口里允许定义<strong>默认方法</strong>，格式：<br> <code>[public] default 返回值类型 方法名称(参数列表) { 方法体 }</code><br> 注意：<ul>
+<li>默认方法也可以被覆盖重写</li>
+</ul>
 </li>
-<li><p>从Java 8开始，接口里允许定义<strong>默认方法</strong>，格式：<br>[public] default 返回值类型 方法名称(参数列表) { 方法体 }<br>注意：默认方法也可以被覆盖重写</p>
+<li>从 Java 8 开始，接口里允许定义<strong>静态方法</strong>，格式：<br> <code>[public] static 返回值类型 方法名称(参数列表) { 方法体 }</code><br> 注意：<ul>
+<li>通过接口名称进行调用，不能通过实现类对象调用接口静态方法</li>
+</ul>
 </li>
-<li><p>从Java 8开始，接口里允许定义<strong>静态方法</strong>，格式：<br>[public] static 返回值类型 方法名称(参数列表) { 方法体 }<br>注意：应该通过接口名称进行调用，不能通过实现类对象调用接口静态方法</p>
-</li>
-<li><p>从Java 9开始，接口里允许定义<strong>私有方法</strong>，格式：<br>普通私有方法：private 返回值类型 方法名称(参数列表) { 方法体 }<br>静态私有方法：private static 返回值类型 方法名称(参数列表) { 方法体 }<br>注意：private的方法只有接口自己才能调用，不能被实现类或别人使用。</p>
+<li>从 Java 9 开始，接口里允许定义<strong>私有方法</strong>，格式：<br> 普通私有方法：<code>private 返回值类型 方法名称(参数列表) { 方法体 }</code><br> 静态私有方法：<code>private static 返回值类型 方法名称(参数列表) { 方法体 }</code><br> 注意：<ul>
+<li>private 的方法只有接口自己才能调用，不能被实现类或别人使用。</li>
+</ul>
 </li>
 </ol>
 <p>使用接口的注意事项：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 接口是没有静态代码块或者构造方法的。</span><br><span class="line"><span class="number">2</span>. 一个类的直接父类是唯一的，但是一个类可以同时实现多个接口。</span><br><span class="line">格式：</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyInterfaceImpl</span> <span class="keyword">implements</span> <span class="title">MyInterfaceA</span>, <span class="title">MyInterfaceB</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 覆盖重写所有抽象方法</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="number">3</span>. 如果实现类所实现的多个接口当中，存在重复的抽象方法，那么只需要覆盖重写一次即可。</span><br><span class="line"><span class="number">4</span>. 如果实现类没有覆盖重写所有接口当中的所有抽象方法，那么实现类就必须是一个抽象类。</span><br><span class="line"><span class="number">5</span>. 如果实现类锁实现的多个接口当中，存在重复的默认方法，那么实现类一定要对冲突的默认方法进行覆盖重写。</span><br><span class="line"><span class="number">6</span>. 一个类如果直接父类当中的方法，和接口当中的默认方法产生了冲突，优先用父类当中的方法。</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 接口是没有静态代码块或者构造方法的。</span><br><span class="line"><span class="number">2</span>. 一个类的直接父类是唯一的，但是一个类可以同时实现多个接口。</span><br><span class="line">格式：</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyInterfaceImpl</span> <span class="keyword">implements</span> <span class="title">MyInterfaceA</span>, <span class="title">MyInterfaceB</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 覆盖重写所有抽象方法</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="number">3</span>. 如果实现类所实现的多个接口当中，存在重复的抽象方法，那么只需要覆盖重写一次即可。</span><br><span class="line"><span class="number">4</span>. 如果实现类没有覆盖重写所有接口当中的所有抽象方法，那么实现类就必须是一个抽象类。</span><br><span class="line"><span class="number">5</span>. 如果实现类所实现的多个接口当中，存在重复的默认方法，那么实现类一定要对冲突的默认方法进行覆盖重写。</span><br><span class="line"><span class="number">6</span>. 一个类如果直接父类当中的方法，和接口当中的默认方法产生了冲突，优先用父类当中的方法。</span><br></pre></td></tr></table></figure>
 
 
 
@@ -375,6 +400,7 @@
 <p>这就叫做<strong>对象</strong>的多态性</p>
 <p>PS：多态性是针对于<strong>对象</strong>来说的</p>
 </blockquote>
+<p>简单一句话：<strong>父类引用</strong>指向<strong>子类对象</strong></p>
 <p>定义格式：<code>Animal animal = new Dog();</code></p>
 <hr>
 <p><strong>多态</strong>中成员变量和成员方法的访问规则和<strong>继承</strong>中是一模一样的</p>
@@ -393,7 +419,7 @@
 <li>向上转型后，便<strong>无法调用子类原本特有的方法</strong></li>
 </ul>
 <p>如果想要调用子类原本特有的方法就要 向下转型</p>
-<p>但是向下转型一定要注意安全性问题（不要把Cat转为Dog）</p>
+<p>但是向下转型一定要注意安全性问题（不要把 Cat 转为 Dog）</p>
 </blockquote>
 <p>向下转型时要进行判断，通过 关键字：<strong>instanceof</strong></p>
 <p><code>变量名 instanceof 类名</code> –&gt; 判断该变量是不是属于该类</p>
@@ -473,24 +499,26 @@
 </ul>
 <h3 id="1、成员内部类"><a href="#1、成员内部类" class="headerlink" title="1、成员内部类"></a>1、成员内部类</h3><p><strong>概念：</strong>定义在<strong>类内部</strong>的类</p>
 <p><strong>定义：</strong>成员内部类和普通类的定义没有差别</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义成员内部类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义成员内部类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123; </span><br><span class="line">        <span class="comment">// Inner 类就是成员内部类</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<p><strong>访问：</strong>内用外，随意访问；外用内，需要内部类对象</p>
+<p><strong>访问：</strong>内用外，随意访问；外用内，需要内部类对象。</p>
 <p><strong>使用成员内部类有两种方式：</strong></p>
 <ol>
-<li>间接方式：在外部类的方法当中，使用内部类；然后main只是调用外部类的方法。</li>
-<li>直接方式，公式：<br>类名称 对象名 = new 类名称();<br><code>外部类名称.内部类名称 对象名 = new 外部类名称().new 内部类名称();</code></li>
+<li>间接方式：在外部类的方法当中，使用内部类；然后 main 只是调用外部类的方法。</li>
+<li>直接方式：</li>
+<li><code>Inner inner = new Inner()</code></li>
+<li>``Outer.Inner inner = new Outer().new Inner();`</li>
 </ol>
 <p>在内部类的方法中使用外部类的成员变量（重名）：</p>
 <ul>
 <li><code>外部类名称.this.外部类成员变量名;</code></li>
 </ul>
-<h3 id="2、局部内部类"><a href="#2、局部内部类" class="headerlink" title="2、局部内部类"></a>2、局部内部类</h3><p><strong>概念：</strong>局部内部类：定义在<strong>方法内部</strong>的类</p>
-<p>“局部”：这个类只有在当前方法的内部可以使用，出了方法就不能再用了</p>
-<p><strong>定义：</strong> <em>class 的前面没有权限修饰符</em></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OuterMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2、局部内部类"><a href="#2、局部内部类" class="headerlink" title="2、局部内部类"></a>2、局部内部类</h3><p><strong>概念：</strong>定义在<strong>方法内部</strong>的类</p>
+<p>“局部”：只能在当前方法内使用，出了方法就不能用了</p>
+<p><strong>定义：</strong> class 的前面没有权限修饰符</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OuterMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// 定义局部内部类</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -502,7 +530,7 @@
 <li>局部内部类：<strong>不用</strong> 权限修饰符</li>
 </ul>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">局部内部类，如果希望访问所在方法的局部变量，那么这个局部变量必须是【有效final的】。</span><br><span class="line"></span><br><span class="line">备注：从Java 8+开始，只要局部变量事实不变，那么final关键字可以省略。</span><br><span class="line"></span><br><span class="line">原因：</span><br><span class="line">1. new出来的对象在堆内存当中。</span><br><span class="line">2. 局部变量是跟着方法走的，在栈内存当中。</span><br><span class="line">3. 方法运行结束之后，立刻出栈，局部变量就会立刻消失。</span><br><span class="line">4. 但是 new 出来的对象会在堆当中持续存在，直到垃圾回收消失。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">局部内部类，如果希望访问所在方法的局部变量，那么这个局部变量必须是【有效final的】。</span><br><span class="line"></span><br><span class="line">备注：从 Java 8 开始，只要局部变量事实不变，那么 final 关键字可以省略。</span><br><span class="line"></span><br><span class="line">原因：</span><br><span class="line">1. new出来的对象在堆内存当中。</span><br><span class="line">2. 局部变量是跟着方法走的，在栈内存当中。</span><br><span class="line">3. 方法运行结束之后，立刻出栈，局部变量就会立刻消失。</span><br><span class="line">4. 但是 new 出来的对象会在堆当中持续存在，直到垃圾回收消失。</span><br></pre></td></tr></table></figure>
 
 
 
@@ -511,7 +539,7 @@
 <li>如果接口的实现类（或者是父类的子类）<strong>只需要使用唯一的一次</strong>，<br>那么这种情况下就可以<strong>省略掉该类的定义</strong>，而改为使用【<strong>匿名内部类</strong>】。</li>
 </ul>
 <p><strong>定义：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">匿名内部类的定义格式：</span></span><br><span class="line"><span class="comment">接口名称 对象名 = new 接口名称() &#123;</span></span><br><span class="line"><span class="comment">    // 覆盖重写所有抽象方法</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">上述定义格式中，大括号内部的部分为 匿名内部类</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// 定义一个匿名内部类，实现了 MyInterface 接口</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    MyInterface obj = <span class="keyword">new</span> MyInterface()&#123;</span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"实现了接口的方法"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">匿名内部类的定义格式：</span></span><br><span class="line"><span class="comment">接口名称 对象名 = new 接口名称() &#123;</span></span><br><span class="line"><span class="comment">    // 覆盖重写所有抽象方法</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">上述定义格式中，大括号内部的部分为 匿名内部类</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个匿名内部类，实现了 MyInterface 接口</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    MyInterface obj = <span class="keyword">new</span> MyInterface()&#123;</span><br><span class="line">      	<span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"实现了接口的方法"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -541,8 +569,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/05/03/Java/1.Java%E5%9F%BA%E7%A1%80/Java%20%E5%B8%B8%E7%94%A8%20API/" rel="prev" title="Java常用API">
-      <i class="fa fa-chevron-left"></i> Java常用API
+    <a href="/2019/05/03/Java/1.Java%E5%9F%BA%E7%A1%80/Java%E5%B8%B8%E7%94%A8%E7%B1%BB/" rel="prev" title="Java常用类">
+      <i class="fa fa-chevron-left"></i> Java常用类
     </a></div>
       <div class="post-nav-item">
     <a href="/2019/05/06/Java/1.Java%E5%9F%BA%E7%A1%80/JDBC_%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/" rel="next" title="JDBC_数据库连接池">
@@ -599,20 +627,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">102</span>
+        <span class="site-state-item-count">97</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

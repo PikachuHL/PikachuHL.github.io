@@ -45,20 +45,20 @@
   };
 </script>
 
-  <meta name="description" content="Java.IO基本概念及File类">
+  <meta name="description" content="IO 基本概念">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IO">
 <meta property="og:url" content="http://yoursite.com/2019/03/06/Java/1.Java%E5%9F%BA%E7%A1%80/IO/index.html">
 <meta property="og:site_name" content="Pikachu&#39;s Blog">
-<meta property="og:description" content="Java.IO基本概念及File类">
+<meta property="og:description" content="IO 基本概念">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/images/3.6.jpg">
+<meta property="og:image" content="http://yoursite.com/images/IO/3.6.jpg">
 <meta property="article:published_time" content="2019-03-06T12:56:32.000Z">
-<meta property="article:modified_time" content="2020-05-26T07:16:38.000Z">
+<meta property="article:modified_time" content="2021-04-12T08:10:54.101Z">
 <meta property="article:author" content="pikachu">
 <meta property="article:tag" content="IO">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/3.6.jpg">
+<meta name="twitter:image" content="http://yoursite.com/images/IO/3.6.jpg">
 
 <link rel="canonical" href="http://yoursite.com/2019/03/06/Java/1.Java%E5%9F%BA%E7%A1%80/IO/">
 
@@ -238,7 +238,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-26 15:16:38" itemprop="dateModified" datetime="2020-05-26T15:16:38+08:00">2020-05-26</time>
+                <time title="修改时间：2021-04-12 16:10:54" itemprop="dateModified" datetime="2021-04-12T16:10:54+08:00">2021-04-12</time>
               </span>
 
           
@@ -252,147 +252,264 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Java.IO基本概念及File类</p>
+        <p>IO 基本概念</p>
 <a id="more"></a>
-<p><img src="/images/3.6.jpg" alt=""></p>
-<hr>
-<h2 id="Java-IO"><a href="#Java-IO" class="headerlink" title="Java.IO"></a>Java.IO</h2><h3 id="Java-IO包中最重要的就是5个类和三个接口"><a href="#Java-IO包中最重要的就是5个类和三个接口" class="headerlink" title="Java.IO包中最重要的就是5个类和三个接口"></a>Java.IO包中最重要的就是5个类和三个接口</h3><ul>
-<li>File  文件类</li>
-<li>InputStream  字节输入流</li>
-<li>OutputStream  字节输出流</li>
-<li>Reader  字符输入流</li>
-<li>Writer  字符输出流</li>
-<li>Closeable  关闭流接口</li>
-<li>Flushable  刷新流接口</li>
-<li>Serializable  序列化接口</li>
+
+<p><img src="/images/IO/3.6.jpg" alt="3.6"></p>
+<h2 id="IO中的四大抽象基类"><a href="#IO中的四大抽象基类" class="headerlink" title="IO中的四大抽象基类"></a>IO中的四大抽象基类</h2><ul>
+<li><strong>字节</strong>输入、输出流：<code>InputStream</code>，<code>OutputStream</code></li>
 </ul>
-<h3 id="流的分类"><a href="#流的分类" class="headerlink" title="流的分类"></a>流的分类</h3><p>按方向分：</p>
-<ul>
-<li>输入流</li>
-<li>输出流</li>
-</ul>
-<p>按功能分：</p>
-<ul>
-<li>节点流：直接操作数据源，所有的IO操作必须经过节点流进行</li>
-<li>处理流（包装流）：为了简化操作和提高性能</li>
-</ul>
-<p>按数据分：</p>
-<ul>
-<li>字节流</li>
-<li>字符流（底层还是基于字节流操作，自动搜寻了指定的码表）</li>
-</ul>
-<h3 id="API的使用"><a href="#API的使用" class="headerlink" title="API的使用"></a>API的使用</h3><ul>
-<li>先看继承体系</li>
-<li>再看构造器（有/无）</li>
-<li>最后看方法（方法名、接收参数、返回类型、调用者）</li>
-</ul>
-<h3 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h3><h4 id="构建File对象："><a href="#构建File对象：" class="headerlink" title="构建File对象："></a>构建File对象：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// File(String Path)</span></span><br><span class="line">File src = <span class="keyword">new</span> File(<span class="string">"C:/Users/pikachu/eclipse-workspace/sxt.Io/Java学习路线图.jpg"</span>);</span><br><span class="line"><span class="comment">// File(String parent, String child)</span></span><br><span class="line">File src = <span class="keyword">new</span> File(<span class="string">"C:/Users/pikachu/eclipse-workspace/sxt.Io"</span>,<span class="string">"Java学习路线图.jpg"</span>);</span><br><span class="line"><span class="comment">// File(File parent, String child)</span></span><br><span class="line">File src = <span class="keyword">new</span> File(<span class="keyword">new</span> File(<span class="string">"C:/Users/pikachu/eclipse-workspace/sxt.Io"</span>),<span class="string">"Java学习路线图.jpg"</span>);</span><br></pre></td></tr></table></figure>
-<h4 id="File类的常用方法："><a href="#File类的常用方法：" class="headerlink" title="File类的常用方法："></a>File类的常用方法：</h4><p>1.基本信息：</p>
-<ul>
-<li>getName -&gt;  获得文件名</li>
-<li>getPath -&gt;    获得传入的路径</li>
-<li>getAbsolutePath -&gt; 获得绝对路径</li>
-<li>getParent -&gt; 获得父路径</li>
-</ul>
-<p>2.文件状态：</p>
-<ul>
-<li>exists -&gt; 是否存在</li>
-<li>isFile -&gt; 是否是文件</li>
-<li>isDirectory -&gt; 是否是文件夹<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断文件状态的标准代码</span></span><br><span class="line">File src = <span class="keyword">new</span> File(<span class="string">"xxx"</span>);</span><br><span class="line"><span class="keyword">if</span>(src == <span class="keyword">null</span> || !src.exists()) &#123;</span><br><span class="line">	System.out.println(<span class="string">"文件不存在"</span>);</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(src.isFile()) &#123;</span><br><span class="line">	System.out.println(<span class="string">"文件操作"</span>);</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">	System.out.println(<span class="string">"目录操作"</span>);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>3.文件长度：</p>
-<ul>
-<li>length() -&gt; 返回文件的长度（字节数），文件夹的length()返回0</li>
-</ul>
-<p>4.创建&amp;删除文件：</p>
-<ul>
-<li>createNewFile() -&gt; 不存在创建成功，已存在创建失败</li>
-<li>delete()<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建文件</span></span><br><span class="line">File src = <span class="keyword">new</span> File(<span class="string">"C:/Users/pikachu/eclipse-workspace/sxt.Io/Java学习路线图02.jpg"</span>);</span><br><span class="line"><span class="keyword">boolean</span> flag = src.createNewFile(); <span class="comment">// 返回是否创建成功</span></span><br><span class="line"><span class="comment">// 删除文件</span></span><br><span class="line">flag = src.delete(); <span class="comment">// 返回是否删除成功</span></span><br></pre></td></tr></table></figure>
+<p>  <strong>InputStream</strong> 类常用方法：</p>
+<ol>
+<li><p><code>read()</code>：每次读取一个字节的数据，返回读到的字节对应的 int 整数（0~255），没读到数据返回 <code>-1</code></p>
+</li>
+<li><p><code>read(byte[] b)</code>：每次读取 <code>b.length</code> 个字节，存到 b 中，返回本次读到的字节数量。没读到数据返回 <code>-1</code>（<strong>调用了 3</strong>）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">byte</span> b[])</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> read(b, <span class="number">0</span>, b.length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 
 </li>
-</ul>
-<p>5.创建目录（文件夹）：</p>
-<ul>
-<li>mkdir() -&gt; 如果上级目录不存在，则会创建失败</li>
-<li>mkdirs() -&gt; 如果上级目录不存在，则一同创建</li>
-</ul>
-<p>6.列出下级目录：</p>
-<ul>
-<li>list() -&gt; 列出下级文件名，返回一个数组</li>
-<li>listFiles() -&gt; 列出下级文件对象，返回一个数组</li>
-<li>listRoots() -&gt; 列出所有根目录，返回一个数组</li>
-</ul>
-<p>7.统计文件夹大小</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> sxt.IO;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 统计文件夹的大小</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> pikachu</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DirCount</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">long</span> Count;</span><br><span class="line">	<span class="keyword">private</span> String path;</span><br><span class="line">	<span class="keyword">private</span> File src;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">DirCount</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.path = path;</span><br><span class="line">		<span class="keyword">this</span>.src = <span class="keyword">new</span> File(path);</span><br><span class="line">		count(<span class="keyword">this</span>.src);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 统计文件夹大小</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">count</span><span class="params">(File src)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">null</span> != src &amp;&amp; src.exists()) &#123;</span><br><span class="line">			<span class="keyword">if</span>(src.isFile()) &#123;</span><br><span class="line">				Count += src.length();</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(src.isDirectory()) &#123;</span><br><span class="line">				<span class="keyword">for</span>(File s:src.listFiles()) &#123;</span><br><span class="line">					count(s);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// get方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> Count;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 测试</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		DirCount dc = <span class="keyword">new</span> DirCount(<span class="string">"C:\\Users\\pikachu\\eclipse-workspace\\sxt.Io"</span>);</span><br><span class="line">		System.out.println(dc.getCount());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="编码与解码"><a href="#编码与解码" class="headerlink" title="编码与解码"></a>编码与解码</h2><ul>
-<li>编码： 字符 -&gt; 字节</li>
-<li>解码： 字节 -&gt; 字符</li>
-</ul>
-<h2 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h2><ul>
-<li>UTF-8</li>
-<li>GBK</li>
-<li>Unicode</li>
-<li>……</li>
-</ul>
-<h2 id="字符串进行编码"><a href="#字符串进行编码" class="headerlink" title="字符串进行编码"></a>字符串进行编码</h2><p>getBytes() 方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"哈哈你好"</span>;</span><br><span class="line"><span class="keyword">byte</span>[] b = s.getBytes(); <span class="comment">// 返回一个字节数组</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="字节进行解码"><a href="#字节进行解码" class="headerlink" title="字节进行解码"></a>字节进行解码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="keyword">new</span> String(b); <span class="comment">// 调用String类的构造器，传入一个字节数组</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="乱码的原因"><a href="#乱码的原因" class="headerlink" title="乱码的原因"></a>乱码的原因</h2><ul>
-<li>字节数不够</li>
-<li>字符集不统一</li>
-</ul>
-<h2 id="IO中的四大抽象基类"><a href="#IO中的四大抽象基类" class="headerlink" title="IO中的四大抽象基类"></a>IO中的四大抽象基类</h2><ul>
-<li>InputStream –&gt; 字节输入流</li>
-<li>OutputStream –&gt; 字节输出流</li>
-<li>Reader –&gt; 字符输入流</li>
-<li>Writer –&gt; 字符输出流</li>
-</ul>
-<h2 id="IO流操作的标准步骤"><a href="#IO流操作的标准步骤" class="headerlink" title="IO流操作的标准步骤"></a>IO流操作的标准步骤</h2><ol>
-<li>创建源</li>
-<li>选择流</li>
-<li>操作</li>
-<li>释放资源</li>
 </ol>
-<hr>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestInputStream01</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 创建源</span></span><br><span class="line">		File src = <span class="keyword">new</span> File(<span class="string">"C:/Users/pikachu/eclipse-workspace/sxt.Io/src/sxt.txt"</span>);</span><br><span class="line">		<span class="comment">// 选择流</span></span><br><span class="line">		InputStream is = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			is = <span class="keyword">new</span> FileInputStream(src);</span><br><span class="line">			<span class="keyword">int</span> temp;</span><br><span class="line">			<span class="comment">// 操作</span></span><br><span class="line">			<span class="keyword">while</span>((temp=is.read())!=-<span class="number">1</span>) &#123;</span><br><span class="line">				System.out.print((<span class="keyword">char</span>)temp);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">			<span class="comment">// 释放资源</span></span><br><span class="line">			<span class="keyword">if</span>(is!=<span class="keyword">null</span>) &#123;</span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					is.close();</span><br><span class="line">				&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">					<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">					e.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p><code>read(byte[] b, int off, int len)</code>：每次读取 len 个字节，存到 b 中，从下标为 off 的位置开始存，返回本次读到的字节数量。没读到数据返回 <code>-1</code></p>
+</li>
+<li><p><code>close()</code>：通知操作系统释放资源</p>
+</li>
+</ol>
+<p>  <strong>OutputStream</strong> 类常用方法：</p>
+<ol>
+<li><p><code>write(byte[] b)</code>：将 b 中的数据输出（<strong>调用了 2</strong>）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">byte</span> b[])</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    write(b, <span class="number">0</span>, b.length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p><code>write(byte[] b, int off, int len)</code>：将 b 中从 off 下标位置开始的 len 个字节输出</p>
+</li>
+<li><p><code>flush()</code>：刷新此次输出流，强制写出缓冲的数据。</p>
+</li>
+<li><p><code>close()</code>：通知操作系统释放资源（带有 flush 功能）</p>
+</li>
+</ol>
+<ul>
+<li><strong>字符</strong>输入、输出流：<code>Reader</code>， <code>Writer</code></li>
+</ul>
+<p>  <strong>Reader</strong> 类常用方法：</p>
+<ol>
+<li><p><code>read()</code>：每次读取一个字符，返回该字符对应的编码数字（int 0~65535）</p>
+</li>
+<li><p><code>read(char[] cbuf)</code>：每次读取 <code>cbuf.length</code> 个字符，存到 cbuf 中，返回本次读到的字符数量。没读到数据返回 <code>-1</code>（<strong>调用了 3</strong>）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">char</span> cbuf[])</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> read(cbuf, <span class="number">0</span>, cbuf.length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><code>read(char[] cbuf, int off, int len)</code>：每次读取 len 个字符，存到 b 中，从下标为 off 的位置开始存，返回本次读到的字符数量。没读到数据返回 <code>-1</code></li>
+</ol>
+<p>  <strong>Writer</strong> 类常用方法：</p>
+<ol>
+<li><p><code>write(char[] cbuf)</code>：将 cbuf 中的数据写出（<strong>调用了 2</strong>）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">char</span> cbuf[])</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    write(cbuf, <span class="number">0</span>, cbuf.length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p><code>write(char[] cbuf, int off. int len)</code>：将 cbuf 中从 off 下标位置开始的 len 个字符输出</p>
+</li>
+<li><p><code>append(CharSequence csq)</code>：返回 Writer 对象，流式打点连续输出 <code>writer.append(a).append(b).append(c)</code>。</p>
+<p>字符串也实现了 <code>CharSequence</code> 接口，可以直接作为方法的参数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Writer <span class="title">append</span><span class="params">(CharSequence csq)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (csq == <span class="keyword">null</span>)</span><br><span class="line">        write(<span class="string">"null"</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        write(csq.toString());</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ol>
+<h2 id="IO流操作的标准步骤"><a href="#IO流操作的标准步骤" class="headerlink" title="IO流操作的标准步骤"></a>IO流操作的标准步骤</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * IO 操作基本步骤：</span></span><br><span class="line"><span class="comment"> * 		1. 创建源</span></span><br><span class="line"><span class="comment"> * 		2. 选择流</span></span><br><span class="line"><span class="comment"> * 		3. 操作</span></span><br><span class="line"><span class="comment"> * 		4. 释放资源</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestInputStream01</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 1. 创建源</span></span><br><span class="line">		File src = <span class="keyword">new</span> File(<span class="string">"C:/Users/pikachu/eclipse-workspace/sxt.Io/src/sxt.txt"</span>);</span><br><span class="line">		<span class="comment">// 2. 选择流</span></span><br><span class="line">		InputStream is = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			is = <span class="keyword">new</span> FileInputStream(src);</span><br><span class="line">			<span class="keyword">int</span> temp;</span><br><span class="line">			<span class="comment">// 3. 操作</span></span><br><span class="line">			<span class="keyword">while</span>((temp=is.read())!=-<span class="number">1</span>) &#123;</span><br><span class="line">				System.out.print((<span class="keyword">char</span>)temp);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">			<span class="comment">// 4. 释放资源</span></span><br><span class="line">			<span class="keyword">if</span>(is!=<span class="keyword">null</span>) &#123;</span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					is.close();</span><br><span class="line">				&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">					e.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="文件字节流"><a href="#文件字节流" class="headerlink" title="文件字节流"></a>文件字节流</h2><ul>
-<li><p>FileInputStream </p>
-<p>文件字节输入流，通过字节方式读取文件<br>全字符请考虑：FileReader</p>
+<li><p><strong>FileInputStream：</strong>文件字节输入流，通过字节方式读取文件</p>
+<p>构造方法：</p>
+<ol>
+<li><p><code>new FileInputStream(File file)</code>：传入文件对象创建流，如果对应文件不存在，则抛出 <code>FileNotFoundException</code></p>
 </li>
-<li><p>FileOutputStream</p>
-<p>文件字节输出流，通过字节的方式写出或追加数据到文件<br>全字符请考虑：FileWriter</p>
+<li><p><code>new FileInputStream(String name)</code>：传入文件名创建流（<strong>调用了 1</strong>）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">FileInputStream</span><span class="params">(String name)</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">    <span class="comment">// 这里帮忙new了一个File对象，调用了第一种构造方法</span></span><br><span class="line">    <span class="keyword">this</span>(name != <span class="keyword">null</span> ? <span class="keyword">new</span> File(name) : <span class="keyword">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
 </li>
 </ul>
-<h2 id="文件拷贝"><a href="#文件拷贝" class="headerlink" title="文件拷贝"></a>文件拷贝</h2><p>利用FileInputStream和FileOutputStream进行文件的拷贝</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 创建源</span></span><br><span class="line">	File src = <span class="keyword">new</span> File(<span class="string">"C:/Users/pikachu/eclipse-workspace/sxt.Io/Java学习路线图.jpg"</span>);</span><br><span class="line">	File dest = <span class="keyword">new</span> File(<span class="string">"dest2.jpg"</span>);</span><br><span class="line">	<span class="comment">// 选择流</span></span><br><span class="line">	InputStream is = <span class="keyword">null</span>;</span><br><span class="line">	OutputStream os = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		is = <span class="keyword">new</span> FileInputStream(src);</span><br><span class="line">		os = <span class="keyword">new</span> FileOutputStream(dest<span class="comment">/*,true*/</span>);</span><br><span class="line">		<span class="comment">// 操作</span></span><br><span class="line">		<span class="keyword">byte</span>[] datas = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">		<span class="keyword">int</span> len = -<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span>((len = is.read(datas))!= -<span class="number">1</span>) &#123;</span><br><span class="line">			os.write(datas, <span class="number">0</span>, len); <span class="comment">// 写入	</span></span><br><span class="line">		&#125;</span><br><span class="line">		os.flush(); <span class="comment">// 强制刷新</span></span><br><span class="line">	&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">		<span class="comment">// 释放资源</span></span><br><span class="line">		<span class="keyword">if</span>(os!=<span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				os.close();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(is!=<span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				is.close();</span><br><span class="line">			&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>FileOutputStream：</strong>文件字节输出流，通过字节的方式写出或追加数据到文件</p>
+<p>构造方法：</p>
+<ol>
+<li><p><code>new FileOutputStream(File file)</code>：传入文件对象创建流（这个文件可以不存在，不存在则会新建文件）（<strong>调用了 2</strong>）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">FileOutputStream</span><span class="params">(File file)</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">    <span class="comment">// append为false，每次write都从头添加</span></span><br><span class="line">    <span class="keyword">this</span>(file, <span class="keyword">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+
+</li>
+</ol>
+</li>
+</ul>
+<ol start="2">
+<li><p><code>new FileOutputStream(File file, boolean append)</code>：传入文件对象同时传入是否开启追加模式</p>
+</li>
+<li><p><code>new FileOutputStream(String name)</code>：传入文件名（<strong>调用了 1</strong>）</p>
+</li>
+<li><p><code>new FileOutputStream(String name, boolean append)</code>：传入文件名和是否开启追加模式（<strong>调用了 2</strong>）</p>
 <blockquote>
-<p>IO流其实就是一个管子，把字节或字符放到管子里面进行操作</p>
+<p>追加模式：</p>
+<p>在创建输出流对象的时候相当于打开了一次文件，而是否开启追加模式决定了这次对文件的操作是<strong>清空文件内容后再写</strong>还是<strong>在原有内容后追加</strong>。</p>
+<p>一个输出流对象多次调用 <code>write()</code> 方法和追加模式无关，就是追加往文件里面写，后面的 <code>write()</code> 不会覆盖前面 <code>write()</code> 的内容</p>
 </blockquote>
+</li>
+</ol>
+<blockquote>
+<p>try-with-resource 简化流的释放（JDK1.7 开始提供）</p>
+<p>把流的创建写在 try 后面的括号里面，就不用在 finally 里面手动关闭流了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 多个流直接使用 分号 分隔</span></span><br><span class="line"><span class="keyword">try</span>(InputStream is = <span class="keyword">new</span> FileInputStream(src))&#123;</span><br><span class="line">    </span><br><span class="line">&#125;<span class="keyword">catch</span>()&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<h2 id="文件拷贝"><a href="#文件拷贝" class="headerlink" title="文件拷贝"></a>文件拷贝</h2><p>利用 <strong>FileInputStream</strong> 和 <strong>FileOutputStream</strong> 进行文件的拷贝</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">// 创建源</span></span><br><span class="line">	File src = <span class="keyword">new</span> File(<span class="string">"C:/Users/pikachu/eclipse-workspace/sxt.Io/Java学习路线图.jpg"</span>);</span><br><span class="line">	File dest = <span class="keyword">new</span> File(<span class="string">"dest2.jpg"</span>);</span><br><span class="line">    </span><br><span class="line">	<span class="comment">// 选择流</span></span><br><span class="line">	<span class="keyword">try</span>(InputStream is = <span class="keyword">new</span> FileInputStream(src);</span><br><span class="line">        OutputStream os = <span class="keyword">new</span> FileOutputStream(dest)) &#123;</span><br><span class="line">        </span><br><span class="line">		<span class="comment">// 操作</span></span><br><span class="line">		<span class="keyword">byte</span>[] datas = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">		<span class="keyword">int</span> len = -<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span>((len = is.read(datas))!= -<span class="number">1</span>) &#123;</span><br><span class="line">			os.write(datas, <span class="number">0</span>, len); <span class="comment">// 写入	</span></span><br><span class="line">		&#125;</span><br><span class="line">		os.flush(); <span class="comment">// 强制刷新</span></span><br><span class="line">	&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <h2 id="文件字符流"><a href="#文件字符流" class="headerlink" title="文件字符流"></a>文件字符流</h2><blockquote>
-<p>文件字符流可以消除不同字符集的编码差异</p>
+<p>在各种字符集中，一个字符可能占一个字节、两个字节或三个字节，所以如果使用字节流操作字符，可能会出现乱码的情况。</p>
+<p>字符流可以消除不同字符集的编码差异，让我们可以自己对字符进行随心所欲的操作，而不需要考虑乱码。</p>
 </blockquote>
 <ul>
-<li>FileReader</li>
-<li>FileWriter<br>FileWriter中有一个需要注意的方法：<br><code>append() // 返回值类型为Writer，可以以‘流模式’来添加</code></li>
+<li><code>FileReader</code>：文件字符输入流</li>
+<li><code>FileWriter</code>：文件字符输出流</li>
 </ul>
-<p>文件字符流操作的是<strong>字符数组</strong><br>文件字节流操作的是<strong>字节数组</strong></p>
 <h2 id="字节数组流"><a href="#字节数组流" class="headerlink" title="字节数组流"></a>字节数组流</h2><ul>
 <li>ByteArrayInputStream</li>
 <li>ByteArrayOutputStream</li>
 </ul>
 <blockquote>
-<p>字节数组流操作的是内存中的字节数组，不与OS打交道，故可由gc自动回收，不用关闭<br>任何东西都可以转成字节数组，可以方便后期进行网络传输等操作</p>
+<p>字节数组流操作的是内存中的<strong>字节数组</strong>，不与 OS 打交道，故可由 gc 自动回收，不用关闭</p>
+<p>任何东西都可以转成字节数组，可以方便后期进行网络传输等操作</p>
 </blockquote>
+<hr>
+<blockquote>
+<p>以上介绍的流都是节点流，属于直接操作数据源，但是效率可能不是特别高，为了提高 IO 流效率，所以对节点流进行包装处理，提升效率，简化操作，就出现了处理流。</p>
+<p>处理流并不能直接操作数据，只是对节点流的包装，这其中使用到了设计模式中的<strong>装饰器模式</strong></p>
+</blockquote>
+<h2 id="字节缓冲流"><a href="#字节缓冲流" class="headerlink" title="字节缓冲流"></a>字节缓冲流</h2><p>字节缓冲流内部定义了一个缓冲区（默认大小为8k），可以提高字节流处理的效率。</p>
+<p>常用方法和 InputStream 中一致。</p>
+<ul>
+<li><p><strong>BufferedInputStream</strong></p>
+<p>构造方法：</p>
+<ol>
+<li><p><code>BufferedInputStream(InputStream in)</code>：传入字节输入流对象（<strong>调用了 2</strong>）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 内部定义的缓冲区大小默认为 8k</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> DEFAULT_BUFFER_SIZE = <span class="number">8192</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">BufferedInputStream</span><span class="params">(InputStream in)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>(in, DEFAULT_BUFFER_SIZE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+
+</li>
+</ol>
+</li>
+</ul>
+<ol start="2">
+<li><code>BufferedInputStream(InputStream in, int size)</code>：传入字节输入流对象和缓冲区大小</li>
+</ol>
+<ul>
+<li><p><strong>BufferedOutputStream</strong></p>
+<p>构造方法：</p>
+<ol>
+<li><code>BufferedOutputStream(OutputStream out)</code>：类似 <strong>BufferedInputStream</strong></li>
+<li><code>BufferedOutputStream(OutputStream out, int size)</code>：类似 <strong>BufferedInputStream</strong></li>
+</ol>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用字节缓冲流(一般情况下使用默认的缓冲区大小就行)</span></span><br><span class="line">InputStream in = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(src));</span><br><span class="line">OutputStream out = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutoutStream(dest));</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="字符缓冲流"><a href="#字符缓冲流" class="headerlink" title="字符缓冲流"></a>字符缓冲流</h2><p>字符缓冲流包装了字符流，提高了字符处理的效率，同时提供了一些新方法简化操作。</p>
+<ul>
+<li><p><strong>BufferedReader</strong></p>
+<p>构造方法：</p>
+<ol>
+<li><p><code>BufferedReader(Reader in)</code>：传入一个 Reader 对象（<strong>调用了 2</strong>）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 内部缓存字符数组的默认大小默认为 8192</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> defaultCharBufferSize = <span class="number">8192</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">BufferedReader</span><span class="params">(Reader in)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>(in, defaultCharBufferSize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+</li>
+</ul>
+<ol start="2">
+<li><code>BufferedReader(Reader in, int size)</code>：传入一个 Reader 对象和内部缓冲字符数组大小</li>
+</ol>
+<p>  新增方法：</p>
+<ul>
+<li><code>readLine()</code>：每次读取一行（会自动去寻找换行符）</li>
+</ul>
+<ul>
+<li><p><strong>BufferedWriter</strong></p>
+<p>构造方法：</p>
+<ol>
+<li><code>BufferedWriter(Writer out)</code>：类似 <strong>BufferedReader</strong></li>
+<li><code>BufferedWriter(Writer out, int size)</code>：类似 <strong>BufferedReader</strong></li>
+</ol>
+</li>
+</ul>
+<p>  新增方法：</p>
+<ul>
+<li><code>newLine()</code>：换行，就不用在写的时候手动加 <code>\r\n</code> 了</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用字符缓冲流</span></span><br><span class="line">BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(src));</span><br><span class="line">BufferedWriter writer = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(dest));</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="转换流"><a href="#转换流" class="headerlink" title="转换流"></a>转换流</h2><p>如果字节流中的数据为纯字符时，可以使用转换流将字节流转换为字符流。</p>
+<ul>
+<li>InputStreamReader</li>
+<li>OutpurStreamWriter</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用转换流</span></span><br><span class="line">BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(src)));</span><br><span class="line">BufferedWriter writer = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(dest)));</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h2><p>使用数据流可以将保存基本数据类型的数据，存数据和取数据需要顺序一致</p>
+<ul>
+<li>DataInputStream</li>
+<li>DataOutputStream</li>
+</ul>
+<h2 id="对象流"><a href="#对象流" class="headerlink" title="对象流"></a>对象流</h2><p>可以将 Java 中的对象序列化和反序列化</p>
+<ul>
+<li>ObjectInputStream</li>
+<li>ObjectOutputStream</li>
+</ul>
+<h2 id="打印流"><a href="#打印流" class="headerlink" title="打印流"></a>打印流</h2><ul>
+<li>PrintStream</li>
+</ul>
+<h2 id="Commons-IO"><a href="#Commons-IO" class="headerlink" title="Commons IO"></a>Commons IO</h2>
     </div>
 
     
@@ -410,7 +527,7 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/03/03/Java/1.Java%E5%9F%BA%E7%A1%80/Java%20%E5%BC%82%E5%B8%B8/" rel="prev" title="Java 异常">
+    <a href="/2019/03/03/Java/1.Java%E5%9F%BA%E7%A1%80/Java%E5%BC%82%E5%B8%B8/" rel="prev" title="Java 异常">
       <i class="fa fa-chevron-left"></i> Java 异常
     </a></div>
       <div class="post-nav-item">
@@ -454,7 +571,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-IO"><span class="nav-number">1.</span> <span class="nav-text">Java.IO</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-IO包中最重要的就是5个类和三个接口"><span class="nav-number">1.1.</span> <span class="nav-text">Java.IO包中最重要的就是5个类和三个接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流的分类"><span class="nav-number">1.2.</span> <span class="nav-text">流的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API的使用"><span class="nav-number">1.3.</span> <span class="nav-text">API的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#File类"><span class="nav-number">1.4.</span> <span class="nav-text">File类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构建File对象："><span class="nav-number">1.4.1.</span> <span class="nav-text">构建File对象：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#File类的常用方法："><span class="nav-number">1.4.2.</span> <span class="nav-text">File类的常用方法：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编码与解码"><span class="nav-number">2.</span> <span class="nav-text">编码与解码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符集"><span class="nav-number">3.</span> <span class="nav-text">字符集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串进行编码"><span class="nav-number">4.</span> <span class="nav-text">字符串进行编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字节进行解码"><span class="nav-number">5.</span> <span class="nav-text">字节进行解码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乱码的原因"><span class="nav-number">6.</span> <span class="nav-text">乱码的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO中的四大抽象基类"><span class="nav-number">7.</span> <span class="nav-text">IO中的四大抽象基类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO流操作的标准步骤"><span class="nav-number">8.</span> <span class="nav-text">IO流操作的标准步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件字节流"><span class="nav-number">9.</span> <span class="nav-text">文件字节流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件拷贝"><span class="nav-number">10.</span> <span class="nav-text">文件拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件字符流"><span class="nav-number">11.</span> <span class="nav-text">文件字符流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字节数组流"><span class="nav-number">12.</span> <span class="nav-text">字节数组流</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IO中的四大抽象基类"><span class="nav-number">1.</span> <span class="nav-text">IO中的四大抽象基类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO流操作的标准步骤"><span class="nav-number">2.</span> <span class="nav-text">IO流操作的标准步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件字节流"><span class="nav-number">3.</span> <span class="nav-text">文件字节流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件拷贝"><span class="nav-number">4.</span> <span class="nav-text">文件拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件字符流"><span class="nav-number">5.</span> <span class="nav-text">文件字符流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字节数组流"><span class="nav-number">6.</span> <span class="nav-text">字节数组流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字节缓冲流"><span class="nav-number">7.</span> <span class="nav-text">字节缓冲流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符缓冲流"><span class="nav-number">8.</span> <span class="nav-text">字符缓冲流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转换流"><span class="nav-number">9.</span> <span class="nav-text">转换流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据流"><span class="nav-number">10.</span> <span class="nav-text">数据流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象流"><span class="nav-number">11.</span> <span class="nav-text">对象流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打印流"><span class="nav-number">12.</span> <span class="nav-text">打印流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Commons-IO"><span class="nav-number">13.</span> <span class="nav-text">Commons IO</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -468,20 +585,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">102</span>
+        <span class="site-state-item-count">97</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
