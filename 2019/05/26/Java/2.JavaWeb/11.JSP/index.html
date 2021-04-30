@@ -45,15 +45,15 @@
   };
 </script>
 
-  <meta name="description" content="jsp在目前前后端分离的大趋势下已经逐渐被抛弃了…">
+  <meta name="description" content="jsp 在目前前后端分离的大趋势下已经逐渐被抛弃了…">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JSP">
 <meta property="og:url" content="http://yoursite.com/2019/05/26/Java/2.JavaWeb/11.JSP/index.html">
 <meta property="og:site_name" content="Pikachu&#39;s Blog">
-<meta property="og:description" content="jsp在目前前后端分离的大趋势下已经逐渐被抛弃了…">
+<meta property="og:description" content="jsp 在目前前后端分离的大趋势下已经逐渐被抛弃了…">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-26T07:07:19.000Z">
-<meta property="article:modified_time" content="2020-10-13T12:49:07.605Z">
+<meta property="article:modified_time" content="2021-04-26T03:44:03.513Z">
 <meta property="article:author" content="pikachu">
 <meta property="article:tag" content="JSP">
 <meta name="twitter:card" content="summary">
@@ -236,7 +236,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-13 20:49:07" itemprop="dateModified" datetime="2020-10-13T20:49:07+08:00">2020-10-13</time>
+                <time title="修改时间：2021-04-26 11:44:03" itemprop="dateModified" datetime="2021-04-26T11:44:03+08:00">2021-04-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -261,16 +261,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>jsp在目前前后端分离的大趋势下已经逐渐被抛弃了…</p>
+        <p>jsp 在目前前后端分离的大趋势下已经逐渐被抛弃了…</p>
 <a id="more"></a>
 
 <h3 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h3><ul>
 <li>Java Server pages：Java服务器端页面</li>
-<li>JSP是一个特殊的页面，既可以指定HTML 代码，又可以定义Java代码</li>
+<li>JSP 是一个特殊的页面，既可以指定 HTML 代码，又可以定义 Java 代码</li>
 </ul>
-<h3 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h3><p>JSP本质上是一个Servlet</p>
+<h3 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h3><p>JSP 本质上是一个 Servlet</p>
 <ul>
-<li>浏览器访问 jsp 时，服务器会把 jsp 转化为一个 <code>.java</code> 文件，这个 <code>.java</code> 文件就是一个Servlet</li>
+<li>浏览器访问 jsp 时，服务器会把 jsp 转化为一个 <code>.java</code> 文件，这个 <code>.java</code> 文件就是一个 Servlet</li>
 </ul>
 <h3 id="JSP的脚本"><a href="#JSP的脚本" class="headerlink" title="JSP的脚本"></a>JSP的脚本</h3><p>JSP的脚本是书写Java代码的区域</p>
 <ul>
@@ -278,14 +278,14 @@
 <li><code>&lt;%! 代码 %&gt;</code>：可以定义成员变量和成员方法</li>
 <li><code>&lt;%= 代码 %&gt;</code>：定义的java代码，可以直接输出到页面上</li>
 </ul>
-<h3 id="JSP的指令"><a href="#JSP的指令" class="headerlink" title="JSP的指令"></a>JSP的指令</h3><p>作用：用于配置JSP页面，导入资源文件</p>
+<h3 id="JSP-的指令"><a href="#JSP-的指令" class="headerlink" title="JSP 的指令"></a>JSP 的指令</h3><p>作用：用于配置 JSP 页面，导入资源文件</p>
 <p>格式：<code>&lt;%@ 指令名称 属性名1=属性值1 属性名2=属性值2 ... %&gt;</code></p>
 <p>指令种类：</p>
 <ul>
-<li><strong>page</strong>：用于配置JSP页面<ul>
+<li><strong>page</strong>：用于配置 JSP 页面<ul>
 <li><strong>contentType</strong>：等同于<code>response.setContentType()</code><ul>
-<li>设置响应体的<strong>mime类型</strong>以及<strong>字符集</strong></li>
-<li>在IDE中，会自动根据该属性的值，设置当前jsp页面的编码</li>
+<li>设置响应体的 <strong>mime 类型</strong>以及<strong>字符集</strong></li>
+<li>在 IDE 中，会自动根据该属性的值，设置当前jsp页面的编码</li>
 </ul>
 </li>
 <li><strong>import</strong>：导 java 包</li>
@@ -295,18 +295,18 @@
 </li>
 <li><strong>taglib</strong>：用于导入资源<ul>
 <li><code>&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;</code></li>
-<li>其中prefix为前缀，一般有一些约定俗成名称</li>
+<li>其中 prefix 为前缀，一般有一些约定俗成名称</li>
 </ul>
 </li>
-<li><strong>include</strong>：用于导入其他的jsp文件</li>
+<li><strong>include</strong>：用于导入其他的 jsp 文件</li>
 </ul>
 <h3 id="JSP中的注释"><a href="#JSP中的注释" class="headerlink" title="JSP中的注释"></a>JSP中的注释</h3><p>JSP 中有两种注释</p>
 <ul>
-<li>HTML注释：<code>&lt;!-- 内容 --&gt;</code> ： 只能注释HTML内容</li>
-<li>JSP注释：<code>&lt;%-- 内容 --%&gt;</code>：可以注释jsp页面中的所有内容，<strong>推荐使用</strong></li>
+<li>HTML 注释：<code>&lt;!-- 内容 --&gt;</code> ： 只能注释 HTML 内容</li>
+<li>JSP 注释：<code>&lt;%-- 内容 --%&gt;</code>：可以注释 jsp 页面中的所有内容，<strong>推荐使用</strong></li>
 </ul>
-<h3 id="JSP的内置对象"><a href="#JSP的内置对象" class="headerlink" title="JSP的内置对象"></a>JSP的内置对象</h3><p>在jsp页面中不需要获取和创建，直接就可以使用的对象</p>
-<p>JSP一个有9个内置对象：</p>
+<h3 id="JSP-的内置对象"><a href="#JSP-的内置对象" class="headerlink" title="JSP 的内置对象"></a>JSP 的内置对象</h3><p>在 jsp 页面中不需要获取和创建，直接就可以使用的对象</p>
+<p>JSP 有 9 个内置对象：</p>
 <table>
 <thead>
 <tr>
@@ -413,7 +413,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念："><span class="nav-number">1.</span> <span class="nav-text">概念：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原理："><span class="nav-number">2.</span> <span class="nav-text">原理：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP的脚本"><span class="nav-number">3.</span> <span class="nav-text">JSP的脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP的指令"><span class="nav-number">4.</span> <span class="nav-text">JSP的指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP中的注释"><span class="nav-number">5.</span> <span class="nav-text">JSP中的注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP的内置对象"><span class="nav-number">6.</span> <span class="nav-text">JSP的内置对象</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念："><span class="nav-number">1.</span> <span class="nav-text">概念：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原理："><span class="nav-number">2.</span> <span class="nav-text">原理：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP的脚本"><span class="nav-number">3.</span> <span class="nav-text">JSP的脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP-的指令"><span class="nav-number">4.</span> <span class="nav-text">JSP 的指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP中的注释"><span class="nav-number">5.</span> <span class="nav-text">JSP中的注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP-的内置对象"><span class="nav-number">6.</span> <span class="nav-text">JSP 的内置对象</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -427,7 +427,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -440,7 +440,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">97</span>
+        <span class="site-state-item-count">95</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

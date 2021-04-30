@@ -45,15 +45,15 @@
   };
 </script>
 
-  <meta name="description" content="MySQL数据库是最受欢迎的关系型数据库">
+  <meta name="description" content="MySQL 数据库是最受欢迎的关系型数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL基础">
 <meta property="og:url" content="http://yoursite.com/2019/04/16/Java/MySQL%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Pikachu&#39;s Blog">
-<meta property="og:description" content="MySQL数据库是最受欢迎的关系型数据库">
+<meta property="og:description" content="MySQL 数据库是最受欢迎的关系型数据库">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-04-16T01:25:28.000Z">
-<meta property="article:modified_time" content="2021-04-16T00:49:31.994Z">
+<meta property="article:modified_time" content="2021-04-28T08:50:33.155Z">
 <meta property="article:author" content="pikachu">
 <meta property="article:tag" content="数据库">
 <meta property="article:tag" content="MySQL">
@@ -237,7 +237,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-16 08:49:31" itemprop="dateModified" datetime="2021-04-16T08:49:31+08:00">2021-04-16</time>
+                <time title="修改时间：2021-04-28 16:50:33" itemprop="dateModified" datetime="2021-04-28T16:50:33+08:00">2021-04-28</time>
               </span>
 
           
@@ -251,10 +251,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>MySQL数据库是最受欢迎的关系型数据库</p>
+        <p>MySQL 数据库是最受欢迎的关系型数据库</p>
 <a id="more"></a>
 
-<h2 id="数据库概念"><a href="#数据库概念" class="headerlink" title="数据库概念"></a>数据库概念</h2><p><strong>DB</strong>（<strong>D</strong>ata<strong>B</strong>ase）：数据库</p>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p><strong>DB</strong>（<strong>D</strong>ata<strong>B</strong>ase）：数据库</p>
 <ul>
 <li>通过一个个的表(table)来保存数据</li>
 </ul>
@@ -274,11 +274,78 @@
 </ul>
 <h2 id="MySQL-数据库"><a href="#MySQL-数据库" class="headerlink" title="MySQL 数据库"></a>MySQL 数据库</h2><p><strong>简介:</strong></p>
 <p>​    MySQL 是一个数据库管理系统，现在属于 Oracle 公司，版本号5.5及以下不收费，以上收费。</p>
+<p><strong>安装 MySQL：</strong></p>
+<blockquote>
+<p>安装方式:命令行安装的方式</p>
+</blockquote>
+<ol>
+<li><p>把下载的压缩包解压到一个文件夹(<code>D:\develop\MySQL</code>)里面, 此时文件夹中没有<code>data目录</code>和<code>ini文件</code></p>
+</li>
+<li><p>在MySQL目录下新建 <code>my.ini</code> 文件, 并复制以下内容</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">#设置3306端</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">port</span> = <span class="number">3306</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 设置mysql的安装目录</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">basedir</span>=D:\develop\MySQL</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 设置mysql数据库的数据的存放目录</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">datadir</span>=D:\develop\MySQL\data</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">200</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 服务端使用的字符集默认为8比特编码的latin1字符集</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br><span class="line"> </span><br><span class="line"><span class="attr">sql_mode</span>=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line"> </span><br><span class="line"><span class="section">[mysql]</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置MySQL的环境变量</p>
+<ul>
+<li>在系统变量中新建:<ul>
+<li>变量名: <code>MySQL_HOME</code> </li>
+<li>变量值: <code>D:\develop\MySQL</code></li>
+</ul>
+</li>
+<li>在系统变量 –&gt; Path 中新建: <code>D:\develop\MySQL\bin</code></li>
+</ul>
+</li>
+<li><p>以管理员身份打开cmd</p>
+<ol>
+<li>cd 到 <code>D:\develop\MySQL\bin</code></li>
+<li>运行 <code>mysqld --install</code> , 提示 <code>Services successfully installed</code> 说明安装成功, 如果提示已存在, 先运行 <code>mysqld --remove</code>, 再运行 <code>mysqld --install</code></li>
+<li>运行 <code>mysqld --initialize</code>, 生成 <code>data</code> 目录</li>
+<li>运行 <code>net start mysql</code> 启动服务</li>
+</ol>
+</li>
+<li><p>修改MySQL密码</p>
+<ol>
+<li>运行 <code>net stop mysql</code> 停止服务</li>
+<li>运行 <code>mysqld --skip-grant-tables</code> 开启无密码的mysql</li>
+<li>以管理员身份打开另一个cmd窗口, 运行 <code>mysql -u root -p</code> 回车, 不用输入密码, 直接回车</li>
+<li>运行 <code>update mysql.user set authentication_string=password(&quot;root&quot;) where user=&quot;root&quot;;</code> 更新root账户的密码为root</li>
+<li>运行 <code>flush privileges;</code> 执行刷新权限</li>
+<li>运行 <code>quit;</code> 结束本次操作</li>
+</ol>
+</li>
+<li><p>在密码的情况下修改密码</p>
+<ol>
+<li>运行 <code>mysql -u root -p</code>, 输入密码 root, 进入mysql操作界面</li>
+<li>依次运行下面命令, 就把密码更新成了 123456<ol>
+<li><code>SET PASSWORD = PASSWORD(&#39;123456&#39;);</code></li>
+<li><code>ALTER USER &#39;root&#39;@&#39;localhost&#39; PASSWORD EXPIRE NEVER;</code></li>
+<li><code>flush privileges;</code></li>
+</ol>
+</li>
+<li>运行 <code>quit;</code> 退出, 大功告成!</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p><strong>安装过程中遇到的问题及解决方案:</strong></p>
+<p>运行 <code>mysqld --install</code> 时弹窗提示</p>
+<ul>
+<li>“无法启动此程序，因为计算机丢失<code>MSVCP120.dll</code>“;  </li>
+<li>“无法启动此程序，因为计算机丢失<code>MSVCR120.dll</code>“;</li>
+</ul>
+<p>解决方案:</p>
+<ul>
+<li>这种错误是由于未安装<code>vcredist</code>引起的（而且版本是 2013版，32位/64位）；</li>
+<li>从微软官网下载 <code>vcredist 2013</code>: <a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=40784" target="_blank" rel="noopener">https://www.microsoft.com/zh-CN/download/details.aspx?id=40784</a></li>
+<li>根据电脑选择 32 or 64 位进行安装</li>
+<li>然后重新运行<code>mysqld --install</code>，成功解决.</li>
+</ul>
+</blockquote>
 <p><strong>启动 MySQL 服务：</strong></p>
 <ol>
 <li>我的电脑(右键) –&gt; 管理 –&gt; 服务和应用程序 –&gt; 服务 –&gt; MySQL（右键启动）</li>
 <li>cmd –&gt; services.msc –&gt; 服务和应用程序 –&gt; 服务 –&gt; MySQL（右键启动）</li>
-<li>cmd(<strong>以管理员模式打开</strong>) –&gt; net start mysql 【关闭服务：net stop mysql】</li>
+<li>cmd(<strong>以管理员模式打开</strong>) –&gt; <code>net start mysql</code> 【关闭服务：<code>net stop mysql</code>】</li>
+<li></li>
 </ol>
 <p><strong>登录MySQL服务器：</strong></p>
 <ul>
@@ -302,6 +369,31 @@
 <li>登录数据库 –&gt; 创建数据库 –&gt; 使用数据库 –&gt; 执行文件：<code>source 文件路径</code></li>
 </ul>
 </li>
+</ul>
+<h3 id="MySQL-的数据类型"><a href="#MySQL-的数据类型" class="headerlink" title="MySQL 的数据类型"></a>MySQL 的数据类型</h3><p>MySQL有以下几种数据类型：</p>
+<ul>
+<li>int：整型</li>
+<li>double：浮点型；例如 double(5,2) 表示数字最长5位，且必须有2位小数，最大值999.99</li>
+<li>decimal：浮点型；在表示钱的时候用该类型，不会出现精度缺失的问题</li>
+<li>char：固定长度字符串类型；char(255) 数据长度不足指定长度时会自动补足</li>
+<li>varchar：可变长度字符串类型；varchar(65535)</li>
+<li>text(clob)：字符串类型，text为MySQL的方言，clob为SQL语句的标准语法<ul>
+<li>很小 –&gt; tinytext</li>
+<li>小 –&gt; text</li>
+<li>中 –&gt; mediumtext</li>
+<li>大 –&gt; longtext</li>
+</ul>
+</li>
+<li>blob：字节类型<ul>
+<li>很小 –&gt; tinyblob</li>
+<li>小 –&gt; blob</li>
+<li>中 –&gt; mediumblob</li>
+<li>大 –&gt; longblob</li>
+</ul>
+</li>
+<li>date：日期类型；YYYY-MM-DD</li>
+<li>time：时间类型；hh:mm:ss</li>
+<li>timestamp：时间戳类型；既有日期，又有时间</li>
 </ul>
 <h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p><strong>概念：</strong>如果一个包含多个步骤的业务操作，被事务管理，那么这些操作要么同时成功，要么同时失败</p>
 <p><strong>操作：</strong></p>
@@ -467,7 +559,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库概念"><span class="nav-number">1.</span> <span class="nav-text">数据库概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-数据库"><span class="nav-number">2.</span> <span class="nav-text">MySQL 数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务"><span class="nav-number">2.1.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三大范式"><span class="nav-number">2.2.</span> <span class="nav-text">三大范式</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库"><span class="nav-number">1.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-数据库"><span class="nav-number">2.</span> <span class="nav-text">MySQL 数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL-的数据类型"><span class="nav-number">2.1.</span> <span class="nav-text">MySQL 的数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务"><span class="nav-number">2.2.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三大范式"><span class="nav-number">2.3.</span> <span class="nav-text">三大范式</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -481,7 +573,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -494,7 +586,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">97</span>
+        <span class="site-state-item-count">95</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

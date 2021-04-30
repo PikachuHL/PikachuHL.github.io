@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Linux 在服务器端有着大量的应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux">
+<meta property="og:url" content="http://yoursite.com/2019/04/03/Java/Linux/index.html">
+<meta property="og:site_name" content="Pikachu&#39;s Blog">
+<meta property="og:description" content="Linux 在服务器端有着大量的应用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/images/Linux/Linux.jpg">
+<meta property="og:image" content="http://yoursite.com/images/Linux/image-20210418074019926.png">
+<meta property="og:image" content="http://yoursite.com/images/Linux/%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7.jpg">
+<meta property="og:image" content="http://yoursite.com/images/Linux/image-20210418153200968.png">
+<meta property="og:image" content="http://yoursite.com/images/Linux/image-20210418153945051.png">
+<meta property="og:image" content="http://yoursite.com/images/Linux/image-20210418154051891.png">
+<meta property="og:image" content="http://yoursite.com/images/Linux/image-20210418154111013.png">
+<meta property="og:image" content="http://yoursite.com/images/Linux/image-20210418154453460.png">
+<meta property="article:published_time" content="2019-04-03T06:39:53.000Z">
+<meta property="article:modified_time" content="2021-04-28T06:37:42.803Z">
+<meta property="article:author" content="pikachu">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/Linux/Linux.jpg">
+
+<link rel="canonical" href="http://yoursite.com/2019/04/03/Java/Linux/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Linux | Pikachu's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pikachu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/Java/Linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pikachu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pikachu's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-03 14:39:53" itemprop="dateCreated datePublished" datetime="2019-04-03T14:39:53+08:00">2019-04-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-28 14:37:42" itemprop="dateModified" datetime="2021-04-28T14:37:42+08:00">2021-04-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Linux 在服务器端有着大量的应用</p>
+<a id="more"></a>
+
+<p><img src="/images/Linux/Linux.jpg" alt="Linux"></p>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>资源准备：</p>
+<ul>
+<li>虚拟机：VMware</li>
+<li>镜像文件：CentOS 7 镜像文件</li>
+</ul>
+<p>安装步骤：<a href="https://www.jianshu.com/p/ce08cdbc4ddb?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="noopener">https://www.jianshu.com/p/ce08cdbc4ddb?utm_source=tuicool&amp;utm_medium=referral</a></p>
+<p>远程连接工具：</p>
+<ul>
+<li>Xshell（远程连接管理工具）</li>
+<li>Xftp（文件拷贝工具）</li>
+</ul>
+<blockquote>
+<p>Linux 查看 IP命令：<code>ifconfig</code></p>
+</blockquote>
+<blockquote>
+<p><strong>Linux 中的一些名词解释：</strong></p>
+<ol>
+<li>分区：把大硬盘分成小的逻辑分区</li>
+<li>格式化：写入文件系统</li>
+<li>分区设备文件名：给每个分区定义设备文件名</li>
+<li>挂载：给每个分区分配挂载点（必须是空文件夹）</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>使用 Linux 的一些注意事项：</strong></p>
+<ol>
+<li>Linux 严格区分大小写，<strong>命令全为小写</strong></li>
+<li>Linux 中所有的内容都是以<strong>文件</strong>保存的，包括硬件</li>
+<li>Linux <strong>不靠扩展名</strong>区分文件系统</li>
+<li>Linux 所有的存储设备都必须<strong>挂载</strong>之后才能使用</li>
+<li>Windows 下的程序不能在 Linux 中安装和运行</li>
+</ol>
+</blockquote>
+<h2 id="Linux-目录简介"><a href="#Linux-目录简介" class="headerlink" title="Linux 目录简介"></a>Linux 目录简介</h2><p><strong>/bin/</strong> –&gt; 存放系统命令的目录，普通用户和超级用户都可以执行，在单用户模式下也可以执行</p>
+<p><strong>/sbin/</strong> –&gt; 存放系统环境设置相关的命令，只有超级用户可以执行，</p>
+<p><strong>/usr/bin/</strong> –&gt; 存放系统命令的目录，普通用户和超级用户都可以执行，单用户模式下不可执行</p>
+<p><strong>/usr/sbin/</strong> –&gt; 存放根文件系统不必要的系统管理命令，只有超级用户可以执行</p>
+<hr>
+<p><strong>/boot/</strong> –&gt; 系统启动目录，保存启动相关文件，如内核文件和启动引导程序（grub）文件等</p>
+<p><strong>/dev/</strong> –&gt; 硬件设备文件保存位置</p>
+<p><strong>/etc/</strong> –&gt; 系统配置文件默认保存位置</p>
+<hr>
+<p><strong>/home/</strong> –&gt; 普通用户的家目录，如 pikachu 用户的家目录就是/home/pikachu/</p>
+<p><strong>/lib/</strong> –&gt; 系统调用的函数库保存位置</p>
+<p><strong>/lost+found/</strong> –&gt; 备份恢复目录，系统非正常关闭时，会产生一些文件碎片放在这里，当系统启动过程中 fsck 工具会检查这里，并修复已经损坏的文件系统</p>
+<hr>
+<p><strong>/media/</strong> –&gt; 挂载目录，系统建议用来挂载媒体设备，如光盘</p>
+<p><strong>/mnt/</strong> –&gt; 挂载目录，早期 Linux 仅有这一个挂载目录，现在系统建议此目录挂载额外设备，如U盘</p>
+<p><strong>/misc/</strong> –&gt; 挂载目录，系统建议用来挂载 NFS 服务的共享目录</p>
+<hr>
+<p><strong>/opt/</strong> –&gt; 第三方安装的文件保存位置，但是用的不多，<strong>/usr/local/</strong>用的比较多</p>
+<hr>
+<p><strong>/proc/</strong> –&gt; 虚拟文件系统，该目录中的数据保存在内存中，主要保存系统相关状态</p>
+<p><strong>/sys/</strong> –&gt; 虚拟文件系统，数据也是保存在内存中，主要保存内核相关信息</p>
+<hr>
+<p><strong>/root/</strong> –&gt; 超级用户的家目录，位于 / 目录下</p>
+<p><strong>/srv/</strong> –&gt; 服务数据目录</p>
+<p><strong>/tmp/</strong> –&gt; 存放临时文件的目录</p>
+<p><strong>/usr/</strong> –&gt; 系统软件资源目录，“<strong>U</strong>nix <strong>S</strong>oftware <strong>R</strong>esource”</p>
+<p><strong>/var/</strong> –&gt; 动态数据保存目录，保存缓存、日志等</p>
+<blockquote>
+<p><strong>服务器管理和维护建议</strong></p>
+<ul>
+<li>服务器不允许关机，只能重启</li>
+<li>重启时应关闭服务</li>
+<li>不要在服务器访问高峰运行运行高负载命令</li>
+<li>远程配置防火墙时不要把自己踢出服务器</li>
+<li>指定合乎规范的密码并定期更新</li>
+<li>合理分配权限（够用就好，越少越好）</li>
+<li>定期备份重要数据和日志（/erc/，/lib/，/var/，/usr/，/boot/等目录）</li>
+</ul>
+</blockquote>
+<h2 id="Linux-关机-amp-重启"><a href="#Linux-关机-amp-重启" class="headerlink" title="Linux 关机 &amp; 重启"></a>Linux 关机 &amp; 重启</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sync				<span class="comment"># 将内存中的数据保存到硬盘上</span></span><br><span class="line"></span><br><span class="line">halt				<span class="comment"># 立刻关机</span></span><br><span class="line">poweroff			<span class="comment"># 立刻关机</span></span><br><span class="line">shutdown -h now 	<span class="comment"># 立刻关机（root用户）</span></span><br><span class="line">shutdown -h 10		<span class="comment"># 10分钟后关机（root用户）</span></span><br><span class="line">shutdown -h 20:30	<span class="comment"># 在今天20:35分关机（root用户）</span></span><br><span class="line"></span><br><span class="line">reboot				<span class="comment"># 立刻重启</span></span><br><span class="line">shutdown -r now		<span class="comment"># 立刻重启（root用户）</span></span><br><span class="line">shutdown -r 10		<span class="comment"># 10分钟后重启（root用户）</span></span><br><span class="line"></span><br><span class="line">shutdown -c			<span class="comment"># 取消关机或重启命令（root用户）</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="目录相关命令"><a href="#目录相关命令" class="headerlink" title="目录相关命令"></a>目录相关命令</h2><blockquote>
+<p>Linux 中的路径：</p>
+<ul>
+<li>绝对路径：以 <code>/</code> 开头</li>
+<li>相对路径：以 <code>.</code> 开头，<code>.</code> 表示当前目录，<code>..</code> 表示上级目录</li>
+</ul>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span>			<span class="comment"># 切换目录</span></span><br><span class="line">ls			<span class="comment"># 查看当前目录下内容</span></span><br><span class="line"><span class="built_in">pwd</span>			<span class="comment"># 查看当前所在目录</span></span><br><span class="line"></span><br><span class="line">touch		<span class="comment"># 新建文件</span></span><br><span class="line">mkdir		<span class="comment"># 新建目录</span></span><br><span class="line"></span><br><span class="line">rm			<span class="comment"># 删除文件或目录</span></span><br><span class="line">rmdir		<span class="comment"># 删除空目录</span></span><br><span class="line"></span><br><span class="line">cp			<span class="comment"># 复制文件或目录</span></span><br><span class="line">mv			<span class="comment"># 移动文件或目录</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p><strong>Linux中命令的格式：</strong> <code>command [-options] [parameter]</code></p>
+<ul>
+<li><p><code>commond</code>：命令名</p>
+</li>
+<li><p><code>options</code>：选项，对命令进行控制，可省略</p>
+</li>
+<li><p><code>parameter</code>：参数，可以多个，可以省略</p>
+<p>例如：删除目录：<code>rm -r dir1</code></p>
+</li>
+</ul>
+<p><strong>查询命令的帮助信息：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">command</span> --<span class="built_in">help</span>	<span class="comment"># 显示命令的帮助信息</span></span><br><span class="line">man <span class="built_in">command</span>		<span class="comment"># 显示命令的使用手册</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>自动补全和命令选择：</strong></p>
+<ul>
+<li>自动补全：Tab 键，如果结果不唯一，再按两下 Tab 键显示提示</li>
+<li>命令选择：上下键，如果不想执行当前选中的命令，按<code>ctrl+c</code></li>
+</ul>
+</blockquote>
+<p><strong>ls 命令选项：</strong></p>
+<ul>
+<li><code>-a</code>：显示隐藏内容（以 <code>.</code> 开头的内容）</li>
+<li><code>-l</code>：以列表的形式显示文件的详细信息</li>
+<li><code>-h</code>：配合 <code>-l</code> 以通用方式显示文件大小</li>
+</ul>
+<p><strong>mkdir 命令选项：</strong></p>
+<ul>
+<li><p><code>-p</code>：可以直接创建多级目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir dir				<span class="comment"># 不加 -p 只能创建一级目录</span></span><br><span class="line">mkdir -p dir1/dir2/dir3	<span class="comment"># 可以创建多级目录</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>-m</code>：创建目录时指定权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -m 777 dir		<span class="comment"># 指定该目录权限为 777</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p><strong>rmdir 命令选项：</strong></p>
+<ul>
+<li><p><code>-p</code>：可以删除多级空目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rmdir dir				<span class="comment"># 不加 -p 只能删除一级空目录</span></span><br><span class="line">rmdir -p dir1/dir2/dir3	<span class="comment"># 可以删除多级空目录</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p><strong>rm 命令选项：</strong></p>
+<ul>
+<li><code>-f</code>：强制删除，不会出现提示信息</li>
+<li><code>-d</code>：删除空文件夹，等同于 <code>rmdir</code></li>
+<li><code>-r</code>：递归删除文件夹</li>
+</ul>
+<p><strong>cp 命令选项：</strong></p>
+<ul>
+<li><p><code>-a</code>：相当于 <code>-pdr</code></p>
+</li>
+<li><p><code>-p</code>：文件和属性一起复制（备份常用）</p>
+</li>
+<li><p><code>-d</code>：若文件为链接，则复制链接而非文件本身</p>
+</li>
+<li><p><code>-r</code>：递归复制目录</p>
+</li>
+<li><p><code>-l</code>：创建硬链接，而非复制文件本身</p>
+</li>
+<li><p><code>-s</code>：创建软链接文件（快捷方式）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy -a file destdir</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p><strong>mv 命令选项：</strong></p>
+<ul>
+<li><p><code>-f</code>：若文件已存在，则不会询问，直接覆盖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv -f file destdir</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h2><p>Linux 系统是一种典型的多用户系统，不同用户拥有不同的权限，不同的文件可以对不同的用户设置不同的权限。</p>
+<p>在 Linux 中可以使用 <code>ls -l</code> 或者 <code>ll</code> 命令显示一个文件的属性以及文件所属的用户和用户组</p>
+<p><img src="/images/Linux/image-20210418074019926.png" alt="image-20210418074019926"></p>
+<p>从上图可以看到，文件信息中第一列共十个字符：<code>drwxr-xr-x</code></p>
+<p>第 1 个字符标识文件类型：</p>
+<ul>
+<li><code>d</code>：目录</li>
+<li><code>-</code>：文件</li>
+<li><code>l</code>：链接文档（link file）</li>
+<li><code>b</code>：装置文件中可供存储的接口设备 ( 可随机存取装置 )</li>
+<li><code>c</code>：装置文件里面的串行端口设备，例如键盘、鼠标</li>
+</ul>
+<p>后面 9 个字符标识文件权限，三个一组，均为 <code>rwx</code> 的组合：</p>
+<ul>
+<li><code>r</code>：read（可读）</li>
+<li><code>w</code>：write（可写）</li>
+<li><code>x</code>：execute（可执行）</li>
+</ul>
+<p>这三个权限的前后位置不会改变，没有权限用 <code>-</code> 表示</p>
+<p><img src="/images/Linux/%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7.jpg" alt="图片"></p>
+<p><strong>修改文件属性：</strong></p>
+<p>两种方法：</p>
+<ul>
+<li>符号修改法</li>
+<li>数字修改法（方便，常用）</li>
+</ul>
+<p>数字修改法：</p>
+<p><code>rwx</code> 三种权限分别使用数字代替：<code>r:4  w:2  x:1</code></p>
+<p>每个组的权限使用加和的方式，如 <code>rwx = 4 + 2 + 1 = 7</code>，<code>r-x = 4 + 0 + 1 = 5</code></p>
+<p>使用 <code>chmod</code> 命令修改权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 testfile	<span class="comment"># 修改 testfile 文件的属性为 rwxr-xr-x</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="查看文件内容"><a href="#查看文件内容" class="headerlink" title="查看文件内容"></a>查看文件内容</h2><p>查看文件内容相关命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cat		<span class="comment"># 从第一行开始查看</span></span><br><span class="line">tac		<span class="comment"># 从最后一行开始查看</span></span><br><span class="line"></span><br><span class="line">nl		<span class="comment"># 查看的时候显示行号</span></span><br><span class="line"></span><br><span class="line">more	<span class="comment"># 一页一页查看（只能向后翻页）</span></span><br><span class="line">less	<span class="comment"># 一页一页查看（可以前后翻页）</span></span><br><span class="line"></span><br><span class="line">head	<span class="comment"># 只看开始几行</span></span><br><span class="line">tail	<span class="comment"># 只看最后几行</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>cat 命令选项：</strong></p>
+<ul>
+<li><code>-A</code>：相当于 <code>-vET</code> 的整合</li>
+<li><code>-v</code>：列出一些看不出来的特殊字符</li>
+<li><code>-E</code>：将结尾的断行字节 $ 显示出来；</li>
+<li><code>-T</code>：将 <code>tab</code> 按键以 <code>^I</code> 显示出来；</li>
+<li><code>-b</code>：列出行号，空白行不标行号</li>
+<li><code>-n</code>：列出行号，空白行也标</li>
+</ul>
+<p><strong>more 命令细节：</strong></p>
+<ul>
+<li>空格键：向下翻一页</li>
+<li>Enter 键：向下翻一行</li>
+<li><code>:f</code>：立刻显示文件名及当前所显示的行数</li>
+<li><code>q</code>：退出文件内容显示</li>
+</ul>
+<p><strong>less 命令细节：</strong></p>
+<ul>
+<li>空格键：向下翻一页</li>
+<li>Enter 键：向下翻一行</li>
+<li>上，下键：上下一行一行查看</li>
+<li>PgUp，PgDn 键：上下一页一页查看</li>
+<li><code>/字符串</code>：向下搜寻字符串</li>
+<li><code>?字符串</code>：向上搜寻字符串</li>
+<li><code>q</code>：退出文件内容显示</li>
+</ul>
+<p><strong>head / tail 命令选项：</strong></p>
+<ul>
+<li><p><code>-n</code>：后面跟数字，代表要显示多少行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">head testfile.txt		<span class="comment"># 默认显示 10 行</span></span><br><span class="line">head -n 20 testfile.txt	<span class="comment"># 显示 20 行</span></span><br><span class="line"></span><br><span class="line">tail testfile.txt		<span class="comment"># 默认显示 10 行</span></span><br><span class="line">tail -n 20 testfile.txt	<span class="comment"># 显示 20 行</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ul>
+<blockquote>
+<p>Linux 链接：</p>
+<ul>
+<li>硬链接（Hard Link）：B 是 A 的硬链接，则 B 和 A 指向同一个文件。</li>
+<li>软链接（Symbolic Link）：C 是 A 的软链接，则 C 指向 A，A 指向文件。</li>
+</ul>
+</blockquote>
+<h2 id="Vim-编辑器"><a href="#Vim-编辑器" class="headerlink" title="Vim 编辑器"></a>Vim 编辑器</h2><p>如何打开 Vim 编辑器：<code>vim filename</code></p>
+<p>Vim 编辑器共有三种模式：</p>
+<ul>
+<li>命令模式（Command mode）</li>
+<li>输入模式（Insert mode）</li>
+<li>底线命令模式（Last line mode）</li>
+</ul>
+<p>进入 Vim 编辑器默认就是命令模式；</p>
+<p>在命令模式下按 <code>i</code> 键进入输入模式，按 <code>Esc</code> 键退出输入模式；</p>
+<p>在命令模式下按 <code>:</code> 键进入底线命令模式，按 <code>Esc</code> 键可以退出底线命令模式。</p>
+<p>底线命令模式基本命令：</p>
+<ul>
+<li><code>:w</code> ：保存文件</li>
+<li><code>:q</code> ：退出 Vim</li>
+<li><code>:wq</code> ：保存文件并退出 Vim</li>
+</ul>
+<h2 id="Linux-中安装软件"><a href="#Linux-中安装软件" class="headerlink" title="Linux 中安装软件"></a>Linux 中安装软件</h2><p><strong>rpm 安装（以安装 JDK 为例）：</strong></p>
+<ol>
+<li><p>先使用 <code>java -version</code> 查看系统是否自带了 openJDK</p>
+<p><img src="/images/Linux/image-20210418153200968.png" alt="image-20210418153200968"></p>
+</li>
+</ol>
+<ol start="2">
+<li><p>如果有，先使用 <code>rpm -qa|grep jdk</code> 找出来自带的 JDK</p>
+<p><img src="/images/Linux/image-20210418153945051.png" alt="image-20210418153945051"></p>
+</li>
+</ol>
+<ol start="3">
+<li><p>把后缀为 <code>.x86_64</code> 的两个卸载（使用 <code>rpm -e --nodeps jdk名称</code>）</p>
+<p><img src="/images/Linux/image-20210418154051891.png" alt="image-20210418154051891"></p>
+<p><img src="/images/Linux/image-20210418154111013.png" alt="image-20210418154111013"></p>
+</li>
+</ol>
+<ol start="4">
+<li><p>再次使用 <code>java -version</code> 检查</p>
+<p><img src="/images/Linux/image-20210418154453460.png" alt="image-20210418154453460"></p>
+</li>
+</ol>
+<ol start="5">
+<li>安装自己下载的 JDK（使用 <code>rpm -ivh jdk-8u271-linux-x64.rpm</code>）</li>
+</ol>
+<p><strong>压缩包安装（以安装 Tomcat 为例）：</strong></p>
+<p>把 Tomcat 的压缩包用 Xftp 传到 <code>/home</code> 目录下，然后解压压缩包：</p>
+<p><code>tar -zxvf apache-tomcat-9.0.31.tar.gz</code> </p>
+<p>解压完成就相当于安装成功了（和 Windows 上面一样）</p>
+<p><strong>yum 安装（以安装 docker 为例）：</strong></p>
+<h2 id="Linux-防火墙"><a href="#Linux-防火墙" class="headerlink" title="Linux 防火墙"></a>Linux 防火墙</h2><p>CentOS 7 防火墙相关命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">systemctl status firewalld.service				<span class="comment"># 查看防火墙状态</span></span><br><span class="line">systemctl stop firewalld.service				<span class="comment"># 临时关闭防火墙</span></span><br><span class="line">systemctl start firewalld.service				<span class="comment"># 临时打开防火墙</span></span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld.service				<span class="comment"># 开机禁用防火墙</span></span><br><span class="line">systemctl <span class="built_in">enable</span> firewalld.service				<span class="comment"># 开机启用防火墙</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 不加 --permanent 代表本次生效，重启Linux后失效</span></span><br><span class="line">firewall-cmd --list-ports						<span class="comment"># 查看防火墙当前开启的端口</span></span><br><span class="line">firewall-cmd --list-ports --permanent			<span class="comment"># 查看防火墙永久开启的端口</span></span><br><span class="line"></span><br><span class="line">firewall-cmd --add-port=3306/tcp				<span class="comment"># 临时打开 3306 端口</span></span><br><span class="line">firewall-cmd --add-port=3306/tcp --permanent	<span class="comment"># 永久打开 3306 端口</span></span><br><span class="line"></span><br><span class="line">firewall-cmd --remove-port=3306					<span class="comment"># 临时关闭 3306 端口</span></span><br><span class="line">firewall-cmd --remove-port=3306 --permanent		<span class="comment"># 永久关闭 3306 端口</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/04/02/Java/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%93%88%E5%B8%8C%E8%A1%A8&%E6%8E%92%E5%BA%8F/" rel="prev" title="哈希表&排序">
+      <i class="fa fa-chevron-left"></i> 哈希表&排序
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/04/04/Java/1.Java%E5%9F%BA%E7%A1%80/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="next" title="正则表达式">
+      正则表达式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前期准备"><span class="nav-number">1.</span> <span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-目录简介"><span class="nav-number">2.</span> <span class="nav-text">Linux 目录简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-关机-amp-重启"><span class="nav-number">3.</span> <span class="nav-text">Linux 关机 &amp; 重启</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录相关命令"><span class="nav-number">4.</span> <span class="nav-text">目录相关命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件属性"><span class="nav-number">5.</span> <span class="nav-text">文件属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看文件内容"><span class="nav-number">6.</span> <span class="nav-text">查看文件内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vim-编辑器"><span class="nav-number">7.</span> <span class="nav-text">Vim 编辑器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-中安装软件"><span class="nav-number">8.</span> <span class="nav-text">Linux 中安装软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-防火墙"><span class="nav-number">9.</span> <span class="nav-text">Linux 防火墙</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">pikachu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">95</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pikachu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
