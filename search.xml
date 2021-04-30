@@ -357,13 +357,13 @@
       </tags>
   </entry>
   <entry>
-    <title>Java/微服务/Spring Cloud</title>
-    <url>/2021/04/05/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Spring%20Cloud/</url>
+    <title>Java/微服务/Docker</title>
+    <url>/2021/04/05/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Docker/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>Java/微服务/Docker</title>
-    <url>/2021/04/05/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Docker/</url>
+    <title>Java/微服务/Spring Cloud</title>
+    <url>/2021/04/05/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Spring%20Cloud/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
@@ -8638,6 +8638,87 @@
 ]]></content>
       <tags>
         <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>静态代理和动态代理</title>
+    <url>/2019/04/04/Java/1.Java%E5%9F%BA%E7%A1%80/%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<p>静态代理的代理类是创建好的一个类</p>
+<p>通过动态代理，可以在不修改源码的基础上对方法进行增强</p>
+<a id="more"></a>
+
+
+
+<h3 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h3><blockquote>
+<p>代理类和被代理类实现实现同一个接口</p>
+</blockquote>
+<p>代码实现：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticProxy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> WeddingCompany(<span class="keyword">new</span> You()).happyMarry();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Marry</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">happyMarry</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 真实角色</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">You</span> <span class="keyword">implements</span> <span class="title">Marry</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">happyMarry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"结婚啦"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 代理角色</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WeddingCompany</span> <span class="keyword">implements</span> <span class="title">Marry</span></span>&#123;</span><br><span class="line">    <span class="comment">// 代理类中需要被代理类的对象</span></span><br><span class="line">    <span class="keyword">private</span> Marry target;</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WeddingCompany</span><span class="params">(Marry target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.target = target;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">happyMarry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 在代理的前后可以执行一些额外的操作</span></span><br><span class="line">        System.out.println(<span class="string">"布置会场"</span>);</span><br><span class="line">        target.happyMarry();</span><br><span class="line">        System.out.println(<span class="string">"收拾会场"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>特点：字节码随用随创建，随用随加载</p>
+<p>作用：不修改源码的基础上，对方法进行增强</p>
+<p>分类：</p>
+<ul>
+<li>基于接口的动态代理</li>
+<li>基于子类的动态代理</li>
+</ul>
+<hr>
+<h4 id="基于接口的动态代理"><a href="#基于接口的动态代理" class="headerlink" title="基于接口的动态代理"></a>基于接口的动态代理</h4><p><strong>涉及的类：</strong>Proxy</p>
+<p><strong>提供者：</strong>JDK 官方</p>
+<p><strong>如何创建代理对象：</strong>使用 Proxy 类中的<code>newProxyInstance</code>方法</p>
+<p><strong>创建代理对象的要求：</strong>被代理类至少实现一个接口，没有则不能创建</p>
+<p><strong>newProxyInstance 方法的参数：</strong></p>
+<ul>
+<li>ClassLoader：类加载器<ul>
+<li>用于加载代理对象字节码，和被代理对象使用相同的类加载器，<strong>固定写法</strong></li>
+</ul>
+</li>
+<li>Class[]：字节码数组<ul>
+<li>用于让代理对象和被代理对象有相同的方法，<strong>固定写法</strong></li>
+</ul>
+</li>
+<li>InvocationHandler(接口)：用于提供增强的代码<ul>
+<li>它让我们写如何进行代理。一般都是写InvocationHandler的实现类（匿名内部类）</li>
+</ul>
+</li>
+</ul>
+<p>代码体现：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Consumer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 该处成员方法设置为final，</span></span><br><span class="line"><span class="comment">         * 是因为在匿名内部类中要想调用外部类的方法，</span></span><br><span class="line"><span class="comment">         * 那么该外部类的方法必须是 final 的</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">final</span> IProducer producer = <span class="keyword">new</span> Producer();</span><br><span class="line">		</span><br><span class="line">        <span class="comment">// 使用Proxy创建一个代理对象</span></span><br><span class="line">        IProducer proxyProducer = (IProducer) Proxy.newProxyInstance(producer.getClass().getClassLoader(),</span><br><span class="line">                producer.getClass().getInterfaces(),</span><br><span class="line">                <span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">                    <span class="comment">/**</span></span><br><span class="line"><span class="comment">                     * 执行被代理对象的任何接口方法都会经过该方法</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@param</span> proxy     代理对象的引用(一般用不到)</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@param</span> method    当前执行的方法</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@param</span> args      当前执行的方法的参数</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@return</span>          和被代理对象有相同的返回值</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@throws</span> Throwable</span></span><br><span class="line"><span class="comment">                     */</span></span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                        <span class="comment">// 提供增强的代码</span></span><br><span class="line">                        Object returnValue = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">                        <span class="comment">// 1、获取方法执行的参数</span></span><br><span class="line">                        Integer money = (Integer) args[<span class="number">0</span>];</span><br><span class="line">                        <span class="comment">// 2、判断当前方法是不是销售</span></span><br><span class="line">                        <span class="keyword">if</span>(<span class="string">"saleProduct"</span>.equals(method.getName()))&#123;</span><br><span class="line">                            returnValue = method.invoke(producer,(<span class="keyword">int</span>)(money*<span class="number">0.8</span>));</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">return</span> returnValue;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">        <span class="comment">// 使用代理对象调用方法</span></span><br><span class="line">        proxyProducer.saleProduct(<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="基于子类的动态代理"><a href="#基于子类的动态代理" class="headerlink" title="基于子类的动态代理"></a>基于子类的动态代理</h4><p><strong>涉及的类：</strong>Enhancer</p>
+<p><strong>提供者：</strong>第三方cglib库</p>
+<blockquote>
+<p>maven坐标：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cglib<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cglib<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1_3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<p><strong>如何创建代理对象：</strong>使用Enhancer类中的<code>create</code>方法</p>
+<p><strong>创建代理对象的要求：</strong>被代理的类不能被final修饰（不能为最终类）</p>
+<p><strong>create方法的参数：</strong></p>
+<ul>
+<li>Class：字节码<ul>
+<li>用于指定被代理对象的字节码</li>
+</ul>
+</li>
+<li>Callback(接口)：用于提供增强的代码<ul>
+<li>我们一般写的都是该接口的子接口的实现类：MethodInterceptor</li>
+</ul>
+</li>
+</ul>
+<p>代码体现：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Consumer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> Producer producer = <span class="keyword">new</span> Producer();</span><br><span class="line">		</span><br><span class="line">        <span class="comment">// 创建代理对象</span></span><br><span class="line">        Producer cglibProducer = (Producer) Enhancer.create(producer.getClass(),</span><br><span class="line">                <span class="keyword">new</span> MethodInterceptor() &#123;</span><br><span class="line">                    <span class="comment">/**</span></span><br><span class="line"><span class="comment">                     *  执行被代理对象的任何方法都会经过该方法</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@param</span> o</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@param</span> method</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@param</span> objects</span></span><br><span class="line"><span class="comment">                     *      以上三个方法参数和基于接口的动态代理中invoke方法的参数是一样的</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@param</span> methodProxy   当前执行方法的代理对象（一般用不到）</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@throws</span> Throwable</span></span><br><span class="line"><span class="comment">                     */</span></span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object o, Method method, Object[] objects, MethodProxy methodProxy)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                        <span class="comment">// 提供增强的代码</span></span><br><span class="line">                        Object returnValue = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">                        <span class="comment">// 1、获取方法执行的参数</span></span><br><span class="line">                        Integer money = (Integer) objects[<span class="number">0</span>];</span><br><span class="line">                        <span class="comment">// 2、判断当前方法是不是销售</span></span><br><span class="line">                        <span class="keyword">if</span>(<span class="string">"saleProduct"</span>.equals(method.getName()))&#123;</span><br><span class="line">                            returnValue = method.invoke(producer,(<span class="keyword">int</span>)(money*<span class="number">0.8</span>));</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">return</span> returnValue;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">        <span class="comment">// 使用代理对象调用方法</span></span><br><span class="line">        cglibProducer.saleProduct(<span class="number">20000</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>静态代理</tag>
+        <tag>动态代理</tag>
       </tags>
   </entry>
   <entry>
