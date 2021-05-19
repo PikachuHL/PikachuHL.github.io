@@ -1,10 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>区块链技术与应用</title>
+    <url>/2021/05/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="区块链基础与应用"><a href="#区块链基础与应用" class="headerlink" title="区块链基础与应用"></a>区块链基础与应用</h1>]]></content>
+  </entry>
+  <entry>
+    <title>Java/微服务/ZooKeeper</title>
+    <url>/2021/05/11/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/ZooKeeper/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+
+<h2 id="Zookeeper基础概念"><a href="#Zookeeper基础概念" class="headerlink" title="Zookeeper基础概念"></a>Zookeeper基础概念</h2><h2 id="ZooKeeper-环境搭建"><a href="#ZooKeeper-环境搭建" class="headerlink" title="ZooKeeper 环境搭建"></a>ZooKeeper 环境搭建</h2><blockquote>
+<p>在 Linux 中搭建 ZooKeeper （伪集群）环境</p>
+<p>参考资料：</p>
+<ul>
+<li><a href="https://www.cnblogs.com/qlqwjy/p/10491456.html" target="_blank" rel="noopener">Zookeeper环境搭建</a></li>
+<li><a href="https://blog.csdn.net/qq_28410283/article/details/108863650" target="_blank" rel="noopener">在linux下搭建zookeeper集群</a></li>
+<li><a href="https://blog.csdn.net/weixin_42417207/article/details/89280006?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.vipsorttest&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.vipsorttest" target="_blank" rel="noopener">阿里云上zookeeper伪集群部署</a></li>
+</ul>
+</blockquote>
+<ol>
+<li><p>在<a href="https://zookeeper.apache.org/releases.html" target="_blank" rel="noopener">官网下载</a> tar.gz 压缩包（<code>apache-zookeeper-3.7.0-bin.tar.gz</code>）</p>
+</li>
+<li><p>把压缩包放到 <code>/opt</code> 目录下，解压（<code>tar -xzvf apache-zookeeper-3.7.0-bin.tar.gz</code>）</p>
+</li>
+<li><p>重命名解压后的目录（<code>mv apache-zookeeper-3.7.0-bin.tar.gz zookeeper</code>）</p>
+</li>
+<li><p>在 <code>/opt</code> 中新建 <code>zookeeper-cluster</code> 目录（<code>mkdir zookeeper-cluster</code>）</p>
+</li>
+<li><p>把 <code>zookeeper</code> 放到 <code>zookeeper-cluster</code> 目录下，并复制两份（<code>zookeeper1</code>，<code>zookeeper2</code>，<code>zookeeper3</code>）</p>
+</li>
+<li><p>把 <code>zookeeper1/conf/zoo_sample.cfg</code> 重命名为 <code>zoo.cfg</code></p>
+</li>
+<li><p>修改 <code>zoo.cfg</code> </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># The number of milliseconds of each tick</span></span><br><span class="line">tickTime=2000</span><br><span class="line"><span class="comment"># The number of ticks that the initial </span></span><br><span class="line"><span class="comment"># synchronization phase can take</span></span><br><span class="line">initLimit=10</span><br><span class="line"><span class="comment"># The number of ticks that can pass between </span></span><br><span class="line"><span class="comment"># sending a request and getting an acknowledgement</span></span><br><span class="line">syncLimit=5</span><br><span class="line"><span class="comment"># the directory where the snapshot is stored.</span></span><br><span class="line"><span class="comment"># do not use /tmp for storage, /tmp here is just </span></span><br><span class="line"><span class="comment"># example sakes.</span></span><br><span class="line">dataDir=/opt/zookeeper-cluster/zookeeper1/zkData		<span class="comment"># 需要修改为自己创建的 zkData 目录</span></span><br><span class="line"><span class="comment"># the port at which the clients will connect</span></span><br><span class="line">clientPort=2181											<span class="comment"># 修改为该 zk server 的端口</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 集群相关配置，三个 server 中写一样</span></span><br><span class="line"><span class="comment"># 格式：server.id=ip:port1:port2</span></span><br><span class="line"><span class="comment"># id：myid文件中写的id信息</span></span><br><span class="line"><span class="comment"># ip：服务器的ip（如果是伪集群，则写127.0.0.1）</span></span><br><span class="line"><span class="comment"># port1：该服务器与集群中leader服务器交换信息的端口</span></span><br><span class="line"><span class="comment"># port2：服务器执行选举时需要用到的端口</span></span><br><span class="line">server.1=127.0.0.1:2887:3887</span><br><span class="line">server.2=127.0.0.1:2888:3888</span><br><span class="line">server.3=127.0.0.1:2889:3889</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>zookeeper1</code> 目录下新建 <code>zkData</code> 目录（<code>zoo.cfg</code> 中的 <code>dataDir</code>）</p>
+</li>
+<li><p>在 <code>zkData</code> 目录下新建 <code>myid</code> 文本文件，并在文件中写入该 server 的 id 信息（<code>zoo.cfg</code> 中集群配置的 <code>server.</code> 后面那个数字）</p>
+</li>
+<li><p>在 <code>zookeeper2</code>，<code>zookeeper3</code> 中执行 6,7,8,9 步骤，把相关信息指定为自己的（<code>dataDir</code>，<code>clientPort</code>，<code>myid</code>）</p>
+</li>
+<li><p>分别启动三个服务器 <code>zookeeper-cluster/zookeeper1/bin/zkServer.sh start</code></p>
+</li>
+<li><p>检查是否启动成功 <code>zookeeper-cluster/zookeeper1/bin/zkserver.sh status</code>（三个服务器，一主两从）</p>
+<p><strong>zookeeper1 server</strong></p>
+<p><img src="../../../images/ZooKeeper/image-20210511174137605.png" alt="image-20210511174137605"></p>
+</li>
+</ol>
+<pre><code>**zookeeper2 server**
+
+![image-20210511174250887](../../../images/ZooKeeper/image-20210511174250887.png)
+
+
+
+**zookeeper3 server**
+
+![image-20210511174338295](../../../images/ZooKeeper/image-20210511174338295.png)</code></pre><ol start="13">
+<li><p>在 Linux 防火墙中开启相关端口：<code>2181</code>，<code>2182</code>，<code>2183</code> （如果在阿里云的服务器中搭建，还需要在安全组中配置这三个端口）</p>
+<p>可以使用 <code>netstat -nltp</code> 命令查看是否监听了相关端口（<code>2181</code>，<code>3887</code> 等）</p>
+</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
     <title>MySQL高级</title>
     <url>/2021/04/13/Java/MySQL%E9%AB%98%E7%BA%A7/</url>
-    <content><![CDATA[<h1 id="MySQL高级"><a href="#MySQL高级" class="headerlink" title="MySQL高级"></a>MySQL高级</h1><p>MySQL 存储引擎简介：</p>
-<p>MySQL 的存储引擎是可插拔的，有很多引擎可供使用，常见的有两个：</p>
+    <content><![CDATA[<p>索引 、数据库优化、MySQL 锁机制</p>
+<a id="more"></a>
+
+
+
+<h2 id="MySQL-存储引擎"><a href="#MySQL-存储引擎" class="headerlink" title="MySQL 存储引擎"></a>MySQL 存储引擎</h2><p>MySQL 的存储引擎是可插拔的，有很多引擎可供使用，常见的有两个：</p>
 <ul>
 <li>MyISAM：MySQL 5.5之前的默认存储引擎</li>
 <li>InnoDB：MySQL 5.5及之后默认存储引擎</li>
@@ -314,6 +383,9 @@
 <li>尽量控制事务大小，减少锁定资源量和锁定时间</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
       <tags>
         <tag>MySQL</tag>
       </tags>
@@ -365,32 +437,6 @@
     <title>Java/微服务/Spring Cloud</title>
     <url>/2021/04/05/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Spring%20Cloud/</url>
     <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>Typora+Hexo 图片设置</title>
-    <url>/2021/03/22/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="Typora-Hexo-图片相关设置"><a href="#Typora-Hexo-图片相关设置" class="headerlink" title="Typora + Hexo 图片相关设置"></a>Typora + Hexo 图片相关设置</h1><h3 id="需求"><a href="#需求" class="headerlink" title="需求:"></a>需求:</h3><ul>
-<li>在 Typora 中写笔记的时候能够方便的添加图片, 把需要添加的图片直接拖进去就可以, 而不需要手写图片路径</li>
-<li>直接拖到 Typora 里面的图片可以自动放到 <code>source/images</code> 文件夹中</li>
-<li>图片在 Typora 里面和 Hexo 渲染之后都可以正常的显示 (需要图片的路径适合两种情况)</li>
-</ul>
-<h3 id="设置"><a href="#设置" class="headerlink" title="设置:"></a>设置:</h3><ol>
-<li><p>在 Typora  <code>文件--&gt;偏好设置--&gt;图像</code>  设置如下: </p>
-<p>(直接拖入或者复制进Typora的图片会被复制到images文件夹下面的 以笔记文件名命名的文件夹中)</p>
-<p><img src="/images/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/image-20210322100052295.png" alt="image-20210322100052295"></p>
-</li>
-</ol>
-<ol start="2">
-<li><p>在 Typora <code>格式--&gt;图像--&gt;设置图片根目录</code> 中设置根目录为 <code>source</code> 目录</p>
-<p>设置了图片根目录之后, 在markdown笔记文件的头部信息中会出现 <code>typora-root-url</code></p>
-<p><img src="/images/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/image-20210322100713968.png" alt="image-20210322100713968"></p>
-</li>
-</ol>
-<p>经过以上两步设置之后就可以直接将图片放到markdown笔记中了</p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项:"></a>注意事项:</h3><ul>
-<li>一定要先设置 <code>图片根目录</code>, 再往笔记中添加图片, 否则图片路径会不正确, 在 Hexo 渲染后就无法显示</li>
-</ul>
-]]></content>
   </entry>
   <entry>
     <title>JSON</title>
@@ -510,7 +556,8 @@
   <entry>
     <title>Python第三方库</title>
     <url>/2020/09/22/Python/Python_old/Python%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</url>
-    <content><![CDATA[<a id="more"></a>
+    <content><![CDATA[<p>Python 常用的第三方库，在此做一些用法记录。 </p>
+<a id="more"></a>
 
 
 
@@ -2452,7 +2499,11 @@
   <entry>
     <title>学习中遇到的问题</title>
     <url>/2020/02/06/%E5%85%B6%E5%AE%83%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<a id="more"></a>
+    <content><![CDATA[<p>把学习中遇到的一些问题及解决过程记录下来，避免以后在同一个坑里跌倒</p>
+<a id="more"></a>
+
+
+
 <ol>
 <li><p><strong>在 Mac 中配置 maven 环境变量</strong></p>
 <ol>
@@ -2838,6 +2889,40 @@
       </tags>
   </entry>
   <entry>
+    <title>Typora + Hexo 图片相关设置</title>
+    <url>/2019/10/14/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<p>使用 Hexo 部署博客时，在 Typora 中添加图片的正确姿势</p>
+<a id="more"></a>
+
+
+
+<h3 id="需求"><a href="#需求" class="headerlink" title="需求:"></a>需求:</h3><ul>
+<li>在 Typora 中写笔记的时候能够方便的添加图片, 把需要添加的图片直接拖进去就可以, 而不需要手写图片路径</li>
+<li>直接拖到 Typora 里面的图片可以自动放到 <code>source/images</code> 文件夹中</li>
+<li>图片在 Typora 里面和 Hexo 渲染之后都可以正常的显示 (需要图片的路径适合两种情况)</li>
+</ul>
+<h3 id="设置"><a href="#设置" class="headerlink" title="设置:"></a>设置:</h3><ol>
+<li><p>在 Typora  <code>文件--&gt;偏好设置--&gt;图像</code>  设置如下: </p>
+<p>(直接拖入或者复制进Typora的图片会被复制到images文件夹下面的 以笔记文件名命名的文件夹中)</p>
+<p><img src="/images/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/image-20210322100052295.png" alt="image-20210322100052295"></p>
+</li>
+</ol>
+<ol start="2">
+<li><p>在 Typora <code>格式--&gt;图像--&gt;设置图片根目录</code> 中设置根目录为 <code>source</code> 目录</p>
+<p>设置了图片根目录之后, 在markdown笔记文件的头部信息中会出现 <code>typora-root-url</code></p>
+<p><img src="/images/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/image-20210322100713968.png" alt="image-20210322100713968"></p>
+</li>
+</ol>
+<p>经过以上两步设置之后就可以直接将图片放到markdown笔记中了</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项:"></a>注意事项:</h3><ul>
+<li>一定要先设置 <code>图片根目录</code>, 再往笔记中添加图片, 否则图片路径会不正确, 在 Hexo 渲染后就无法显示</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Typora - Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>YAML</title>
     <url>/2019/10/14/YAML/</url>
     <content><![CDATA[<p>YAML 是Spring Boot 官方推荐的配置文件格式</p>
@@ -2956,7 +3041,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Spring Boot</title>
+    <title>Thymeleaf</title>
     <url>/2019/10/09/Thymeleaf/</url>
     <content><![CDATA[<p>Thymeleaf 是 Spring Boot 官方推荐使用的模板引擎</p>
 <a id="more"></a>
@@ -2998,7 +3083,8 @@
         <category>Java EE</category>
       </categories>
       <tags>
-        <tag>Spring Boot</tag>
+        <tag>Thymeleaf</tag>
+        <tag>模板引擎</tag>
       </tags>
   </entry>
   <entry>
@@ -3521,11 +3607,13 @@
   <entry>
     <title>Java面试</title>
     <url>/2019/06/05/Java/Java%E9%9D%A2%E8%AF%95/</url>
-    <content><![CDATA[<p>Java面试题目整理</p>
+    <content><![CDATA[<p>Java 面试题目整理</p>
 <a id="more"></a>
 
-<h1 id="面试题目整理"><a href="#面试题目整理" class="headerlink" title="面试题目整理"></a>面试题目整理</h1><ol>
-<li><p>Java中的<strong>基本数据类型</strong></p>
+
+
+<ol>
+<li><p>Java 中的<strong>基本数据类型</strong></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">四类八种：</span><br><span class="line"></span><br><span class="line">整数型</span><br><span class="line">byte(1字节)，short(2字节)，int(4字节)，long(8字节)</span><br><span class="line">浮点型</span><br><span class="line">float(4字节)，double(8字节)</span><br><span class="line">字符型</span><br><span class="line">char(1字节)</span><br><span class="line">布尔型</span><br><span class="line">boolean(无大小)</span><br></pre></td></tr></table></figure>
 
 
@@ -3542,18 +3630,18 @@
 </ol>
 <ol start="3">
 <li><p>WEB-INF 目录的作用</p>
-<p><strong>基于Servlet的声明，WEB-INF 不作为web应用的公共文档树的一部分。</strong></p>
+<p><strong>基于 Servlet 的声明，WEB-INF 不作为 web 应用的公共文档树的一部分。</strong></p>
 <p>因此，WEB-INF 目录下的资源不是为客户直接服务的，</p>
-<p>所以，要想访问WEB-INF 目录下的资源，必须<strong>走控制器</strong></p>
+<p>所以，要想访问 WEB-INF 目录下的资源，必须<strong>走控制器</strong></p>
 <p>WEB-INF 目录下的资源相对来说是<strong>安全的</strong></p>
 </li>
 </ol>
 <ol start="4">
-<li><p>Servlet的执行流程</p>
-<p>Servlet是<strong>单实例、多线程</strong></p>
-<p>第一次访问时，服务器创建Servlet， 并调用 init 方法进行初始化，然后调用service方法</p>
-<p>每当请求来到的时候，服务器创建一个线程，并调用service方法完成自己的业务逻辑</p>
-<p>当Servlet被移除或服务器正常关闭时，服务器调用Servlet的 destory 方法执行收尾操作</p>
+<li><p>Servlet 的执行流程</p>
+<p>Servlet 是<strong>单实例、多线程</strong></p>
+<p>第一次访问时，服务器创建 Servlet， 并调用 init 方法进行初始化，然后调用 service 方法</p>
+<p>每当请求来到的时候，服务器创建一个线程，并调用 service 方法完成自己的业务逻辑</p>
+<p>当 Servlet 被移除或服务器正常关闭时，服务器调用 Servlet 的 destory 方法执行收尾操作</p>
 </li>
 </ol>
 <ol start="5">
@@ -3564,8 +3652,8 @@
 </ol>
 <ol start="6">
 <li><p>JDK 和 JRE 的区别</p>
-<p>JRE = JVM + Java核心类库</p>
-<p>JDK = JRE + Java开发工具（JDK 11 及之后的版本中不再包括 JRE）</p>
+<p>JRE = JVM + Java 核心类库</p>
+<p>JDK = JRE + Java 开发工具（JDK 11 及之后的版本中不再包括 JRE）</p>
 </li>
 </ol>
 <ol start="7">
@@ -3576,7 +3664,28 @@
 </li>
 </ol>
 <ol start="8">
-<li>== 和 equals 的区别</li>
+<li><p><code>==</code> 和 <code>equals</code> 的区别</p>
+<ul>
+<li><p><code>==</code>：比较两个对象的地址值是否一样（也就是看两个对象实体是不是同一个），引用数据类型比较的是地址值，基础数据类型比较的是值</p>
+</li>
+<li><p><code>equals</code>：分为两种情况：</p>
+<ol>
+<li>如果没有重写继承自 Object 的 equals 方法，那么默认和 <code>==</code> 功能一样。</li>
+<li>如果重写了，一般是重写成比较两个对象的内容</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="9">
+<li><p>Java 8 新特性：</p>
+<ul>
+<li>lambda 表达式</li>
+<li>默认方法（接口中可以定义默认方法）</li>
+<li>Stream API（<code>java.util.stream</code>，把真正的函数式编程风格引入到 Java 中）</li>
+<li>方法引用 ？？？</li>
+</ul>
+</li>
 </ol>
 ]]></content>
       <categories>
@@ -3964,33 +4073,33 @@
   <entry>
     <title>EL &amp; JSTL</title>
     <url>/2019/05/26/Java/2.JavaWeb/12.EL%20&amp;%20JSTL/</url>
-    <content><![CDATA[<p>EL : Expression Language : 替换和简化jsp页面中Java代码的编写</p>
-<p>JSTL : Java Server pages Tag Library : jsp标签库</p>
+    <content><![CDATA[<p>EL : Expression Language : 替换和简化 jsp 页面中 Java 代码的编写</p>
+<p>JSTL : Java Server pages Tag Library : jsp 标签库</p>
 <a id="more"></a>
 
-<h1 id="EL表达式"><a href="#EL表达式" class="headerlink" title="EL表达式"></a>EL表达式</h1><p>概念：Expression Language  表达式语言</p>
-<p>作用：替换和简化jsp页面中Java代码的编写</p>
+<h1 id="EL-表达式"><a href="#EL-表达式" class="headerlink" title="EL 表达式"></a>EL 表达式</h1><p>概念：Expression Language  表达式语言</p>
+<p>作用：替换和简化 jsp 页面中 Java 代码的编写</p>
 <p>语法：<code>${表达式}</code></p>
-<p>注意：在jsp页面中默认支持EL表达式，如果想忽略EL表达式，有两种方法</p>
+<p>注意：在 jsp 页面中默认支持 EL 表达式，如果想忽略 EL 表达式，有两种方法</p>
 <ul>
-<li>在<code>page</code>指令中添加属性 <code>isElIgnored=&quot;true&quot;</code>，可以忽略当前页面中所有的EL表达式</li>
-<li>在EL表达式前加<code>\</code> ,即 <code>\${表达式}</code>，可以忽略这个表达式</li>
+<li>在 <code>page</code> 指令中添加属性 <code>isElIgnored=&quot;true&quot;</code>，可以忽略当前页面中所有的EL表达式</li>
+<li>在 EL 表达式前加 <code>\</code> ,即 <code>\${表达式}</code>，可以忽略这个表达式</li>
 </ul>
-<h3 id="EL表达式的使用"><a href="#EL表达式的使用" class="headerlink" title="EL表达式的使用"></a>EL表达式的使用</h3><p><strong>1、运算符</strong></p>
-<p>在EL表达式中可以直接进行运算，可以使用的运算符有以下几种：</p>
+<h3 id="EL-表达式的使用"><a href="#EL-表达式的使用" class="headerlink" title="EL 表达式的使用"></a>EL 表达式的使用</h3><p><strong>1、运算符</strong></p>
+<p>在 EL 表达式中可以直接进行运算，可以使用的运算符有以下几种：</p>
 <ul>
 <li>算术运算符：+ - * / %</li>
 <li>比较运算符：&gt;  &lt;  &gt;=  &lt;=  == !=</li>
 <li>逻辑运算符：&amp;&amp;  ||  !</li>
 <li>空运算符：empty<ul>
-<li>作用：用于判断字符串、集合、数组对象 <strong>是否为null</strong> 或者 <strong>长度是否为0</strong>，返回true或false</li>
+<li>作用：用于判断字符串、集合、数组对象 <strong>是否为 null</strong> 或者 <strong>长度是否为 0</strong>，返回 true 或 false</li>
 <li>用法：<code>${empty list}</code> / <code>${not empty list}</code></li>
 </ul>
 </li>
 </ul>
 <hr>
 <p><strong>2、获取值</strong></p>
-<p>EL表达式只能从<strong>域对象</strong>中获取值</p>
+<p>EL 表达式只能从<strong>域对象</strong>中获取值</p>
 <p>语法：</p>
 <ul>
 <li><p><code>${域名称.键名}</code>：从指定域中获取指定键的值</p>
@@ -4022,44 +4131,44 @@
 <li><p><code>${键名}</code>：从最小的域开始往大的域查找是否有该键，直到找到为止</p>
 </li>
 </ul>
-<p>获取对象、List集合、Map集合中的值：</p>
+<p>获取对象、List 集合、Map 集合中的值：</p>
 <ul>
 <li><p>获取对象的值：<code>${域名称.键名.属性名}</code></p>
 <ul>
-<li>这种获取方法本质上会去调用对象的getter方法，</li>
-<li>属性名其实是getter方法名去掉getter后剩余部分首字母变小写，通常情况下就和成员变量名一样</li>
+<li>这种获取方法本质上会去调用对象的 getter 方法，</li>
+<li>属性名其实是 getter 方法名去掉 getter 后剩余部分首字母变小写，通常情况下就和成员变量名一样</li>
 </ul>
 </li>
-<li><p>获取List集合中的值：<code>${域名称.键名[索引]}</code></p>
+<li><p>获取 List 集合中的值：<code>${域名称.键名[索引]}</code></p>
 </li>
-<li><p>获取Map集合中的值：</p>
+<li><p>获取 Map 集合中的值：</p>
 <ul>
 <li><code>${域名称.键名.key}</code></li>
 <li><code>${域名称.键名[&quot;key&quot;]}</code></li>
 </ul>
 </li>
 </ul>
-<h3 id="隐式对象"><a href="#隐式对象" class="headerlink" title="隐式对象"></a>隐式对象</h3><p>EL表达式中共有11个隐式对象，类似于jsp的内置对象</p>
+<h3 id="隐式对象"><a href="#隐式对象" class="headerlink" title="隐式对象"></a>隐式对象</h3><p>EL 表达式中共有 11 个隐式对象，类似于 jsp 的内置对象</p>
 <ul>
 <li>pageContext：最常用的隐式对象就这一个<ul>
-<li>作用：获取jsp的其它8个内置对象</li>
+<li>作用：获取 jsp 的其它 8 个内置对象</li>
 <li>使用：<code>${pageContext.request.contextPath}</code>：动态获取虚拟目录 ☆</li>
 </ul>
 </li>
 </ul>
-<h1 id="JSTL"><a href="#JSTL" class="headerlink" title="JSTL"></a>JSTL</h1><p>概念：Java Server pages Tag Library ：jsp标签库</p>
-<p>作用：用于简化和替换jsp页面上的Java代码</p>
+<h1 id="JSTL"><a href="#JSTL" class="headerlink" title="JSTL"></a>JSTL</h1><p>概念：Java Server pages Tag Library ：jsp 标签库</p>
+<p>作用：用于简化和替换 jsp 页面上的 Java 代码</p>
 <p>使用：在使用之前需要先引入标签库</p>
 <ul>
 <li><code>&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;</code></li>
 </ul>
 <hr>
-<h3 id="常用的-JSTL-标签"><a href="#常用的-JSTL-标签" class="headerlink" title="常用的 JSTL 标签"></a>常用的 JSTL 标签</h3><h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><p>相当于Java代码的 <strong>if语句</strong></p>
+<h3 id="常用的-JSTL-标签"><a href="#常用的-JSTL-标签" class="headerlink" title="常用的 JSTL 标签"></a>常用的 JSTL 标签</h3><h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><p>相当于 Java 代码的 <strong>if 语句</strong></p>
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%-- test属性为必须的，当test中表达式为<span class="keyword">true</span>时，执行标签体中的代码 --%&gt;</span><br><span class="line">&lt;c:<span class="keyword">if</span> test=<span class="string">"boolean表达式"</span>&gt;</span><br><span class="line">    &lt;h1&gt;jstl的if标签&lt;/h1&gt;</span><br><span class="line">&lt;/c:if&gt;</span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="choose"><a href="#choose" class="headerlink" title="choose"></a>choose</h4><p>相当于Java代码的 <strong>switch语句</strong></p>
+<h4 id="choose"><a href="#choose" class="headerlink" title="choose"></a>choose</h4><p>相当于 Java 代码的 <strong>switch 语句</strong></p>
 <ul>
 <li>choose –&gt; switch</li>
 <li>when –&gt; case</li>
@@ -4069,7 +4178,7 @@
 
 
 
-<h4 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h4><p>相当于Java代码的 <strong>for语句</strong></p>
+<h4 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h4><p>相当于 Java 代码的 <strong>for 语句</strong></p>
 <p>foreach 标签具有两个功能：</p>
 <ul>
 <li><p>完成重复的操作</p>
@@ -4091,7 +4200,7 @@
 <li>items：容器对象</li>
 <li>var：临时变量</li>
 <li>varStatus：循环状态对象<ul>
-<li>index：容器中元素的索引，从0开始</li>
+<li>index：容器中元素的索引，从 0 开始</li>
 <li>count：循环次数，从1开始</li>
 </ul>
 </li>
@@ -4164,26 +4273,26 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置PREFIX可以让Redis相关的文件都存放在 usr/local/redis 相关目录下，方便以后操作</span></span><br><span class="line">make PREFIX=/usr/<span class="built_in">local</span>/redis install</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>安装完成，<code>redis-server</code> 和 <code>redis-cli</code> 都会放在 <code>/user/local/redis/bin</code> 目录下。</p>
-<p><img src="images/Redis/image-20210418183342979.png" alt="image-20210418183342979"></p>
+<p><img src="/images/Redis/image-20210418183342979.png" alt="image-20210418183342979"></p>
 </li>
 <li><p>Redis 的配置文件 <code>redis.conf</code> 会放在 <code>/user/local/redis</code> 目录下。启动 Redis 服务前，需要修改配置文件： <code>daemonize yes</code>，意思是让 Redis 服务以守护线程的方式启动（也就是后台运行）</p>
 </li>
 <li><p>启动 Redis 服务：<code>./redis-server ../redis.conf</code></p>
-<p><img src="images/Redis/image-20210418184239104.png" alt="image-20210418184239104"></p>
+<p><img src="/images/Redis/image-20210418184239104.png" alt="image-20210418184239104"></p>
 <blockquote>
 <p>查看 Redis 服务进程：<code>ps -ef | grep redis</code></p>
 </blockquote>
 </li>
 <li><p>启动 Redis 客户端，操作 Redis：<code>./redis-cli</code></p>
-<p><img src="images/Redis/image-20210418184103343.png" alt="image-20210418184103343"></p>
+<p><img src="/images/Redis/image-20210418184103343.png" alt="image-20210418184103343"></p>
 </li>
 </ol>
 <h2 id="Redis-基本知识"><a href="#Redis-基本知识" class="headerlink" title="Redis 基本知识"></a>Redis 基本知识</h2><p>Redis 默认有 16 个数据库，可以在 <code>redis.conf</code> 配置文件中看到</p>
-<p><img src="images/Redis/image-20210419080132793.png" alt="image-20210419080132793"></p>
+<p><img src="/images/Redis/image-20210419080132793.png" alt="image-20210419080132793"></p>
 <p>切换数据库：<code>SELECT &lt;dbid&gt;</code></p>
-<p><img src="images/Redis/image-20210419080902336.png" alt="image-20210419080902336"></p>
+<p><img src="/images/Redis/image-20210419080902336.png" alt="image-20210419080902336"></p>
 <p>查看当前数据库大小：<code>DBSIZE</code></p>
-<p><img src="images/Redis/image-20210419080933127.png" alt="image-20210419080933127"></p>
+<p><img src="/images/Redis/image-20210419080933127.png" alt="image-20210419080933127"></p>
 <p>清除当前数据库数据：<code>FLUSHDB</code></p>
 <p>清除所有数据库数据：<code>FLUSHALL</code></p>
 <blockquote>
@@ -4415,7 +4524,7 @@
 <li>数据量大时，AOF 产生的持久化文件较大，恢复数据比较耗时</li>
 </ul>
 <h2 id="Redis-发布订阅"><a href="#Redis-发布订阅" class="headerlink" title="Redis 发布订阅"></a>Redis 发布订阅</h2><p>我们使用的微博，微信公众号，群聊，其实都存在发布订阅模式。即发布者发布信息到队列中，订阅者可以从队列中获取信息。</p>
-<p><img src="images/Redis/image-20210420223744148.png" alt="image-20210420223744148"></p>
+<p><img src="/images/Redis/image-20210420223744148.png" alt="image-20210420223744148"></p>
 <p>Redis 中可以实现上述流程：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">subscribe channel			<span class="comment"># 订阅频道（channel）</span></span><br><span class="line"></span><br><span class="line">unsubscribe channel			<span class="comment"># 取消订阅频道</span></span><br><span class="line"></span><br><span class="line">publish channel <span class="string">"message"</span>	<span class="comment"># 向频道发布内容</span></span><br></pre></td></tr></table></figure>
 
@@ -4577,10 +4686,9 @@
 
 <h2 id="Redis-缓存穿透和雪崩"><a href="#Redis-缓存穿透和雪崩" class="headerlink" title="Redis 缓存穿透和雪崩"></a>Redis 缓存穿透和雪崩</h2>]]></content>
       <categories>
-        <category>其他技术</category>
+        <category>数据库</category>
       </categories>
       <tags>
-        <tag>数据库</tag>
         <tag>Redis</tag>
       </tags>
   </entry>
@@ -4591,20 +4699,20 @@
 <a id="more"></a>
 
 <h3 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h3><ul>
-<li>Java Server pages：Java服务器端页面</li>
+<li>Java Server pages：Java 服务器端页面</li>
 <li>JSP 是一个特殊的页面，既可以指定 HTML 代码，又可以定义 Java 代码</li>
 </ul>
 <h3 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h3><p>JSP 本质上是一个 Servlet</p>
 <ul>
 <li>浏览器访问 jsp 时，服务器会把 jsp 转化为一个 <code>.java</code> 文件，这个 <code>.java</code> 文件就是一个 Servlet</li>
 </ul>
-<h3 id="JSP的脚本"><a href="#JSP的脚本" class="headerlink" title="JSP的脚本"></a>JSP的脚本</h3><p>JSP的脚本是书写Java代码的区域</p>
+<h3 id="JSP-脚本"><a href="#JSP-脚本" class="headerlink" title="JSP 脚本"></a>JSP 脚本</h3><p>JSP 的脚本是书写 Java 代码的区域</p>
 <ul>
-<li><code>&lt;% 代码 %&gt;</code>：这个脚本中的Java代码会出现在service方法中，该脚本中可以书写方法中可以书写的内容</li>
+<li><code>&lt;% 代码 %&gt;</code>：这个脚本中的 Java 代码会出现在 service 方法中，该脚本中可以书写方法中可以书写的内容</li>
 <li><code>&lt;%! 代码 %&gt;</code>：可以定义成员变量和成员方法</li>
-<li><code>&lt;%= 代码 %&gt;</code>：定义的java代码，可以直接输出到页面上</li>
+<li><code>&lt;%= 代码 %&gt;</code>：定义的 java 代码，可以直接输出到页面上</li>
 </ul>
-<h3 id="JSP-的指令"><a href="#JSP-的指令" class="headerlink" title="JSP 的指令"></a>JSP 的指令</h3><p>作用：用于配置 JSP 页面，导入资源文件</p>
+<h3 id="JSP-指令"><a href="#JSP-指令" class="headerlink" title="JSP 指令"></a>JSP 指令</h3><p>作用：用于配置 JSP 页面，导入资源文件</p>
 <p>格式：<code>&lt;%@ 指令名称 属性名1=属性值1 属性名2=属性值2 ... %&gt;</code></p>
 <p>指令种类：</p>
 <ul>
@@ -4626,12 +4734,12 @@
 </li>
 <li><strong>include</strong>：用于导入其他的 jsp 文件</li>
 </ul>
-<h3 id="JSP中的注释"><a href="#JSP中的注释" class="headerlink" title="JSP中的注释"></a>JSP中的注释</h3><p>JSP 中有两种注释</p>
+<h3 id="JSP-注释"><a href="#JSP-注释" class="headerlink" title="JSP 注释"></a>JSP 注释</h3><p>JSP 中有两种注释</p>
 <ul>
 <li>HTML 注释：<code>&lt;!-- 内容 --&gt;</code> ： 只能注释 HTML 内容</li>
 <li>JSP 注释：<code>&lt;%-- 内容 --%&gt;</code>：可以注释 jsp 页面中的所有内容，<strong>推荐使用</strong></li>
 </ul>
-<h3 id="JSP-的内置对象"><a href="#JSP-的内置对象" class="headerlink" title="JSP 的内置对象"></a>JSP 的内置对象</h3><p>在 jsp 页面中不需要获取和创建，直接就可以使用的对象</p>
+<h3 id="JSP-内置对象"><a href="#JSP-内置对象" class="headerlink" title="JSP 内置对象"></a>JSP 内置对象</h3><p>在 jsp 页面中不需要获取和创建，直接就可以使用的对象</p>
 <p>JSP 有 9 个内置对象：</p>
 <table>
 <thead>
@@ -4862,7 +4970,8 @@
   <entry>
     <title>SpringMVC_响应</title>
     <url>/2019/05/16/Java/3.SSM%E6%A1%86%E6%9E%B6/SpringMVC_%E5%93%8D%E5%BA%94/</url>
-    <content><![CDATA[<a id="more"></a>
+    <content><![CDATA[<p>SpringMVC 可以向前端页面响应哪些种类的数据，以及如何向前端页面响应数据。</p>
+<a id="more"></a>
 
 
 
@@ -4878,9 +4987,9 @@
 <li>返回<code>json</code>格式数据（实际返回的是javabean，通过<code>@ResponseBody</code>注解实现转换为json数据）</li>
 </ul>
 <blockquote>
-<p>Model model，</p>
+<p>Model model</p>
 <p>model.addAttribute(“username”, “zhangsan”);</p>
-<p>model 的作用域为 request 作品域</p>
+<p>model 的作用域为 request 作用域</p>
 </blockquote>
 ]]></content>
       <categories>
@@ -6708,7 +6817,8 @@
   <entry>
     <title>SQL</title>
     <url>/2019/04/16/Java/SQL/</url>
-    <content><![CDATA[<a id="more"></a>
+    <content><![CDATA[<p>SQL 是关系型数据库的通用语言标准</p>
+<a id="more"></a>
 
 
 
@@ -7044,6 +7154,9 @@
 </li>
 </ul>
 ]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
       <tags>
         <tag>SQL</tag>
       </tags>
@@ -7297,8 +7410,10 @@
 <li>第三范式：一张表中所有的非主键属性只能依赖主键属性</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
       <tags>
-        <tag>数据库</tag>
         <tag>MySQL</tag>
       </tags>
   </entry>
@@ -8932,19 +9047,19 @@
 </ul>
 </li>
 </ul>
-<h2 id="Java中正则表达式的使用"><a href="#Java中正则表达式的使用" class="headerlink" title="Java中正则表达式的使用"></a>Java中正则表达式的使用</h2><blockquote>
+<h2 id="Java-中使用正则表达式"><a href="#Java-中使用正则表达式" class="headerlink" title="Java 中使用正则表达式"></a>Java 中使用正则表达式</h2><blockquote>
 <p>import java.util.regex.Pattern</p>
 <p>import java.util.regex.Matcher</p>
 </blockquote>
-<h3 id="创建正则表达式对象-进行匹配"><a href="#创建正则表达式对象-进行匹配" class="headerlink" title="创建正则表达式对象,进行匹配"></a>创建正则表达式对象,进行匹配</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern p = <span class="keyword">new</span> Pattern(<span class="string">"\\b"</span>);</span><br><span class="line">Matcher m = p.compile(<span class="string">"String8Str"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> flag = m.matches();<span class="comment">// 判断整个字符串是否与正则表达式匹配</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(m.find())&#123;<span class="comment">// 找到与该正则表达式匹配的第一个子字符串，然后找下一个</span></span><br><span class="line">	System.out.println(m.group());<span class="comment">// 按照捕获组来输出，0输出全部组</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="创建正则表达式对象，进行匹配"><a href="#创建正则表达式对象，进行匹配" class="headerlink" title="创建正则表达式对象，进行匹配"></a>创建正则表达式对象，进行匹配</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern p = <span class="keyword">new</span> Pattern(<span class="string">"\\b"</span>);</span><br><span class="line">Matcher m = p.compile(<span class="string">"String8Str"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> flag = m.matches();<span class="comment">// 判断整个字符串是否与正则表达式匹配</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(m.find())&#123;<span class="comment">// 找到与该正则表达式匹配的第一个子字符串，然后找下一个</span></span><br><span class="line">	System.out.println(m.group());<span class="comment">// 按照捕获组来输出，0输出全部组</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="利用正则表达式进行替换操作"><a href="#利用正则表达式进行替换操作" class="headerlink" title="利用正则表达式进行替换操作"></a>利用正则表达式进行替换操作</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern p = Pattern.compile(<span class="string">"[0-9]"</span>);</span><br><span class="line">Matcher m = p.matcher(<span class="string">"asd456fgh"</span>);</span><br><span class="line">String str = m.replaceAll(<span class="string">"!"</span>);<span class="comment">// 把与正则表达式匹配的元素替换成“!”</span></span><br></pre></td></tr></table></figure>
+<h3 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern p = Pattern.compile(<span class="string">"[0-9]"</span>);</span><br><span class="line">Matcher m = p.matcher(<span class="string">"asd456fgh"</span>);</span><br><span class="line">String str = m.replaceAll(<span class="string">"!"</span>);<span class="comment">// 把与正则表达式匹配的元素替换成“!”</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="利用正则表达式进行分割操作"><a href="#利用正则表达式进行分割操作" class="headerlink" title="利用正则表达式进行分割操作"></a>利用正则表达式进行分割操作</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String str = <span class="string">"a1b23243434343c33d4e5"</span>;</span><br><span class="line">String[] strarr = str.split(<span class="string">"\\d+"</span>);<span class="comment">//split(String Regex)</span></span><br></pre></td></tr></table></figure>
+<h3 id="分割"><a href="#分割" class="headerlink" title="分割"></a>分割</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String str = <span class="string">"a1b23243434343c33d4e5"</span>;</span><br><span class="line">String[] strarr = str.split(<span class="string">"\\d+"</span>);<span class="comment">//split(String Regex)</span></span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
@@ -9114,7 +9229,7 @@
 <li><p><code>-l</code>：创建硬链接，而非复制文件本身</p>
 </li>
 <li><p><code>-s</code>：创建软链接文件（快捷方式）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">copy -a file destdir</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cp -a file destdir</span><br></pre></td></tr></table></figure>
 
 
 
@@ -9267,6 +9382,25 @@
 
 
 
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service network restart						<span class="comment"># 重启网络</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">netstat -nltp				<span class="comment"># 查看系统中的tcp进程和对应监听的端口</span></span><br></pre></td></tr></table></figure>
+
+<p>netstat 命令：显示网络相关的信息，如网络连接，路由表，接口状态等</p>
+<ul>
+<li><code>-a</code>：显示所有选项，默认不显示 Listen 相关</li>
+<li><code>-t</code>：仅显示 tcp 相关</li>
+<li><code>-u</code>：仅显示 udp 相关</li>
+<li><code>-n</code>：拒绝显示别名，能显示数字的就显示数字</li>
+<li><code>-l</code>：仅显示 Linten 相关</li>
+<li><code>-p</code>：显示建立相关连接的程序名</li>
+<li><code>-r</code>：显示路由表</li>
+<li><code>-e</code>：显示扩展信息，如 uid 等</li>
+<li><code>-s</code>：按各个协议进行统计</li>
+<li><code>-c</code>：每隔固定时间，执行该 netstat</li>
+</ul>
 ]]></content>
       <tags>
         <tag>Linux</tag>
@@ -9639,148 +9773,14 @@
       </tags>
   </entry>
   <entry>
-    <title>数据结构与算法基本概念</title>
-    <url>/2019/03/28/Java/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</url>
-    <content><![CDATA[<p>数据结构是计算机存储、组织数据的方式</p>
-<p>算法是计算机解题的过程</p>
+    <title>反射</title>
+    <url>/2019/03/29/Java/1.Java%E5%9F%BA%E7%A1%80/%E5%8F%8D%E5%B0%84/</url>
+    <content><![CDATA[<p>反射是实现 Java 动态性的方法之一</p>
 <a id="more"></a>
 
-<p><img src="/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/3.28-16197733.jpg" alt="3.28"></p>
-<h2 id="一、数据结构"><a href="#一、数据结构" class="headerlink" title="一、数据结构"></a>一、数据结构</h2><ul>
-<li>逻辑结构<ul>
-<li>线性结构（线性表、栈、队列、串、数组）</li>
-<li>非线性结构（树、图）</li>
-</ul>
-</li>
-<li>物理（存储）结构<ul>
-<li>顺序结构</li>
-<li>链表结构</li>
-<li>索引结构</li>
-<li>散列结构</li>
-</ul>
-</li>
-<li>数据运算<ul>
-<li>插入</li>
-<li>删除</li>
-<li>修改</li>
-<li>查询</li>
-<li>排序</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>逻辑结构唯一<br>存储结构不唯一<br>运算的实现依赖与存储结构</p>
-</blockquote>
-<h2 id="二、算法"><a href="#二、算法" class="headerlink" title="二、算法"></a>二、算法</h2><p>算法是计算机解题的过程</p>
-<p>算法优劣的评判依据：<strong>时间复杂度</strong>和<strong>空间复杂度</strong></p>
-<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p><strong>1、</strong>时间复杂度是表示<strong>问题的规模</strong>而不是指算法具体的运行时间或者<em>运行次数</em>（时间频度）<br><strong>2、</strong>时间复杂度的表示：T(n)=O(f(n))<br><strong>3、</strong>时间复杂度一般有<strong>最坏时间复杂度</strong>和<strong>平均时间复杂度</strong><br><strong>4、</strong>我们一般讨论的是<strong>最坏时间复杂度</strong></p>
-<p><strong>5、</strong>时间复杂度的计算</p>
-<ul>
-<li>找出算法中的基本语句（执行次数最多的语句就是基本语句）</li>
-<li>计算基本语句执行次数的数量级</li>
-<li>将求得的数量级放入O()中</li>
-</ul>
-<p><strong>6、</strong>常见的时间复杂度</p>
-<ul>
-<li>常数阶O(1)</li>
-<li>对数阶O(log<sub>2</sub>n)</li>
-<li>线性阶O(n)</li>
-<li>线性对数阶O(n*log<sub>2</sub>n)</li>
-<li>平方阶O(n<sup>2</sup>)</li>
-<li>立方阶O(n<sup>3</sup>)</li>
-<li>…</li>
-<li>k次方阶O(n<sup>k</sup>)</li>
-<li>指数阶O(2<sup>n</sup>)</li>
-<li>阶乘阶O(n!    )</li>
-</ul>
-<blockquote>
-<p>上面的时间复杂度级别，执行效率越来越低</p>
-</blockquote>
-<h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>S(n)=O(g(n))<br>空间复杂度比时间复杂度分析要少；<br>在使用递归时算法的空间复杂度会比较高</p>
-]]></content>
-      <tags>
-        <tag>数据结构与算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>注解&amp;反射&amp;junit</title>
-    <url>/2019/03/27/Java/1.Java%E5%9F%BA%E7%A1%80/%E6%B3%A8%E8%A7%A3_%E5%8F%8D%E5%B0%84_junit/</url>
-    <content><![CDATA[<p>注解和注释有相似之处，但也有比较大的差别<br>反射是实现 Java 动态性的方法之一</p>
-<a id="more"></a>
-<p><img src="/C:/Users/pikachu/Desktop/3.27.jpg" alt="3.27"></p>
-<h1 id="一、注解"><a href="#一、注解" class="headerlink" title="一、注解"></a>一、注解</h1><h2 id="注解-Annotation"><a href="#注解-Annotation" class="headerlink" title="注解-Annotation"></a>注解-Annotation</h2><blockquote>
-<p>注解本质上就是一个接口，该接口默认继承 Annotation 接口</p>
-</blockquote>
-<p>1、注解的作用</p>
-<ul>
-<li>不是程序本身，可以对程序进行解释</li>
-<li>可以被其他程序读取</li>
-</ul>
-<p>2、注解的格式</p>
-<blockquote>
-<p>@注解名</p>
-</blockquote>
-<p>3、注解的使用范围<br>package、class、method、field</p>
-<p>4、内置注解</p>
-<ul>
-<li>@Override –&gt; 该注解只适用于修饰方法，表示该方法重写了父类(或接口)的方法</li>
-<li>@Deprecated –&gt; 该注解可用于修饰方法、属性、类，表示不推荐使用这样的元素</li>
-<li>@SuppressWarnings –&gt; 用来抑制编译时的警告信息</li>
-</ul>
-<h2 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h2><p>定义<strong>关键字</strong>：使用 <strong>@interface</strong> 定义注解</p>
-<p><strong>属性</strong>：注解中的抽象方法</p>
-<ul>
-<li><p>由于注解是接口，所以注解内可以定义 抽象方法</p>
-<p>在注解内，抽象方法又被称为属性</p>
-</li>
-<li><p>抽象方法（属性）的返回值类型仅可为以下几种：</p>
-<ul>
-<li>基本数据类型</li>
-<li>String </li>
-<li>枚举</li>
-<li>注解</li>
-<li>以上类型的数组</li>
-</ul>
-</li>
-<li><p>定义了属性，在使用时需要对属性进行赋值</p>
-<ul>
-<li>如果定义属性时，使用 default 关键字给属性默认初始化值，则使用注解时，可以不进行属性的赋值</li>
-<li>如果<strong>只有一个</strong>属性需要赋值，并且属性的名称是 <strong>value</strong>，则 value 可以省略，直接定义值即可</li>
-<li>数组赋值时，值使用 <code>{}</code> 包裹。如果数组中只有一个值，则 <code>{}</code> 可以省略</li>
-</ul>
-</li>
-</ul>
-<p><strong>元注解：</strong></p>
-<ul>
-<li><p><strong>@Target</strong>：表示注解可以修饰的范围</p>
-<ul>
-<li>PACKAGE –&gt; 包</li>
-<li>TYPE –&gt; 类、接口、枚举、注解</li>
-<li>CONSTRUCTOR –&gt; 构造器</li>
-<li>FIELD –&gt; 域</li>
-<li>METHOD –&gt; 方法</li>
-<li>LOCAL_VARIABLE –&gt; 局部变量</li>
-<li>PRARMETER –&gt; 参数</li>
-</ul>
-</li>
-<li><p><strong>@Retention</strong>：描述注解的生命周期</p>
-<ul>
-<li>SOURCE –&gt; 在源文件中有效</li>
-<li>CLASS –&gt; 在 class 文件中有效</li>
-<li>RUNTIME –&gt; 在运行时有效</li>
-</ul>
-</li>
-<li><p><strong>@Documented</strong>：描述注解是否被抽取到 API 文档中</p>
-</li>
-<li><p><strong>@Inherited</strong>：描述注解是否被子类继承</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target</span>(value=&#123;ElementType.METHOD,ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyAnnotation&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="使用反射机制读取注解"><a href="#使用反射机制读取注解" class="headerlink" title="使用反射机制读取注解"></a>使用反射机制读取注解</h2><blockquote>
-<p>只有将注解读取出来，注解才有实际的使用意义。</p>
-</blockquote>
-<h1 id="二、反射"><a href="#二、反射" class="headerlink" title="二、反射"></a>二、反射</h1><p><strong>概念：</strong>将类的组成部分封装为其他对象，这就是反射</p>
+
+<p><strong>概念：</strong>将类的组成部分封装为其他对象，这就是反射</p>
 <p><strong>好处：</strong></p>
 <ul>
 <li>在程序运行过程中，可以动态的操作这些对象（成员属性、构造方法、成员方法等）</li>
@@ -9849,7 +9849,168 @@
 <blockquote>
 <p>通过 setAccessible(boolean flag) 来设置是否要进行访问安全检查<br>关闭访问安全检查可以比较大的提高程序运行的效率</p>
 </blockquote>
-<h2 id="三、junit-测试工具"><a href="#三、junit-测试工具" class="headerlink" title="三、junit 测试工具"></a>三、junit 测试工具</h2><p>测试分类：</p>
+]]></content>
+      <tags>
+        <tag>反射</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构与算法基本概念</title>
+    <url>/2019/03/28/Java/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</url>
+    <content><![CDATA[<p>数据结构是计算机存储、组织数据的方式</p>
+<p>算法是计算机解题的过程</p>
+<a id="more"></a>
+
+<p><img src="/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/3.28-16197733.jpg" alt="3.28"></p>
+<h2 id="一、数据结构"><a href="#一、数据结构" class="headerlink" title="一、数据结构"></a>一、数据结构</h2><ul>
+<li>逻辑结构<ul>
+<li>线性结构（线性表、栈、队列、串、数组）</li>
+<li>非线性结构（树、图）</li>
+</ul>
+</li>
+<li>物理（存储）结构<ul>
+<li>顺序结构</li>
+<li>链表结构</li>
+<li>索引结构</li>
+<li>散列结构</li>
+</ul>
+</li>
+<li>数据运算<ul>
+<li>插入</li>
+<li>删除</li>
+<li>修改</li>
+<li>查询</li>
+<li>排序</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>逻辑结构唯一<br>存储结构不唯一<br>运算的实现依赖与存储结构</p>
+</blockquote>
+<h2 id="二、算法"><a href="#二、算法" class="headerlink" title="二、算法"></a>二、算法</h2><p>算法是计算机解题的过程</p>
+<p>算法优劣的评判依据：<strong>时间复杂度</strong>和<strong>空间复杂度</strong></p>
+<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p><strong>1、</strong>时间复杂度是表示<strong>问题的规模</strong>而不是指算法具体的运行时间或者<em>运行次数</em>（时间频度）<br><strong>2、</strong>时间复杂度的表示：T(n)=O(f(n))<br><strong>3、</strong>时间复杂度一般有<strong>最坏时间复杂度</strong>和<strong>平均时间复杂度</strong><br><strong>4、</strong>我们一般讨论的是<strong>最坏时间复杂度</strong></p>
+<p><strong>5、</strong>时间复杂度的计算</p>
+<ul>
+<li>找出算法中的基本语句（执行次数最多的语句就是基本语句）</li>
+<li>计算基本语句执行次数的数量级</li>
+<li>将求得的数量级放入O()中</li>
+</ul>
+<p><strong>6、</strong>常见的时间复杂度</p>
+<ul>
+<li>常数阶O(1)</li>
+<li>对数阶O(log<sub>2</sub>n)</li>
+<li>线性阶O(n)</li>
+<li>线性对数阶O(n*log<sub>2</sub>n)</li>
+<li>平方阶O(n<sup>2</sup>)</li>
+<li>立方阶O(n<sup>3</sup>)</li>
+<li>…</li>
+<li>k次方阶O(n<sup>k</sup>)</li>
+<li>指数阶O(2<sup>n</sup>)</li>
+<li>阶乘阶O(n!    )</li>
+</ul>
+<blockquote>
+<p>上面的时间复杂度级别，执行效率越来越低</p>
+</blockquote>
+<h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>S(n)=O(g(n))<br>空间复杂度比时间复杂度分析要少；<br>在使用递归时算法的空间复杂度会比较高</p>
+]]></content>
+      <tags>
+        <tag>数据结构与算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>注解</title>
+    <url>/2019/03/28/Java/1.Java%E5%9F%BA%E7%A1%80/%E6%B3%A8%E8%A7%A3/</url>
+    <content><![CDATA[<p>注解和注释有相似之处，但也有比较大的差别</p>
+<a id="more"></a>
+
+
+
+<h2 id="注解-Annotation"><a href="#注解-Annotation" class="headerlink" title="注解 - Annotation"></a>注解 - Annotation</h2><blockquote>
+<p>注解本质上就是一个接口，该接口默认继承 Annotation 接口</p>
+</blockquote>
+<p>1、注解的作用</p>
+<ul>
+<li>不是程序本身，可以对程序进行解释</li>
+<li>可以被其他程序读取</li>
+</ul>
+<p>2、注解的格式</p>
+<blockquote>
+<p>@注解名</p>
+</blockquote>
+<p>3、注解的使用范围<br>package、class、method、field</p>
+<p>4、内置注解</p>
+<ul>
+<li><code>@Override</code> –&gt; 该注解只适用于修饰方法，表示该方法重写了父类(或接口)的方法</li>
+<li><code>@Deprecated</code> –&gt; 该注解可用于修饰方法、属性、类，表示不推荐使用这样的元素</li>
+<li><code>@SuppressWarnings</code> –&gt; 用来抑制编译时的警告信息</li>
+</ul>
+<h2 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h2><p>定义<strong>关键字</strong>：<code>@interface</code> </p>
+<p><strong>属性</strong>：注解中的抽象方法</p>
+<ul>
+<li><p>由于注解是接口，所以注解内可以定义 抽象方法</p>
+<p>在注解内，抽象方法又被称为属性</p>
+</li>
+<li><p>抽象方法（属性）的返回值类型仅可为以下几种：</p>
+<ul>
+<li>基本数据类型</li>
+<li>String </li>
+<li>枚举</li>
+<li>注解</li>
+<li>以上类型的数组</li>
+</ul>
+</li>
+<li><p>定义了属性，在使用时需要对属性进行赋值</p>
+<ul>
+<li>如果定义属性时，使用 default 关键字给属性默认初始化值，则使用注解时，可以不进行属性的赋值</li>
+<li>如果<strong>只有一个</strong>属性需要赋值，并且属性的名称是 <strong>value</strong>，则 value 可以省略，直接定义值即可</li>
+<li>数组赋值时，值使用 <code>{}</code> 包裹。如果数组中只有一个值，则 <code>{}</code> 可以省略</li>
+</ul>
+</li>
+</ul>
+<p><strong>元注解：</strong></p>
+<ul>
+<li><p><strong>@Target</strong>：表示注解可以修饰的范围</p>
+<ul>
+<li>PACKAGE –&gt; 包</li>
+<li>TYPE –&gt; 类、接口、枚举、注解</li>
+<li>CONSTRUCTOR –&gt; 构造器</li>
+<li>FIELD –&gt; 域</li>
+<li>METHOD –&gt; 方法</li>
+<li>LOCAL_VARIABLE –&gt; 局部变量</li>
+<li>PRARMETER –&gt; 参数</li>
+</ul>
+</li>
+<li><p><strong>@Retention</strong>：描述注解的生命周期</p>
+<ul>
+<li>SOURCE –&gt; 在源文件中有效</li>
+<li>CLASS –&gt; 在 class 文件中有效</li>
+<li>RUNTIME –&gt; 在运行时有效</li>
+</ul>
+</li>
+<li><p><strong>@Documented</strong>：描述注解是否被抽取到 API 文档中</p>
+</li>
+<li><p><strong>@Inherited</strong>：描述注解是否被子类继承</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target</span>(value=&#123;ElementType.METHOD,ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyAnnotation&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="使用反射机制读取注解"><a href="#使用反射机制读取注解" class="headerlink" title="使用反射机制读取注解"></a>使用反射机制读取注解</h2><blockquote>
+<p>只有将注解读取出来，注解才有实际的使用意义。</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>注解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Junit</title>
+    <url>/2019/03/27/Java/1.Java%E5%9F%BA%E7%A1%80/Junit/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h2 id="Junit-单元测试"><a href="#Junit-单元测试" class="headerlink" title="Junit 单元测试"></a>Junit 单元测试</h2><p>测试分类：</p>
 <ul>
 <li>黑盒测试：不需要写代码，只关心输入输出值</li>
 <li>白盒测试：需要写代码，关心程序的具体执行流程</li>
@@ -9873,10 +10034,6 @@
 </ul>
 ]]></content>
       <tags>
-        <tag>学习笔记</tag>
-        <tag>Java</tag>
-        <tag>注解</tag>
-        <tag>反射</tag>
         <tag>junit</tag>
       </tags>
   </entry>
@@ -10104,29 +10261,50 @@
 </blockquote>
 <p><strong>synchronized 用法：</strong></p>
 <ul>
-<li><p>同步方法：把 synchronized 写在方法的声明上（锁的是 this）</p>
-</li>
-<li><p>同步块：<code>synchronized（obj）{}</code>，obj 称之为同步监视器（被锁的对象 / 要修改的对象）</p>
-</li>
+<li>同步方法：把 synchronized 写在方法的声明上（锁的是 this）</li>
+<li>同步块：<code>synchronized（obj）{}</code>，obj 称之为同步监视器（被锁的对象 or 要修改的对象）</li>
 </ul>
 <p><strong>使用 synchronized  注意事项：</strong></p>
 <ul>
 <li>锁准对象，否则不能保证线程安全</li>
-<li>锁准范围，如果将一个大的方法声明为 synchronized，将会大大影响效率</li>
+<li>锁准范围，如果锁定的范围（指的是数据的范围，而不是代码的范围）过大，将会大大影响效率</li>
 </ul>
 <blockquote>
 <p>多用同步块，少用同步方法，因为同步块在保证线程安全的前提下，性能更优</p>
 </blockquote>
 <p><strong>死锁：</strong>过多的同步可能造成相互不释放资源，从而相互等待，一般发生于同步中持有多个对象的锁。</p>
 <p><strong>避免死锁：</strong>不要在同一个代码块中同时持有多个对象的锁</p>
-<h2 id="线程通信"><a href="#线程通信" class="headerlink" title="线程通信"></a>线程通信</h2><p>协作模型：生产者消费者模式</p>
-<p>两种实现方法：</p>
+<h2 id="线程通信"><a href="#线程通信" class="headerlink" title="线程通信"></a>线程通信</h2><p>协作模型：生产者 / 消费者模型</p>
+<p>两种实现方式：</p>
 <ul>
-<li>管程法</li>
-<li>信号灯法</li>
+<li>管程法（生产者和消费者之间增加缓冲区）</li>
+<li>信号灯法（使用标志位来调度生产者和消费者）</li>
 </ul>
-<p><strong>管程法实现演示</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestCooperation</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SynContainer container = <span class="keyword">new</span> SynContainer();</span><br><span class="line">		Productor productor = <span class="keyword">new</span> Productor(container);</span><br><span class="line">		Consumer consumer = <span class="keyword">new</span> Consumer(container);</span><br><span class="line">		productor.start();</span><br><span class="line">		consumer.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 生产者</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Productor</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">	SynContainer container;	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Productor</span><span class="params">(SynContainer container)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.container = container;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 生产</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">105</span>; i++) &#123;</span><br><span class="line">			System.out.println(<span class="string">"生产 --&gt; 第"</span>+ i +<span class="string">"个馒头"</span>);</span><br><span class="line">			container.push(<span class="keyword">new</span> Steamedbun(i));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 消费者</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Consumer</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">	SynContainer container;	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Consumer</span><span class="params">(SynContainer container)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.container = container;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 消费</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">100</span>; i++) &#123;</span><br><span class="line">			System.out.println(<span class="string">"消费 --&gt; 第"</span>+ container.pop().getId() +<span class="string">"个馒头"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 缓冲区</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SynContainer</span></span>&#123;</span><br><span class="line">	Steamedbun[] buns = <span class="keyword">new</span> Steamedbun[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>; <span class="comment">//计数器(容器中的馒头数量)</span></span><br><span class="line">	</span><br><span class="line">    <span class="comment">// 储存 --&gt; 生产</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Steamedbun bun)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 何时生产 容器中有空余空间时</span></span><br><span class="line">		<span class="comment">// 没有空间，停止生产</span></span><br><span class="line">		<span class="keyword">if</span>(count == buns.length) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="keyword">this</span>.wait(); <span class="comment">// 线程阻塞，消费者通知生产时解除阻塞</span></span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 存在空间，可以生产</span></span><br><span class="line">		buns[count] = bun;</span><br><span class="line">		count++;</span><br><span class="line">		<span class="keyword">this</span>.notifyAll(); <span class="comment">// 唤醒消费者进行消费</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 获取 --&gt; 消费</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> Steamedbun <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 何时消费 判断容器中是否存在数据</span></span><br><span class="line">		<span class="comment">// 没有数据 --&gt; 等待</span></span><br><span class="line">		<span class="keyword">if</span>(count == <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="keyword">this</span>.wait(); <span class="comment">// 线程阻塞，生产者通知消费时解除阻塞</span></span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">        </span><br><span class="line">		<span class="comment">// 存在数据 --&gt; 消费</span></span><br><span class="line">		count--;</span><br><span class="line">		Steamedbun bun = buns[count];  <span class="comment">// 从最后一个开始拿</span></span><br><span class="line">		<span class="keyword">this</span>.notifyAll(); <span class="comment">// 唤醒生产者进行生产</span></span><br><span class="line">		<span class="keyword">return</span> bun;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 馒头 --&gt; 资源</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Steamedbun</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Steamedbun</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> id;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+<p>相关方法：</p>
+<ul>
+<li><code>wait()</code>：线程一直等待，直到其他线程通知，会释放锁</li>
+<li><code>wait(long timeout)</code>：线程只等待一定的时间</li>
+<li><code>notify()</code>：唤醒一个处于等待状态的线程</li>
+<li><code>notifyAll()</code>：唤醒同一个对象中所有处于等待状态的线程</li>
+</ul>
+<blockquote>
+<p>这四个方法是 Object 提供的，也就是说所有的对象都会有这四个方法</p>
+<p>这四个方法只能在同步方法或同步块中使用</p>
+</blockquote>
+<p><strong>管程法代码实现</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestCooperation</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SynContainer container = <span class="keyword">new</span> SynContainer();</span><br><span class="line">		Productor productor = <span class="keyword">new</span> Productor(container);</span><br><span class="line">		Consumer consumer = <span class="keyword">new</span> Consumer(container);</span><br><span class="line">		productor.start();</span><br><span class="line">		consumer.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 生产者</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Productor</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">	SynContainer container;	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Productor</span><span class="params">(SynContainer container)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.container = container;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 生产</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">105</span>; i++) &#123;</span><br><span class="line">			System.out.println(<span class="string">"生产 --&gt; 第"</span>+ i +<span class="string">"个馒头"</span>);</span><br><span class="line">			container.push(<span class="keyword">new</span> Steamedbun(i));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 消费者</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Consumer</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">	SynContainer container;	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Consumer</span><span class="params">(SynContainer container)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.container = container;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 消费</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">100</span>; i++) &#123;</span><br><span class="line">			System.out.println(<span class="string">"消费 --&gt; 第"</span>+ container.pop().getId() +<span class="string">"个馒头"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 缓冲区</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SynContainer</span></span>&#123;</span><br><span class="line">	Steamedbun[] buns = <span class="keyword">new</span> Steamedbun[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>; <span class="comment">//计数器(容器中的馒头数量)</span></span><br><span class="line">	</span><br><span class="line">    <span class="comment">// 储存 --&gt; 生产</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Steamedbun bun)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 何时生产 容器中有空余空间时</span></span><br><span class="line">		<span class="comment">// 没有空间，停止生产</span></span><br><span class="line">		<span class="keyword">if</span>(count == buns.length) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="keyword">this</span>.wait(); <span class="comment">// 线程阻塞，消费者通知生产时解除阻塞</span></span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 存在空间，可以生产</span></span><br><span class="line">		buns[count] = bun;</span><br><span class="line">		count++;</span><br><span class="line">		<span class="keyword">this</span>.notifyAll(); <span class="comment">// 唤醒消费者进行消费</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 获取 --&gt; 消费</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> Steamedbun <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 何时消费 判断容器中是否存在数据</span></span><br><span class="line">		<span class="comment">// 没有数据 --&gt; 等待</span></span><br><span class="line">		<span class="keyword">if</span>(count == <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="keyword">this</span>.wait(); <span class="comment">// 线程阻塞，生产者通知消费时解除阻塞</span></span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">        </span><br><span class="line">		<span class="comment">// 存在数据 --&gt; 消费</span></span><br><span class="line">		count--;</span><br><span class="line">		Steamedbun bun = buns[count];  <span class="comment">// 从最后一个开始拿</span></span><br><span class="line">		<span class="keyword">this</span>.notifyAll(); <span class="comment">// 唤醒生产者进行生产</span></span><br><span class="line">		<span class="keyword">return</span> bun;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 馒头 --&gt; 资源</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Steamedbun</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Steamedbun</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> id;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>信号灯法代码实现</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 信号灯法实现生产者消费者模式</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="定时调度"><a href="#定时调度" class="headerlink" title="定时调度"></a>定时调度</h2><p>Timer 和 TimerTask</p>
+<h2 id="quartz-–-任务调度框架"><a href="#quartz-–-任务调度框架" class="headerlink" title="quartz – 任务调度框架"></a>quartz – 任务调度框架</h2><h2 id="happenbefore"><a href="#happenbefore" class="headerlink" title="happenbefore"></a>happenbefore</h2><h2 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h2>]]></content>
       <categories>
         <category>Java</category>
       </categories>
@@ -10414,7 +10592,7 @@
 <a id="more"></a>
 
 <h2 id="1-Java-异常基本概念"><a href="#1-Java-异常基本概念" class="headerlink" title="1. Java 异常基本概念"></a>1. Java 异常基本概念</h2><h3 id="1-1-异常基本结构"><a href="#1-1-异常基本结构" class="headerlink" title="1.1 异常基本结构"></a>1.1 异常基本结构</h3><p>Java 异常结构示意图：</p>
-<p><img src="../../../images/Java%E5%BC%82%E5%B8%B8/image-20210426205927608.png" alt="image-20210426205927608"></p>
+<p><img src="/images/Java%E5%BC%82%E5%B8%B8/image-20210426205927608.png" alt="image-20210426205927608"></p>
 <p>Error 类：描述了 Java 运行时系统的内部错误和资源耗尽错误（Error 很少出现）</p>
 <p>Exception 类：</p>
 <ol>
@@ -11246,12 +11424,16 @@ B = set(&quot;pypy123&quot;)
 <pre><code>2.多行代码</code></pre><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">input(&quot;请输入我爱你:&quot;)</span><br><span class="line">print(&quot;I Love You&quot;)</span><br></pre></td></tr></table></figure>
 <pre><code>2.多行代码(加高亮)</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">input(<span class="string">"请输入我爱你:"</span>)</span><br><span class="line">print(<span class="string">"I Love You"</span>)</span><br></pre></td></tr></table></figure>
 
+
+
+<h1 id="六、超链接"><a href="#六、超链接" class="headerlink" title="六、超链接"></a>六、超链接</h1><p>书写格式：<code>[链接名称](链接网址)</code></p>
+<p>例：<a href="https://www.baidu.com/" target="_blank" rel="noopener">百度一下</a></p>
 <hr>
 <pre><code>另外还有关于
     列表
     表格
     图片
-    超链接
+
     流程图
 等内容，现在用到的不多，以后再做记录。</code></pre>]]></content>
       <categories>
