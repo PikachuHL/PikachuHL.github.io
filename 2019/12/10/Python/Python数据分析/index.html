@@ -45,15 +45,15 @@
   };
 </script>
 
-  <meta name="description" content="用Python做数据分析">
+  <meta name="description" content="用 Python 做数据分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python数据分析">
 <meta property="og:url" content="http://yoursite.com/2019/12/10/Python/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="Pikachu&#39;s Blog">
-<meta property="og:description" content="用Python做数据分析">
+<meta property="og:description" content="用 Python 做数据分析">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-10T10:17:03.000Z">
-<meta property="article:modified_time" content="2020-05-26T07:16:33.000Z">
+<meta property="article:modified_time" content="2021-05-19T09:07:19.732Z">
 <meta property="article:author" content="pikachu">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="数据分析">
@@ -237,7 +237,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-26 15:16:33" itemprop="dateModified" datetime="2020-05-26T15:16:33+08:00">2020-05-26</time>
+                <time title="修改时间：2021-05-19 17:07:19" itemprop="dateModified" datetime="2021-05-19T17:07:19+08:00">2021-05-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,27 +262,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>用Python做数据分析</p>
+        <p>用 Python 做数据分析</p>
 <a id="more"></a>
 
-<h1 id="Python数据分析"><a href="#Python数据分析" class="headerlink" title="Python数据分析"></a>Python数据分析</h1><p>python做数据分析的几个常用库：numpy，pandas</p>
-<h2 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h2><p>Anaconda是一个基于conda的<strong>整合框架</strong>，其中包含了<strong>Spyder</strong> 和 <strong>IPython</strong></p>
+
+
+<p>python 做数据分析的几个常用库：numpy，pandas</p>
+<h2 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h2><p>Anaconda 是一个基于 conda 的<strong>整合框架</strong>，其中包含了 <strong>Spyder</strong> 和 <strong>IPython</strong></p>
 <ul>
 <li><p>conda：包管理和环境管理工具</p>
 </li>
-<li><p>Spyder：一个python的IDE</p>
+<li><p>Spyder：一个 Python 的 IDE</p>
 </li>
-<li><p>IPython：python的交互式shell</p>
+<li><p>IPython：Python 的交互式 shell</p>
 <ul>
 <li><p>变量<strong>前面</strong>或<strong>后面</strong>加上 <code>?</code>，可以显示变量的一些通用信息，如果是函数会显示源代码</p>
 </li>
-<li><p><code>%run</code>：运行python程序（在一个空的命名空间内运行python程序）</p>
+<li><p><code>%run</code>：运行 python 程序（在一个空的命名空间内运行 python 程序）</p>
 <p><code>%run demo.py</code></p>
 </li>
 <li><p><code>%</code>魔术命令：</p>
 <ul>
 <li><code>%magic</code>：显示所有魔术命令</li>
-<li><code>%hist</code>：显示IPython的输入历史</li>
+<li><code>%hist</code>：显示 IPython 的输入历史</li>
 <li><code>pdb</code>：异常发生后自动进入调试器</li>
 <li><code>%reset</code>：删除当前命名空间中所有变量或名称</li>
 <li><code>%time 执行语句</code>：给出代码的执行时间</li>
@@ -292,30 +294,30 @@
 </ul>
 </li>
 </ul>
-<h2 id="NumPy"><a href="#NumPy" class="headerlink" title="NumPy"></a>NumPy</h2><p><strong>简介</strong>：NumPy是一个开源的python科学计算基础库</p>
-<p>NumPy包含：</p>
+<h2 id="NumPy"><a href="#NumPy" class="headerlink" title="NumPy"></a>NumPy</h2><p><strong>简介</strong>：NumPy 是一个开源的 python 科学计算基础库</p>
+<p>NumPy 包含：</p>
 <ul>
-<li>一个强大的N维<strong>数组对象</strong> ndarray</li>
+<li>一个强大的 N 维<strong>数组对象</strong> ndarray</li>
 <li>广播功能函数</li>
-<li>整合C/C++/Fortran代码的工具</li>
+<li>整合 C / C++ / Fortran 代码的工具</li>
 <li>线性代数、傅里叶变换、随机数生成等功能</li>
 </ul>
-<p>NumPy是SciPy、Pandas等科学计算及数据处理库的基础</p>
-<h3 id="ndarray"><a href="#ndarray" class="headerlink" title="ndarray"></a>ndarray</h3><p>ndarray是一个<strong>N维数组对象</strong>，由两部分组成：</p>
+<p>NumPy 是 SciPy、Pandas 等科学计算及数据处理库的基础</p>
+<h3 id="ndarray"><a href="#ndarray" class="headerlink" title="ndarray"></a>ndarray</h3><p>ndarray 是一个<strong>N维数组对象</strong>，由两部分组成：</p>
 <ul>
 <li>实际的数据</li>
 <li>描述这些数据的<strong>元数据</strong>（数据维度、数据类型等）</li>
 </ul>
 <blockquote>
 <ul>
-<li>ndarray数组一般要求所有的<strong>元素的类型相同</strong>（<strong>同质</strong>）</li>
-<li>ndarray数组可以由非同质元素组成，但是由非同质元素组成的时候，数组中的每个元素都会被看成 object 类型。</li>
-<li>非同质元素组成的ndarray数组无法发挥NumPy的优势，尽量避免使用</li>
+<li>ndarray 数组一般要求所有的<strong>元素的类型相同</strong>（<strong>同质</strong>）</li>
+<li>ndarray 数组可以由非同质元素组成，但是由非同质元素组成的时候，数组中的每个元素都会被看成 object 类型。</li>
+<li>非同质元素组成的 ndarray 数组无法发挥 NumPy 的优势，尽量避免使用</li>
 </ul>
 </blockquote>
 <blockquote>
 <ul>
-<li><p>ndarray在程序中的别名是：<code>array</code>，所以在程序中使用 <code>np.array()</code> 来创建一个数组</p>
+<li><p>ndarray 在程序中的别名是：<code>array</code>，所以在程序中使用 <code>np.array()</code> 来创建一个数组</p>
 </li>
 <li><p><code>np.array()</code> 输出成 <code>[]</code> 形式，元素由空格分隔</p>
 </li>
@@ -327,7 +329,7 @@
 <li>秩（rank）：轴的<strong>数量</strong> / 有几个维度</li>
 </ul>
 </blockquote>
-<p><strong>ndarray数组对象的属性</strong>：</p>
+<p><strong>ndarray 数组对象的属性</strong>：</p>
 <table>
 <thead>
 <tr>
@@ -341,7 +343,7 @@
 </tr>
 <tr>
 <td align="left">.shape</td>
-<td align="left">数组的尺度，对于矩阵，n行m列</td>
+<td align="left">数组的尺度，对于矩阵，n 行 m 列</td>
 </tr>
 <tr>
 <td align="left">.size</td>
@@ -356,14 +358,14 @@
 <td align="left">每个元素所占内存空间大小，以字节为单位</td>
 </tr>
 </tbody></table>
-<p><strong>ndarray数组的创建方法：</strong></p>
+<p><strong>ndarray 数组的创建方法：</strong></p>
 <ul>
-<li>从python中的列表、元组等类型创建ndarray数组<ul>
+<li>从 Python 中的列表、元组等类型创建 ndarray 数组<ul>
 <li><code>x = np.array(list/tuple)</code></li>
 <li><code>x = np.array(list/tuple, dtype = np.float32)</code></li>
 </ul>
 </li>
-<li>使用NumPy中的相关函数创建ndarray数组</li>
+<li>使用 NumPy 中的相关函数创建 ndarray 数组</li>
 </ul>
 <table>
 <thead>
@@ -378,11 +380,11 @@
 </tr>
 <tr>
 <td align="left"><code>np.ones(shape)</code></td>
-<td align="left">根据 <code>shape</code> 生成一个全 <code>1</code> 的数组，shape是<strong>元组类型</strong></td>
+<td align="left">根据 <code>shape</code> 生成一个全 <code>1</code> 的数组，shape 是<strong>元组类型</strong></td>
 </tr>
 <tr>
 <td align="left"><code>np.zeros(shape)</code></td>
-<td align="left">根据 shape 生成一个全0的数组，shape是<strong>元组类型</strong></td>
+<td align="left">根据 shape 生成一个全 0 的数组，shape 是<strong>元组类型</strong></td>
 </tr>
 <tr>
 <td align="left"><code>np.full(shape, val)</code></td>
@@ -390,19 +392,19 @@
 </tr>
 <tr>
 <td align="left"><code>np.eye(n)</code></td>
-<td align="left">创建一个n*n的矩阵，对角线元素为1，其余全为0</td>
+<td align="left">创建一个 n*n 的矩阵，对角线元素为 1，其余全为 0</td>
 </tr>
 <tr>
 <td align="left"><code>np.ones_like(a)</code></td>
-<td align="left">根据数组 a的形状创建一个全1的数组</td>
+<td align="left">根据数组 a 的形状创建一个全 1 的数组</td>
 </tr>
 <tr>
 <td align="left"><code>np.zeros_like(a)</code></td>
-<td align="left">根据数组a的形状创建一个全0的数组</td>
+<td align="left">根据数组 a 的形状创建一个全 0 的数组</td>
 </tr>
 <tr>
 <td align="left"><code>np.full_like(a, val)</code></td>
-<td align="left">根据数组a的形状创建一个全val的数组</td>
+<td align="left">根据数组 a 的形状创建一个全 val 的数组</td>
 </tr>
 <tr>
 <td align="left"><code>np.linspace()</code></td>
@@ -417,11 +419,11 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不指定dtype，默认为浮点数</span></span><br><span class="line">In[<span class="number">24</span>]: np.ones((<span class="number">2</span>,<span class="number">3</span>))</span><br><span class="line">Out[<span class="number">24</span>]: </span><br><span class="line">array([[<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">       [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>]])</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>从字节流中创建ndarray数组</li>
-<li>从文件中读取特定格式，创建ndarray数组</li>
+<li>从字节流中创建 ndarray 数组</li>
+<li>从文件中读取特定格式，创建 ndarray 数组</li>
 </ul>
-<p><strong>ndarray数组的变换：</strong></p>
-<p>对于创建后的ndarray数组，可以对其进行<strong>维度变换</strong>和<strong>元素类型变换</strong></p>
+<p><strong>ndarray 数组的变换：</strong></p>
+<p>对于创建后的 ndarray 数组，可以对其进行<strong>维度变换</strong>和<strong>元素类型变换</strong></p>
 <ul>
 <li>维度变换 (<code>a=np.array(list)</code>)</li>
 </ul>
@@ -434,7 +436,7 @@
 </thead>
 <tbody><tr>
 <td align="left"><code>a.reshape(shape)</code></td>
-<td align="left">不改变原数组，返回一个shape形状的数组，shape为元祖</td>
+<td align="left">不改变原数组，返回一个 shape 形状的数组，shape 为元祖</td>
 </tr>
 <tr>
 <td align="left"><code>a.resize(shape)</code></td>
@@ -442,7 +444,7 @@
 </tr>
 <tr>
 <td align="left"><code>a.swapaxes(ax1, ax2)</code></td>
-<td align="left">将数组n个维度中两个维度进行调换</td>
+<td align="left">将数组 n 个维度中两个维度进行调换</td>
 </tr>
 <tr>
 <td align="left"><code>a.flatten()</code></td>
@@ -454,18 +456,18 @@
 <p><code>new_a = a.astype(new_type)</code></p>
 </li>
 </ul>
-<p>ndarray数组转换为列表：</p>
+<p>ndarray 数组转换为列表：</p>
 <p> <code>ls = a.tolist()</code></p>
-<p><strong>ndarray数组的 索引 和切片</strong></p>
+<p><strong>ndarray 数组的索引和切片</strong></p>
 <p>一维数组的索引：<code>a[2]</code></p>
 <p>一维数组的切片：<code>a[1:4:2]</code></p>
 <p>多维数组的索引：<code>a[2,1,3]</code></p>
 <p>多维数组的切片：<code>a[:,1:3,:3]</code></p>
-<p><strong>ndarray数组的运算</strong></p>
+<p><strong>ndarray 数组的运算</strong></p>
 <ol>
 <li><p>数组与标量之间的运算作用于数组的每一个元素</p>
 </li>
-<li><p>使用函数对ndarray数组进行运算</p>
+<li><p>使用函数对 ndarray 数组进行运算</p>
 <ol>
 <li><p>一元函数：（使用一元函数，都不会修改原数组）</p>
 <table>
@@ -539,7 +541,7 @@
 </tr>
 <tr>
 <td><code>np.copysign(x,y)</code></td>
-<td>将数组y中各元素值的符号赋值给数组x对应元素</td>
+<td>将数组 y 中各元素值的符号赋值给数组 x 对应元素</td>
 </tr>
 <tr>
 <td><code>&gt;  &lt;  &gt;=  &lt;=  ==  !=</code></td>
@@ -548,59 +550,58 @@
 </tbody></table>
 </li>
 </ol>
-<h3 id="数据的CSV文件的存取"><a href="#数据的CSV文件的存取" class="headerlink" title="数据的CSV文件的存取"></a>数据的CSV文件的存取</h3><blockquote>
-<p> CSV:(Comma-Separated Value, 逗号分隔值)</p>
+<h3 id="数据的-CSV-文件的存取"><a href="#数据的-CSV-文件的存取" class="headerlink" title="数据的 CSV 文件的存取"></a>数据的 CSV 文件的存取</h3><blockquote>
+<p> CSV：(Comma-Separated Value  逗号分隔值)</p>
 </blockquote>
 <p>将数组保存到文件中：</p>
 <ol>
-<li><p>np.savetxt(frame, array, fmt=’%.18e’, delimiter=None)</p>
-<ul>
-<li>frame: 要存入的文件，可以是.gz或.bz2的压缩文件</li>
+<li><code>np.savetxt(frame, array, fmt=&#39;%.18e&#39;, delimiter=None)</code><ul>
+<li>frame: 要存入的文件，可以是 <code>.gz</code> 或 <code>.bz2</code> 的压缩文件</li>
 <li>array: 要存入文件的数组</li>
-<li>fmt: 写入文件的格式，如：%d，%.2f，%.18e</li>
+<li>fmt: 写入文件的格式，如：<code>%d</code>，<code>%.2f</code>，<code>%.18e</code></li>
 <li>delimiter: 分隔字符串，默认是空格</li>
 </ul>
 </li>
 </ol>
 <p>读取文件到数组中：</p>
-<p>np.loadtxt(frame, dtype=np.float, delimiter=None, unpack=False)</p>
+<p><code>np.loadtxt(frame, dtype=np.float, delimiter=None, unpack=False)</code></p>
 <ul>
-<li>frame: 要读取的文件，可以是.gz或.bz2的压缩文件</li>
+<li>frame: 要读取的文件，可以是 <code>.gz</code> 或 <code>.bz2</code> 的压缩文件</li>
 <li>dtype: 数据类型，可选</li>
 <li>delimiter: 分隔字符串，默认为空格</li>
-<li>unpack: 如果是True，读入属性将分别写入不同变量</li>
+<li>unpack: 如果是 True，读入属性将分别写入不同变量</li>
 </ul>
-<p>csv文件的局限性：</p>
+<p>csv 文件的局限性：</p>
 <ul>
-<li><p>csv文件只能有效的存储一维和二维数组</p>
+<li><p>csv 文件只能有效的存储一维和二维数组</p>
 </li>
-<li><p>np.savetxt() &amp; np.loadtxt() 只能有效存取一维和二维数组</p>
+<li><p><code>np.savetxt()</code> &amp; <code>np.loadtxt()</code> 只能有效存取一维和二维数组</p>
 </li>
 </ul>
 <h3 id="多维数据的存取"><a href="#多维数据的存取" class="headerlink" title="多维数据的存取"></a>多维数据的存取</h3><p>存多维数据</p>
 <p><code>np.tofile(frame, sep=&#39;&#39;, format=&#39;%s&#39;)</code></p>
 <ul>
-<li>frame: 文件，字符串</li>
-<li>sep: 数据分隔字符串，如果是空串，则写入为二进制文件</li>
-<li>format: 写入数据格式</li>
+<li>frame：文件，字符串</li>
+<li>sep：数据分隔字符串，如果是空串，则写入为二进制文件</li>
+<li>format：写入数据格式</li>
 </ul>
 <p>读多维数据</p>
 <p><code>np.fromfile(frame, dtype=float, count=-1, sep=&#39;&#39;)</code></p>
 <ul>
-<li>frame: 文件，字符串</li>
-<li>dtype: 读入的数据类型</li>
-<li>count: 读入元素的个数，-1代表读入整个文件</li>
-<li>: 数据分隔字符串，如果为空串，读入的为二进制文件</li>
+<li>frame：文件，字符串</li>
+<li>dtype：读入的数据类型</li>
+<li>count：读入元素的个数，-1 代表读入整个文件</li>
+<li>sep：数据分隔字符串，如果为空串，读入的为二进制文件</li>
 </ul>
 <blockquote>
 <p>上面的存取多维数据的方法无法存取维度信息</p>
 <p>要想读取的时候复原维度信息，需要使用reshape</p>
 </blockquote>
-<p>Numpy提供的便捷文件存取</p>
+<p>Numpy 提供的便捷文件存取</p>
 <p><code>np.save(fname, array)</code>或<code>np.savez(fname, array)</code></p>
 <ul>
-<li>fname: 文件名，扩展名为.npy，压缩扩展名为npz</li>
-<li>array: 数组变量</li>
+<li>fname：文件名，扩展名为 <code>.npy</code>，压缩扩展名为 <code>npz</code></li>
+<li>array：数组变量</li>
 </ul>
 <p><code>np.load(fname)</code></p>
 
@@ -666,7 +667,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python数据分析"><span class="nav-number">1.</span> <span class="nav-text">Python数据分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Anaconda"><span class="nav-number">1.1.</span> <span class="nav-text">Anaconda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NumPy"><span class="nav-number">1.2.</span> <span class="nav-text">NumPy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ndarray"><span class="nav-number">1.2.1.</span> <span class="nav-text">ndarray</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的CSV文件的存取"><span class="nav-number">1.2.2.</span> <span class="nav-text">数据的CSV文件的存取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多维数据的存取"><span class="nav-number">1.2.3.</span> <span class="nav-text">多维数据的存取</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Anaconda"><span class="nav-number">1.</span> <span class="nav-text">Anaconda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NumPy"><span class="nav-number">2.</span> <span class="nav-text">NumPy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ndarray"><span class="nav-number">2.1.</span> <span class="nav-text">ndarray</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的-CSV-文件的存取"><span class="nav-number">2.2.</span> <span class="nav-text">数据的 CSV 文件的存取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多维数据的存取"><span class="nav-number">2.3.</span> <span class="nav-text">多维数据的存取</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -680,7 +681,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -693,7 +694,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">99</span>
+        <span class="site-state-item-count">100</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -55,7 +55,7 @@
 <meta property="og:image" content="http://yoursite.com/images/%E5%93%88%E5%B8%8C%E8%A1%A8&%E6%8E%92%E5%BA%8F/4.2.jpg">
 <meta property="og:image" content="http://yoursite.com/images/%E5%93%88%E5%B8%8C%E8%A1%A8&%E6%8E%92%E5%BA%8F/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.png">
 <meta property="article:published_time" content="2019-04-02T01:06:54.000Z">
-<meta property="article:modified_time" content="2021-04-30T09:01:04.902Z">
+<meta property="article:modified_time" content="2021-05-24T00:54:15.414Z">
 <meta property="article:author" content="pikachu">
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="哈希表">
@@ -241,7 +241,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-30 17:01:04" itemprop="dateModified" datetime="2021-04-30T17:01:04+08:00">2021-04-30</time>
+                <time title="修改时间：2021-05-24 08:54:15" itemprop="dateModified" datetime="2021-05-24T08:54:15+08:00">2021-05-24</time>
               </span>
 
           
@@ -264,20 +264,20 @@
 <p><strong>特点：</strong>快，<strong>很快</strong>，非常快</p>
 <h3 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h3><p><strong>三步：</strong></p>
 <ul>
-<li>1、计算哈希码（hashcode，调用hashCode()方法获得）</li>
+<li>1、计算哈希码（hashcode，调用 <code>hashCode()</code> 方法获得）</li>
 <li>2、计算在哈希表中的存储位置</li>
 <li>3、存入哈希表</li>
 </ul>
 <p>存入哈希表中的数据<strong>唯一</strong>且<strong>无序</strong></p>
-<h3 id="hashCode-和equals-的作用"><a href="#hashCode-和equals-的作用" class="headerlink" title="hashCode()和equals()的作用"></a>hashCode()和equals()的作用</h3><p><strong>hashCode()：</strong>获取哈希码，返回一个<strong>int</strong>，根据哈希码计算出数据在哈希表中的存储位置</p>
-<p><strong>equals()：</strong>添加或查询数据是需要使用equals()进行对比，判断是否有相同数据</p>
-<h3 id="如何获取哈希码"><a href="#如何获取哈希码" class="headerlink" title="如何获取哈希码"></a>如何获取哈希码</h3><p><strong>int：</strong>调用hashCode()方法，其实就是取自身</p>
-<p><strong>其他类型：</strong>调用默认的hashCode()方法获取</p>
+<h3 id="hashCode-和-equals-的作用"><a href="#hashCode-和-equals-的作用" class="headerlink" title="hashCode() 和 equals() 的作用"></a>hashCode() 和 equals() 的作用</h3><p><strong>hashCode()：</strong>获取哈希码，返回一个 <strong>int</strong>，根据哈希码计算出数据在哈希表中的存储位置</p>
+<p><strong>equals()：</strong>添加或查询数据是需要使用 <code>equals()</code> 进行对比，判断是否有相同数据</p>
+<h3 id="如何获取哈希码"><a href="#如何获取哈希码" class="headerlink" title="如何获取哈希码"></a>如何获取哈希码</h3><p><strong>int：</strong>调用 <code>hashCode()</code> 方法，其实就是取自身</p>
+<p><strong>其他类型：</strong>调用默认的 <code>hashCode()</code> 方法获取</p>
 <h3 id="如何减少冲突"><a href="#如何减少冲突" class="headerlink" title="如何减少冲突"></a>如何减少冲突</h3><p><strong>1、装填因子</strong>：</p>
 <p>装填因子 = 表中的记录数 / 哈希表的长度</p>
 <p>装填因子越小，发生冲突的可能性就越小</p>
-<p>研究标明：当装填因子为0.5时，哈希表的性能达到最优</p>
-<p><strong>因此，一般情况下，装填因子取0.5</strong></p>
+<p>研究标明：当装填因子为 0.5 时，哈希表的性能达到最优</p>
+<p><strong>因此，一般情况下，装填因子取 0.5</strong></p>
 <hr>
 <p><strong>2、哈希函数的选择</strong></p>
 <p>直接定址法、平方取中法、折叠法、除留取余法等</p>
@@ -363,7 +363,7 @@
 <p><strong>1、</strong>直接插入排序，直接选择排序，冒泡排序是三种最简单、最基本的排序，时间复杂度也最高（O(n<sup>2</sup>)）,三种都必须熟练掌握。</p>
 <p><strong>2、</strong>快速排序和归并排序都使用了<strong>归并</strong>和<strong>递归</strong>的思想，面试时可能会被问到。</p>
 <p><strong>3、</strong>在数据不大的情况下，从时间性能来看，快速排序时实际性能最优的排序算法。</p>
-<p><strong>4、</strong>堆排序在任何情况下的时间复杂度都为O(nlog<sub>2</sub>n)，在元素较多时是很有效的排序算法。</p>
+<p><strong>4、</strong>堆排序在任何情况下的时间复杂度都为 O(nlog<sub>2</sub>n)，在元素较多时是很有效的排序算法。</p>
 <p><strong>5、</strong>基于<strong>比较</strong>的排序的时间复杂度下限是 <strong>Ω(nlog<sub>2</sub>n))</strong>，这已经是最高的效率了。</p>
 
     </div>
@@ -429,7 +429,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希表"><span class="nav-number">1.</span> <span class="nav-text">哈希表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构和特点"><span class="nav-number">1.1.</span> <span class="nav-text">结构和特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加数据"><span class="nav-number">1.2.</span> <span class="nav-text">添加数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hashCode-和equals-的作用"><span class="nav-number">1.3.</span> <span class="nav-text">hashCode()和equals()的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何获取哈希码"><span class="nav-number">1.4.</span> <span class="nav-text">如何获取哈希码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何减少冲突"><span class="nav-number">1.5.</span> <span class="nav-text">如何减少冲突</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">2.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#排序的分类"><span class="nav-number">2.1.</span> <span class="nav-text">排序的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序算法"><span class="nav-number">2.2.</span> <span class="nav-text">排序算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冒泡排序（Bubble-Sort）"><span class="nav-number">2.3.</span> <span class="nav-text">冒泡排序（Bubble Sort）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序（Quicksort）"><span class="nav-number">2.4.</span> <span class="nav-text">快速排序（Quicksort）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序总结"><span class="nav-number">2.5.</span> <span class="nav-text">排序总结</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希表"><span class="nav-number">1.</span> <span class="nav-text">哈希表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构和特点"><span class="nav-number">1.1.</span> <span class="nav-text">结构和特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加数据"><span class="nav-number">1.2.</span> <span class="nav-text">添加数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hashCode-和-equals-的作用"><span class="nav-number">1.3.</span> <span class="nav-text">hashCode() 和 equals() 的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何获取哈希码"><span class="nav-number">1.4.</span> <span class="nav-text">如何获取哈希码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何减少冲突"><span class="nav-number">1.5.</span> <span class="nav-text">如何减少冲突</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">2.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#排序的分类"><span class="nav-number">2.1.</span> <span class="nav-text">排序的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序算法"><span class="nav-number">2.2.</span> <span class="nav-text">排序算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冒泡排序（Bubble-Sort）"><span class="nav-number">2.3.</span> <span class="nav-text">冒泡排序（Bubble Sort）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序（Quicksort）"><span class="nav-number">2.4.</span> <span class="nav-text">快速排序（Quicksort）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序总结"><span class="nav-number">2.5.</span> <span class="nav-text">排序总结</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -443,7 +443,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -456,7 +456,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">99</span>
+        <span class="site-state-item-count">100</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

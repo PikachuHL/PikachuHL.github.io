@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>区块链技术与应用</title>
-    <url>/2021/05/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="区块链基础与应用"><a href="#区块链基础与应用" class="headerlink" title="区块链基础与应用"></a>区块链基础与应用</h1>]]></content>
-  </entry>
-  <entry>
-    <title>Java/微服务/ZooKeeper</title>
+    <title>ZooKeeper</title>
     <url>/2021/05/11/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/ZooKeeper/</url>
-    <content><![CDATA[<a id="more"></a>
+    <content><![CDATA[<p>ZooKeeper的目标就是封装好复杂易出错的关键服务，将简单易用的接口和性能高效、功能稳定的系统提供给用户。</p>
+<a id="more"></a>
 
 
 
-<h2 id="Zookeeper基础概念"><a href="#Zookeeper基础概念" class="headerlink" title="Zookeeper基础概念"></a>Zookeeper基础概念</h2><h2 id="ZooKeeper-环境搭建"><a href="#ZooKeeper-环境搭建" class="headerlink" title="ZooKeeper 环境搭建"></a>ZooKeeper 环境搭建</h2><blockquote>
+<h2 id="ZooKeeper基础概念"><a href="#ZooKeeper基础概念" class="headerlink" title="ZooKeeper基础概念"></a>ZooKeeper基础概念</h2><h2 id="ZooKeeper-环境搭建"><a href="#ZooKeeper-环境搭建" class="headerlink" title="ZooKeeper 环境搭建"></a>ZooKeeper 环境搭建</h2><blockquote>
 <p>在 Linux 中搭建 ZooKeeper （伪集群）环境</p>
 <p>参考资料：</p>
 <ul>
@@ -64,6 +60,12 @@
 </li>
 </ol>
 ]]></content>
+      <categories>
+        <category>Java EE</category>
+      </categories>
+      <tags>
+        <tag>ZooKeeper</tag>
+      </tags>
   </entry>
   <entry>
     <title>MySQL高级</title>
@@ -429,13 +431,13 @@
       </tags>
   </entry>
   <entry>
-    <title>Java/微服务/Docker</title>
-    <url>/2021/04/05/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Docker/</url>
+    <title>Java/微服务/Spring Cloud</title>
+    <url>/2021/04/05/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Spring%20Cloud/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>Java/微服务/Spring Cloud</title>
-    <url>/2021/04/05/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Spring%20Cloud/</url>
+    <title>Java/微服务/Docker</title>
+    <url>/2021/04/05/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Docker/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
@@ -1825,7 +1827,9 @@
     <content><![CDATA[<p>Python处理异常以及捕获异常</p>
 <a id="more"></a>
 
-<h1 id="Python异常"><a href="#Python异常" class="headerlink" title="Python异常"></a>Python异常</h1><h3 id="处理异常的基础语法："><a href="#处理异常的基础语法：" class="headerlink" title="处理异常的基础语法："></a>处理异常的基础语法：</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="comment"># 要执行的代码，可能存在异常</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="comment"># 出现异常时，要执行的操作</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="处理异常的基础语法："><a href="#处理异常的基础语法：" class="headerlink" title="处理异常的基础语法："></a>处理异常的基础语法：</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="comment"># 要执行的代码，可能存在异常</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="comment"># 出现异常时，要执行的操作</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -1847,7 +1851,7 @@
 <li><p>如果异常传递到主程序，仍然没有被处理，程序才会终止</p>
 </li>
 </ul>
-<h3 id="主动抛出异常："><a href="#主动抛出异常：" class="headerlink" title="主动抛出异常："></a>主动抛出异常：</h3><p>Python中的异常类：<code>Exception</code></p>
+<h3 id="主动抛出异常："><a href="#主动抛出异常：" class="headerlink" title="主动抛出异常："></a>主动抛出异常：</h3><p>Python 中的异常类：<code>Exception</code></p>
 <p>抛出异常关键字：<code>raise</code></p>
 <p>主动抛出异常实现：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建一个 Exception 对象</span></span><br><span class="line">ex = Exception(<span class="string">"自定义异常"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 raise 抛出异常</span></span><br><span class="line"><span class="keyword">raise</span> ex</span><br></pre></td></tr></table></figure>
@@ -1863,12 +1867,12 @@
   <entry>
     <title>Python文件操作</title>
     <url>/2020/04/25/Python/Python_new/Python%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6/</url>
-    <content><![CDATA[<p>Python操作文件的步骤: 打开文件 –&gt; 读/写 –&gt; 关闭文件</p>
+    <content><![CDATA[<p>Python 操作文件的步骤: 打开文件 –&gt; 读/写 –&gt; 关闭文件</p>
 <a id="more"></a>
 
 
 
-<h1 id="Python文件操作"><a href="#Python文件操作" class="headerlink" title="Python文件操作"></a>Python文件操作</h1><h3 id="Python-操作文件的步骤："><a href="#Python-操作文件的步骤：" class="headerlink" title="Python 操作文件的步骤："></a>Python 操作文件的步骤：</h3><ol>
+<h3 id="Python-操作文件的步骤："><a href="#Python-操作文件的步骤：" class="headerlink" title="Python 操作文件的步骤："></a>Python 操作文件的步骤：</h3><ol>
 <li><p>打开文件</p>
 <ul>
 <li><code>file = open(&quot;filename&quot;, &quot;访问方式&quot;)</code></li>
@@ -1897,7 +1901,7 @@
 </ol>
 <h3 id="文件指针"><a href="#文件指针" class="headerlink" title="文件指针"></a>文件指针</h3><p>读取文件的时候，会有一个指针标记从哪个位置开始读取数据</p>
 <p>第一次打开文件时，文件指针会指向文件的开始位置</p>
-<p>执行了<code>read</code>方法后，文件指针会移动到文件末尾</p>
+<p>执行了 <code>read</code> 方法后，文件指针会移动到文件末尾</p>
 <h3 id="文件的访问方式"><a href="#文件的访问方式" class="headerlink" title="文件的访问方式"></a>文件的访问方式</h3><blockquote>
 <p>open 默认以<strong>只读</strong>方式打开文件</p>
 </blockquote>
@@ -1951,7 +1955,9 @@
     <content><![CDATA[<p>模块是工具的集合, 包是模块的集合</p>
 <a id="more"></a>
 
-<h1 id="Python模块-amp-包"><a href="#Python模块-amp-包" class="headerlink" title="Python模块 &amp; 包"></a>Python模块 &amp; 包</h1><p>模块的概念:</p>
+
+
+<p>模块的概念:</p>
 <p>导入模块:</p>
 <ul>
 <li><p><code>import 模块名</code></p>
@@ -2035,11 +2041,13 @@
 
 
 
-<h1 id="Python面向对象"><a href="#Python面向对象" class="headerlink" title="Python面向对象"></a>Python面向对象</h1><blockquote>
-<p>dir内置函数：</p>
-<p>Python中的一切皆对象，像变量、函数等都是对象</p>
+
+
+<blockquote>
+<p>dir 内置函数：</p>
+<p>Python 中的一切皆对象，像变量、函数等都是对象</p>
 <p><code>dir(标识符/数据)</code> 可以查看对象内的所有属性和方法</p>
-<p><code>__方法/属性名__</code> ：在方法/属性名前面和后面都有<strong>两个下划线</strong>的格式，是Python为该对象提供的<strong>内置</strong>方法/属性</p>
+<p><code>__方法/属性名__</code> ：在方法/属性名前面和后面都有<strong>两个下划线</strong>的格式，是 Python 为该对象提供的<strong>内置</strong>方法/属性</p>
 </blockquote>
 <h3 id="定义类-amp-创建对象"><a href="#定义类-amp-创建对象" class="headerlink" title="定义类&amp;创建对象"></a>定义类&amp;创建对象</h3><p>定义类：</p>
 <ul>
@@ -2075,7 +2083,7 @@
 
 
 
-<h1 id="Python高级"><a href="#Python高级" class="headerlink" title="Python高级"></a>Python高级</h1><h3 id="可变类型和不可变类型："><a href="#可变类型和不可变类型：" class="headerlink" title="可变类型和不可变类型："></a>可变类型和不可变类型：</h3><ol>
+<h3 id="可变类型和不可变类型："><a href="#可变类型和不可变类型：" class="headerlink" title="可变类型和不可变类型："></a>可变类型和不可变类型：</h3><ol>
 <li>不可变类型：<ul>
 <li>数字</li>
 <li>字符串</li>
@@ -2102,7 +2110,7 @@
 <ul>
 <li><p>在所有的函数中都可以使用全局变量</p>
 </li>
-<li><p>在Python中，函数内部不能修改全局变量</p>
+<li><p>在 Python中，函数内部不能修改全局变量</p>
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">num = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">demo</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 这里的 num 只是定义的一个局部变量，并不是修改全局变量</span></span><br><span class="line">    <span class="comment"># 如果想在函数内部修改全局变量，使用 global 关键字声明一下全局变量</span></span><br><span class="line">    <span class="comment"># global num</span></span><br><span class="line">    num = <span class="number">66</span></span><br><span class="line">    print(num)  <span class="comment"># 输出 66</span></span><br></pre></td></tr></table></figure>
@@ -2499,14 +2507,13 @@
   <entry>
     <title>学习中遇到的问题</title>
     <url>/2020/02/06/%E5%85%B6%E5%AE%83%E7%AC%94%E8%AE%B0/%E5%AD%A6%E4%B9%A0%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>把学习中遇到的一些问题及解决过程记录下来，避免以后在同一个坑里跌倒</p>
+    <content><![CDATA[<p>学习和工作中遇到的一些问题及解决过程</p>
+<p>避免以后在同一个坑里跌倒</p>
 <a id="more"></a>
 
 
 
-<ol>
-<li><p><strong>在 Mac 中配置 maven 环境变量</strong></p>
-<ol>
+<h3 id="Mac-OS-配置-Maven-环境变量"><a href="#Mac-OS-配置-Maven-环境变量" class="headerlink" title="Mac OS 配置 Maven 环境变量"></a>Mac OS 配置 Maven 环境变量</h3><ol>
 <li><p>maven 下载 tar.gz 格式压缩包 下载完成会自动解压</p>
 </li>
 <li><p>将解压后的 maven 拖入终端可以得到 maven 解压后的路径</p>
@@ -2526,11 +2533,11 @@
 <li><p>mvn -v 如果有 maven 的信息则说明配置成功</p>
 </li>
 </ol>
-</li>
-<li><p>idea 中新建 xml 文件时，（如果选的是 <code>File</code> 创建）一定要自己把后缀 <code>.xml</code> 写上。</p>
-</li>
-</ol>
+<h3 id="idea-中新建-XML-文件"><a href="#idea-中新建-XML-文件" class="headerlink" title="idea 中新建 XML 文件"></a>idea 中新建 XML 文件</h3><p>idea 中新建 XML 文件时，（如果选的是 <code>File</code> 创建）一定要自己把后缀 <code>.xml</code> 写上。</p>
 ]]></content>
+      <categories>
+        <category>bugfix</category>
+      </categories>
       <tags>
         <tag>经验</tag>
       </tags>
@@ -2538,27 +2545,29 @@
   <entry>
     <title>Python数据分析</title>
     <url>/2019/12/10/Python/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<p>用Python做数据分析</p>
+    <content><![CDATA[<p>用 Python 做数据分析</p>
 <a id="more"></a>
 
-<h1 id="Python数据分析"><a href="#Python数据分析" class="headerlink" title="Python数据分析"></a>Python数据分析</h1><p>python做数据分析的几个常用库：numpy，pandas</p>
-<h2 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h2><p>Anaconda是一个基于conda的<strong>整合框架</strong>，其中包含了<strong>Spyder</strong> 和 <strong>IPython</strong></p>
+
+
+<p>python 做数据分析的几个常用库：numpy，pandas</p>
+<h2 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h2><p>Anaconda 是一个基于 conda 的<strong>整合框架</strong>，其中包含了 <strong>Spyder</strong> 和 <strong>IPython</strong></p>
 <ul>
 <li><p>conda：包管理和环境管理工具</p>
 </li>
-<li><p>Spyder：一个python的IDE</p>
+<li><p>Spyder：一个 Python 的 IDE</p>
 </li>
-<li><p>IPython：python的交互式shell</p>
+<li><p>IPython：Python 的交互式 shell</p>
 <ul>
 <li><p>变量<strong>前面</strong>或<strong>后面</strong>加上 <code>?</code>，可以显示变量的一些通用信息，如果是函数会显示源代码</p>
 </li>
-<li><p><code>%run</code>：运行python程序（在一个空的命名空间内运行python程序）</p>
+<li><p><code>%run</code>：运行 python 程序（在一个空的命名空间内运行 python 程序）</p>
 <p><code>%run demo.py</code></p>
 </li>
 <li><p><code>%</code>魔术命令：</p>
 <ul>
 <li><code>%magic</code>：显示所有魔术命令</li>
-<li><code>%hist</code>：显示IPython的输入历史</li>
+<li><code>%hist</code>：显示 IPython 的输入历史</li>
 <li><code>pdb</code>：异常发生后自动进入调试器</li>
 <li><code>%reset</code>：删除当前命名空间中所有变量或名称</li>
 <li><code>%time 执行语句</code>：给出代码的执行时间</li>
@@ -2568,30 +2577,30 @@
 </ul>
 </li>
 </ul>
-<h2 id="NumPy"><a href="#NumPy" class="headerlink" title="NumPy"></a>NumPy</h2><p><strong>简介</strong>：NumPy是一个开源的python科学计算基础库</p>
-<p>NumPy包含：</p>
+<h2 id="NumPy"><a href="#NumPy" class="headerlink" title="NumPy"></a>NumPy</h2><p><strong>简介</strong>：NumPy 是一个开源的 python 科学计算基础库</p>
+<p>NumPy 包含：</p>
 <ul>
-<li>一个强大的N维<strong>数组对象</strong> ndarray</li>
+<li>一个强大的 N 维<strong>数组对象</strong> ndarray</li>
 <li>广播功能函数</li>
-<li>整合C/C++/Fortran代码的工具</li>
+<li>整合 C / C++ / Fortran 代码的工具</li>
 <li>线性代数、傅里叶变换、随机数生成等功能</li>
 </ul>
-<p>NumPy是SciPy、Pandas等科学计算及数据处理库的基础</p>
-<h3 id="ndarray"><a href="#ndarray" class="headerlink" title="ndarray"></a>ndarray</h3><p>ndarray是一个<strong>N维数组对象</strong>，由两部分组成：</p>
+<p>NumPy 是 SciPy、Pandas 等科学计算及数据处理库的基础</p>
+<h3 id="ndarray"><a href="#ndarray" class="headerlink" title="ndarray"></a>ndarray</h3><p>ndarray 是一个<strong>N维数组对象</strong>，由两部分组成：</p>
 <ul>
 <li>实际的数据</li>
 <li>描述这些数据的<strong>元数据</strong>（数据维度、数据类型等）</li>
 </ul>
 <blockquote>
 <ul>
-<li>ndarray数组一般要求所有的<strong>元素的类型相同</strong>（<strong>同质</strong>）</li>
-<li>ndarray数组可以由非同质元素组成，但是由非同质元素组成的时候，数组中的每个元素都会被看成 object 类型。</li>
-<li>非同质元素组成的ndarray数组无法发挥NumPy的优势，尽量避免使用</li>
+<li>ndarray 数组一般要求所有的<strong>元素的类型相同</strong>（<strong>同质</strong>）</li>
+<li>ndarray 数组可以由非同质元素组成，但是由非同质元素组成的时候，数组中的每个元素都会被看成 object 类型。</li>
+<li>非同质元素组成的 ndarray 数组无法发挥 NumPy 的优势，尽量避免使用</li>
 </ul>
 </blockquote>
 <blockquote>
 <ul>
-<li><p>ndarray在程序中的别名是：<code>array</code>，所以在程序中使用 <code>np.array()</code> 来创建一个数组</p>
+<li><p>ndarray 在程序中的别名是：<code>array</code>，所以在程序中使用 <code>np.array()</code> 来创建一个数组</p>
 </li>
 <li><p><code>np.array()</code> 输出成 <code>[]</code> 形式，元素由空格分隔</p>
 </li>
@@ -2603,7 +2612,7 @@
 <li>秩（rank）：轴的<strong>数量</strong> / 有几个维度</li>
 </ul>
 </blockquote>
-<p><strong>ndarray数组对象的属性</strong>：</p>
+<p><strong>ndarray 数组对象的属性</strong>：</p>
 <table>
 <thead>
 <tr>
@@ -2617,7 +2626,7 @@
 </tr>
 <tr>
 <td align="left">.shape</td>
-<td align="left">数组的尺度，对于矩阵，n行m列</td>
+<td align="left">数组的尺度，对于矩阵，n 行 m 列</td>
 </tr>
 <tr>
 <td align="left">.size</td>
@@ -2632,14 +2641,14 @@
 <td align="left">每个元素所占内存空间大小，以字节为单位</td>
 </tr>
 </tbody></table>
-<p><strong>ndarray数组的创建方法：</strong></p>
+<p><strong>ndarray 数组的创建方法：</strong></p>
 <ul>
-<li>从python中的列表、元组等类型创建ndarray数组<ul>
+<li>从 Python 中的列表、元组等类型创建 ndarray 数组<ul>
 <li><code>x = np.array(list/tuple)</code></li>
 <li><code>x = np.array(list/tuple, dtype = np.float32)</code></li>
 </ul>
 </li>
-<li>使用NumPy中的相关函数创建ndarray数组</li>
+<li>使用 NumPy 中的相关函数创建 ndarray 数组</li>
 </ul>
 <table>
 <thead>
@@ -2654,11 +2663,11 @@
 </tr>
 <tr>
 <td align="left"><code>np.ones(shape)</code></td>
-<td align="left">根据 <code>shape</code> 生成一个全 <code>1</code> 的数组，shape是<strong>元组类型</strong></td>
+<td align="left">根据 <code>shape</code> 生成一个全 <code>1</code> 的数组，shape 是<strong>元组类型</strong></td>
 </tr>
 <tr>
 <td align="left"><code>np.zeros(shape)</code></td>
-<td align="left">根据 shape 生成一个全0的数组，shape是<strong>元组类型</strong></td>
+<td align="left">根据 shape 生成一个全 0 的数组，shape 是<strong>元组类型</strong></td>
 </tr>
 <tr>
 <td align="left"><code>np.full(shape, val)</code></td>
@@ -2666,19 +2675,19 @@
 </tr>
 <tr>
 <td align="left"><code>np.eye(n)</code></td>
-<td align="left">创建一个n*n的矩阵，对角线元素为1，其余全为0</td>
+<td align="left">创建一个 n*n 的矩阵，对角线元素为 1，其余全为 0</td>
 </tr>
 <tr>
 <td align="left"><code>np.ones_like(a)</code></td>
-<td align="left">根据数组 a的形状创建一个全1的数组</td>
+<td align="left">根据数组 a 的形状创建一个全 1 的数组</td>
 </tr>
 <tr>
 <td align="left"><code>np.zeros_like(a)</code></td>
-<td align="left">根据数组a的形状创建一个全0的数组</td>
+<td align="left">根据数组 a 的形状创建一个全 0 的数组</td>
 </tr>
 <tr>
 <td align="left"><code>np.full_like(a, val)</code></td>
-<td align="left">根据数组a的形状创建一个全val的数组</td>
+<td align="left">根据数组 a 的形状创建一个全 val 的数组</td>
 </tr>
 <tr>
 <td align="left"><code>np.linspace()</code></td>
@@ -2693,11 +2702,11 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不指定dtype，默认为浮点数</span></span><br><span class="line">In[<span class="number">24</span>]: np.ones((<span class="number">2</span>,<span class="number">3</span>))</span><br><span class="line">Out[<span class="number">24</span>]: </span><br><span class="line">array([[<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>],</span><br><span class="line">       [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>]])</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>从字节流中创建ndarray数组</li>
-<li>从文件中读取特定格式，创建ndarray数组</li>
+<li>从字节流中创建 ndarray 数组</li>
+<li>从文件中读取特定格式，创建 ndarray 数组</li>
 </ul>
-<p><strong>ndarray数组的变换：</strong></p>
-<p>对于创建后的ndarray数组，可以对其进行<strong>维度变换</strong>和<strong>元素类型变换</strong></p>
+<p><strong>ndarray 数组的变换：</strong></p>
+<p>对于创建后的 ndarray 数组，可以对其进行<strong>维度变换</strong>和<strong>元素类型变换</strong></p>
 <ul>
 <li>维度变换 (<code>a=np.array(list)</code>)</li>
 </ul>
@@ -2710,7 +2719,7 @@
 </thead>
 <tbody><tr>
 <td align="left"><code>a.reshape(shape)</code></td>
-<td align="left">不改变原数组，返回一个shape形状的数组，shape为元祖</td>
+<td align="left">不改变原数组，返回一个 shape 形状的数组，shape 为元祖</td>
 </tr>
 <tr>
 <td align="left"><code>a.resize(shape)</code></td>
@@ -2718,7 +2727,7 @@
 </tr>
 <tr>
 <td align="left"><code>a.swapaxes(ax1, ax2)</code></td>
-<td align="left">将数组n个维度中两个维度进行调换</td>
+<td align="left">将数组 n 个维度中两个维度进行调换</td>
 </tr>
 <tr>
 <td align="left"><code>a.flatten()</code></td>
@@ -2730,18 +2739,18 @@
 <p><code>new_a = a.astype(new_type)</code></p>
 </li>
 </ul>
-<p>ndarray数组转换为列表：</p>
+<p>ndarray 数组转换为列表：</p>
 <p> <code>ls = a.tolist()</code></p>
-<p><strong>ndarray数组的 索引 和切片</strong></p>
+<p><strong>ndarray 数组的索引和切片</strong></p>
 <p>一维数组的索引：<code>a[2]</code></p>
 <p>一维数组的切片：<code>a[1:4:2]</code></p>
 <p>多维数组的索引：<code>a[2,1,3]</code></p>
 <p>多维数组的切片：<code>a[:,1:3,:3]</code></p>
-<p><strong>ndarray数组的运算</strong></p>
+<p><strong>ndarray 数组的运算</strong></p>
 <ol>
 <li><p>数组与标量之间的运算作用于数组的每一个元素</p>
 </li>
-<li><p>使用函数对ndarray数组进行运算</p>
+<li><p>使用函数对 ndarray 数组进行运算</p>
 <ol>
 <li><p>一元函数：（使用一元函数，都不会修改原数组）</p>
 <table>
@@ -2815,7 +2824,7 @@
 </tr>
 <tr>
 <td><code>np.copysign(x,y)</code></td>
-<td>将数组y中各元素值的符号赋值给数组x对应元素</td>
+<td>将数组 y 中各元素值的符号赋值给数组 x 对应元素</td>
 </tr>
 <tr>
 <td><code>&gt;  &lt;  &gt;=  &lt;=  ==  !=</code></td>
@@ -2824,59 +2833,58 @@
 </tbody></table>
 </li>
 </ol>
-<h3 id="数据的CSV文件的存取"><a href="#数据的CSV文件的存取" class="headerlink" title="数据的CSV文件的存取"></a>数据的CSV文件的存取</h3><blockquote>
-<p> CSV:(Comma-Separated Value, 逗号分隔值)</p>
+<h3 id="数据的-CSV-文件的存取"><a href="#数据的-CSV-文件的存取" class="headerlink" title="数据的 CSV 文件的存取"></a>数据的 CSV 文件的存取</h3><blockquote>
+<p> CSV：(Comma-Separated Value  逗号分隔值)</p>
 </blockquote>
 <p>将数组保存到文件中：</p>
 <ol>
-<li><p>np.savetxt(frame, array, fmt=’%.18e’, delimiter=None)</p>
-<ul>
-<li>frame: 要存入的文件，可以是.gz或.bz2的压缩文件</li>
+<li><code>np.savetxt(frame, array, fmt=&#39;%.18e&#39;, delimiter=None)</code><ul>
+<li>frame: 要存入的文件，可以是 <code>.gz</code> 或 <code>.bz2</code> 的压缩文件</li>
 <li>array: 要存入文件的数组</li>
-<li>fmt: 写入文件的格式，如：%d，%.2f，%.18e</li>
+<li>fmt: 写入文件的格式，如：<code>%d</code>，<code>%.2f</code>，<code>%.18e</code></li>
 <li>delimiter: 分隔字符串，默认是空格</li>
 </ul>
 </li>
 </ol>
 <p>读取文件到数组中：</p>
-<p>np.loadtxt(frame, dtype=np.float, delimiter=None, unpack=False)</p>
+<p><code>np.loadtxt(frame, dtype=np.float, delimiter=None, unpack=False)</code></p>
 <ul>
-<li>frame: 要读取的文件，可以是.gz或.bz2的压缩文件</li>
+<li>frame: 要读取的文件，可以是 <code>.gz</code> 或 <code>.bz2</code> 的压缩文件</li>
 <li>dtype: 数据类型，可选</li>
 <li>delimiter: 分隔字符串，默认为空格</li>
-<li>unpack: 如果是True，读入属性将分别写入不同变量</li>
+<li>unpack: 如果是 True，读入属性将分别写入不同变量</li>
 </ul>
-<p>csv文件的局限性：</p>
+<p>csv 文件的局限性：</p>
 <ul>
-<li><p>csv文件只能有效的存储一维和二维数组</p>
+<li><p>csv 文件只能有效的存储一维和二维数组</p>
 </li>
-<li><p>np.savetxt() &amp; np.loadtxt() 只能有效存取一维和二维数组</p>
+<li><p><code>np.savetxt()</code> &amp; <code>np.loadtxt()</code> 只能有效存取一维和二维数组</p>
 </li>
 </ul>
 <h3 id="多维数据的存取"><a href="#多维数据的存取" class="headerlink" title="多维数据的存取"></a>多维数据的存取</h3><p>存多维数据</p>
 <p><code>np.tofile(frame, sep=&#39;&#39;, format=&#39;%s&#39;)</code></p>
 <ul>
-<li>frame: 文件，字符串</li>
-<li>sep: 数据分隔字符串，如果是空串，则写入为二进制文件</li>
-<li>format: 写入数据格式</li>
+<li>frame：文件，字符串</li>
+<li>sep：数据分隔字符串，如果是空串，则写入为二进制文件</li>
+<li>format：写入数据格式</li>
 </ul>
 <p>读多维数据</p>
 <p><code>np.fromfile(frame, dtype=float, count=-1, sep=&#39;&#39;)</code></p>
 <ul>
-<li>frame: 文件，字符串</li>
-<li>dtype: 读入的数据类型</li>
-<li>count: 读入元素的个数，-1代表读入整个文件</li>
-<li>: 数据分隔字符串，如果为空串，读入的为二进制文件</li>
+<li>frame：文件，字符串</li>
+<li>dtype：读入的数据类型</li>
+<li>count：读入元素的个数，-1 代表读入整个文件</li>
+<li>sep：数据分隔字符串，如果为空串，读入的为二进制文件</li>
 </ul>
 <blockquote>
 <p>上面的存取多维数据的方法无法存取维度信息</p>
 <p>要想读取的时候复原维度信息，需要使用reshape</p>
 </blockquote>
-<p>Numpy提供的便捷文件存取</p>
+<p>Numpy 提供的便捷文件存取</p>
 <p><code>np.save(fname, array)</code>或<code>np.savez(fname, array)</code></p>
 <ul>
-<li>fname: 文件名，扩展名为.npy，压缩扩展名为npz</li>
-<li>array: 数组变量</li>
+<li>fname：文件名，扩展名为 <code>.npy</code>，压缩扩展名为 <code>npz</code></li>
+<li>array：数组变量</li>
 </ul>
 <p><code>np.load(fname)</code></p>
 ]]></content>
@@ -3456,6 +3464,9 @@
 <p><em>未设置</em>  Tomcat 中 VM options，</p>
 <p><em>未修改</em> idea.exe.vmoptions 和 idea64.exe.vmoptions 文件</p>
 ]]></content>
+      <categories>
+        <category>bugfix</category>
+      </categories>
       <tags>
         <tag>Tomcat</tag>
         <tag>乱码</tag>
@@ -4855,10 +4866,12 @@
   <entry>
     <title>Git</title>
     <url>/2019/05/22/Java/Git/</url>
-    <content><![CDATA[<p>Git是目前世界上最先进的<strong>分布式版本控制系统</strong>（没有之一）</p>
+    <content><![CDATA[<p>Git 是目前世界上最先进的<strong>分布式版本控制系统</strong>（没有之一）</p>
 <a id="more"></a>
 
-<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><blockquote>
+
+
+<blockquote>
 <p>SVN：集中式版本控制系统</p>
 <p>Git：  分布式版本控制系统</p>
 </blockquote>
@@ -4885,8 +4898,8 @@
 <blockquote>
 <p>注意事项：</p>
 <p>版本控制工具只能跟踪<strong>文本文件</strong>（txt，程序代码等）的改动</p>
-<p>使用<code>git add</code>的文件 <strong>必须在仓库目录下</strong></p>
-<p><code>git commit</code>的参数<code>-m</code>后面可以直接写<strong>本次提交的说明</strong>（如果不加<code>-m</code>，在输入<code>git commit</code>回车后，会打开<code>Vim</code>让你输入提交说明）</p>
+<p>使用 <code>git add</code> 的文件 <strong>必须在仓库目录下</strong></p>
+<p><code>git commit</code> 的参数 <code>-m</code> 后面可以直接写<strong>本次提交的说明</strong>（如果不加 <code>-m</code>，在输入 <code>git commit</code> 回车后，会打开 <code>Vim</code> 让你输入提交说明）</p>
 </blockquote>
 </li>
 </ul>
@@ -6124,21 +6137,23 @@
     <content><![CDATA[<p>Maven 是一款 Java 项目的自动化构建工具</p>
 <a id="more"></a>
 
-<h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><p><strong>maven的功能</strong></p>
+
+
+<p><strong>maven 的功能</strong></p>
 <ul>
 <li>依赖管理</li>
 <li>一键构建</li>
 </ul>
-<p>构建的概念：**以“Java源文件” 、 “框架配置文件” 、“HTML” 、“图片” 等资源为 “原材料”，去 “生产” 一个可运行项目的过程</p>
+<p>构建的概念：以 <code>Java 源文件</code> 、 <code>框架配置文件</code> 、<code>HTML</code> 、<code>图片</code> 等资源为 <code>原材料</code>，去 <code>生产</code> 一个可运行项目的过程</p>
 <p><strong>构建过程中的各个环节：</strong></p>
 <ul>
 <li>清理：将以前编译得到的旧的 class 字节码文件删除，为下一次编译做准备</li>
 <li>编译：将 Java 源程序编译成 class 字节码文件</li>
 <li>测试：自动调用 <strong>Junit</strong> 程序进行测试</li>
 <li>报告：返回测试程序执行的结果</li>
-<li>打包：<strong>动态Web程序打 .war 包，Java 工程打 .jar 包</strong></li>
-<li>安装：Maven特定的概念 –&gt; 将打包得到的文件复制到“仓库”中的指定位置</li>
-<li>部署：将 .war 包复制到指定 Servlet 容器中，使其可以运行</li>
+<li>打包：动态 Web 程序打 <code>.war</code> 包，Java 工程打 <code>.jar</code> 包</li>
+<li>安装：Maven 特定的概念 –&gt; 将打包得到的文件复制到 <code>仓库</code> 中的指定位置</li>
+<li>部署：将 <code>.war</code> 包复制到指定 Servlet 容器中，使其可以运行</li>
 </ul>
 <p><strong>Maven的常用命令：</strong></p>
 <ul>
@@ -6150,7 +6165,7 @@
 <li>mvn install：安装</li>
 <li>mvn site：生成站点</li>
 </ul>
-<h2 id="Maven的核心概念"><a href="#Maven的核心概念" class="headerlink" title="Maven的核心概念"></a>Maven的核心概念</h2><p>1、<strong>约定的目录结构</strong></p>
+<h2 id="Maven-的核心概念"><a href="#Maven-的核心概念" class="headerlink" title="Maven 的核心概念"></a>Maven 的核心概念</h2><p>1、<strong>约定的目录结构</strong></p>
 <p>2、<strong>POM</strong></p>
 <p>3、<strong>坐标</strong></p>
 <p>4、<u><strong>依赖</strong></u></p>
@@ -6191,7 +6206,7 @@
 
 
 <p><strong>依赖：</strong></p>
-<p>在pom.xml中放置项目所依赖的jar包的坐标，便是依赖管理</p>
+<p>在 pom.xml 中放置项目所依赖的 jar 包的坐标，便是依赖管理</p>
 <p><strong>仓库：</strong></p>
 <ul>
 <li><p>仓库的分类：</p>
@@ -6216,7 +6231,7 @@
 <p><strong>生命周期：</strong>（在执行后面的明亮的时候会把前面的命令执行一遍）</p>
 <ul>
 <li>清理生命周期<ul>
-<li>clean命令单独的就是一个生命周期</li>
+<li>clean 命令单独的就是一个生命周期</li>
 </ul>
 </li>
 <li>默认生命周期<ul>
@@ -6232,32 +6247,38 @@
 </ul>
 </li>
 </ul>
-<h2 id="maven高级"><a href="#maven高级" class="headerlink" title="maven高级"></a>maven高级</h2><h3 id="1、jar包冲突"><a href="#1、jar包冲突" class="headerlink" title="1、jar包冲突"></a>1、jar包冲突</h3><p>maven在导入jar包坐标时，如果导入的jar包与其他导入的jar包的依赖包相同但版本号不同，就会产生jar包冲突的问题</p>
+<h2 id="maven-高级"><a href="#maven-高级" class="headerlink" title="maven 高级"></a>maven 高级</h2><h3 id="1、jar-包冲突"><a href="#1、jar-包冲突" class="headerlink" title="1、jar 包冲突"></a>1、jar 包冲突</h3><p>maven 在导入 jar 包坐标时，如果导入的 jar 包与其他导入的 jar 包的依赖包相同但版本号不同，就会产生 jar 包冲突的问题</p>
 <p><strong>解决jar包冲突的方式有三种：</strong></p>
 <ul>
 <li><p>方式一：</p>
-<pre><code>**第一声明优先原则**：哪个jar包的坐标在靠上的位置，这个jar包就是先声明的。
-先声明的jar包坐标下的依赖包，可以优先进入项目中。</code></pre></li>
-<li><p>方式二：<br>  <strong>路径近者优先原则</strong>。直接依赖路径比传递依赖路径近，那么最终项目进入的jar包会是路径近的直接依赖包。</p>
+<p>  ​    <strong>第一声明优先原则</strong>：哪个 jar 包的坐标在靠上的位置，这个 jar 包就是先声明的。</p>
+<p>  ​    先声明的 jar 包坐标下的依赖包，可以优先进入项目中。</p>
+</li>
+<li><p>方式二：</p>
+<p><strong>路径近者优先原则</strong>。直接依赖路径比传递依赖路径近，那么最终项目进入的 jar 包会是路径近的直接依赖包。</p>
 <ul>
-<li>直接依赖与传递依赖的概念：<br>  直接依赖：项目中直接导入的jar包，就是该项目的直接依赖包。<br>  传递依赖：项目中没有直接导入的jar包，可以通过项目直接依赖jar包传递到项目中去。</li>
+<li>直接依赖与传递依赖的概念：<pre><code>- 直接依赖：项目中直接导入的 jar 包，就是该项目的直接依赖包。
+- 传递依赖：项目中没有直接导入的 jar 包，可以通过项目直接依赖 jar 包传递到项目中去。</code></pre></li>
 </ul>
 </li>
-<li><p>方式三【<strong>推荐使用</strong>】：<br>  <strong>直接排除法</strong>（<strong>使用exclusions标签</strong>）。<br>  当我们要排除某个jar包下依赖包，在配置exclusions标签的时候，内部可以不写版本号。<br>  因为此时依赖包使用的版本和默认和本jar包一样。</p>
+<li><p>方式三【<strong>推荐使用</strong>】：</p>
+<p>  <strong>直接排除法</strong>（<strong>使用 exclusions 标签</strong>）</p>
+<p>  当我们要排除某个 jar 包下依赖包，在配置 exclusions 标签的时候，内部可以不写版本号</p>
+<p>  因为此时依赖包使用的版本和默认和本 jar 包一样。</p>
 </li>
 </ul>
-<h3 id="2、pom-xml中的相关标签"><a href="#2、pom-xml中的相关标签" class="headerlink" title="2、pom.xml中的相关标签"></a>2、pom.xml中的相关标签</h3><p><code>&lt;properties&gt;</code>：里面定义一些键值对，可用于统一管理jar包版本</p>
-<p><code>&lt;dependencyManagement&gt;</code>：用于锁定jar包版本</p>
+<h3 id="2、pom-xml-中的相关标签"><a href="#2、pom-xml-中的相关标签" class="headerlink" title="2、pom.xml 中的相关标签"></a>2、pom.xml 中的相关标签</h3><p><code>&lt;properties&gt;</code>：里面定义一些键值对，可用于统一管理 jar 包版本</p>
+<p><code>&lt;dependencyManagement&gt;</code>：用于锁定 jar 包版本</p>
 <ul>
-<li>注意：该标签中所写的jar包仅用于锁定jar包版本，不能导入jar包</li>
+<li>注意：该标签中所写的jar包仅用于锁定 jar 包版本，不能导入 jar 包</li>
 </ul>
 <blockquote>
-<p>锁定jar包版本的作用：</p>
-<p>当jar包版本被锁定后，如有其它从Maven工程依赖当前Maven工程，那么即使其它的工程中的jar包与当前工程冲突，当前工程被锁定的jar包也不会被覆盖</p>
+<p>锁定 jar 包版本的作用：</p>
+<p>当 jar 包版本被锁定后，如有其它从 Maven 工程依赖当前 Maven 工程，那么即使其它的工程中的 jar 包与当前工程冲突，当前工程被锁定的 jar 包也不会被覆盖</p>
 </blockquote>
 <blockquote>
-<p>idea创建maven项目时解决创建速度慢的一个小技巧:</p>
-<p>添加一对key-value</p>
+<p>idea 创建 maven 项目时解决创建速度慢的一个小技巧：</p>
+<p>添加一对 key-value</p>
 <ul>
 <li>key:  archetypeCatalog</li>
 <li>value:  internal</li>
@@ -6777,9 +6798,9 @@
 </ul>
 <p>PreparedStatement 的<strong>使用步骤</strong>：</p>
 <ol>
-<li>新建 sql 模板，用 ? 代替参数</li>
+<li>新建 sql 模板，用 <code>?</code> 代替参数</li>
 <li>使用 Connection 的 PreparedStatement(String sql) 创建，创建时就与 sql 模板绑定</li>
-<li>使用 setXxxx 方法为模板中的 ? 赋值</li>
+<li>使用 setXxxx 方法为模板中的 <code>?</code> 赋值</li>
 <li>调用 executeUpdate() 或 executeQuery() 方法，调用的方法时<strong>没有参数</strong>的</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// PreparedStatement 的使用步骤：</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1.新建 sql模板</span></span><br><span class="line">String sql = <span class="string">"select * from tab_stu where username=? password=?"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.创建PreparedStatement对象</span></span><br><span class="line">PreparedStatement pstmt = conn.prepareStatement(sql);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.使用setXxxx 方法为参数赋值</span></span><br><span class="line">pstmt.setString(<span class="number">1</span>,username);</span><br><span class="line">pstmt.setString(<span class="number">2</span>,password);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4.调用executeQuery() 方法</span></span><br><span class="line">ResultSet rs = pstmt.executeQuery();</span><br></pre></td></tr></table></figure>
@@ -6867,7 +6888,7 @@
 <li>添加列：<code>ADD(列名 列类型,列名 列类型, ... 列名 列类型);</code></li>
 <li>修改列类型：<code>MODIFY 列名 列类型;</code></li>
 <li>修改列名：<code>CHANGE 原列名 新列名 新列类型;</code></li>
-<li>删除列：<code>DROP 列名;</code></li>
+<li>删除列：<code>DROP COLUMN 列名;</code></li>
 <li>修改表名：<code>RENAME TO 新表名;</code></li>
 </ul>
 </li>
@@ -6908,10 +6929,10 @@
 </li>
 <li><p><strong>转换NULL</strong>值</p>
 <p><code>SELECT IFNULL(列名, 0) FROM 表名;</code></p>
-<p>如果列里面存在NULL就转换为0</p>
+<p>如果列里面存在 NULL 就转换为 0</p>
 </li>
 <li><p>给列起<strong>别名</strong></p>
-<p><code>SELECT 列名 AS 别名 FROM 表名;</code><em>AS可省略</em></p>
+<p><code>SELECT 列名 AS 别名 FROM 表名;</code> （AS 可省略）</p>
 </li>
 </ul>
 </li>
@@ -6930,8 +6951,8 @@
 <p>关键字：<code>LIKE</code></p>
 <p>符号：</p>
 <ul>
-<li>_ ：表示一个字符</li>
-<li>%：表示0 ~ N个字符</li>
+<li><code>_</code> ：表示一个字符</li>
+<li><code>%</code>：表示 0 ~ N 个字符</li>
 </ul>
 <p><code>SELECT * FROM 表名 WHERE 列名 LIKE &#39;张_&#39;;</code></p>
 <p><code>SELECT * FROM 表名 WHERE 列名 LIKE &#39;%小%&#39;;</code></p>
@@ -6945,14 +6966,18 @@
 <p><code>SELECT * FROM 表名 ORDER BY 列名 关键字，列名 关键字，列名 关键字;</code></p>
 <p><strong>5、聚合函数：将一列数据作为一个整体，进行纵向的计算</strong></p>
 <ul>
-<li>count(*) –&gt; 计数</li>
-<li>sum(sal) –&gt; 求和</li>
-<li>max(sal) –&gt; 最大值</li>
-<li>min(sal) –&gt; 最小值</li>
-<li>avg(sal) –&gt; 平均值</li>
+<li><code>count()</code> –&gt; 计数<ul>
+<li><code>count(*)</code> –&gt; 查询的表中记录总数</li>
+<li><code>count(sal)</code> –&gt; sal 列非 null 记录数</li>
+</ul>
+</li>
+<li><code>sum(sal)</code> –&gt; 求和</li>
+<li><code>max(sal)</code> –&gt; 最大值</li>
+<li><code>min(sal)</code> –&gt; 最小值</li>
+<li><code>avg(sal)</code> –&gt; 平均值</li>
 </ul>
 <blockquote>
-<p>聚合函数使用时，自动排除了null值</p>
+<p>聚合函数使用时，自动排除了 null 值</p>
 </blockquote>
 <p><strong>6、分组查询</strong></p>
 <p><code>SELECT 列名，聚合函数  FROM 表名 WHERE 条件 GROUP BY 列名 HAVING 条件 ORDER BY 列名 关键字;</code></p>
@@ -6960,15 +6985,15 @@
 <blockquote>
 <p>分组查询时 WHERE 和 HAVING 的区别：</p>
 <ul>
-<li>WHERE: 在分组之前限定条件，如果不满足条件，则不参与分组； 后面不可以跟聚合函数</li>
-<li>HAVING: 在分组之后限定条件，如果不满足条件，则不会被查询出来； 后面可以跟聚合函数</li>
+<li>WHERE：在分组之前限定条件，如果不满足条件，则不参与分组； 后面不可以跟聚合函数</li>
+<li>HAVING：在分组之后限定条件，如果不满足条件，则不会被查询出来； 后面可以跟聚合函数</li>
 </ul>
 </blockquote>
 <blockquote>
-<p>SQL关键字书写顺序：</p>
+<p>SQL 关键字书写顺序：</p>
 <p>​    SELECT –&gt; FROM –&gt; WHERE –&gt; GROUP BY –&gt; HAVING –&gt; ORDER BY </p>
 </blockquote>
-<p><strong>7、limit子句 – 分页查询（MySQL方言）</strong></p>
+<p><strong>7、limit子句 – 分页查询（MySQL 方言）</strong></p>
 <p><code>SELECT * FROM 表名 LIMIT 3,5;</code></p>
 <p>上面的表达式代表：</p>
 <ul>
@@ -8839,10 +8864,11 @@
   <entry>
     <title>XML</title>
     <url>/2019/04/04/Java/1.Java%E5%9F%BA%E7%A1%80/XML/</url>
-    <content><![CDATA[<p>XML是一种非常灵活的语言，通常用于信息的记录和传递</p>
+    <content><![CDATA[<p>XML 是一种非常灵活的语言，通常用于信息的记录和传递</p>
 <a id="more"></a>
 
-<p><img src="/C:/Users/pikachu/Desktop/XML.jpg" alt="XML"></p>
+
+
 <h2 id="XML-基本信息"><a href="#XML-基本信息" class="headerlink" title="XML 基本信息"></a>XML 基本信息</h2><p><strong>1、</strong>XML(eXtensible Markup Language)：<strong>可扩展标记语言</strong></p>
 <p><strong>2、</strong>XML 是一种非常<strong>灵活</strong>的语言，<strong>没有固定的标签</strong>，任何标签都可以自定义</p>
 <p><strong>3、</strong>XML 通常被<strong>用于信息的记录和传递</strong>，因此，XML 经常被<strong>用作配置文件</strong></p>
@@ -8904,7 +8930,6 @@
 
 ]]></content>
       <tags>
-        <tag>学习笔记</tag>
         <tag>XML</tag>
       </tags>
   </entry>
@@ -8914,7 +8939,6 @@
     <content><![CDATA[<p>正则表达式适用于复杂的文本处理</p>
 <a id="more"></a>
 
-<p><img src="/images/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.jpg" alt="正则表达式"></p>
 <h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p><strong>1、正则表达式（Regular Expression）简介：</strong></p>
 <ul>
 <li><strong>定义</strong>：正则表达式描述了一个规则，通过这个规则可以匹配一类字符串</li>
@@ -8937,19 +8961,19 @@
 </li>
 <li><p><strong>普通的转义字符</strong></p>
 <ul>
-<li><strong>\n</strong> –&gt; 换行符</li>
-<li><strong>\t</strong> –&gt; 制表符</li>
-<li>*<em>\ \ *</em>–&gt; 匹配 \</li>
-<li><strong>\ ^</strong>，<strong>\ $</strong>，<strong>\ .</strong> 等 –&gt; 匹配这些字符本身</li>
+<li><code>\n</code> –&gt; 换行符</li>
+<li><code>\t</code> –&gt; 制表符</li>
+<li><code>\\</code>–&gt; 匹配 <code>\</code></li>
+<li><code>\^</code>，<code>\$</code>，<code>\.</code> 等 –&gt; 匹配这些字符本身</li>
 </ul>
 </li>
 <li><p><strong>标准字符集合</strong></p>
 <ul>
-<li><strong>\d</strong> –&gt; 匹配0~9中任意一个数字</li>
-<li><em>（<strong>\D</strong> –&gt; 匹配0~9之外的所有字符）</em> <strong>大写表示相反下同</strong></li>
-<li><strong>\w</strong> –&gt; 匹配任意一个<strong>字母</strong>或<strong>数字</strong>或<strong>下滑线</strong>，A<del>Z，a</del>z，0~9，_</li>
-<li><strong>\s</strong> –&gt; 匹配任意一个<strong>空白字符</strong>，空格，制表符，换行符等</li>
-<li><strong>.</strong> –&gt; 小数点可以匹配任意一个字符（不包括\n），匹配\n在内的所有字符用<strong>[\s\S]</strong></li>
+<li><code>\d</code> –&gt; 匹配 0~9 中任意一个数字</li>
+<li><code>\D</code> –&gt; 匹配 0~9 之外的所有字符（大写表示相反，下同）</li>
+<li><code>\w</code> –&gt; 匹配任意一个<strong>字母</strong>或<strong>数字</strong>或<strong>下滑线</strong>，A<del>Z，a</del>z，0~9，_</li>
+<li><code>\s</code> –&gt; 匹配任意一个<strong>空白字符</strong>，空格，制表符，换行符等</li>
+<li><code>.</code> –&gt; 小数点可以匹配任意一个字符（不包括 <code>\n</code>），匹配 <code>\n</code> 在内的所有字符用 <code>[\s\S]</code></li>
 </ul>
 </li>
 <li><p><strong>自定义字符集合</strong></p>
@@ -8959,15 +8983,15 @@
 </li>
 </ul>
 <ul>
-<li><p><strong>[ab5@]</strong> –&gt; 匹配”a“或”b“或”5“或”@“</p>
+<li><p><strong>[ab5@]</strong> –&gt; 匹配 <code>a</code> 或 <code>b</code> 或 <code>5</code> 或 <code>@</code></p>
 </li>
-<li><p><strong>[^abc]</strong> –&gt; 匹配”a“，”b“，”c“<strong>之外</strong>的任意一个字符</p>
+<li><p><strong>[^abc]</strong> –&gt; 匹配 <code>a</code>，<code>b</code>，<code>c</code> <strong>之外</strong>的任意一个字符</p>
 </li>
-<li><p><strong>[c-s]</strong> –&gt; 匹配“c”~“s”之间的任意一个字符</p>
+<li><p><strong>[c-s]</strong> –&gt; 匹配 <code>c</code> ~ <code>s</code> 之间的任意一个字符</p>
 </li>
-<li><p><strong>[^2-7b-g]</strong> –&gt; 匹配”2“<del>”7“，”b“</del>”g“<strong>之外</strong>的任意一个字符</p>
+<li><p><strong>[^2-7b-g]</strong> –&gt; 匹配 <code>2</code> ~ <code>7</code>，<code>b</code> ~ `g <strong>之外</strong>的任意一个字符</p>
 <blockquote>
-<p>正则表达式中的特殊符号，被包含到中括号中，则失去了特殊含义，除了 <strong>^</strong> 和 <strong>-</strong></p>
+<p>正则表达式中的特殊符号，被包含到中括号中，则失去了特殊含义，除了 <code>^</code> 和 <code>-</code></p>
 <p>标准字符集合，除小数点外，如果被包含于中括号，自定义字符集合也将包含该集合</p>
 </blockquote>
 </li>
@@ -8980,20 +9004,20 @@
 </li>
 </ul>
 <ul>
-<li><p><strong>{n}</strong> –&gt; 表达式重复n次</p>
+<li><p><code>{n}</code> –&gt; 表达式重复 n 次</p>
 </li>
-<li><p><strong>{m,n}</strong> –&gt; 表达式至少重复m次，最多重复n次</p>
+<li><p><code>{m,n}</code> –&gt; 表达式至少重复 m 次，最多重复 n 次</p>
 </li>
-<li><p><strong>{m,}</strong> –&gt; 表达式至少重复m次</p>
+<li><p><code>{m,}</code> –&gt; 表达式至少重复 m 次</p>
 </li>
-<li><p><strong>?</strong> –&gt; 匹配表达式0次或1次，相当于{0,1}</p>
+<li><p><code>?</code> –&gt; 匹配表达式 0 次或 1 次，相当于 {0,1}</p>
 </li>
-<li><p><strong>+</strong> –&gt; 表达式至少出现1次，相当于{1,}</p>
+<li><p><code>+</code> –&gt; 表达式至少出现 1 次，相当于 {1,}</p>
 </li>
-<li><p>***** –&gt; 表达式至少出现0次,相当于{0,}</p>
+<li><p><code>*</code> –&gt; 表达式至少出现 0 次,相当于 {0,}</p>
 <blockquote>
 <p>匹配次数中的<strong>贪婪模式</strong>：匹配的字符越多越好，<em>默认</em></p>
-<p>匹配次数中的<strong>非贪婪模式</strong>：匹配的字符越少越好，需要在修饰匹配次数的特殊符号后加”<strong>？</strong>“</p>
+<p>匹配次数中的<strong>非贪婪模式</strong>：匹配的字符越少越好，需要在修饰匹配次数的特殊符号后加 <code>?</code></p>
 </blockquote>
 </li>
 </ul>
@@ -9007,7 +9031,7 @@
 <ul>
 <li><strong>^</strong> –&gt; 与字符串开始的地方匹配</li>
 <li><strong>$</strong> –&gt; 与字符串结束的地方匹配</li>
-<li><strong>\b</strong> –&gt; 匹配一个单词边界（前面的字符和后面的字符不全是<strong>\w</strong>）</li>
+<li><strong>\b</strong> –&gt; 匹配一个单词边界（前面的字符和后面的字符不全是 <strong>\w</strong>）</li>
 </ul>
 <ul>
 <li><p><strong>匹配模式</strong></p>
@@ -9015,35 +9039,35 @@
 <li><strong>IGNORECASE</strong> –&gt; 忽略大小写模式</li>
 <li><strong>SINGLELINE</strong> –&gt; 单行模式<ul>
 <li>整个文本看成一个字符串，只有一个开头和一个结尾</li>
-<li>这种情况下小数点 ”<strong>.</strong>“ 可以匹配包括\n在内的所有字符</li>
+<li>这种情况下小数点 <code>.</code> 可以匹配包括 <code>\n</code> 在内的所有字符</li>
 </ul>
 </li>
 <li>MULTILINE –&gt; 多行模式<ul>
 <li>每一行都是一个字符串</li>
-<li>在多行模式下，如果仅要匹配<strong>最开始</strong>和<strong>最后</strong>的字符，可使用 “<strong>\A</strong>“和”<strong>\Z</strong>“</li>
+<li>在多行模式下，如果仅要匹配<strong>最开始</strong>和<strong>最后</strong>的字符，可使用 <code>\A</code> 和 <code>\Z</code></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><p><strong>选择符和分组</strong></p>
 <ul>
-<li><strong>|</strong> –&gt; 分支结构，匹配左边或右边</li>
-<li><strong>()</strong> –&gt; 捕获组</li>
-<li><strong>(?:Expression)</strong> –&gt; 非捕获组</li>
+<li><code>|</code> –&gt; 分支结构，匹配左边或右边</li>
+<li><code>()</code> –&gt; 捕获组</li>
+<li><code>(?:Expression)</code> –&gt; 非捕获组</li>
 </ul>
 </li>
 <li><p><strong>反向引用 (\nnn)</strong></p>
 <ul>
-<li>每一对()都会分配一个编号，根据<strong>左括号的顺序从1开始编号</strong></li>
+<li>每一对 <code>()</code> 都会分配一个编号，根据<strong>左括号的顺序从 1 开始编号</strong></li>
 <li>通过反向引用，可以对<strong>捕获组已捕获的字符串</strong>进行引用</li>
 </ul>
 </li>
 <li><p><strong>预搜索（零宽断言）</strong></p>
 <ul>
-<li><strong>(?=exp)</strong> –&gt; 断言自身出现的位置<strong>后面能</strong>出现表达式exp</li>
-<li><strong>(?&lt;=exp)</strong> –&gt; 断言自身出现的位置<strong>前面能</strong>出现表达式exp</li>
-<li><strong>(?!exp)</strong> –&gt; 断言自身出现的位置<strong>后面不能</strong>出现表达式exp</li>
-<li><strong>(?&lt;!exp)</strong> –&gt; 断言自身出现的位置<strong>前面不能</strong>出现表达式exp</li>
+<li><strong>(?=exp)</strong> –&gt; 断言自身出现的位置<strong>后面能</strong>出现表达式 exp</li>
+<li><strong>(?&lt;=exp)</strong> –&gt; 断言自身出现的位置<strong>前面能</strong>出现表达式 exp</li>
+<li><strong>(?!exp)</strong> –&gt; 断言自身出现的位置<strong>后面不能</strong>出现表达式 exp</li>
+<li><strong>(?&lt;!exp)</strong> –&gt; 断言自身出现的位置<strong>前面不能</strong>出现表达式 exp</li>
 </ul>
 </li>
 </ul>
@@ -9418,20 +9442,20 @@
 <p><strong>特点：</strong>快，<strong>很快</strong>，非常快</p>
 <h3 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h3><p><strong>三步：</strong></p>
 <ul>
-<li>1、计算哈希码（hashcode，调用hashCode()方法获得）</li>
+<li>1、计算哈希码（hashcode，调用 <code>hashCode()</code> 方法获得）</li>
 <li>2、计算在哈希表中的存储位置</li>
 <li>3、存入哈希表</li>
 </ul>
 <p>存入哈希表中的数据<strong>唯一</strong>且<strong>无序</strong></p>
-<h3 id="hashCode-和equals-的作用"><a href="#hashCode-和equals-的作用" class="headerlink" title="hashCode()和equals()的作用"></a>hashCode()和equals()的作用</h3><p><strong>hashCode()：</strong>获取哈希码，返回一个<strong>int</strong>，根据哈希码计算出数据在哈希表中的存储位置</p>
-<p><strong>equals()：</strong>添加或查询数据是需要使用equals()进行对比，判断是否有相同数据</p>
-<h3 id="如何获取哈希码"><a href="#如何获取哈希码" class="headerlink" title="如何获取哈希码"></a>如何获取哈希码</h3><p><strong>int：</strong>调用hashCode()方法，其实就是取自身</p>
-<p><strong>其他类型：</strong>调用默认的hashCode()方法获取</p>
+<h3 id="hashCode-和-equals-的作用"><a href="#hashCode-和-equals-的作用" class="headerlink" title="hashCode() 和 equals() 的作用"></a>hashCode() 和 equals() 的作用</h3><p><strong>hashCode()：</strong>获取哈希码，返回一个 <strong>int</strong>，根据哈希码计算出数据在哈希表中的存储位置</p>
+<p><strong>equals()：</strong>添加或查询数据是需要使用 <code>equals()</code> 进行对比，判断是否有相同数据</p>
+<h3 id="如何获取哈希码"><a href="#如何获取哈希码" class="headerlink" title="如何获取哈希码"></a>如何获取哈希码</h3><p><strong>int：</strong>调用 <code>hashCode()</code> 方法，其实就是取自身</p>
+<p><strong>其他类型：</strong>调用默认的 <code>hashCode()</code> 方法获取</p>
 <h3 id="如何减少冲突"><a href="#如何减少冲突" class="headerlink" title="如何减少冲突"></a>如何减少冲突</h3><p><strong>1、装填因子</strong>：</p>
 <p>装填因子 = 表中的记录数 / 哈希表的长度</p>
 <p>装填因子越小，发生冲突的可能性就越小</p>
-<p>研究标明：当装填因子为0.5时，哈希表的性能达到最优</p>
-<p><strong>因此，一般情况下，装填因子取0.5</strong></p>
+<p>研究标明：当装填因子为 0.5 时，哈希表的性能达到最优</p>
+<p><strong>因此，一般情况下，装填因子取 0.5</strong></p>
 <hr>
 <p><strong>2、哈希函数的选择</strong></p>
 <p>直接定址法、平方取中法、折叠法、除留取余法等</p>
@@ -9517,7 +9541,7 @@
 <p><strong>1、</strong>直接插入排序，直接选择排序，冒泡排序是三种最简单、最基本的排序，时间复杂度也最高（O(n<sup>2</sup>)）,三种都必须熟练掌握。</p>
 <p><strong>2、</strong>快速排序和归并排序都使用了<strong>归并</strong>和<strong>递归</strong>的思想，面试时可能会被问到。</p>
 <p><strong>3、</strong>在数据不大的情况下，从时间性能来看，快速排序时实际性能最优的排序算法。</p>
-<p><strong>4、</strong>堆排序在任何情况下的时间复杂度都为O(nlog<sub>2</sub>n)，在元素较多时是很有效的排序算法。</p>
+<p><strong>4、</strong>堆排序在任何情况下的时间复杂度都为 O(nlog<sub>2</sub>n)，在元素较多时是很有效的排序算法。</p>
 <p><strong>5、</strong>基于<strong>比较</strong>的排序的时间复杂度下限是 <strong>Ω(nlog<sub>2</sub>n))</strong>，这已经是最高的效率了。</p>
 ]]></content>
       <tags>
@@ -9566,9 +9590,9 @@
 <p>对二叉查找树进行<strong>中序遍历</strong>，得到有序集合</p>
 </blockquote>
 <hr>
-<p><strong>平衡二叉树</strong>（self-balance Binary Search Tree）:自平衡二叉查找树，又称<strong>AVL树</strong></p>
+<p><strong>平衡二叉树</strong>（self-balance Binary Search Tree）:自平衡二叉查找树，又称 <strong>AVL 树</strong></p>
 <p>或是一棵空树</p>
-<p>或它的左、右子树的高度差（<strong>平衡因子（平衡度）</strong>）的绝对值不大于1</p>
+<p>或它的左、右子树的高度差（<strong>平衡因子（平衡度）</strong>）的绝对值不大于 1</p>
 <p><strong>意义：</strong>减少二叉查找树层次，提高查找速度</p>
 <hr>
 <p><strong>红黑树</strong>（R-B Tree）：是一种平衡二叉树</p>
@@ -9590,12 +9614,12 @@
 <p><img src="/images/%E6%9F%A5%E6%89%BE/B%E6%A0%91.jpg" alt="B树"></p>
 <hr>
 <p><strong>B+ 树：</strong></p>
-<p>在B树的基础上，<strong>为叶子节点增加链表指针</strong>，所有关键字都在叶子节点中出现，非叶子节点只作为索引</p>
+<p>在 B 树的基础上，<strong>为叶子节点增加链表指针</strong>，所有关键字都在叶子节点中出现，非叶子节点只作为索引</p>
 <p><strong>数据库的索引</strong>的默认结构采用的就是 B+ 树</p>
 <p><img src="/images/%E6%9F%A5%E6%89%BE/B+%E6%A0%91.jpg" alt="B+树"></p>
 <hr>
 <p><strong>B* 树：</strong></p>
-<p>B+树的变体，在<strong>非根和非叶子节点再增加执行兄弟的指针</strong></p>
+<p>B+ 树的变体，在<strong>非根和非叶子节点再增加执行兄弟的指针</strong></p>
 <p><img src="/images/%E6%9F%A5%E6%89%BE/B%E6%98%9F%E6%A0%91.jpg" alt="B星树"></p>
 ]]></content>
       <tags>
@@ -9614,7 +9638,7 @@
 <p>图（graph）是一种网状数据结构，图是由非空的顶点集合和一个描述顶点之间关系的集合组成。</p>
 <p>图中的元素称为<strong>顶点</strong>，顶点之间的关系称为边（edge）</p>
 <p>图分为<strong>有向图</strong>（单向）和<strong>无向图</strong>（双向）</p>
-<p>实际应用中，图的每条边都有与它相关的实数，称为 权，带有权的图称为<strong>带权图</strong></p>
+<p>实际应用中，图的每条边都有与它相关的实数，称为 <code>权</code>，带有权的图称为<strong>带权图</strong></p>
 <p>2、图的存储</p>
 <ul>
 <li>顺序结构：邻接矩阵 –&gt; 二维数组</li>
@@ -9650,7 +9674,7 @@
 
 <p><img src="/images/%E4%BA%8C%E5%8F%89%E6%A0%91/3.30.png" alt="3.30"></p>
 <h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><p><img src="/images/%E4%BA%8C%E5%8F%89%E6%A0%91/%E6%99%AE%E9%80%9A%E6%A0%91.jpg" alt="普通树"></p>
-<h3 id="树的基本概念"><a href="#树的基本概念" class="headerlink" title="树的基本概念"></a>树的基本概念</h3><p>树是 n(n&gt;=0) 个节点的有限集，</p>
+<h3 id="树的基本概念"><a href="#树的基本概念" class="headerlink" title="树的基本概念"></a>树的基本概念</h3><p>树是 n（n&gt;=0）个节点的有限集，</p>
 <p>根据节点数量分为空树和非空树</p>
 <p>树是一种非线性结构</p>
 <h3 id="节点的度和树的度"><a href="#节点的度和树的度" class="headerlink" title="节点的度和树的度"></a>节点的度和树的度</h3><ul>
@@ -9660,13 +9684,13 @@
 <li>树内<strong>节点的度的最大值</strong>称为<strong>树的度</strong></li>
 </ul>
 <h3 id="节点的层次和树的深度"><a href="#节点的层次和树的深度" class="headerlink" title="节点的层次和树的深度"></a>节点的层次和树的深度</h3><ul>
-<li>节点的层次（level）：根节点的层次为1</li>
+<li>节点的层次（level）：根节点的层次为 1</li>
 <li>树的深度（depth）：节点的最大层次数</li>
 </ul>
-<h3 id="有序树、m叉树、森林"><a href="#有序树、m叉树、森林" class="headerlink" title="有序树、m叉树、森林"></a>有序树、m叉树、森林</h3><ul>
+<h3 id="有序树、m-叉树、森林"><a href="#有序树、m-叉树、森林" class="headerlink" title="有序树、m 叉树、森林"></a>有序树、m 叉树、森林</h3><ul>
 <li>考虑<strong>节点的左右顺序</strong>的树，称为<strong>有序树</strong>，否则称为<strong>无序树</strong>。</li>
 <li>如不特别指明，一般讨论的是有序树</li>
-<li>树的<strong>度为m</strong>的树称为<strong>m叉树</strong></li>
+<li>树的<strong>度为 m *<em>的树称为 *</em>m 叉树</strong></li>
 <li><strong>森林（forest）</strong>是m（m&gt;=0）棵<strong>互不相交</strong>的树的集合</li>
 </ul>
 <h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><p><img src="/images/%E4%BA%8C%E5%8F%89%E6%A0%91/%E4%BA%8C%E5%8F%89%E6%A0%91.jpg" alt="二叉树"></p>
@@ -9676,8 +9700,8 @@
 <li>完全二叉树：在一颗满二叉树中，在最下层从最右侧去掉相邻的若干叶子节点，即得到完全二叉树</li>
 </ul>
 <h3 id="二叉树的一些重要性质"><a href="#二叉树的一些重要性质" class="headerlink" title="二叉树的一些重要性质"></a>二叉树的一些重要性质</h3><ul>
-<li>对于任意一棵二叉树，其叶子节点数量为n<sub>0</sub>,其度为2的节点数量为n<sub>2</sub>,则n<sub>0</sub>-n<sub>2</sub>=1</li>
-<li>二叉树的第 i 层最多有2<sup>i-1</sup>个节点（根是第一层）</li>
+<li>对于任意一棵二叉树，其叶子节点数量为n<sub>0</sub>,其度为2的节点数量为 n<sub>2</sub>，则 n<sub>0</sub>-n<sub>2</sub>=1</li>
+<li>二叉树的第 i 层最多有 2<sup>i-1</sup> 个节点（根是第一层）</li>
 </ul>
 <h3 id="二叉树的存储结构"><a href="#二叉树的存储结构" class="headerlink" title="二叉树的存储结构"></a>二叉树的存储结构</h3><ul>
 <li><p>顺序存储结构</p>
@@ -9688,9 +9712,9 @@
 <p>对于一般的二叉树而言，顺序存储结构会造成<strong>空间的浪费</strong></p>
 <p>所以使用链式存储结构</p>
 <ul>
-<li><p>每个节点设置<strong>3个域</strong>：数据域，左子域、右子域，这样形成的链表称为<strong>二叉链表</strong></p>
+<li><p>每个节点设置 <strong>3 个域</strong>：数据域，左子域、右子域，这样形成的链表称为<strong>二叉链表</strong></p>
 </li>
-<li><p>每个节点设置<strong>4个域</strong>：数据域，左子域、右子域、父亲域，这样形成的链表称为<strong>三叉链表</strong></p>
+<li><p>每个节点设置 <strong>4 个域</strong>：数据域，左子域、右子域、父亲域，这样形成的链表称为<strong>三叉链表</strong></p>
 </li>
 </ul>
 </li>
@@ -9847,7 +9871,7 @@
 
 <h3 id="反射效率问题"><a href="#反射效率问题" class="headerlink" title="反射效率问题"></a>反射效率问题</h3><p>反射是一把双刃剑，在<strong>提升了编程灵活性</strong>的同时<strong>降低了程序运行效率</strong></p>
 <blockquote>
-<p>通过 setAccessible(boolean flag) 来设置是否要进行访问安全检查<br>关闭访问安全检查可以比较大的提高程序运行的效率</p>
+<p>通过 <code>setAccessible(boolean flag)</code> 来设置是否要进行访问安全检查<br>关闭访问安全检查可以比较大的提高程序运行的效率</p>
 </blockquote>
 ]]></content>
       <tags>
@@ -9861,7 +9885,7 @@
 <p>算法是计算机解题的过程</p>
 <a id="more"></a>
 
-<p><img src="/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/3.28-16197733.jpg" alt="3.28"></p>
+<p><img src="/images/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/3.28.jpg" alt="3.28"></p>
 <h2 id="一、数据结构"><a href="#一、数据结构" class="headerlink" title="一、数据结构"></a>一、数据结构</h2><ul>
 <li>逻辑结构<ul>
 <li>线性结构（线性表、栈、队列、串、数组）</li>
@@ -9889,7 +9913,7 @@
 </blockquote>
 <h2 id="二、算法"><a href="#二、算法" class="headerlink" title="二、算法"></a>二、算法</h2><p>算法是计算机解题的过程</p>
 <p>算法优劣的评判依据：<strong>时间复杂度</strong>和<strong>空间复杂度</strong></p>
-<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p><strong>1、</strong>时间复杂度是表示<strong>问题的规模</strong>而不是指算法具体的运行时间或者<em>运行次数</em>（时间频度）<br><strong>2、</strong>时间复杂度的表示：T(n)=O(f(n))<br><strong>3、</strong>时间复杂度一般有<strong>最坏时间复杂度</strong>和<strong>平均时间复杂度</strong><br><strong>4、</strong>我们一般讨论的是<strong>最坏时间复杂度</strong></p>
+<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p><strong>1、</strong>时间复杂度是表示<strong>问题的规模</strong>而不是指算法具体的运行时间或者<em>运行次数</em>（时间频度）<br><strong>2、</strong>时间复杂度的表示：T(n) = O(f(n))<br><strong>3、</strong>时间复杂度一般有<strong>最坏时间复杂度</strong>和<strong>平均时间复杂度</strong><br><strong>4、</strong>我们一般讨论的是<strong>最坏时间复杂度</strong></p>
 <p><strong>5、</strong>时间复杂度的计算</p>
 <ul>
 <li>找出算法中的基本语句（执行次数最多的语句就是基本语句）</li>
@@ -9898,21 +9922,21 @@
 </ul>
 <p><strong>6、</strong>常见的时间复杂度</p>
 <ul>
-<li>常数阶O(1)</li>
-<li>对数阶O(log<sub>2</sub>n)</li>
-<li>线性阶O(n)</li>
-<li>线性对数阶O(n*log<sub>2</sub>n)</li>
-<li>平方阶O(n<sup>2</sup>)</li>
-<li>立方阶O(n<sup>3</sup>)</li>
+<li>常数阶 O(1)</li>
+<li>对数阶 O(log<sub>2</sub>n)</li>
+<li>线性阶 O(n)</li>
+<li>线性对数阶 O(n*log<sub>2</sub>n)</li>
+<li>平方阶 O(n<sup>2</sup>)</li>
+<li>立方阶 O(n<sup>3</sup>)</li>
 <li>…</li>
-<li>k次方阶O(n<sup>k</sup>)</li>
-<li>指数阶O(2<sup>n</sup>)</li>
-<li>阶乘阶O(n!    )</li>
+<li>k次方阶 O(n<sup>k</sup>)</li>
+<li>指数阶 O(2<sup>n</sup>)</li>
+<li>阶乘阶 O(n!    )</li>
 </ul>
 <blockquote>
 <p>上面的时间复杂度级别，执行效率越来越低</p>
 </blockquote>
-<h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>S(n)=O(g(n))<br>空间复杂度比时间复杂度分析要少；<br>在使用递归时算法的空间复杂度会比较高</p>
+<h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>S(n) = O(g(n))<br>空间复杂度比时间复杂度分析要少；<br>在使用递归时算法的空间复杂度会比较高</p>
 ]]></content>
       <tags>
         <tag>数据结构与算法</tag>
@@ -10042,7 +10066,10 @@
     <url>/2019/03/18/Java/1.Java%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</url>
     <content><![CDATA[<p>网络编程基本概念</p>
 <a id="more"></a>
-<h1 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="网络上不同层次的定位方式"><a href="#网络上不同层次的定位方式" class="headerlink" title="网络上不同层次的定位方式"></a>网络上不同层次的定位方式</h3><ul>
+
+
+
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="网络上不同层次的定位方式"><a href="#网络上不同层次的定位方式" class="headerlink" title="网络上不同层次的定位方式"></a>网络上不同层次的定位方式</h3><ul>
 <li>网络上的每个节点（电脑/手机）–&gt; IP 定位</li>
 <li>电脑上的每个软件 –&gt; 端口 定位</li>
 <li>软件中的资源 –&gt; URL 定位</li>
@@ -10055,7 +10082,7 @@
 <li>B/S –&gt; 范围广，协议统一，传输速率慢</li>
 <li>C/S –&gt; 范围小，协议自定，传输速率块</li>
 </ul>
-<h3 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h3><p>OSI（Open System Interconnect）：开放系统互连参考模型<br>OSI将网络分为7层：</p>
+<h3 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h3><p>OSI（Open System Interconnect）：开放系统互连参考模型<br>OSI 将网络分为 7 层：</p>
 <ul>
 <li>应用层</li>
 <li>表示层</li>
@@ -10065,7 +10092,7 @@
 <li>数据链路层</li>
 <li>物理层</li>
 </ul>
-<h2 id="Java为IP、端口、URL提供的类"><a href="#Java为IP、端口、URL提供的类" class="headerlink" title="Java为IP、端口、URL提供的类"></a>Java为IP、端口、URL提供的类</h2><h3 id="IP-–-gt-InetAdderss"><a href="#IP-–-gt-InetAdderss" class="headerlink" title="IP –&gt; InetAdderss"></a>IP –&gt; InetAdderss</h3><p>InetAddress类没有构造器，用getLocalHost()/getByName(String host)等静态方法创建对象</p>
+<h2 id="Java-为-IP、端口、URL-提供的类"><a href="#Java-为-IP、端口、URL-提供的类" class="headerlink" title="Java 为 IP、端口、URL 提供的类"></a>Java 为 IP、端口、URL 提供的类</h2><h3 id="IP-–-gt-InetAdderss"><a href="#IP-–-gt-InetAdderss" class="headerlink" title="IP –&gt; InetAdderss"></a>IP –&gt; InetAdderss</h3><p>InetAddress 类没有构造器，用 <code>getLocalHost()</code> / <code>getByName(String host)</code> 等静态方法创建对象</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> UnknownHostException </span>&#123;</span><br><span class="line">	InetAddress addr = InetAddress.getLocalHost();</span><br><span class="line">	System.out.println(addr.getHostAddress());</span><br><span class="line">	System.out.println(addr.getHostName());</span><br><span class="line">	</span><br><span class="line">	System.out.println(<span class="string">"-----------------------"</span>);</span><br><span class="line">	</span><br><span class="line">	InetAddress addr2 = InetAddress.getByName(<span class="string">"www.shsxt.com"</span>);</span><br><span class="line">	System.out.println(addr2.getHostAddress());</span><br><span class="line">	System.out.println(addr2.getHostName());</span><br><span class="line">	</span><br><span class="line">	System.out.println(<span class="string">"-----------------------"</span>);</span><br><span class="line">	</span><br><span class="line">	InetAddress addr3 = InetAddress.getByName(<span class="string">"123.56.138.186"</span>);</span><br><span class="line">	System.out.println(addr3.getHostAddress());</span><br><span class="line">	System.out.println(addr3.getHostName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="端口-–-gt-InetSocketAddress"><a href="#端口-–-gt-InetSocketAddress" class="headerlink" title="端口 –&gt; InetSocketAddress"></a>端口 –&gt; InetSocketAddress</h3><p>端口范围（不同协议的端口可以冲突）：</p>
@@ -10080,7 +10107,7 @@
 <li>URL(Universal Recource Locator) –&gt; 统一资源定位符</li>
 <li>URN(Universal Recource Name) –&gt; 统一资源名称</li>
 </ul>
-<p>URL由4部分组成：<br>例：<a href="http://www.google.com:80/index.html" target="_blank" rel="noopener">http://www.google.com:80/index.html</a></p>
+<p>UR L由 4 部分组成：<br>例：<code>http://www.google.com:80/index.html</code></p>
 <ul>
 <li>协议</li>
 <li>存放资源的主机域名</li>
@@ -10093,7 +10120,7 @@
 
 
 
-<h1 id="UDP使用的基本步骤"><a href="#UDP使用的基本步骤" class="headerlink" title="UDP使用的基本步骤"></a>UDP使用的基本步骤</h1><h2 id="发送端"><a href="#发送端" class="headerlink" title="发送端"></a>发送端</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * UDP使用基本步骤：发送端</span></span><br><span class="line"><span class="comment"> * 1、使用DatagramSocket 指定端口，创建发送端</span></span><br><span class="line"><span class="comment"> * 2、准备数据，转成字节数组</span></span><br><span class="line"><span class="comment"> * 3、将字节数组封装成DatagramPacket 包裹</span></span><br><span class="line"><span class="comment"> * 4、发送包裹send(DatagramPacket p)</span></span><br><span class="line"><span class="comment"> * 5、释放资源</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> pikachu</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UDPSendTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"发送端启动中。。。。。。。"</span>);</span><br><span class="line">		<span class="comment">// 1、使用DatagramSocket 指定端口，创建发送端</span></span><br><span class="line">		DatagramSocket client = <span class="keyword">new</span> DatagramSocket(<span class="number">6666</span>);</span><br><span class="line">		<span class="comment">// 2、准备数据，转成字节数组</span></span><br><span class="line">		String s = <span class="string">"你好，朋友"</span>;</span><br><span class="line">		<span class="keyword">byte</span>[] datas = s.getBytes();</span><br><span class="line">		<span class="comment">// 3、将字节数组封装成DatagramPacket 包裹</span></span><br><span class="line">		DatagramPacket packet = <span class="keyword">new</span> DatagramPacket(datas,<span class="number">0</span>,datas.length,<span class="keyword">new</span> InetSocketAddress(<span class="string">"localhost"</span>, <span class="number">8888</span>));</span><br><span class="line">		<span class="comment">// 4、发送包裹send(DatagramPacket p)</span></span><br><span class="line">		client.send(packet);</span><br><span class="line">		<span class="comment">// 5、释放资源</span></span><br><span class="line">		client.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="UDP-使用的基本步骤"><a href="#UDP-使用的基本步骤" class="headerlink" title="UDP 使用的基本步骤"></a>UDP 使用的基本步骤</h1><h2 id="发送端"><a href="#发送端" class="headerlink" title="发送端"></a>发送端</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * UDP使用基本步骤：发送端</span></span><br><span class="line"><span class="comment"> * 1、使用DatagramSocket 指定端口，创建发送端</span></span><br><span class="line"><span class="comment"> * 2、准备数据，转成字节数组</span></span><br><span class="line"><span class="comment"> * 3、将字节数组封装成DatagramPacket 包裹</span></span><br><span class="line"><span class="comment"> * 4、发送包裹send(DatagramPacket p)</span></span><br><span class="line"><span class="comment"> * 5、释放资源</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> pikachu</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UDPSendTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"发送端启动中。。。。。。。"</span>);</span><br><span class="line">		<span class="comment">// 1、使用DatagramSocket 指定端口，创建发送端</span></span><br><span class="line">		DatagramSocket client = <span class="keyword">new</span> DatagramSocket(<span class="number">6666</span>);</span><br><span class="line">		<span class="comment">// 2、准备数据，转成字节数组</span></span><br><span class="line">		String s = <span class="string">"你好，朋友"</span>;</span><br><span class="line">		<span class="keyword">byte</span>[] datas = s.getBytes();</span><br><span class="line">		<span class="comment">// 3、将字节数组封装成DatagramPacket 包裹</span></span><br><span class="line">		DatagramPacket packet = <span class="keyword">new</span> DatagramPacket(datas,<span class="number">0</span>,datas.length,<span class="keyword">new</span> InetSocketAddress(<span class="string">"localhost"</span>, <span class="number">8888</span>));</span><br><span class="line">		<span class="comment">// 4、发送包裹send(DatagramPacket p)</span></span><br><span class="line">		client.send(packet);</span><br><span class="line">		<span class="comment">// 5、释放资源</span></span><br><span class="line">		client.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="接收端"><a href="#接收端" class="headerlink" title="接收端"></a>接收端</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * UDP使用基本步骤：接收端</span></span><br><span class="line"><span class="comment"> * 1、使用DatagramSocket 指定端口创建接收端</span></span><br><span class="line"><span class="comment"> * 2、准备容器，封装成DatagramPacket</span></span><br><span class="line"><span class="comment"> * 3、阻塞式接收receive(DatagramPacket p)</span></span><br><span class="line"><span class="comment"> * 4、分析数据：</span></span><br><span class="line"><span class="comment"> * 			getData()</span></span><br><span class="line"><span class="comment"> * 			getlength()</span></span><br><span class="line"><span class="comment"> * 5、释放资源</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> pikachu</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UDPReceiveTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"接收方启动中。。。。。。。。。。"</span>);</span><br><span class="line">		<span class="comment">// 1、使用DatagramSocket 指定端口创建接收端</span></span><br><span class="line">		DatagramSocket sever = <span class="keyword">new</span> DatagramSocket(<span class="number">8888</span>);</span><br><span class="line">		<span class="comment">// 2、准备容器，封装成DatagramPacket</span></span><br><span class="line">		<span class="keyword">byte</span>[] datas = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>*<span class="number">60</span>];</span><br><span class="line">		DatagramPacket packet = <span class="keyword">new</span> DatagramPacket(datas,<span class="number">0</span>,datas.length);</span><br><span class="line">		<span class="comment">// 3、阻塞式接收receive</span></span><br><span class="line">		sever.receive(packet);</span><br><span class="line">		<span class="comment">// 4、分析数据：</span></span><br><span class="line">		<span class="comment">// 		getData</span></span><br><span class="line">		<span class="comment">// 		getlength</span></span><br><span class="line">		<span class="keyword">byte</span>[] b = packet.getData();</span><br><span class="line">		System.out.println(<span class="keyword">new</span> String(b,<span class="number">0</span>,b.length));</span><br><span class="line">		<span class="comment">// 5、释放资源</span></span><br><span class="line">		sever.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -10757,30 +10784,25 @@
 </ol>
 <a id="more"></a>
 
-<ul>
-<li>1 京东商品页面爬取</li>
-</ul>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">"https://item.jd.com/7629588.html"</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    r = requests.get(url)</span><br><span class="line">    r.raise_for_status()</span><br><span class="line">    r.encoding = r.apparent_encoding</span><br><span class="line">    print(r.text[:<span class="number">1000</span>])</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    print(<span class="string">"爬取失败"</span>)</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>2 亚马逊商品页面爬取</li>
-</ul>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">"https://www.amazon.cn/dp/B07896QS5D"</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    kv = &#123;<span class="string">'user-agent'</span>:<span class="string">'Mozilla/5.0'</span>&#125;</span><br><span class="line">    r = requests.get(url,headers=kv)</span><br><span class="line">    r.raise_for_status()</span><br><span class="line">    r.encoding = r.apparent_encoding</span><br><span class="line">    print(r.text[<span class="number">1000</span>:<span class="number">2000</span>])</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    print(<span class="string">"爬取失败"</span>)</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>3 百度搜索关键词提交</li>
-</ul>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">keyword = <span class="string">"Python"</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    kv = &#123;<span class="string">'wd'</span>:keybord&#125;</span><br><span class="line">    r = requests.get(<span class="string">"http://www.baidu.com/s"</span>,params = kv)</span><br><span class="line">    print(r.request.url)</span><br><span class="line">    r.raise_for_status()</span><br><span class="line">    print(len(r.text))</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    print(<span class="string">"爬取失败"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="京东商品页面爬取"><a href="#京东商品页面爬取" class="headerlink" title="京东商品页面爬取"></a>京东商品页面爬取</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">"https://item.jd.com/7629588.html"</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    r = requests.get(url)</span><br><span class="line">    r.raise_for_status()</span><br><span class="line">    r.encoding = r.apparent_encoding</span><br><span class="line">    print(r.text[:<span class="number">1000</span>])</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    print(<span class="string">"爬取失败"</span>)</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>4 网络图片的爬取</li>
-</ul>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">url = <span class="string">"http://image.nationalgeographic.com.cn/2017/0928/20170928105418550.jpg"</span></span><br><span class="line">root = <span class="string">"D://"</span></span><br><span class="line">path = root + url.split(<span class="string">'/'</span>)[<span class="number">-1</span>]</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(root):</span><br><span class="line">        os.mkdir(root)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(path):</span><br><span class="line">        r = requests.get(url)</span><br><span class="line">        <span class="keyword">with</span> open(path,<span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(r.content)</span><br><span class="line">            f.close()</span><br><span class="line">            print(<span class="string">"文件保存成功"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"文件已存在"</span>)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    print(<span class="string">"爬取失败"</span>)</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>5 IP地址归属地自动查询</li>
-</ul>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">"http://m.ip138.com/ip.asp?ip="</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    r = requests.get(url + <span class="string">'202.204.80.112'</span>)</span><br><span class="line">    r.raise_for_ststus()</span><br><span class="line">    r.encoding = r.apparent_encoding</span><br><span class="line">    print(r.text[<span class="number">-500</span>:])</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    print(<span class="string">"爬去失败"</span>)</span><br></pre></td></tr></table></figure>]]></content>
+
+<h3 id="亚马逊商品页面爬取"><a href="#亚马逊商品页面爬取" class="headerlink" title="亚马逊商品页面爬取"></a>亚马逊商品页面爬取</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">"https://www.amazon.cn/dp/B07896QS5D"</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    kv = &#123;<span class="string">'user-agent'</span>:<span class="string">'Mozilla/5.0'</span>&#125;</span><br><span class="line">    r = requests.get(url,headers=kv)</span><br><span class="line">    r.raise_for_status()</span><br><span class="line">    r.encoding = r.apparent_encoding</span><br><span class="line">    print(r.text[<span class="number">1000</span>:<span class="number">2000</span>])</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    print(<span class="string">"爬取失败"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="百度搜索关键词提交"><a href="#百度搜索关键词提交" class="headerlink" title="百度搜索关键词提交"></a>百度搜索关键词提交</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">keyword = <span class="string">"Python"</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    kv = &#123;<span class="string">'wd'</span>:keybord&#125;</span><br><span class="line">    r = requests.get(<span class="string">"http://www.baidu.com/s"</span>,params = kv)</span><br><span class="line">    print(r.request.url)</span><br><span class="line">    r.raise_for_status()</span><br><span class="line">    print(len(r.text))</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    print(<span class="string">"爬取失败"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="网络图片的爬取"><a href="#网络图片的爬取" class="headerlink" title="网络图片的爬取"></a>网络图片的爬取</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">url = <span class="string">"http://image.nationalgeographic.com.cn/2017/0928/20170928105418550.jpg"</span></span><br><span class="line">root = <span class="string">"D://"</span></span><br><span class="line">path = root + url.split(<span class="string">'/'</span>)[<span class="number">-1</span>]</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(root):</span><br><span class="line">        os.mkdir(root)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(path):</span><br><span class="line">        r = requests.get(url)</span><br><span class="line">        <span class="keyword">with</span> open(path,<span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(r.content)</span><br><span class="line">            f.close()</span><br><span class="line">            print(<span class="string">"文件保存成功"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"文件已存在"</span>)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    print(<span class="string">"爬取失败"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="IP-地址归属地自动查询"><a href="#IP-地址归属地自动查询" class="headerlink" title="IP 地址归属地自动查询"></a>IP 地址归属地自动查询</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">"http://m.ip138.com/ip.asp?ip="</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    r = requests.get(url + <span class="string">'202.204.80.112'</span>)</span><br><span class="line">    r.raise_for_ststus()</span><br><span class="line">    r.encoding = r.apparent_encoding</span><br><span class="line">    print(r.text[<span class="number">-500</span>:])</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    print(<span class="string">"爬去失败"</span>)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Python</category>
       </categories>
@@ -10792,27 +10814,28 @@
   <entry>
     <title>request库</title>
     <url>/2018/08/10/Python/Python_old/%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80/Requests%E5%BA%93/</url>
-    <content><![CDATA[<p>requests库为专业的爬虫第三方库</p>
+    <content><![CDATA[<p>requests 库为专业的爬虫第三方库</p>
 <a id="more"></a>
 
-<h2 id="requests库主要有7个方法："><a href="#requests库主要有7个方法：" class="headerlink" title="requests库主要有7个方法："></a>requests库主要有7个方法：</h2><pre><code>requests.request()    构造一个请求，支撑以下各方法的基础方法
-requests.get()    获取HTML网页的主要方法，对应于HTTP的GET
-requests.head()    获取HTML网页头信息的方法，对应于HTTP的HEAD
-requests.post()    向HTML网页提交POST请求的方法，对应于HTTP的POST
-requests.put()    向HTML网页提交PUT请求的方法，对应于HTTP的PUT
-requests.patch()    向HTML网页提交局部修改请求，对应于HTTP的PATCH
-requests.delete()    向HTML网页提交删除请求，对应于HTTP的DELETE</code></pre><h2 id="r-requests-get-url"><a href="#r-requests-get-url" class="headerlink" title="r = requests.get(url)"></a>r = requests.get(url)</h2><p>Requests库的两个重要对象：Response 和 Request<br>Response对象包含服务器返回的所有信息，也包含请求的Request信息</p>
-<p>Response对象的属性：</p>
+<h2 id="requests-库主要有7个方法："><a href="#requests-库主要有7个方法：" class="headerlink" title="requests 库主要有7个方法："></a>requests 库主要有7个方法：</h2><pre><code>requests.request()        构造一个请求，支撑以下各方法的基础方法
+requests.get()            获取HTML网页的主要方法，对应于HTTP的GET
+requests.head()            获取HTML网页头信息的方法，对应于HTTP的HEAD
+requests.post()            向HTML网页提交POST请求的方法，对应于HTTP的POST
+requests.put()            向HTML网页提交PUT请求的方法，对应于HTTP的PUT
+requests.patch()        向HTML网页提交局部修改请求，对应于HTTP的PATCH
+requests.delete()        向HTML网页提交删除请求，对应于HTTP的DELETE</code></pre><h2 id="r-requests-get-url"><a href="#r-requests-get-url" class="headerlink" title="r = requests.get(url)"></a>r = requests.get(url)</h2><p>Requests 库的两个重要对象：Response 和 Request</p>
+<p>Response 对象包含服务器返回的所有信息，也包含请求的 Request 信息</p>
+<p>Response 对象的属性：</p>
 <pre><code>r.status_code        HTTP请求的返回状态，200表示连接成功，404或其他表示失败
 r.text               HTTP响应内容的字符串形式，即URL对应的页面内容
 r.encoding           从HTTP header中猜测响应内容编码方式
 r.apparent_encoding  从内容中分析出响应内容编码方式（备选编码方式）
-r.content            HTTP响应内容的二进制形式</code></pre><h2 id="Requests库的异常"><a href="#Requests库的异常" class="headerlink" title="Requests库的异常"></a>Requests库的异常</h2><pre><code>requests.ConnectionError   网络连接错误异常
+r.content            HTTP响应内容的二进制形式</code></pre><h2 id="Requests-库的异常"><a href="#Requests-库的异常" class="headerlink" title="Requests 库的异常"></a>Requests 库的异常</h2><pre><code>requests.ConnectionError   网络连接错误异常
 requests.HTTPError         HTTP错误异常
 requests.URLRequired       URL缺失异常
 requests.TooManyRedirects  超过最大重定向次数，产生重定向异常
 requests.ConnectTimeout    连接远程服务器超时异常
-requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 id="爬取网页的通用代码框架"><a href="#爬取网页的通用代码框架" class="headerlink" title="爬取网页的通用代码框架"></a>爬取网页的通用代码框架</h2><figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    r = requests.get(url)</span><br><span class="line">    r.raise_for_status()</span><br><span class="line">    r.encoding = r.apparent_encoding</span><br><span class="line">    print(r.text)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    print(<span class="string">"爬取失败"</span>)</span><br></pre></td></tr></table></figure>]]></content>
+requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 id="爬取网页的通用代码框架"><a href="#爬取网页的通用代码框架" class="headerlink" title="爬取网页的通用代码框架"></a>爬取网页的通用代码框架</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    r = requests.get(url)</span><br><span class="line">    r.raise_for_status()</span><br><span class="line">    r.encoding = r.apparent_encoding</span><br><span class="line">    print(r.text)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    print(<span class="string">"爬取失败"</span>)</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Python</category>
       </categories>
@@ -10884,13 +10907,13 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
 </tr>
 </tbody></table>
 <figure class="highlight py"><table><tr><td class="code"><pre><span class="line">strptime(str,tpl)</span><br></pre></td></tr></table></figure>
-<p>str是字符串形式的时间值，<br>tpl是格式化模板字符串，用来定义输出效果</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">timestr = <span class="string">'2018-07-29 16:21:22'</span></span><br><span class="line">time.strptime(timestr,<span class="string">"%Y-%m-%d %H:%M:%S"</span>)</span><br></pre></td></tr></table></figure>
+<p>str 是字符串形式的时间值，<br>tpl 是格式化模板字符串，用来定义输出效果</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">timestr = <span class="string">'2018-07-29 16:21:22'</span></span><br><span class="line">time.strptime(timestr,<span class="string">"%Y-%m-%d %H:%M:%S"</span>)</span><br></pre></td></tr></table></figure>
 
-<h4 id="3-程序计时应用："><a href="#3-程序计时应用：" class="headerlink" title="3.程序计时应用："></a>3.程序计时应用：</h4><p>测量时间: perf_counter()    返回一个CPU级别的精确时间计数值，单位为秒</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">start = time.perf_counter()</span><br><span class="line">end = time.perf_counter()</span><br><span class="line">end-start</span><br></pre></td></tr></table></figure>
+<h4 id="3-程序计时应用："><a href="#3-程序计时应用：" class="headerlink" title="3.程序计时应用："></a>3.程序计时应用：</h4><p>测量时间: perf_counter()    返回一个 CPU 级别的精确时间计数值，单位为秒</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">start = time.perf_counter()</span><br><span class="line">end = time.perf_counter()</span><br><span class="line">end-start</span><br></pre></td></tr></table></figure>
 
-<p>产生时间: sleep(s)    s为拟休眠时间，单位为秒，可为浮点数</p>
+<p>产生时间: sleep(s)    s 为拟休眠时间，单位为秒，可为浮点数</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wait</span><span class="params">()</span>:</span></span><br><span class="line">    time.sleep(<span class="number">6.66</span>)</span><br><span class="line">wait()  <span class="comment">#  程序将暂停6.66秒</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="random库"><a href="#random库" class="headerlink" title="random库"></a>random库</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="comment"># 基本随机数函数</span></span><br><span class="line">random.seed()  <span class="comment">#初始化给定的随机数种子(种子相同, 产生的随机数序列就相同), 默认为当前系统时间</span></span><br><span class="line">random.random()  <span class="comment">#生成一个[0,1)之间的随机小数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 扩展随机数函数</span></span><br><span class="line">random.randint(a,b)  <span class="comment">#生成一个[a,b]之间的整数</span></span><br><span class="line">random.uniform(a,b)  <span class="comment">#生成一个[a,b]之间的小数</span></span><br><span class="line">random.getrandbits(k)  <span class="comment">#生成一个k比特长的随机整数</span></span><br><span class="line">random.randrange(m,n[,k])  <span class="comment">#生成一个[m,n)之间以k为步长的随机整数</span></span><br><span class="line">random.choice(seq)  <span class="comment">#从序列seq中随机选择一个元素</span></span><br><span class="line">random.shuffle(seq)  <span class="comment">#将序列seq中元素随机排列，返回打乱后的序列</span></span><br></pre></td></tr></table></figure>
@@ -10907,12 +10930,18 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
   <entry>
     <title>Python程序实例</title>
     <url>/2018/08/06/Python/Python_old/Python%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B/</url>
-    <content><![CDATA[<p>7个python程序设计的小例子</p>
+    <content><![CDATA[<p>7 个 python 程序设计的小例子</p>
 <a id="more"></a>
+
+
 
 <h2 id="实例1：Python温度转换实例代码"><a href="#实例1：Python温度转换实例代码" class="headerlink" title="实例1：Python温度转换实例代码"></a>实例1：Python温度转换实例代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#TenpConvert.py</span></span><br><span class="line">TempStr = input(<span class="string">"请输入带有符号的温度值："</span>)</span><br><span class="line"><span class="keyword">if</span> TempStr[<span class="number">-1</span>] <span class="keyword">in</span> [<span class="string">'F'</span>,<span class="string">'f'</span>]:</span><br><span class="line">	C = (eval(TempStr[<span class="number">0</span>:<span class="number">-1</span>])<span class="number">-32</span>)/<span class="number">1.8</span></span><br><span class="line">	print(<span class="string">"转换后的温度是&#123;:.2f&#125;C"</span>.format(C))</span><br><span class="line"><span class="keyword">elif</span> TempStr[<span class="number">-1</span>] <span class="keyword">in</span> [<span class="string">'C'</span>,<span class="string">'c'</span>]:</span><br><span class="line">	F = <span class="number">1.8</span>*eval(TempStr[<span class="number">0</span>:<span class="number">-1</span>])+<span class="number">32</span></span><br><span class="line">	print(<span class="string">"转换后的温度是&#123;:.2f&#125;F"</span>.format(F))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	print(<span class="string">"输入格式错误"</span>)</span><br></pre></td></tr></table></figure>
 
+
+
 <h2 id="实例2：Python蟒蛇绘制"><a href="#实例2：Python蟒蛇绘制" class="headerlink" title="实例2：Python蟒蛇绘制"></a>实例2：Python蟒蛇绘制</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#PythonDraw.py</span></span><br><span class="line"><span class="keyword">import</span> turtle</span><br><span class="line">turtle.setup(<span class="number">650</span>,<span class="number">350</span>,<span class="number">200</span>,<span class="number">200</span>)</span><br><span class="line">turtle.penup()</span><br><span class="line">turtle.fd(<span class="number">-250</span>)</span><br><span class="line">turtle.pendown()</span><br><span class="line">turtle.pensize(<span class="number">25</span>)</span><br><span class="line">turtle.pencolor(<span class="string">"purple"</span>)</span><br><span class="line">turtle.seth(<span class="number">-40</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">    turtle.circle(<span class="number">40</span>,<span class="number">80</span>)</span><br><span class="line">    turtle.circle(<span class="number">-40</span>,<span class="number">80</span>)</span><br><span class="line">turtle.circle(<span class="number">40</span>,<span class="number">80</span>/<span class="number">2</span>)</span><br><span class="line">turtle.fd(<span class="number">40</span>)</span><br><span class="line">turtle.circle(<span class="number">16</span>,<span class="number">180</span>)</span><br><span class="line">turtle.fd(<span class="number">40</span> * <span class="number">2</span>/<span class="number">3</span>)</span><br><span class="line">turtle.done()</span><br></pre></td></tr></table></figure>
+
+
 
 <h2 id="实例3：天天天向上的力量"><a href="#实例3：天天天向上的力量" class="headerlink" title="实例3：天天天向上的力量"></a>实例3：天天天向上的力量</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#DayDayUpQ1.py    每天进步千分之一</span></span><br><span class="line">dayup = pow(<span class="number">1.001</span>,<span class="number">365</span>)</span><br><span class="line">daydown = (pow(<span class="number">0.999</span>,<span class="number">365</span>)</span><br><span class="line">print(<span class="string">"向上:&#123;:.2f&#125;,向下:&#123;:.2f&#125;"</span>.format(dayup,daydown))</span><br></pre></td></tr></table></figure>
 
@@ -10922,15 +10951,21 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
 
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#DayDayUpQ4    工作日要多努力才能与每天努力1%一样</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DayUp</span><span class="params">(df)</span>:</span></span><br><span class="line">    dayup = <span class="number">1.0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">365</span>):</span><br><span class="line">        <span class="keyword">if</span> i % <span class="number">7</span> <span class="keyword">in</span> [<span class="number">6</span>,<span class="number">0</span>]:</span><br><span class="line">            dayup = dayup*(<span class="number">1</span><span class="number">-0.01</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            dayup = dayup*(<span class="number">1</span>+df)</span><br><span class="line">    <span class="keyword">return</span> dayup</span><br><span class="line">dayfactor = <span class="number">0.01</span></span><br><span class="line"><span class="keyword">while</span> DayUp(dayfactory) &lt; <span class="number">37.78</span>:</span><br><span class="line">    dayfactor += <span class="number">0.001</span></span><br><span class="line">print(<span class="string">"工作日的努力参数是:&#123;:.3f&#125;"</span>.format(dayfactor))</span><br></pre></td></tr></table></figure>
 
+
+
 <h2 id="实例4：文本进度条"><a href="#实例4：文本进度条" class="headerlink" title="实例4：文本进度条"></a>实例4：文本进度条</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">scale = <span class="number">50</span></span><br><span class="line">print(<span class="string">"执行开始"</span>.center(scale//<span class="number">2</span>,<span class="string">"-"</span>))</span><br><span class="line">start = time.perf_counter()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(scale+<span class="number">1</span>):</span><br><span class="line">    a = <span class="string">"*"</span> * i</span><br><span class="line">    b = <span class="string">"."</span> * (scale - i)</span><br><span class="line">    c = (i/scale) * <span class="number">100</span></span><br><span class="line">    dur = time.perf_counter() - start</span><br><span class="line">    print(<span class="string">"\r&#123;:^3.0f&#125;%[&#123;&#125;-&gt;&#123;&#125;]&#123;:.2f&#125;s"</span>.format(c,a,b,dur),end = <span class="string">""</span>)</span><br><span class="line">    time.sleep(<span class="number">0.1</span>)</span><br><span class="line">print(<span class="string">"/n"</span>+<span class="string">"执行开始"</span>.center(scale//<span class="number">2</span>,<span class="string">"-"</span>))</span><br></pre></td></tr></table></figure>
 
+
+
 <h2 id="实例5：身体质量指数BMI"><a href="#实例5：身体质量指数BMI" class="headerlink" title="实例5：身体质量指数BMI"></a>实例5：身体质量指数BMI</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#BMI    #分支结构是程序的重要框架</span></span><br><span class="line">height,weight = eval(input(<span class="string">"请输入身高（米）和体重（公斤）[逗号隔开]:"</span>))</span><br><span class="line">bmi = weight / pow(height,<span class="number">2</span>)</span><br><span class="line">print(<span class="string">"BMI值为:&#123;:.2f&#125;"</span>.format(bmi))</span><br><span class="line">who,nat = <span class="string">""</span>,<span class="string">""</span></span><br><span class="line"><span class="keyword">if</span> bmi &lt; <span class="number">18.5</span>:</span><br><span class="line">    who, nat = <span class="string">"偏瘦"</span>,<span class="string">"偏瘦"</span></span><br><span class="line"><span class="keyword">elif</span> <span class="number">18.5</span> &lt;= bmi &lt;= <span class="number">24</span>:</span><br><span class="line">    who, nat = <span class="string">"正常"</span>,<span class="string">"正常"</span></span><br><span class="line"><span class="keyword">elif</span> <span class="number">24</span> &lt;= bmi &lt;= <span class="number">25</span>:    <span class="comment"># 多分支条件的覆盖是一个非常重要的问题</span></span><br><span class="line">    who, nat = <span class="string">"正常"</span>,<span class="string">"偏胖"</span></span><br><span class="line"><span class="keyword">elif</span> <span class="number">25</span> &lt;= bmi &lt;= <span class="number">28</span>:</span><br><span class="line">    who, nat = <span class="string">"偏胖"</span>,<span class="string">"偏胖"</span></span><br><span class="line"><span class="keyword">elif</span> <span class="number">28</span> &lt;= bmi &lt;= <span class="number">30</span>:</span><br><span class="line">    who, nat = <span class="string">"偏胖"</span>,<span class="string">"肥胖"</span></span><br><span class="line"><span class="keyword">else</span> :</span><br><span class="line">    who,nat = <span class="string">"肥胖"</span>,<span class="string">"肥胖"</span></span><br><span class="line">print(<span class="string">"BMI指标为：国际'&#123;&#125;',国内'&#123;&#125;'"</span>.format(who,nat))</span><br></pre></td></tr></table></figure>
+
 
 
 <h2 id="七段数码管的绘制"><a href="#七段数码管的绘制" class="headerlink" title="七段数码管的绘制"></a>七段数码管的绘制</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#seven</span></span><br><span class="line"><span class="keyword">import</span> turtle</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">drawdrg</span><span class="params">()</span>:</span></span><br><span class="line">    turtle.penup()</span><br><span class="line">    turtle.fd(<span class="number">5</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">drawline</span><span class="params">(draw)</span>:</span></span><br><span class="line">    drawdrg()</span><br><span class="line">    turtle.pendown() <span class="keyword">if</span> draw <span class="keyword">else</span> turtle.penup()</span><br><span class="line">    turtle.fd(<span class="number">40</span>)</span><br><span class="line">    drawdrg()</span><br><span class="line">    turtle.right(<span class="number">90</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">drawdigit</span><span class="params">(digit)</span>:</span></span><br><span class="line">    drawline(<span class="literal">True</span>) <span class="keyword">if</span> digit <span class="keyword">in</span> [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">9</span>] <span class="keyword">else</span> drawline(<span class="literal">False</span>)</span><br><span class="line">    drawline(<span class="literal">True</span>) <span class="keyword">if</span> digit <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>] <span class="keyword">else</span> drawline(<span class="literal">False</span>)</span><br><span class="line">    drawline(<span class="literal">True</span>) <span class="keyword">if</span> digit <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">9</span>] <span class="keyword">else</span> drawline(<span class="literal">False</span>)</span><br><span class="line">    drawline(<span class="literal">True</span>) <span class="keyword">if</span> digit <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">8</span>,] <span class="keyword">else</span> drawline(<span class="literal">False</span>)</span><br><span class="line">    turtle.left(<span class="number">90</span>)</span><br><span class="line">    drawline(<span class="literal">True</span>) <span class="keyword">if</span> digit <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">9</span>] <span class="keyword">else</span> drawline(<span class="literal">False</span>)</span><br><span class="line">    drawline(<span class="literal">True</span>) <span class="keyword">if</span> digit <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>] <span class="keyword">else</span> drawline(<span class="literal">False</span>)</span><br><span class="line">    drawline(<span class="literal">True</span>) <span class="keyword">if</span> digit <span class="keyword">in</span> [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>] <span class="keyword">else</span> drawline(<span class="literal">False</span>)</span><br><span class="line">    turtle.left(<span class="number">180</span>)</span><br><span class="line">    turtle.penup()</span><br><span class="line">    turtle.fd(<span class="number">40</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">drawdata</span><span class="params">(data)</span>:</span></span><br><span class="line">    turtle.pencolor(<span class="string">'red'</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">        <span class="keyword">if</span> i == <span class="string">'-'</span>:</span><br><span class="line">            turtle.write(<span class="string">"年"</span>,font=(<span class="string">"Arial"</span>,<span class="number">18</span>,<span class="string">"normal"</span>))</span><br><span class="line">            turtle.pencolor(<span class="string">"green"</span>)</span><br><span class="line">            turtle.fd(<span class="number">40</span>)</span><br><span class="line">        <span class="keyword">elif</span> i == <span class="string">'+'</span>:</span><br><span class="line">            turtle.write(<span class="string">"月"</span>,font=(<span class="string">"Arial"</span>,<span class="number">18</span>,<span class="string">"normal"</span>))</span><br><span class="line">            turtle.pencolor(<span class="string">"blue"</span>)</span><br><span class="line">            turtle.fd(<span class="number">40</span>)</span><br><span class="line">        <span class="keyword">elif</span> i == <span class="string">'='</span>:</span><br><span class="line">            turtle.write(<span class="string">"日"</span>,font=(<span class="string">"Arial"</span>,<span class="number">18</span>,<span class="string">"normal"</span>))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            drawdigit(eval(i))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    turtle.setup(<span class="number">800</span>,<span class="number">500</span>,<span class="number">200</span>,<span class="number">200</span>)</span><br><span class="line">    turtle.penup()</span><br><span class="line">    turtle.fd(<span class="number">-300</span>)</span><br><span class="line">    turtle.pendown()</span><br><span class="line">    turtle.pensize(<span class="number">5</span>)</span><br><span class="line">    drawdata(time.strftime(<span class="string">'%Y-%m+%d='</span>,time.gmtime()))</span><br><span class="line">    turtle.hideturtle()</span><br><span class="line">    turtle.done()</span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="Hamlet词频统计"><a href="#Hamlet词频统计" class="headerlink" title="Hamlet词频统计"></a>Hamlet词频统计</h2><figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment">#calHamLet</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getText</span><span class="params">()</span>:</span></span><br><span class="line">    txt = open(<span class="string">"C:/Users/pikachu/AppData/Local/Programs/Python/Python36-32/hamlet.txt"</span>).read()</span><br><span class="line">    txt = txt.lower()</span><br><span class="line">    <span class="keyword">for</span> ch <span class="keyword">in</span> <span class="string">'!"#$%&amp;()*+,-./:;&lt;=&gt;?@[\\]^_‘&#123;|&#125;~'</span>:</span><br><span class="line">        txt.replace(ch,<span class="string">" "</span>)</span><br><span class="line">    <span class="keyword">return</span> txt</span><br><span class="line"></span><br><span class="line">hamlettxt = getText()</span><br><span class="line">words = hamlettxt.split()</span><br><span class="line">counts = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">    counts[word] = counts.get(word,<span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">items = list(counts.items())</span><br><span class="line">items.sort(key = <span class="keyword">lambda</span> x:x[<span class="number">1</span>],reverse = <span class="literal">True</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">30</span>):</span><br><span class="line">    word,count = items[i]</span><br><span class="line">    print(<span class="string">"&#123;0:&lt;10&#125;&#123;1:&gt;5&#125;"</span>.format(word,count))</span><br></pre></td></tr></table></figure>]]></content>
+
+<h2 id="Hamlet词频统计"><a href="#Hamlet词频统计" class="headerlink" title="Hamlet词频统计"></a>Hamlet词频统计</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#calHamLet</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getText</span><span class="params">()</span>:</span></span><br><span class="line">    txt = open(<span class="string">"C:/Users/pikachu/AppData/Local/Programs/Python/Python36-32/hamlet.txt"</span>).read()</span><br><span class="line">    txt = txt.lower()</span><br><span class="line">    <span class="keyword">for</span> ch <span class="keyword">in</span> <span class="string">'!"#$%&amp;()*+,-./:;&lt;=&gt;?@[\\]^_‘&#123;|&#125;~'</span>:</span><br><span class="line">        txt.replace(ch,<span class="string">" "</span>)</span><br><span class="line">    <span class="keyword">return</span> txt</span><br><span class="line"></span><br><span class="line">hamlettxt = getText()</span><br><span class="line">words = hamlettxt.split()</span><br><span class="line">counts = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">    counts[word] = counts.get(word,<span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">items = list(counts.items())</span><br><span class="line">items.sort(key = <span class="keyword">lambda</span> x:x[<span class="number">1</span>],reverse = <span class="literal">True</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">30</span>):</span><br><span class="line">    word,count = items[i]</span><br><span class="line">    print(<span class="string">"&#123;0:&lt;10&#125;&#123;1:&gt;5&#125;"</span>.format(word,count))</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Python</category>
       </categories>
@@ -10941,34 +10976,42 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
   <entry>
     <title>Python基础语法</title>
     <url>/2018/08/02/Python/Python_old/Python%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<p>中国大学MOOC:  &lt;Python语言程序设计&gt;课程笔记</p>
+    <content><![CDATA[<p>中国大学MOOC：《Python 语言程序设计》课堂笔记</p>
 <a id="more"></a>
 
 
 
 <blockquote>
-<h3 id="编译与解释"><a href="#编译与解释" class="headerlink" title="编译与解释"></a>编译与解释</h3><p>源代码：采用某种编程语言编写的计算机程序<br>目标代码：计算机可直接执行，人类不可读</p>
-<p>编译：将源代码<strong>一次性</strong>转换成目标代码的过程<br>编译需要<strong>编译器（compiler）</strong>,是一次性翻译，之后不再需要源代码（类似英文翻译）<br>解释：将源代码<strong>逐条</strong>转换成目标代码同时逐条运行的过程<br>解释需要<strong>解释器（interpreter）</strong>，每次程序运行时随翻译随执行（类似同声传译）</p>
+<h3 id="编译与解释"><a href="#编译与解释" class="headerlink" title="编译与解释"></a>编译与解释</h3><p>源代码：采用某种编程语言编写的计算机程序</p>
+<p>目标代码：计算机可直接执行，人类不可读</p>
+<p>编译：将源代码<strong>一次性</strong>转换成目标代码的过程</p>
+<p>编译需要<strong>编译器（compiler）</strong>,是一次性翻译，之后不再需要源代码（类似英文翻译）</p>
+<p>解释：将源代码<strong>逐条</strong>转换成目标代码同时逐条运行的过程</p>
+<p>解释需要<strong>解释器（interpreter）</strong>，每次程序运行时随翻译随执行（类似同声传译）</p>
 <p>根据执行方式不同，编程语言分成两种：</p>
 <ol>
-<li>静态语言: C, C++, Java (编译)<br>特点: 执行时不需要源代码，优化更充分，程序运行速度更快。</li>
-<li>脚本语言: Python, JavaScript, PHP (解释)<br>特点: 执行时需要源代码，维护更灵活。</li>
+<li><p>静态语言: C，C++，Java (编译)</p>
+<p>特点: 执行时不需要源代码，优化更充分，程序运行速度更快。</p>
+</li>
+<li><p>脚本语言: Python，JavaScript，PHP (解释)</p>
+<p>特点: 执行时需要源代码，维护更灵活。</p>
+</li>
 </ol>
 </blockquote>
 <blockquote>
 <h3 id="Python的解释器"><a href="#Python的解释器" class="headerlink" title="Python的解释器"></a>Python的解释器</h3><ul>
 <li>python –&gt; 官方解释器</li>
 <li>CPython –&gt; C语言实现的官方解释器</li>
-<li>Jython –&gt; 可以运行在Java平台的解释器</li>
-<li>IronPython – 可以运行在 .NET 和 Mono平台</li>
-<li>PyPy – Python实现的Python解释器，支持JIT即时编译</li>
+<li>Jython –&gt; 可以运行在 Java 平台的解释器</li>
+<li>IronPython – 可以运行在 .NET 和 Mono 平台</li>
+<li>PyPy – Python 实现的 Python 解释器，支持 JIT 即时编译</li>
 </ul>
 </blockquote>
 <blockquote>
-<h3 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h3><p>Python语言采用严格的“缩进”来表明程序的格式框架。缩进表达了所属关系。<br>缩进可以使用空格或者tab来表示, 但是在一个程序中两者不能混用<br><strong>建议使用4个空格</strong></p>
+<h3 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h3><p>Python 语言采用严格的“缩进”来表明程序的格式框架。缩进表达了所属关系。<br>缩进可以使用空格或者 tab 来表示, 但是在一个程序中两者不能混用<br><strong>建议使用 4 个空格</strong></p>
 </blockquote>
 <blockquote>
-<h3 id="保留字"><a href="#保留字" class="headerlink" title="保留字"></a>保留字</h3><p>python共有33个保留字</p>
+<h3 id="保留字"><a href="#保留字" class="headerlink" title="保留字"></a>保留字</h3><p>python 共有33个保留字</p>
 <table>
 <thead>
 <tr>
@@ -11037,7 +11080,7 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
 <h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><h3 id="数字类型"><a href="#数字类型" class="headerlink" title="数字类型"></a>数字类型</h3><ol>
 <li><p><strong>整数类型</strong></p>
 <p>取值范围 : [-∞, ∞]</p>
-<p>4种进制表示形式 ：</p>
+<p>4 种进制表示形式 ：</p>
 <ul>
 <li><p>二进制 : 0b / 0B (引导符号)</p>
 </li>
@@ -11050,10 +11093,14 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
 </ul>
 </li>
 <li><p><strong>浮点数类型</strong></p>
-<p>浮点数取值范围和精度都存在限制，但是常规计算中可以忽略<br>浮点数运算存在不确定尾数，不是bug<br><code>9.5e2</code> : 浮点数的科学计数法，表示 $9.5*10^2$</p>
+<p>浮点数取值范围和精度都存在限制，但是常规计算中可以忽略</p>
+<p>浮点数运算存在不确定尾数，不是 bug</p>
+<p><code>9.5e2</code> : 浮点数的科学计数法，表示 $9.5*10^2$</p>
 </li>
 <li><p><strong>复数类型</strong></p>
-<p><code>z = a + bj</code><br><code>z.real</code> 获得实部<br><code>z.imag</code>  获得虚部</p>
+<p>`z = a + bj</p>
+<p><code>z.real</code> 获得实部</p>
+<p><code>z.imag</code>  获得虚部</p>
 </li>
 </ol>
 <h3 id="数字类型的操作"><a href="#数字类型的操作" class="headerlink" title="数字类型的操作"></a>数字类型的操作</h3><ol>
@@ -11075,7 +11122,7 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
 </li>
 <li><p><code>pow(x,y[,z])</code>  幂余，z为取余</p>
 </li>
-<li><p><code>round(x[,d])</code>  四舍五入, 保留d位小数, 省略d时返回四舍五入的整数值</p>
+<li><p><code>round(x[,d])</code>  四舍五入, 保留 d 位小数, 省略 d 时返回四舍五入的整数值</p>
 </li>
 <li><p><code>max(x,y...)</code>  返回最大值</p>
 </li>
@@ -11085,9 +11132,9 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
 </li>
 <li><p><strong>内置数字类型转换函数</strong></p>
 <ul>
-<li><p><code>int(x)</code>  将x转换为整数, x可以是<strong>浮点数</strong>(直接舍弃小数)或<strong>字符串</strong></p>
+<li><p><code>int(x)</code>  将 x 转换为整数，x 可以是<strong>浮点数</strong>(直接舍弃小数)或<strong>字符串</strong></p>
 </li>
-<li><p><code>float(x)</code>  将x转换为浮点数, x可以是<strong>整数</strong>或<strong>字符串</strong></p>
+<li><p><code>float(x)</code>  将 x 转换为浮点数，x 可以是<strong>整数</strong>或<strong>字符串</strong></p>
 </li>
 </ul>
 </li>
@@ -11110,8 +11157,8 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
 </ul>
 <p><strong>字符串的索引:</strong> </p>
 <ul>
-<li>正向递增序号: 从左至右，从0开始</li>
-<li>反向递减序号: 从右至左，从-1开始</li>
+<li>正向递增序号: 从左至右，从 0 开始</li>
+<li>反向递减序号: 从右至左，从 -1 开始</li>
 </ul>
 <p><strong>字符串切片:</strong> </p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = <span class="string">'pikachu'</span></span><br><span class="line">s[<span class="number">0</span>]      <span class="comment"># 'p'</span></span><br><span class="line">s[<span class="number">0</span>:<span class="number">2</span>]    <span class="comment"># 'pi'</span></span><br><span class="line">s[<span class="number">2</span>:]     <span class="comment"># 'kachu'</span></span><br><span class="line">s[:<span class="number">-1</span>]    <span class="comment"># 'pikach'</span></span><br><span class="line">s[<span class="number">0</span>:<span class="number">-1</span>:<span class="number">2</span>] <span class="comment"># 'pkc'</span></span><br><span class="line">s[::<span class="number">-1</span>]   <span class="comment"># 'uhcakip' (字符串逆序输出)</span></span><br></pre></td></tr></table></figure>
@@ -11119,46 +11166,46 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
 <p><strong>字符串操作符:</strong></p>
 <ul>
 <li><code>s1 + s2</code> : 连接两个字符串</li>
-<li><code>s1 * 3</code> : 重复s1 三次</li>
-<li><code>s1 in s2</code> : 判断s1是否为s2的子串, 返回<code>True / False</code></li>
+<li><code>s1 * 3</code> : 重复 s1 三次</li>
+<li><code>s1 in s2</code> : 判断 s1 是否为 s2 的子串, 返回 <code>True / False</code></li>
 </ul>
 <blockquote>
 <p>  转义符 <code>\</code> : 表达特定字符的本意<br>  <code>&quot;这里有个双引号(\&quot;)&quot;</code> –&gt;  <code>&quot;这里有个双引号(&quot;)&quot;</code></p>
 </blockquote>
 <p><strong>内置字符串处理函数：</strong></p>
 <ul>
-<li><p><code>len(x)</code>    # 返回字符串x的长度</p>
+<li><p><code>len(x)</code>    # 返回字符串 x 的长度</p>
 </li>
-<li><p><code>str(x)</code>    # 将任何类型的x转换成字符串的形式。  和 <code>eval()</code>是一对对应的函数</p>
+<li><p><code>str(x)</code>    # 将任何类型的 x 转换成字符串的形式。  和 <code>eval()</code>是一对对应的函数</p>
 </li>
-<li><p><code>hex(x)</code>    # 返回<strong>整数</strong>x的十六进制小写形式字符串</p>
+<li><p><code>hex(x)</code>    # 返回<strong>整数</strong> x 的十六进制小写形式字符串</p>
 </li>
-<li><p><code>oct(x)</code>    # 返回<strong>整数</strong>x的八进制小写形式字符串</p>
+<li><p><code>oct(x)</code>    # 返回<strong>整数</strong> x 的八进制小写形式字符串</p>
 </li>
-<li><p><code>chr(u)</code>    # u为Unicode编码，返回其对应的字符</p>
+<li><p><code>chr(u)</code>    # u 为 Unicode 编码，返回其对应的字符</p>
 </li>
-<li><p><code>ord(x)</code>    # x为字符，返回其对应的Unicode编码</p>
+<li><p><code>ord(x)</code>    # x 为字符，返回其对应的 Unicode 编码</p>
 </li>
 </ul>
 <p><strong>字符串处理方法：</strong></p>
 <ul>
 <li><code>str.lower()</code>    # 将字符串中的英文字母全变成小写</li>
 <li><code>str.upper()</code>    # 将字符串中的英文字母全变成大写</li>
-<li><code>str.split(sep=None)</code>    # 返回一个列表，由str根据sep被分割的部分组成<ul>
+<li><code>str.split(sep=None)</code>    # 返回一个列表，由 str 根据 sep 被分割的部分组成<ul>
 <li><code>&#39;A,B,C&#39;.split(&#39;,&#39;)</code>    输出结果为<code>[&#39;A&#39;,&#39;B&#39;,&#39;C&#39;]</code></li>
 </ul>
 </li>
-<li><code>str.join(iterable)</code>    # 返回一个新字符串, 由iterable中的变量每个元素组成, 元素用str间隔<ul>
+<li><code>str.join(iterable)</code>    # 返回一个新字符串, 由 iterable 中的变量每个元素组成, 元素用 str 间隔<ul>
 <li><code>&#39;,&#39;.join([a, b, c, d, e])</code>    输出为<code>&#39;a,b,c,d,e&#39;</code></li>
 </ul>
 </li>
-<li><code>str.count(sub)</code>    # 返回子串sub在str中出现的次数</li>
-<li><code>str.replace(old,new)</code>    # 返回字符串str副本，将所有old子串替换成new</li>
-<li><code>str.center(width[,fillchar])</code>    # 返回width长度的字符串, 字符串str居中显示，fillchar为str两边的填充字符<ul>
+<li><code>str.count(sub)</code>    # 返回子串 sub 在 str 中出现的次数</li>
+<li><code>str.replace(old,new)</code>    # 返回字符串 str 副本，将所有 old 子串替换成 new</li>
+<li><code>str.center(width[,fillchar])</code>    # 返回 width 长度的字符串, 字符串 str 居中显示，fillchar 为 str 两边的填充字符<ul>
 <li><code>&#39;Pikachu&#39;.center(21,&#39;*&#39;)</code>    输出为<code>&#39;*******Piakchu*******&#39;</code></li>
 </ul>
 </li>
-<li><code>str.strip(chars)</code>    # 从str左右两侧去掉chars中所列出的字符<ul>
+<li><code>str.strip(chars)</code>    # 从 str 左右两侧去掉 chars 中所列出的字符<ul>
 <li><code>&#39; hello &#39;.strip(&#39; &#39;)</code> 输出为  <code>&#39;hello&#39;</code></li>
 </ul>
 </li>
@@ -11236,7 +11283,7 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
 <td align="center">不等于</td>
 </tr>
 </tbody></table>
-<p>条件组合<br><code>and(&amp;)</code>, <code>or(|)</code>, <code>not</code></p>
+<p>条件组合<br><code>and(&amp;)</code>，<code>or(|)</code>，<code>not</code></p>
 <h2 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h2><p>遍历循环</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> &lt;循环变量&gt; <span class="keyword">in</span> &lt;遍历结构&gt;:  <span class="comment">#从遍历结构中逐一提取元素，放到循环变量中</span></span><br><span class="line">    &lt;语句块&gt;</span><br></pre></td></tr></table></figure>
 
@@ -11269,10 +11316,25 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
 
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 可变参数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> &lt;函数名&gt;<span class="params">(&lt;参数&gt;,*b)</span>:</span></span><br><span class="line">    &lt;函数体&gt;</span><br><span class="line">    <span class="keyword">return</span> &lt;返回值&gt;</span><br></pre></td></tr></table></figure>
 <p>函数调用时，参数传递的方式有<strong>位置传递</strong>和<strong>名称传递</strong></p>
-<h3 id="局部变量的全局变量："><a href="#局部变量的全局变量：" class="headerlink" title="局部变量的全局变量："></a>局部变量的全局变量：</h3><p>1.局部变量：函数中的变量<br>2.全局变量：函数外的变量<br>3.局部变量和全局变量可能重名但不同<br>4.函数运算结束后，局部变量被释放<br>5.可以使用global保留字在函数内部使用全局变量<br>6.如果局部变量为组合数据类型且未被真实创建时，等同于全局变量</p>
+<h3 id="局部变量的全局变量："><a href="#局部变量的全局变量：" class="headerlink" title="局部变量的全局变量："></a>局部变量的全局变量：</h3><ol>
+<li><p>局部变量：函数中的变量</p>
+</li>
+<li><p>全局变量：函数外的变量</p>
+</li>
+<li><p>局部变量和全局变量可能重名但不同</p>
+</li>
+<li><p>函数运算结束后，局部变量被释放</p>
+</li>
+<li><p>可以使用 <code>global</code> 保留字在函数内部使用全局变量</p>
+</li>
+<li><p>如果局部变量为组合数据类型且未被真实创建时，等同于全局变量</p>
+</li>
+</ol>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ls = [<span class="string">'F'</span>,<span class="string">'f'</span>]  <span class="comment">#通过使用[]真实创建了一个全局变量列表ls</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(a)</span>:</span></span><br><span class="line">    ls.append(a)  <span class="comment">#此处ls为列表类型，未被真实创建，等同于全局变量</span></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">func(<span class="string">'C'</span>)</span><br><span class="line">print(ls)  <span class="comment">#结果为['F','f','C']</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="lambda函数"><a href="#lambda函数" class="headerlink" title="lambda函数"></a>lambda函数</h3><p>lambda函数是一种匿名函数，即没有名字的函数<br>使用<code>lambda</code>保留字定义，返回值是函数名<br>lambda用于定义简单的，可以在一行内表示的函数</p>
+<h3 id="lambda-函数"><a href="#lambda-函数" class="headerlink" title="lambda 函数"></a>lambda 函数</h3><p>lambda 函数是一种匿名函数，即没有名字的函数</p>
+<p>使用 <code>lambda</code> 保留字定义，返回值是函数名</p>
+<p>lambda 用于定义简单的，可以在一行内表示的函数</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;函数名&gt; = <span class="keyword">lambda</span> &lt;参数&gt;:&lt;表达式&gt;</span><br><span class="line">f = <span class="keyword">lambda</span> x,y : x+y</span><br><span class="line">f(<span class="number">10</span>,<span class="number">15</span>)  <span class="comment">#结果为 25</span></span><br></pre></td></tr></table></figure>
 
 
@@ -11282,11 +11344,13 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
 <li><p>函数：在代码层面建立了初步抽象</p>
 </li>
 <li><p>对象：在函数之上再次组织进行抽象</p>
-<p>模块化设计：通过函数或对象封装将程序划分为模块及模块间的表达<br>模块内部<strong>紧耦合</strong>，模块之间<strong>松耦合</strong></p>
+<p>模块化设计：通过函数或对象封装将程序划分为模块及模块间的表达</p>
+<p>模块内部<strong>紧耦合</strong>，模块之间<strong>松耦合</strong></p>
 </li>
 </ul>
 </blockquote>
-<h3 id="函数递归"><a href="#函数递归" class="headerlink" title="函数递归"></a>函数递归</h3><p>定义：函数定义中调用函数自身的方式<br>函数递归的两个特征：</p>
+<h3 id="函数递归"><a href="#函数递归" class="headerlink" title="函数递归"></a>函数递归</h3><p>定义：函数定义中调用函数自身的方式</p>
+<p>函数递归的两个特征：</p>
 <ul>
 <li>递归基例</li>
 <li>递归链条</li>
@@ -11298,28 +11362,47 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
 <li>集合中没有相同的元素</li>
 <li>集合类型是由不可变数据类型组成的</li>
 </ul>
-<p>集合用{}表示，元素中间用,分隔<br>集合用{}建立，也可用set()建立集合<br>建立空集合只能用set()</p>
-<pre><code>A = {&quot;python&quot;,123,(&quot;python&quot;,123)}
-*{123,&apos;python,(&quot;python&quot;,123)}*
-B = set(&quot;pypy123&quot;)
-*{&apos;1&apos;,&apos;P&apos;,&apos;2&apos;,&apos;3&apos;,&apos;y&apos;}*</code></pre><h3 id="集合操作符"><a href="#集合操作符" class="headerlink" title="集合操作符"></a>集合操作符</h3><p>(并)S|T : 返回一个新集合，包括在集合S和T中的所有元素<br>(差)S-T : 返回一个新集合，包括在集合S但不在T中的元素<br>(交)S&amp;T : 返回一个新集合，包括同时在集合S和T中的元素<br>(补)S^T : 返回一个新集合，包括集合S和T中的非相同元素</p>
-<p>4个增强操作符：<br>S|=T : 更新集合S，包括在集合S和T中的所有元素<br>S-=T : 更新集合S，包括在集合S但不在T中的元素<br>S&amp;=T : 更新集合S，包括同时在集合S和T中的元素<br>S^=T : 更新集合S，包括集合S和T中的非相同元素</p>
-<h3 id="集合处理方法"><a href="#集合处理方法" class="headerlink" title="集合处理方法"></a>集合处理方法</h3><p>S.add(x)  如果x不在集合中，将x添加到S中<br>S.discard(x)  移除S中元素x，如果x不在集合S中，不报错<br>S.remove(x)  移除S中元素x，如果x不在集合S中，则产生KeyError异常<br>S.clear()  移除S中所有元素<br>S.pop()  随机返回S中的一个元素，更新S，如果S为空产生KeyError异常</p>
-<p>S.copy()  返回集合S的一个副本<br>len(S)  返回集合S的元素个数<br>x in S  判断x是否在集合S中，返回True或False<br>x not in S  判断x是否在集合S中，返回True或False<br>set(x)  将其他数据变量x转变为集合类型</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">A = &#123;<span class="string">"ha"</span>,<span class="string">"ha"</span>,<span class="number">666</span>&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> A    <span class="comment">#一般情况下遍历集合用for  in  就可以</span></span><br><span class="line">    print(i,end=<span class="string">""</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        print(A.pop(),end=<span class="string">""</span>)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>集合用 <code>{}</code> 表示，元素中间用,分隔<br>集合用 <code>{}</code> 建立，也可用 <code>set()</code> 建立集合<br>建立空集合只能用 <code>set()</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A = &#123;<span class="string">"python"</span>,<span class="number">123</span>,(<span class="string">"python"</span>,<span class="number">123</span>)&#125;</span><br><span class="line">*&#123;<span class="number">123</span>,<span class="string">'python,("python",123)&#125;*</span></span><br><span class="line"><span class="string">B = set("pypy123")</span></span><br><span class="line"><span class="string">*&#123;'</span><span class="number">1</span><span class="string">','</span>P<span class="string">','</span><span class="number">2</span><span class="string">','</span><span class="number">3</span><span class="string">','</span>y<span class="string">'&#125;*</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="集合类型应用场景"><a href="#集合类型应用场景" class="headerlink" title="集合类型应用场景"></a>集合类型应用场景</h3><p>1.包含关系比较<br>2.<strong><em>数 据 去 重</em></strong>(集合类型最重要的应用)</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">ls = [<span class="string">'p'</span>,<span class="string">'p'</span>,<span class="string">'y'</span>,<span class="number">123</span>]</span><br><span class="line">S = set(ls)  <span class="comment">#将列表类型转换成集合类型</span></span><br><span class="line"></span><br><span class="line">lt = list(S)  <span class="comment">#将集合转换为列表</span></span><br></pre></td></tr></table></figure>
+<h3 id="集合操作符"><a href="#集合操作符" class="headerlink" title="集合操作符"></a>集合操作符</h3><p>(并)S|T : 返回一个新集合，包括在集合 S 和 T 中的所有元素</p>
+<p>(差)S-T : 返回一个新集合，包括在集合 S 但不在 T 中的元素</p>
+<p>(交)S&amp;T : 返回一个新集合，包括同时在集合 S 和 T 中的元素</p>
+<p>(补)S^T : 返回一个新集合，包括集合 S 和 T 中的非相同元素</p>
+<p>4个增强操作符：</p>
+<p><code>S|=T</code>：更新集合 S，包括在集合 S 和 T 中的所有元素</p>
+<p><code>S-=T</code>：更新集合 S，包括在集合 S 但不在 T 中的元素</p>
+<p><code>S&amp;=T</code>：更新集合 S，包括同时在集合 S 和 T 中的元素</p>
+<p><code>S^=T</code>：更新集合 S，包括集合 S 和 T 中的非相同元素</p>
+<h3 id="集合处理方法"><a href="#集合处理方法" class="headerlink" title="集合处理方法"></a>集合处理方法</h3><p><code>S.add(x)</code>  如果 x 不在集合中，将 x 添加到 S 中</p>
+<p><code>S.discard(x)</code>  移除 S 中元素 x，如果 x 不在集合 S 中，不报错</p>
+<p><code>S.remove(x)</code>  移除 S 中元素 x，如果 x 不在集合 S 中，则产生 KeyError 异常</p>
+<p><code>S.clear()</code>  移除 S 中所有元素</p>
+<p><code>S.pop()</code>  随机返回 S 中的一个元素，更新 S，如果 S 为空产生 KeyError 异常</p>
+<p><code>S.copy()</code>  返回集合 S 的一个副本</p>
+<p><code>len(S)</code>  返回集合 S 的元素个数</p>
+<p><code>x in S</code>  判断 x 是否在集合 S 中，返回 True 或 False</p>
+<p><code>x not in S</code>  判断 x 是否在集合 S 中，返回 True或 False</p>
+<p><code>set(x)</code>  将其他数据变量 x 转变为集合类型</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A = &#123;<span class="string">"ha"</span>,<span class="string">"ha"</span>,<span class="number">666</span>&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> A    <span class="comment">#一般情况下遍历集合用for  in  就可以</span></span><br><span class="line">    print(i,end=<span class="string">""</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        print(A.pop(),end=<span class="string">""</span>)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="集合类型应用场景"><a href="#集合类型应用场景" class="headerlink" title="集合类型应用场景"></a>集合类型应用场景</h3><ol>
+<li><p>包含关系比较</p>
+</li>
+<li><p><strong>数 据 去 重</strong>（集合类型最重要的应用）</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ls = [<span class="string">'p'</span>,<span class="string">'p'</span>,<span class="string">'y'</span>,<span class="number">123</span>]</span><br><span class="line">S = set(ls)  <span class="comment">#将列表类型转换成集合类型</span></span><br><span class="line"></span><br><span class="line">lt = list(S)  <span class="comment">#将集合转换为列表</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 
 
-
-
-<h1 id="文件及数据格式化"><a href="#文件及数据格式化" class="headerlink" title="文件及数据格式化"></a>文件及数据格式化</h1><h2 id="文件的类型"><a href="#文件的类型" class="headerlink" title="文件的类型"></a>文件的类型</h2><p>文本文件和二进制文件（文件的两种展示方式）<br>文本文件是由特定编码组成的文件，如.txt、.py文件<br>二进制文件直接由0和1组成，如.avi、.png文件等</p>
+<h1 id="文件及数据格式化"><a href="#文件及数据格式化" class="headerlink" title="文件及数据格式化"></a>文件及数据格式化</h1><h2 id="文件的类型"><a href="#文件的类型" class="headerlink" title="文件的类型"></a>文件的类型</h2><p>文本文件和二进制文件（文件的两种展示方式）</p>
+<p>文本文件是由特定编码组成的文件，如 <code>.txt</code>、<code>.py</code>文件</p>
+<p>二进制文件直接由 0 和 1 组成，如 <code>.avi</code>、<code>.png</code> 文件等</p>
 <h2 id="文件的打开关闭"><a href="#文件的打开关闭" class="headerlink" title="文件的打开关闭"></a>文件的打开关闭</h2><p>1、文件的打开</p>
 <p><code>变量名 = open(文件名, 打开模式)</code></p>
 <p>2、文件的打开模式</p>
@@ -11332,7 +11415,7 @@ B = set(&quot;pypy123&quot;)
 </thead>
 <tbody><tr>
 <td>‘r’</td>
-<td>只读模式，默认值，若文件不存在，返回FileNotFoundError</td>
+<td>只读模式，默认值，若文件不存在，返回 FileNotFoundError</td>
 </tr>
 <tr>
 <td>‘w’</td>
@@ -11340,7 +11423,7 @@ B = set(&quot;pypy123&quot;)
 </tr>
 <tr>
 <td>‘x’</td>
-<td>创建写模式，文件不存在则创建，存在则返回FileExistsError</td>
+<td>创建写模式，文件不存在则创建，存在则返回 FileExistsError</td>
 </tr>
 <tr>
 <td>‘a’</td>
@@ -11356,27 +11439,35 @@ B = set(&quot;pypy123&quot;)
 </tr>
 <tr>
 <td>‘+’</td>
-<td>与r/w/x/a连用，在原功能基础上增加读写功能</td>
+<td>与 r/w/x/a 连用，在原功能基础上增加读写功能</td>
 </tr>
 </tbody></table>
 <p>3、文件的关闭</p>
 <p><code>变量名.close()</code></p>
 <p>4、文件的读取</p>
-<p><code>变量名.read(size)</code>    读入全部内容，如果给出参数，读入前size长度<br><code>变量名.rendline(size)</code>   读入一行内容，如果给出参数，读入该行前size长度<br><code>变量名.readlines(hint)</code>   读入所有行，以每行为元素形成列表，如果给出参数，读入前hint行</p>
+<p><code>变量名.read(size)</code>    读入全部内容，如果给出参数，读入前 size 长度</p>
+<p><code>变量名.rendline(size)</code>   读入一行内容，如果给出参数，读入该行前 size 长度</p>
+<p><code>变量名.readlines(hint)</code>   读入所有行，以每行为元素形成列表，如果给出参数，读入前 hint 行</p>
 <hr>
-<p>a.wtite(s)    向文件写入一个字符串或字节流<br>a.writelines(lines)    将一个元素全为字符串的列表写入文件<br>a.seek(offset)    改变当前文件操作指针的位置，0 - 文件开头； 1 - 当前位置； 2 - 文件结尾</p>
+<p><code>a.wtite(s)</code>    向文件写入一个字符串或字节流</p>
+<p><code>a.writelines(lines)</code>    将一个元素全为字符串的列表写入文件</p>
+<p><code>a.seek(offset)</code>    改变当前文件操作指针的位置，0 - 文件开头； 1 - 当前位置； 2 - 文件结尾</p>
 <p>5、一维数据</p>
-<p>一维数据的表示：列表类型（有序）、集合类型（无序）<br>一维数据的存储：空格分隔，逗号分隔，或者特殊字符分隔<br>    使用任何一种符号进行分隔都有缺点，就是无法控制文本中不出现与分隔符相同的字符<br>一维数据的处理：<br>从空格分隔的文件中读入数据：</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">txt = open(fname).read()</span><br><span class="line">ls = txt.split()</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<p>一维数据的表示：列表类型（有序）、集合类型（无序）</p>
+<p>一维数据的存储：空格分隔，逗号分隔，或者特殊字符分隔</p>
+<p>使用任何一种符号进行分隔都有缺点，就是无法控制文本中不出现与分隔符相同的字符</p>
+<p>一维数据的处理：</p>
+<p>从空格分隔的文件中读入数据：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">txt = open(fname).read()</span><br><span class="line">ls = txt.split()</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
 
 <p>从特殊符号分隔的文件中读入数据：</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">txt = open(fname).read()</span><br><span class="line">ls = txt.split(<span class="string">"$"</span>)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">txt = open(fname).read()</span><br><span class="line">ls = txt.split(<span class="string">"$"</span>)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
 
 <p>采用空格分隔方式将数据写入：</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">ls = [<span class="string">'中国'</span>，<span class="string">'美国'</span>,<span class="string">'日本'</span>]</span><br><span class="line">f = open(fname,<span class="string">'w'</span>)</span><br><span class="line">f.write(<span class="string">' '</span>.join(ls))</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ls = [<span class="string">'中国'</span>，<span class="string">'美国'</span>,<span class="string">'日本'</span>]</span><br><span class="line">f = open(fname,<span class="string">'w'</span>)</span><br><span class="line">f.write(<span class="string">' '</span>.join(ls))</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
 
 <p>采用特殊符号分隔方式将数据写入：</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">ls = [<span class="string">'中国'</span>，<span class="string">'美国'</span>,<span class="string">'日本'</span>]</span><br><span class="line">f = open(fname,<span class="string">'w'</span>)</span><br><span class="line">f.write(<span class="string">'$'</span>.join(ls))</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ls = [<span class="string">'中国'</span>，<span class="string">'美国'</span>,<span class="string">'日本'</span>]</span><br><span class="line">f = open(fname,<span class="string">'w'</span>)</span><br><span class="line">f.write(<span class="string">'$'</span>.join(ls))</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Python</category>
