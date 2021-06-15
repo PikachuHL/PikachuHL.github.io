@@ -52,7 +52,7 @@
 <p>把 <code>@Autowired</code> 注解换成 <code>@Resource</code> 注解</p>
 <p>换了注解后，没有了爆红，项目也可以正常运行</p>
 <p>因为 <code>@Autowired</code> 注解默认情况下需要注入的属性不为 null（属性 <code>required = true</code>），而 <code>@Resource</code> 注解注入的属性可以为 null</p>
-<p>关于 <code>@Autowired</code> 和 <code>@Resource</code> 的区别，可以看我的这篇文章：<a href="/java/Autowired注解和Resource注解的区别.html">@Autowired和@Resource的区别</a></p>
+<p>关于 <code>@Autowired</code> 和 <code>@Resource</code> 的区别，可以看我的这篇文章：<a href="/2021/06/15/Java/Autowired注解和Resource注解的区别">@Autowired和@Resource的区别</a></p>
 </blockquote>
 ]]></content>
       <categories>
