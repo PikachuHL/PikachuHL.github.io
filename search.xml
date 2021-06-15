@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Autowored注解和Resource注解的区别</title>
+    <url>/2021/06/15/Java/Autowired%E6%B3%A8%E8%A7%A3%E5%92%8CResource%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>两个注解都可以自动注入bean，他们俩有啥不一样呢？</p>
+<a id="more"></a>
+
+<blockquote>
+<p>TODO</p>
+</blockquote>
+<p>@Autowired</p>
+<p>@Resource</p>
+]]></content>
+      <categories>
+        <category>Java EE</category>
+      </categories>
+      <tags>
+        <tag>Autowired</tag>
+        <tag>Resource</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Repository注解和Mapper注解的区别</title>
+    <url>/2021/06/15/Java/Repository%E6%B3%A8%E8%A7%A3%E5%92%8CMapper%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>你知道这两个注解有什么不一样吗</p>
+<a id="more"></a>
+
+
+
+<p><strong>开发过程中遇到了一个问题：</strong></p>
+<p>在 service 中注入 mapper 的时候，发生了爆红的情况：（此时 userMapper 接口上使用的是 <code>@Mapper</code> 注解）</p>
+<p><img src="/images/@Repository%E5%92%8C@Mapper%E7%9A%84%E5%8C%BA%E5%88%AB/image-20210615100455667.png" alt="image-20210615100455667"></p>
+<p>但是项目的运行没有任何问题。</p>
+<p><strong>于是去 Google 了一下，找到了一个解决办法：</strong></p>
+<blockquote>
+<p>把 UserMapper 接口的 <code>@Mapper</code> 注解换成 <code>@Repository</code> （我使用 <code>@Mapper</code> 时就在 Spring Boot 的主启动类上面添加了 <code>@MapperScan</code> 注解）</p>
+</blockquote>
+<p><strong>解决了之后我就想：</strong><code>@Mapper</code> 注解和 <code>@Repository</code> 注解究竟有什么不一样呢，为什么会出现这种差别呢？</p>
+<p>查阅相关资料发现两者不同点在于：</p>
+<ul>
+<li><code>@Repository</code>：Spring 的注解，表示这个接口是一个 Mapper，需要配合 <code>@MapperScan</code> 注解使用。</li>
+<li><code>@Mapper</code>：Mybatis 的注解，相当于 <code>@Repository</code> + <code>@MapperScan</code></li>
+</ul>
+<p>那为什么使用 @Repository 就不会爆红呢？</p>
+<blockquote>
+<p>因为 <code>@Autowired</code> 同样是 Spring 的注解，使用同为 Spring 注解的 <code>@Repository</code> 时，就可以检测到 userMapper 接口。</p>
+</blockquote>
+<hr>
+<p>在查资料的过程中，发现还有一个办法可以解决使用 <code>@Mapper</code> 注解时的爆红问题：</p>
+<blockquote>
+<p>把 <code>@Autowired</code> 注解换成 <code>@Resource</code> 注解</p>
+<p>换了注解后，没有了爆红，项目也可以正常运行</p>
+<p>因为 <code>@Autowired</code> 注解默认情况下需要注入的属性不为 null（属性 <code>required = true</code>），而 <code>@Resource</code> 注解注入的属性可以为 null</p>
+<p>关于 <code>@Autowired</code> 和 <code>@Resource</code> 的区别，可以看我的这篇文章：<a href="/java/Autowired注解和Resource注解的区别.html">@Autowired和@Resource的区别</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Java EE</category>
+      </categories>
+      <tags>
+        <tag>Repository</tag>
+        <tag>Mapper</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ZooKeeper</title>
     <url>/2021/05/11/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/ZooKeeper/</url>
     <content><![CDATA[<p>ZooKeeper的目标就是封装好复杂易出错的关键服务，将简单易用的接口和性能高效、功能稳定的系统提供给用户。</p>
