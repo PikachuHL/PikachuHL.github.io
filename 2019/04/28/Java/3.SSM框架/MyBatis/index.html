@@ -53,7 +53,7 @@
 <meta property="og:description" content="MyBatis 是一款优秀的持久层框架">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-04-28T12:16:58.000Z">
-<meta property="article:modified_time" content="2021-04-16T03:06:22.468Z">
+<meta property="article:modified_time" content="2021-07-03T00:38:15.000Z">
 <meta property="article:author" content="pikachu">
 <meta property="article:tag" content="MyBatis">
 <meta name="twitter:card" content="summary">
@@ -236,7 +236,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-16 11:06:22" itemprop="dateModified" datetime="2021-04-16T11:06:22+08:00">2021-04-16</time>
+                <time title="修改时间：2021-07-03 08:38:15" itemprop="dateModified" datetime="2021-07-03T08:38:15+08:00">2021-07-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -384,10 +384,10 @@
 <p>提交事务：SqlSession 对象的 commit() 方法</p>
 <p>回滚事务：SqlSession 对象的 roolback() 方法</p>
 <p>设置自动提交事务： SqlSession session = factory.openSession(true); // 在创建SQLSession对象时设置openSession的属性为true</p>
-<h2 id="Mybatis的多表查询"><a href="#Mybatis的多表查询" class="headerlink" title="Mybatis的多表查询"></a>Mybatis的多表查询</h2><blockquote>
+<h2 id="Mybatis-多表查询"><a href="#Mybatis-多表查询" class="headerlink" title="Mybatis 多表查询"></a>Mybatis 多表查询</h2><blockquote>
 <p>mybatis 中把多对一的操作当成一对一</p>
 </blockquote>
-<h4 id="mybatis中一对一的查询"><a href="#mybatis中一对一的查询" class="headerlink" title="mybatis中一对一的查询:"></a>mybatis中一对一的查询:</h4><ol>
+<h4 id="Mybatis-一对一查询"><a href="#Mybatis-一对一查询" class="headerlink" title="Mybatis 一对一查询:"></a>Mybatis 一对一查询:</h4><ol>
 <li><p>在从表实体类中包含一个主表实体类 的对象引用</p>
 </li>
 <li><p>在从表的配置文件中配置 resultMap</p>
@@ -397,7 +397,7 @@
 
 
 
-<h4 id="mybatis-中一对多的查询"><a href="#mybatis-中一对多的查询" class="headerlink" title="mybatis 中一对多的查询:"></a>mybatis 中一对多的查询:</h4><ol>
+<h4 id="Mybatis-中一对多的查询"><a href="#Mybatis-中一对多的查询" class="headerlink" title="Mybatis 中一对多的查询:"></a>Mybatis 中一对多的查询:</h4><ol>
 <li>在主表实体类中新建从表实体类的集合（List）</li>
 <li>在主表的配置文件中配置 resultMap</li>
 </ol>
@@ -422,7 +422,7 @@
 <li><p>立即加载：多表查询时，直接在 SQL 语句中写内连接或外连接方式，就是立即加载</p>
 </li>
 <li><p>延迟加载：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--在主配置文件中开启延迟加载（默认就是开启的）--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 延迟加载的全局开关 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"lazyLoadingEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">&lt;!-- 开启后，任何方法的调用都会加载该对象的所有属性</span></span><br><span class="line"><span class="comment">          Mybatis 3.4.1 版本之后默认关闭 </span></span><br><span class="line"><span class="comment">      --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"aggressiveLazyLoading"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--在主配置文件中开启延迟加载（默认就是开启的）--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 延迟加载的全局开关 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"lazyLoadingEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- 开启后，任何方法的调用都会加载该对象的所有属性</span></span><br><span class="line"><span class="comment">        Mybatis 3.4.1 版本之后默认关闭 </span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"aggressiveLazyLoading"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>一对一延迟加载的实现：查询所有账户，延迟加载账户的用户信息</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--在从表的resultMap中修改 association--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"accountUser"</span> <span class="attr">type</span>=<span class="string">"com.pika.domain.Account"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"id"</span> <span class="attr">column</span>=<span class="string">"aid"</span>&gt;</span><span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"uid"</span> <span class="attr">column</span>=<span class="string">"uid"</span>&gt;</span><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"money"</span> <span class="attr">column</span>=<span class="string">"money"</span>&gt;</span><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--select:查询用户的唯一标识--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">association</span> <span class="attr">property</span>=<span class="string">"user"</span> <span class="attr">column</span>=<span class="string">"uid"</span> <span class="attr">javaType</span>=<span class="string">"com.pika.domain.User"</span> <span class="attr">select</span>=<span class="string">"com.pika.dao.UserDao.findById"</span>&gt;</span><span class="tag">&lt;/<span class="name">association</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultMap</span>=<span class="string">"accountUser"</span>&gt;</span></span><br><span class="line">    select * from account</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -572,7 +572,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MyBatis"><span class="nav-number">1.</span> <span class="nav-text">MyBatis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis-概述："><span class="nav-number">1.1.</span> <span class="nav-text">MyBatis 概述：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis-的基础使用"><span class="nav-number">1.2.</span> <span class="nav-text">MyBatis 的基础使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#properties标签、typeAliases标签、package标签"><span class="nav-number">1.2.1.</span> <span class="nav-text">properties标签、typeAliases标签、package标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-对事务的管理"><span class="nav-number">1.3.</span> <span class="nav-text">Mybatis 对事务的管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis的多表查询"><span class="nav-number">1.4.</span> <span class="nav-text">Mybatis的多表查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mybatis中一对一的查询"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">mybatis中一对一的查询:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mybatis-中一对多的查询"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">mybatis 中一对多的查询:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mybatis-中多对多的查询"><span class="nav-number">1.4.0.3.</span> <span class="nav-text">mybatis 中多对多的查询:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-的延迟加载"><span class="nav-number">1.5.</span> <span class="nav-text">Mybatis 的延迟加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-中的缓存"><span class="nav-number">1.6.</span> <span class="nav-text">Mybatis 中的缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis的注解开发"><span class="nav-number">1.7.</span> <span class="nav-text">Mybatis的注解开发</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MyBatis"><span class="nav-number">1.</span> <span class="nav-text">MyBatis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis-概述："><span class="nav-number">1.1.</span> <span class="nav-text">MyBatis 概述：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis-的基础使用"><span class="nav-number">1.2.</span> <span class="nav-text">MyBatis 的基础使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#properties标签、typeAliases标签、package标签"><span class="nav-number">1.2.1.</span> <span class="nav-text">properties标签、typeAliases标签、package标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-对事务的管理"><span class="nav-number">1.3.</span> <span class="nav-text">Mybatis 对事务的管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-多表查询"><span class="nav-number">1.4.</span> <span class="nav-text">Mybatis 多表查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mybatis-一对一查询"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">Mybatis 一对一查询:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mybatis-中一对多的查询"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">Mybatis 中一对多的查询:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mybatis-中多对多的查询"><span class="nav-number">1.4.0.3.</span> <span class="nav-text">mybatis 中多对多的查询:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-的延迟加载"><span class="nav-number">1.5.</span> <span class="nav-text">Mybatis 的延迟加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-中的缓存"><span class="nav-number">1.6.</span> <span class="nav-text">Mybatis 中的缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis的注解开发"><span class="nav-number">1.7.</span> <span class="nav-text">Mybatis的注解开发</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -586,20 +586,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-count">90</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-count">110</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
