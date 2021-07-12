@@ -390,7 +390,7 @@
 <p>import java.util.regex.Pattern</p>
 <p>import java.util.regex.Matcher</p>
 </blockquote>
-<h3 id="创建正则表达式对象，进行匹配"><a href="#创建正则表达式对象，进行匹配" class="headerlink" title="创建正则表达式对象，进行匹配"></a>创建正则表达式对象，进行匹配</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Pattern p = <span class="keyword">new</span> Pattern(<span class="string">"\\b"</span>);</span><br><span class="line">Matcher m = p.compile(<span class="string">"String8Str"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> flag = m.matches();<span class="comment">// 判断整个字符串是否与正则表达式匹配</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(m.find())&#123;<span class="comment">// 找到与该正则表达式匹配的第一个子字符串，然后找下一个</span></span><br><span class="line">    System.out.println(m.group());<span class="comment">// 按照捕获组来输出，0输出全部组</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="创建正则表达式对象，进行匹配"><a href="#创建正则表达式对象，进行匹配" class="headerlink" title="创建正则表达式对象，进行匹配"></a>创建正则表达式对象，进行匹配</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Pattern p = <span class="keyword">new</span> Pattern(<span class="string">"\\b"</span>);</span><br><span class="line">Matcher m = p.compile(<span class="string">"String8Str"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> flag = m.matches();<span class="comment">// 判断整个字符串是否与正则表达式匹配</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(m.find())&#123;<span class="comment">// 找到与该正则表达式匹配的第一个子字符串，然后找下一个</span></span><br><span class="line">	System.out.println(m.group());<span class="comment">// 按照捕获组来输出，0输出全部组</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -477,7 +477,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">90</span>
+          <span class="site-state-item-count">91</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -490,7 +490,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">110</span>
+        <span class="site-state-item-count">112</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
