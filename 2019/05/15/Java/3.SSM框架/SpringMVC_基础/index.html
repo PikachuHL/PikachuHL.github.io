@@ -45,16 +45,16 @@
   };
 </script>
 
-  <meta name="description" content="SpringMVC入门案例">
+  <meta name="description" content="SpringMVC 入门案例">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringMVC_基础">
 <meta property="og:url" content="http://yoursite.com/2019/05/15/Java/3.SSM%E6%A1%86%E6%9E%B6/SpringMVC_%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Pikachu&#39;s Blog">
-<meta property="og:description" content="SpringMVC入门案例">
+<meta property="og:description" content="SpringMVC 入门案例">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/SpringMVC_%E5%9F%BA%E7%A1%80/springmvc%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%8E%9F%E7%90%86.jpg">
 <meta property="article:published_time" content="2019-05-15T07:34:52.000Z">
-<meta property="article:modified_time" content="2021-04-16T03:07:32.000Z">
+<meta property="article:modified_time" content="2021-07-30T05:48:41.365Z">
 <meta property="article:author" content="pikachu">
 <meta property="article:tag" content="SpringMVC">
 <meta name="twitter:card" content="summary">
@@ -238,7 +238,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-16 11:07:32" itemprop="dateModified" datetime="2021-04-16T11:07:32+08:00">2021-04-16</time>
+                <time title="修改时间：2021-07-30 13:48:41" itemprop="dateModified" datetime="2021-07-30T13:48:41+08:00">2021-07-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -263,13 +263,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>SpringMVC入门案例</p>
+        <p>SpringMVC 入门案例</p>
 <a id="more"></a>
 
 
 
-<p><strong>基本概念：</strong></p>
-<ul>
+<h2 id="基本概念："><a href="#基本概念：" class="headerlink" title="基本概念："></a>基本概念：</h2><ul>
 <li><p><strong>MVC 模型（Model View Controller）：</strong></p>
 <ul>
 <li>Model：数据模型，JavaBean 的类，用来进行数据封装。</li>
@@ -294,13 +293,13 @@
 </ul>
 <h2 id="入门案例"><a href="#入门案例" class="headerlink" title="入门案例"></a>入门案例</h2><blockquote>
 <p>入门案例需求:</p>
-<p>​    在<code>index.jsp</code>中写一个超链接, 点击超链接, 跳转到 <code>success.jsp</code></p>
+<p>​    在 <code>index.jsp</code> 中写一个超链接, 点击超链接, 跳转到 <code>success.jsp</code></p>
 </blockquote>
 <p>*<em>在<code>index.jsp</code>中写一个超链接标签: *</em></p>
 <p><code>&lt;a href = &quot;hello&quot;&gt;入门案例&lt;/a&gt;</code></p>
-<p><strong>创建<code>success.jsp</code>页面</strong></p>
-<p>在<code>WEB-INF</code>文件夹下创建<code>pages</code>文件夹, 并在<code>pages</code>文件夹中创建<code>success.jsp</code></p>
-<p><strong>创建一个 Controller 类, 并写一个方法, 在方法上添加<code>@RequestMapping</code>注解, 返回一个字符串:</strong></p>
+<p><strong>创建 <code>success.jsp</code> 页面</strong></p>
+<p>在 <code>WEB-INF</code> 文件夹下创建 <code>pages</code> 文件夹, 并在 <code>pages</code> 文件夹中创建 <code>success.jsp</code></p>
+<p><strong>创建一个 Controller 类, 并写一个方法, 在方法上添加 <code>@RequestMapping</code> 注解, 返回一个字符串:</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(path = <span class="string">"/hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"HelloController"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -311,8 +310,8 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在web.xml中进行配置 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置前端控制器DispatcherServlet，其实就是一个Servlet--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcherServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 配置全局初始化参数，用于加载Spring的配置文件 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:applicationcontext.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 设置服务器启动时就创建Servlet --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcherServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>DispatcherServlet 中的url-pattern, 一定要配置 <code>/</code>, 而不能配置<code>/*</code></p>
-<p>配置成 <code>/*</code> 会导致访问<code>.jsp</code> 时出现<code>404</code>的情况</p>
+<p>DispatcherServlet 中的 url-pattern， 一定要配置 <code>/</code>， 而不能配置 <code>/*</code></p>
+<p>配置成 <code>/*</code> 会导致访问 <code>.jsp</code> 时出现 <code>404</code> 的情况</p>
 </blockquote>
 </li>
 <li><p>处理器映射器（HandlerMapping）&amp; 处理器适配器（HandlerAdapter）</p>
@@ -333,7 +332,7 @@
 <hr>
 <p><strong>入门案例的流程总结:</strong></p>
 <p><img src="/images/SpringMVC_%E5%9F%BA%E7%A1%80/springmvc%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%8E%9F%E7%90%86.jpg" alt="springmvc执行流程原理"></p>
-<p><strong>@RequestMapping注解：</strong></p>
+<p><strong>@RequestMapping 注解：</strong></p>
 <p><strong>作用：</strong>用于建立 <strong>请求 URL</strong> 和 <strong>处理请求方法</strong> 之间的对应关系</p>
 <p><strong>作用范围：类</strong> 和 <strong>方法</strong></p>
 <p><strong>属性：</strong></p>
@@ -406,7 +405,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#入门案例"><span class="nav-number">1.</span> <span class="nav-text">入门案例</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念："><span class="nav-number">1.</span> <span class="nav-text">基本概念：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#入门案例"><span class="nav-number">2.</span> <span class="nav-text">入门案例</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -420,7 +419,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">92</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -433,7 +432,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">112</span>
+        <span class="site-state-item-count">114</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
