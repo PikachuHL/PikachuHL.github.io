@@ -201,6 +201,244 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/05/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/NGINX/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pikachu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pikachu's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/05/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/NGINX/" class="post-title-link" itemprop="url">NGINX</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-05 10:00:00 / 修改时间：13:28:56" itemprop="dateCreated datePublished" datetime="2021-08-05T10:00:00+08:00">2021-08-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-EE/" itemprop="url" rel="index">
+                    <span itemprop="name">Java EE</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <a id="more"></a>
+
+
+
+<h3 id="NGINX-简介"><a href="#NGINX-简介" class="headerlink" title="NGINX 简介"></a>NGINX 简介</h3><p>NGINX：engine x 的简写</p>
+<p>主要功能：</p>
+<ul>
+<li>负载均衡</li>
+<li>反向代理</li>
+<li>动静分离</li>
+</ul>
+<h3 id="Linux-中安装-NGINX"><a href="#Linux-中安装-NGINX" class="headerlink" title="Linux 中安装 NGINX"></a>Linux 中安装 NGINX</h3><ol>
+<li><p>下载 NGINX：<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">http://nginx.org/en/download.html</a></p>
+</li>
+<li><p>把下载的压缩包 <code>nginx-1.21.1.tar.gz</code> 放到 <code>/usr/local/</code> 目录下，然后解压</p>
+</li>
+<li><p>进到解压后的 <code>nginx-1.21.1</code> 目录中，执行命令 <code>./configure --prefix=/usr/local/nginx-1.21.1</code></p>
+</li>
+<li><p>执行 <code>make</code> 命令，然后执行 <code>nake install</code> 命令，就安装完成了</p>
+</li>
+</ol>
+<p>进入 <code>nginx-1.21.1/sbin</code> 目录，执行 <code>./nginx</code> 开启服务</p>
+<blockquote>
+<p>开启服务的时候遇到一个保存</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx: [alert] could not open error <span class="built_in">log</span> file: open() <span class="string">"/usr/local/nginx-1.21.1/logs/error.log"</span> failed (2: No such file or directory)</span><br></pre></td></tr></table></figure>
+
+<p>是因为在 <code>nginx-1.21.1</code> 目录下没有 <code>logs</code> 目录，新建一个就好了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir logs</span><br><span class="line">chmod 700 logs</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="NGINX-使用"><a href="#NGINX-使用" class="headerlink" title="NGINX 使用"></a>NGINX 使用</h3><p>基本命令：</p>
+<ul>
+<li><code>nginx</code>：开启服务</li>
+<li><code>nginx -s reload</code>：重新加载配置文件</li>
+<li><code>nginx -t</code>：检查配置文件是否有错误</li>
+<li><code>nginx -s reopen</code>：重启服务</li>
+<li><code>nginx -s quit</code>：停止服务</li>
+<li><code>nginx -s stop</code>：强制停止服务</li>
+</ul>
+<p>NGINX 配置文件：</p>
+<p>位于 <code>nginx-1.21.1/conf/nginx.conf</code></p>
+<p>使用 NGINX 主要就是修改配置文件中的各种配置，从而实现不同的功能</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/07/31/Java/1.Java%E5%9F%BA%E7%A1%80/Java8_Stream/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pikachu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pikachu's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/31/Java/1.Java%E5%9F%BA%E7%A1%80/Java8_Stream/" class="post-title-link" itemprop="url">Java/1.Java基础/Java8_Stream</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-31 08:01:44" itemprop="dateCreated datePublished" datetime="2021-07-31T08:01:44+08:00">2021-07-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-10 09:56:40" itemprop="dateModified" datetime="2021-08-10T09:56:40+08:00">2021-08-10</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h1><blockquote>
+<p>Stream 是 Java 8 提供的一种以函数式的方式处理集合的 API</p>
+<p>像 SQL 一样操作 Java 集合中的数据</p>
+</blockquote>
+<p>使用 Stream 的三个步骤：</p>
+<ol>
+<li>创建流</li>
+<li>中间操作</li>
+<li>终止操作</li>
+</ol>
+<blockquote>
+<p>如果没有终止操作，那么所有的中间操作都不会执行</p>
+</blockquote>
+<h2 id="创建流"><a href="#创建流" class="headerlink" title="创建流"></a>创建流</h2><p>三种创建流的方式：</p>
+<ol>
+<li>通过 Collection 接口提供的默认方法： <code>stream()</code> 或 <code>parallelStream()</code><ul>
+<li><code>Stream()</code>：创建串行流</li>
+<li><code>parallelStream()</code>：创建并行流</li>
+</ul>
+</li>
+<li>通过 Arrays 工具类提供的静态方法：<code>stream()</code></li>
+<li>通过 Stream 类中的静态方法 <code>of()</code></li>
+</ol>
+<h2 id="中间操作"><a href="#中间操作" class="headerlink" title="中间操作"></a>中间操作</h2><ol>
+<li><p>筛选和切片</p>
+<p><code>filter()</code>：过滤（接收一个 Lambda）</p>
+<p><code>distinct()</code>：去重</p>
+<p><code>limit()</code>：保留前几个元素</p>
+<p><code>skip()</code>：排除前几个元素</p>
+</li>
+<li><p>映射</p>
+<p><code>map()</code>：传入一个 Function，这个 Function 会作用于集合中所有的元素</p>
+<p><code>flatMap()</code>：如果一个 Function 返回的是一个流，flatMap 会把返回的所有流合并成一个流</p>
+<blockquote>
+<p>map 和 flatMap 的关系类似于 List 中的 add 和 addAll</p>
+</blockquote>
+</li>
+<li><p>排序</p>
+<p><code>sort()</code>：自然排序</p>
+<p><code>sort(Comparator)</code>：传入一个比较器实例，自定义排序方式</p>
+</li>
+</ol>
+<h2 id="终止操作"><a href="#终止操作" class="headerlink" title="终止操作"></a>终止操作</h2><p>查找与匹配：</p>
+<ul>
+<li><code>allMatch()</code>：是否匹配全部元素</li>
+<li><code>anyMatch()</code>：是否匹配任意元素</li>
+<li><code>noneMatch()</code>：是否没有元素匹配</li>
+<li><code>findFirst()</code>：返回第一个</li>
+<li><code>findAny()</code>：返回任意一个</li>
+</ul>
+<p>归约：</p>
+<ul>
+<li><code>reduce()</code>：按照一定的规则对 Stream 中的值进行操作，最终得到一个最终结果</li>
+</ul>
+<p>收集：</p>
+<ul>
+<li><code>collect()</code>：将流转换成集合（List / Set / Map）</li>
+</ul>
+<p><code>forEach()</code>：内部迭代，遍历集合</p>
+<p><code>count()</code>：统计集合中元素的数量</p>
+<p><code>max()</code></p>
+<p><code>min()</code></p>
+<h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list = Arrays.asList(<span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">9</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取流</span></span><br><span class="line">Stream&lt;Integer&gt; stream = list.stream();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中间操作，会返回一个流</span></span><br><span class="line">Stream&lt;Integer&gt; distinct = stream</span><br><span class="line">        .filter(x -&gt; x &gt; <span class="number">0</span>)  <span class="comment">// 使用lambda表达式过滤</span></span><br><span class="line">        .limit(<span class="number">3</span>)            <span class="comment">// 取前三个</span></span><br><span class="line">        .skip(<span class="number">1</span>)             <span class="comment">// 跳过第一个</span></span><br><span class="line">        .distinct();         <span class="comment">// 去重</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 终止操作</span></span><br><span class="line">distinct.forEach(System.out::println);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上面三个步骤一般会写在一起</span></span><br><span class="line">list.stream()</span><br><span class="line">        .filter(x -&gt; x &gt; <span class="number">0</span>)</span><br><span class="line">        .limit(<span class="number">3</span>)</span><br><span class="line">        .skip(<span class="number">1</span>)</span><br><span class="line">        .distinct()</span><br><span class="line">        .forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/07/22/Java/%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/jsoup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -278,7 +516,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/07/15/SpringBoot%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%AF%B9%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/07/15/Java/SpringBoot%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -292,7 +530,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2021/07/15/SpringBoot%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%AF%B9%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">SpringBoot前后端分离项目部署到云服务器</a>
+            <a href="/2021/07/15/Java/SpringBoot%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">SpringBoot前后端分离项目部署到云服务器</a>
         </h1>
 
         <div class="post-meta">
@@ -301,10 +539,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-07-15 14:30:00 / 修改时间：15:20:17" itemprop="dateCreated datePublished" datetime="2021-07-15T14:30:00+08:00">2021-07-15</time>
+              <time title="创建时间：2021-07-15 14:30:00" itemprop="dateCreated datePublished" datetime="2021-07-15T14:30:00+08:00">2021-07-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-05 11:14:42" itemprop="dateModified" datetime="2021-08-05T11:14:42+08:00">2021-08-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -331,7 +575,7 @@
           <p>第一次正式部署项目，把学习摸索的过程记录下来</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/07/15/SpringBoot%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%AF%B9%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/#more" rel="contents">
+              <a class="btn" href="/2021/07/15/Java/SpringBoot%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -446,7 +690,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/07/10/VUE/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/07/10/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/VUE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -460,7 +704,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2021/07/10/VUE/" class="post-title-link" itemprop="url">Vue</a>
+            <a href="/2021/07/10/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/VUE/" class="post-title-link" itemprop="url">Vue</a>
         </h1>
 
         <div class="post-meta">
@@ -477,7 +721,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-18 10:57:31" itemprop="dateModified" datetime="2021-07-18T10:57:31+08:00">2021-07-18</time>
+                <time title="修改时间：2021-08-03 15:01:32" itemprop="dateModified" datetime="2021-08-03T15:01:32+08:00">2021-08-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -502,126 +746,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <a id="more"></a>
-
-
-
-<h2 id="Vue-基本概念"><a href="#Vue-基本概念" class="headerlink" title="Vue 基本概念"></a>Vue 基本概念</h2><blockquote>
-<p>Vue 是一套用于构建用户界面的渐进式 JavaScript 框架</p>
-</blockquote>
-<p>Vue 基本特点：</p>
-<ul>
-<li>采用组件化模式，提高代码的复用率，且让代码更好维护。</li>
-<li>声明式编码，让开发人员无需操作 DOM，提高开发效率。</li>
-<li>使用虚拟 DOM + 优秀的 Diff 算法，尽量复用 DOM 节点</li>
-</ul>
-<p>初识 Vue：</p>
-<ol>
-<li>想让 Vue 工作，必须创建一个 Vue 实例，且要传入一个配置对象</li>
-<li>容器中的代码被称为 Vue 模板</li>
-<li>Vue 实例和容器是一一对应的</li>
-<li>真实开发中只有一个 Vue 实例，且配合组件一起使用</li>
-</ol>
-<h2 id="Vue-基本代码结构"><a href="#Vue-基本代码结构" class="headerlink" title="Vue 基本代码结构"></a>Vue 基本代码结构</h2><p>Vue 2 的基本代码结构：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>学习vue<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 在HTML中引入vue2的cdn --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">            &#123;&#123; message &#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">"#app"</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="actionscript">                message: <span class="string">'hello vue2'</span></span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p>el 的两种写法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一种：初始化Vue的时候挂载</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el:<span class="string">'#app'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种：先初始化，然后再挂载</span></span><br><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br><span class="line">vm.$mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<p>data 的两种写法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一种：对象式</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    data:&#123;</span><br><span class="line">        name:<span class="string">'zhangsan'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种：函数式</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    data:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            name:<span class="string">'zhangsan'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 第二种简写：</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            name:<span class="string">'zhangsan'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>el 的两种写法想用哪种就用哪种</p>
-<p>data 在组件中只能使用函数式，否则会报错</p>
-<blockquote>
-<p>由 Vue 管理的函数，一定不要写箭头函数，否则 this 就不再是 Vue 实例了</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>Vue 3 的基本代码结构：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>学习vue3<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 在HTML中引入vue最新版本的cdn --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/vue@next"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">            &#123;&#123; message &#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">       <span class="keyword">const</span> vueApp = &#123;</span></span><br><span class="line">           data() &#123;</span><br><span class="line"><span class="actionscript">               <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">                   message: <span class="string">"hello vue3"</span></span></span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">       Vue.createApp(vueApp).mount(<span class="string">"#app"</span>)</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Vue-中的-MVVM-模型"><a href="#Vue-中的-MVVM-模型" class="headerlink" title="Vue 中的 MVVM 模型"></a>Vue 中的 MVVM 模型</h2><p>M（Model）：data 中的数据</p>
-<p>V（View）：模板代码</p>
-<p>VM（ViewModel）：Vue 实例</p>
-<blockquote>
-<p>data 中所有的属性，经 Vue 处理之后，都会出现在 Vue 实例中</p>
-<p>Vue 实例的所有属性及其原型上的所有属性，在模板中都可以直接使用</p>
-</blockquote>
-<h2 id="Vue-中的数据代理"><a href="#Vue-中的数据代理" class="headerlink" title="Vue 中的数据代理"></a>Vue 中的数据代理</h2><blockquote>
-<p>JavaScript 中数据代理的基本原理：</p>
-<p>通过 <code>Object.defineProperty()</code> 中的 getter 和 setter 来实现数据代理</p>
-</blockquote>
-<p>Vue 通过数据代理，把 data 中的所有属性都拿到了 vm 中，变成了 vm 的属性，我们通过操作 vm 中的属性就可以操作 data 中的数据</p>
-<p>而 data 在 vm 中是以 <code>_data</code> 属性存在的</p>
-<h2 id="Vue-语法"><a href="#Vue-语法" class="headerlink" title="Vue 语法"></a>Vue 语法</h2><p>插值语法：</p>
-<ul>
-<li>功能：用于解析标签体内容</li>
-<li>写法：<code></code>，xxx 是 js 表达式，且可以直接读取到 data 中的所有属性</li>
-</ul>
-<p>指令语法：</p>
-<ul>
-<li><p>功能：用于解析标签（标签属性，标签体，绑定事件等）</p>
-</li>
-<li><p>写法：<code>v-xxx</code>，</p>
-</li>
-<li><p>例：<code>v-bind:href=&quot;xxxx&quot;</code>，xxxx 同样是 js 表达式，且可以直接读取到 data 中的所有属性 </p>
-</li>
-</ul>
-<h2 id="Vue-数据绑定"><a href="#Vue-数据绑定" class="headerlink" title="Vue 数据绑定"></a>Vue 数据绑定</h2><p>Vue 中数据绑定分为两种：</p>
-<ul>
-<li>单向数据绑定</li>
-<li>双向数据绑定</li>
-</ul>
-<p>单向数据绑定：数据只能从 data 流向页面</p>
-<ul>
-<li><p>指令：<code>v-bind</code></p>
-</li>
-<li><p>说明：可以应用在所有元素上，可以简写为 <code>:</code></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 普通写法 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-bind:value</span>=<span class="string">"name"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 简写 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">:value</span>=<span class="string">"name"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<p>双向数据绑定：数据可以从 data 流向页面，也可以从页面流向 data</p>
-<ul>
-<li><p>指令：<code>v-model</code></p>
-</li>
-<li><p>说明：只能应用在表单类元素上，因为 v-model 操作的就是标签中 value 属性的值，可以简写为 <code>v-model</code></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 普通写法 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model:value</span>=<span class="string">"name"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 简写 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"name"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h2 id="Vue-事件"><a href="#Vue-事件" class="headerlink" title="Vue 事件"></a>Vue 事件</h2><p>事件使用 <code>v-on</code> 指令 + html 事件名称</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 普通写法 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">""</span>&gt;</span>点我弹窗<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 简写 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">""</span>&gt;</span>点我弹窗<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>几种常用的事件：</p>
-<ul>
-<li>click：点击事件</li>
-<li>keyup：键盘事件</li>
-</ul>
-<h2 id="Vue-计算属性"><a href="#Vue-计算属性" class="headerlink" title="Vue 计算属性"></a>Vue 计算属性</h2><p>通过已有的属性计算得出的新的属性，叫做计算属性</p>
-<p>定义计算属性：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el:<span class="string">'#app'</span>,</span><br><span class="line">    data:&#123;</span><br><span class="line">        firstName:<span class="string">'zhang'</span></span><br><span class="line">        lastName:<span class="string">'san'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    computed:&#123;</span><br><span class="line">        <span class="comment">// 计算属性的普通写法</span></span><br><span class="line">        fullName:&#123;</span><br><span class="line">            <span class="comment">// 通过get方法获取计算属性的值</span></span><br><span class="line">            <span class="keyword">get</span>()&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">'-'</span> + <span class="keyword">this</span>.lastName</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">// 修改fullName时会调用set方法，value就是修改后的fullName的值</span></span><br><span class="line">            <span class="keyword">set</span>(value)&#123;</span><br><span class="line">                <span class="keyword">this</span>.firstName = </span><br><span class="line">                <span class="keyword">this</span>.</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 如果确定计算属性只被读取，不会被修改，可以使用简写</span></span><br><span class="line">        fullName()&#123;</span><br><span class="line">    		<span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="keyword">this</span>.lastName</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
+          <p>Vue 是一套用于构建用户界面的渐进式 JavaScript 框架</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/10/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/VUE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -950,203 +1083,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/17/Java/3.SSM%E6%A1%86%E6%9E%B6/MyBatis-Plus/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="pikachu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pikachu's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/17/Java/3.SSM%E6%A1%86%E6%9E%B6/MyBatis-Plus/" class="post-title-link" itemprop="url">MyBatis-Plus</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-17 11:30:00" itemprop="dateCreated datePublished" datetime="2021-06-17T11:30:00+08:00">2021-06-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-21 11:29:25" itemprop="dateModified" datetime="2021-06-21T11:29:25+08:00">2021-06-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>MyBatis-Plus 旨在简化开发，基础的 CRUD 甚至不用写 SQL 语句。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/17/Java/3.SSM%E6%A1%86%E6%9E%B6/MyBatis-Plus/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/16/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/RabbitMQ/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="pikachu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pikachu's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/16/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/RabbitMQ/" class="post-title-link" itemprop="url">RabbitMQ</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-16 11:00:00" itemprop="dateCreated datePublished" datetime="2021-06-16T11:00:00+08:00">2021-06-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-12 17:30:36" itemprop="dateModified" datetime="2021-07-12T17:30:36+08:00">2021-07-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java-EE/" itemprop="url" rel="index">
-                    <span itemprop="name">Java EE</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <a id="more"></a>
-
-<h2 id="RabbitMQ-基础概念"><a href="#RabbitMQ-基础概念" class="headerlink" title="RabbitMQ 基础概念"></a>RabbitMQ 基础概念</h2><h2 id="在-Linux-中安装-RabbitMQ："><a href="#在-Linux-中安装-RabbitMQ：" class="headerlink" title="在 Linux 中安装 RabbitMQ："></a>在 Linux 中安装 RabbitMQ：</h2><ol>
-<li><p>下载 RabbitMQ 安装包（<code>rabbitmq-server-3.7.28-1.el7.noarch.rpm</code>）：<a href="https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.7.28" target="_blank" rel="noopener">https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.7.28</a></p>
-</li>
-<li><p>下载对应的 erlang 的安装包（<code>erlang-21.3.8.11-1.el7.x86_64.rpm</code>）：<a href="https://github.com/rabbitmq/erlang-rpm/releases/tag/v21.3.8.11" target="_blank" rel="noopener">https://github.com/rabbitmq/erlang-rpm/releases/tag/v21.3.8.11</a></p>
-</li>
-<li><p>安装 erlang：<code>rpm -ivh erlang-21.3.8.11-1.el7.x86_64.rpm</code></p>
-</li>
-<li><p>安装 RabbitMQ：<code>yum install -y rabbitmq-server-3.7.28-1.el7.noarch.rpm</code></p>
-</li>
-<li><p>开启 RabbitMQ 的 web 管理插件（可视化管理）：<code>rabbitmq-plugins enable rabbitmq_management</code></p>
-</li>
-<li><p>RabbitMQ 的示例配置文件位置在 <code>/usr/share/doc/rabbitmq-server-3.7.28/rabbitmq.config.example</code>，把它拷贝到 <code>/etc/rabbitmq</code> 目录下，并重命名为 <code>rabbitmq.config</code></p>
-</li>
-<li><p>启动 RabbitMQ：</p>
-<ul>
-<li>前台启动：<code>rabbitmq-server</code></li>
-<li>systemctl 启动：<code>systemctl start rabbitmq-server</code></li>
-</ul>
-</li>
-<li><p>新建用户：</p>
-<ul>
-<li>创建用户：pikachu，密码：pikapika ： <code>rabbitmqctl add_user pikachu pikapika</code></li>
-<li>设置 pikachu 为超级管理员：<code>rabbitmqctl set_user_tags pikachu administrator</code></li>
-<li>授权远程登录：<code>rabbitmqctl set_permissions -p / pikachu &quot;.&quot; &quot;.&quot; &quot;.*&quot;</code></li>
-<li>创建完成后，重启 RabbitMQ：<code>systemctl restart rabbitmq-server</code></li>
-</ul>
-</li>
-<li><p>在浏览器中访问 web 管理界面：默认端口为 15672（可能需要关闭 Linux 的防火墙才可以访问）</p>
-<blockquote>
-<p>因为我的 RabbitMQ 安装在了阿里云的服务器上，需要远程登录</p>
-<p>但是 guest 用户在 3.3 版本之后默认只能在本机登录（可以修改配置实现远程登录），但我这里就使用刚刚新建的用户登录了。</p>
-</blockquote>
-</li>
-<li><p>登录成功后，新增虚拟机：（虚拟机相当于数据库，一个虚拟机中可以有多个 quene）</p>
-<p><img src="/images/RabbitMQ/RabbitMQ%E6%96%B0%E5%A2%9E%E8%99%9A%E6%8B%9F%E6%9C%BA.jpg" alt="RabbitMQ新增虚拟机"></p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1195,7 +1131,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">92</span>
+          <span class="site-state-item-count">98</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1208,11 +1144,19 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">114</span>
+        <span class="site-state-item-count">116</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PikachuHL" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PikachuHL" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:faxiang.zhao@qq.com" title="E-Mail → mailto:faxiang.zhao@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
 
 
 
@@ -1245,6 +1189,9 @@
   <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
   </div>
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
 
 
 

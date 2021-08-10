@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="公司项目要用到 Oracle 数据库，学习一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle基础">
+<meta property="og:url" content="http://yoursite.com/2021/05/05/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/Oracle%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Pikachu&#39;s Blog">
+<meta property="og:description" content="公司项目要用到 Oracle 数据库，学习一下">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-05T14:25:28.000Z">
+<meta property="article:modified_time" content="2021-07-30T07:26:45.119Z">
+<meta property="article:author" content="pikachu">
+<meta property="article:tag" content="Oracle">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2021/05/05/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/Oracle%E5%9F%BA%E7%A1%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Oracle基础 | Pikachu's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pikachu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/05/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/Oracle%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pikachu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pikachu's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Oracle基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-05 22:25:28" itemprop="dateCreated datePublished" datetime="2021-05-05T22:25:28+08:00">2021-05-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-30 15:26:45" itemprop="dateModified" datetime="2021-07-30T15:26:45+08:00">2021-07-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>公司项目要用到 Oracle 数据库，学习一下</p>
+<a id="more"></a>
+
+
+
+<blockquote>
+<p>我使用的 Oracle 数据库版本：12c（12.2.0.1.0）</p>
+</blockquote>
+<p><strong>Oracle 数据库的特点：</strong></p>
+<ul>
+<li>支持大数据，多用户的事务处理</li>
+<li>遵守 SQL 标准</li>
+<li>实施安全性控制和完整性控制</li>
+<li>支持分布式数据库和分布式处理</li>
+<li>具有可移植性，可兼容性和可连接性</li>
+<li>全球化，跨平台的数据库</li>
+</ul>
+<p><strong>Oracle 数据库相关概念</strong></p>
+<ul>
+<li><p><strong>数据库：</strong>数据库相关的文件</p>
+</li>
+<li><p><strong>实例：</strong>内存中的一组进程和数据结构</p>
+<ul>
+<li>通过实例操作数据库</li>
+</ul>
+</li>
+<li><p><strong>表空间：</strong>硬盘中开辟的一块空间，用于存储用户的表</p>
+</li>
+<li><p><strong>表：</strong>存放数据</p>
+</li>
+<li><p><strong>用户：</strong>每个用户都有单独的表，可以给用户赋予相应的角色，从而使用户获得操作数据库的相关权限</p>
+</li>
+<li><p><strong>角色：</strong>一些权限的集合</p>
+<ul>
+<li>一般创建用户后会给用户赋予：resource，connect 两个角色，dba 角色看情况赋予。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>表空间，表和用户三者的关系：</strong></p>
+<p>用户 –&gt; 商户 </p>
+<p>表 –&gt; 商品</p>
+<p>表空间 –&gt; 仓库</p>
+<p>一个商户可以有多件商品，商户把商品放到仓库中，不同的商户可以把商品放到同一个仓库中。</p>
+</blockquote>
+<blockquote>
+<p><strong>sys 用户和 system 用户的区别：</strong></p>
+<p>sys 用户为 Oracle 数据库中权限最高的用户，具有 sysdba 角色，类似 Linux 中的 root 用户</p>
+<p>system 用户为 Oracle 数据库的默认用户，没有 sysdba 角色</p>
+<p><code>一般情况下，不要使用 sys 或 system 用户登录数据库。里面水很深，你把握不住啊！</code></p>
+</blockquote>
+<blockquote>
+<p><strong>dba 角色和 sysdba 角色的区别：</strong></p>
+<p>dba 角色具有操作<strong>数据库内容</strong>的所有权限，例如操作用户，操作角色，操作表等等</p>
+<p>sysdba 角色不仅拥有 dba 角色的所有权限，还可以对<strong>数据库</strong>进行开启，关闭等操作</p>
+</blockquote>
+<p><strong>Oracle 数据库常用数据类型：</strong></p>
+<ul>
+<li>字符型：<ul>
+<li><code>CHAR(10)</code>：定长字符串，如果长度不足 10，则会补空格</li>
+<li><code>VARCHAR2(10)</code>：变长字符串，以实际字符串长度为准，最大长度为 10</li>
+</ul>
+</li>
+<li>数值型<ul>
+<li><code>NUMBER(8)</code>：最大长度为 8 的整数</li>
+<li><code>NUMBER(8, 2)</code>：最大长度为 8 的浮点数，小数点后有两位</li>
+</ul>
+</li>
+<li>日期型<ul>
+<li><code>DATE</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Oracle 数据库中 SQL 语句的书写规则：</strong></p>
+<ul>
+<li>SQL 语句不区分大小写</li>
+<li>一般关键字大写，其余小写（为了提高可读性）</li>
+<li>子句一般位于独立行，便于编辑和阅读</li>
+</ul>
+<blockquote>
+<p>登录 Oracle 数据库时，用户名和密码大小写问题：</p>
+<p>Oracle 11g 之前，用户名密码<strong>不区分大小写</strong></p>
+<p>Oracle 11g 之后，用户名密码<strong>默认区分大小写</strong>，可以手动修改：</p>
+<p><code>alter system set sec_case_sensitive_logon=false</code> （需要 DBA 用户）</p>
+</blockquote>
+<blockquote>
+<p>如果忘记了 sys 用户的密码，应该如何更改：</p>
+<ol>
+<li>打开 cmd，输入 <code>sqlplus /nolog</code></li>
+<li>进入 SQLPLUS，输入 <code>conn /as sysdba</code></li>
+<li>显示 <code>已连接</code>，然后输入 <code>alter user sys identified by 123456</code> 修改密码</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>使用 PL/SQL Developer 连接 Oracle 12c（12.2.0） 的 PDB（数据库名为 <code>ORCLPDB</code>）：</strong></p>
+<ol>
+<li><p>修改 <code>Oracle安装目录\database\product\12.2.0\dbhome_1\network\admin\tnsnames.ora</code>  文件，在末尾添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ORCLPDB =</span><br><span class="line">	(DESCRIPTION =</span><br><span class="line">		(ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))</span><br><span class="line">		(CONNECT_DATA =</span><br><span class="line">		  (SERVER = DEDICATED)</span><br><span class="line">		  (SERVICE_NAME = orclpdb)</span><br><span class="line">		)</span><br><span class="line">	)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 sys 用户（密码：123456），以 sysdba 登录 PL/SQL Developer</p>
+</li>
+<li><p>打开 SQL 窗口，执行 <code>select con_id,name,open_mode from v$pdbs;</code> 查看 <code>ORCLPDB</code> 的 OPEN_MODE，如果不是 <code>READ WRITE</code> 状态，说明 <code>ORCLPDB</code> 未打开，需要手动开启。</p>
+<blockquote>
+<p>如果 ORCLPDB 未打开，登录的时候会报错：<code>ORA-01033: ORACLE正在初始化或关闭</code></p>
+</blockquote>
+</li>
+<li><p>执行 <code>alter pluggable database ORCLPDB open;</code> 开启 <code>ORCLPDB</code> 数据库</p>
+</li>
+<li><p>使用 system 用户连接 <code>ORCLPDB</code>，测试可以正常连接。</p>
+</li>
+</ol>
+<p><strong>添加 scott 用户：</strong></p>
+<blockquote>
+<p>从 Oracle 12 开始，Oracle 数据库中默认没有了 scott 用户，需要自己手动添加</p>
+</blockquote>
+<ol>
+<li>打开 <code>Oracle安装目录\database\product\12.2.0\dbhome_1\rdbms\admin</code> ，找到 <code>scott.sql</code></li>
+<li>在上面使用 system 登录的 ORCLPDB 中，直接执行 <code>scott.sql</code> 就 ok 了，会提示使用 scott 用户登录。</li>
+<li>使用 SCOTT 用户登录，密码为 TIGER（默认用户名密码都为<strong>大写</strong>）</li>
+</ol>
+</blockquote>
+<h2 id="Oracle-函数"><a href="#Oracle-函数" class="headerlink" title="Oracle 函数"></a>Oracle 函数</h2><blockquote>
+<p>函数可以出现在 SQL 语句的各个位置，最常见的是出现在查询列表中</p>
+</blockquote>
+<p><strong>单行函数：</strong>每次取一条记录，作为函数的参数，得到这条记录对应的单个结果</p>
+<p>单行函数可以对数据进行复杂的计算，也可以进行数据类型的转换，还可以对特殊数据进行处理</p>
+<p>单行函数可以分为以下几类：</p>
+<ul>
+<li><p>字符函数</p>
+<ul>
+<li><code>LOWER(c)</code>：把字符串转换为小写</li>
+<li><code>UPPER(c)</code>：把字符串转换为大写</li>
+<li><code>INITCAP(c)</code>：把字符串首字母大写，其余小写</li>
+<li><code>CONCAT(c1, c2)</code>：合并两个字符串，相当于 <code>c1 || c2</code></li>
+<li><code>SUBSTR(c1, n1 [,n2])</code>：从 c1 中第 n1 位置开始取 n2 个字符，如果不指定 n2 ，则去到 c1 最后</li>
+<li><code>LENGTH(c)</code>：获取字符串的长度</li>
+<li><code>INSTR(c1, c2)</code>：在 c1 中找 c2，找不到返回 0，找到则返回 c2 首次出现的位置（此时字符串从 <code>1</code> 开始索引）</li>
+<li><code>LPAD(c1, n [,c2])</code> / <code>RPAD(c1, n [,c2])</code>：在 c1 的左边 / 右边用 c2 填充，直到长度为 n 为止。c2 不写就填充空格</li>
+<li><code>TRIM(c)</code>：去除字符串两边的空字符串</li>
+<li><code>REPLACE(c1, c2 [,c3])</code>：把 c1 中的 c2 替换成 c3。如果不写 c3，则代表删除 c1 中的 c2</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>数字函数</p>
+<ul>
+<li><p><code>ROUND(x, n)</code>：将 x 四舍五入到 n 位小数</p>
+</li>
+<li><p><code>TRUNC(x, n)</code>：将 x 截断到 n 位小数</p>
+</li>
+<li><p><code>MOD(a, b)</code>：获得 a/b 的余数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ROUND(12.456, 2)	<span class="comment"># 12.46</span></span><br><span class="line">ROUND(12.456, 0)	<span class="comment"># 12    四舍五入到个位</span></span><br><span class="line">ROUND(12.456, -1)	<span class="comment"># 10    四舍五入到十位</span></span><br><span class="line"></span><br><span class="line">TRUNC(12.456, 2)	<span class="comment"># 12.45</span></span><br><span class="line">MOD(10, 3)			<span class="comment"># 1</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>日期函数</p>
+<blockquote>
+<p>两个日期相减，得到相差的天数</p>
+<p>两个日期不能相加，相乘，相除</p>
+<p>日期加 或 减一个数字（天），得到一个新的日期</p>
+</blockquote>
+<ul>
+<li><p><code>SYSDATE</code>：Oracle 数据库内置的日期函数，返回当前日期</p>
+</li>
+<li><p><code>MONTHS_BETWEEN(date1, date2)</code>：返回两日期相差多少个月</p>
+</li>
+<li><p><code>ADD_MONTHS(date, m)</code>：date 加 m 个月，得到新日期</p>
+</li>
+<li><p><code>NEXT_DAY(date, w)</code>：从 date 开始算，下周 w 的日期（w 为 <code>&#39;星期一&#39; ... &#39;星期日&#39;</code>）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- NEXT_DAY 日期函数示例</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">sysdate</span> 当前日期,</span><br><span class="line">	NEXT_DAY(<span class="keyword">sysdate</span>, <span class="string">'星期一'</span>) 下周星期一,</span><br><span class="line">	NEXT_DAY(<span class="keyword">sysdate</span>, <span class="string">'星期二'</span>) 下周星期二,</span><br><span class="line">	NEXT_DAY(<span class="keyword">sysdate</span>, <span class="string">'星期三'</span>) 下周星期三,</span><br><span class="line">	NEXT_DAY(<span class="keyword">sysdate</span>, <span class="string">'星期四'</span>) 下周星期四,</span><br><span class="line">	NEXT_DAY(<span class="keyword">sysdate</span>, <span class="string">'星期五'</span>) 下周星期五,</span><br><span class="line">	NEXT_DAY(<span class="keyword">sysdate</span>, <span class="string">'星期六'</span>) 下周星期六,</span><br><span class="line">	NEXT_DAY(<span class="keyword">sysdate</span>, <span class="string">'星期日'</span>) 下周星期日</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	emp;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><code>LAST_DAY(date)</code>：date 所在月的最后一天</p>
+</li>
+<li><p><code>ROUND(date [,c1])</code>：对 date 按照 c1 进行四舍五入（详见示例）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- ROUND 日期函数示例</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	<span class="keyword">SYSDATE</span> 当前日期,</span><br><span class="line">	<span class="keyword">ROUND</span>(<span class="keyword">SYSDATE</span>) 最近 <span class="number">0</span> 点日期,</span><br><span class="line">	<span class="keyword">ROUND</span>(<span class="keyword">SYSDATE</span>, <span class="string">'day'</span>) 最近星期日,</span><br><span class="line">	<span class="keyword">ROUND</span>(<span class="keyword">SYSDATE</span>, <span class="string">'month'</span>) 最近月初日期,</span><br><span class="line">	<span class="keyword">ROUND</span>(<span class="keyword">SYSDATE</span>, <span class="string">'q'</span>) 最近季初日期,</span><br><span class="line">	<span class="keyword">ROUND</span>(<span class="keyword">SYSDATE</span>, <span class="string">'year'</span>) 最近年初日期</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	emp;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>转换函数</p>
+<ul>
+<li><p><code>TO_CHAR(date, fmt)</code>：日期转换为字符串（按照 fmt 指定的格式转换）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">YYYY	<span class="comment"># 年</span></span><br><span class="line">MM		<span class="comment"># 月</span></span><br><span class="line">DD		<span class="comment"># 日</span></span><br><span class="line">DAY		<span class="comment"># 星期的全拼</span></span><br><span class="line">AM		<span class="comment"># 上午/下午</span></span><br><span class="line">HH24	<span class="comment"># 时（24小时制）</span></span><br><span class="line">HH12	<span class="comment"># 时（12小时制）</span></span><br><span class="line">MI		<span class="comment"># 分</span></span><br><span class="line">SS		<span class="comment"># 秒</span></span><br><span class="line"></span><br><span class="line">TO_CHAR(sysdate, <span class="string">'YYYY-MM-DD HH24:MI:SS'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>TO_CHAR(num, fmt)</code>：数字转换为字符串（按照 fmt 指定格式转换）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">9	<span class="comment"># 代表一个数字（有就显示，没有就不显示）</span></span><br><span class="line">0	<span class="comment"># 代表一个数字（有就显示，没有就显示0）</span></span><br><span class="line">$	<span class="comment"># 显示一个 $ 符号</span></span><br><span class="line">L	<span class="comment"># 显示一个本地货币符号（￥）</span></span><br><span class="line">.	<span class="comment"># 显示小数点</span></span><br><span class="line">,	<span class="comment"># 显示千位指示符</span></span><br><span class="line"></span><br><span class="line">TO_CHAR(666, <span class="string">'$999,999.00'</span>)		<span class="comment"># '$666.00'</span></span><br><span class="line">TO_CHAR(7, <span class="string">'000'</span>)				<span class="comment"># '007'</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><code>TO_NUMBER(c, fmt)</code>：字符串转换为数字（字符串格式必须和 fmt 指定格式一致）</p>
+</li>
+<li><p><code>TO_DATE(c, fmt)</code>：字符串转换为日期（字符串格式必须和 fmt 指定格式一致）</p>
+</li>
+</ul>
+<ul>
+<li><p>其他函数</p>
+<ul>
+<li><p><code>NVL(data, newData)</code>：如果 data 为 null，则返回 newData（data 和 newData 数据类型必须一致）</p>
+</li>
+<li><p><code>NVL2(data, newData1, newData2)</code>：如果 data 不为 null，则返回 newData1，如果为 null，则返回 newData2</p>
+</li>
+<li><p><code>NULLIF(data1, data2)</code>：如果 data1 与 data2 相同，则返回 null，如果不相同，则返回 data1</p>
+</li>
+<li><p><code>CASE</code> </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- case 函数，实现类似 switch-case 的功能</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	ename,</span><br><span class="line">	job,</span><br><span class="line">	sal,</span><br><span class="line">	<span class="keyword">case</span> job</span><br><span class="line">		<span class="keyword">when</span> <span class="string">'CLERK'</span> <span class="keyword">THEN</span></span><br><span class="line">			<span class="number">1.1</span> * sal</span><br><span class="line">		<span class="keyword">when</span> <span class="string">'MANAGER'</span> <span class="keyword">THEN</span></span><br><span class="line">			<span class="number">1.3</span> * SAL</span><br><span class="line">		<span class="keyword">WHEN</span> <span class="string">'SALESMAN'</span> <span class="keyword">THEN</span></span><br><span class="line">			<span class="number">1.5</span> * SAL</span><br><span class="line">		<span class="keyword">ELSE</span> SAL</span><br><span class="line">		<span class="keyword">END</span> <span class="keyword">AS</span> <span class="string">'new sal'</span></span><br><span class="line"><span class="keyword">FROM</span> EMP</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>DECODE</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- decode 函数，case 函数的语法简化版</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	ename,</span><br><span class="line">	job,</span><br><span class="line">	sal,</span><br><span class="line">	<span class="keyword">decode</span>(job,</span><br><span class="line">           <span class="string">'CLERK'</span>,</span><br><span class="line">           <span class="number">1.1</span> * sal,</span><br><span class="line">           <span class="string">'MANAGER'</span>,</span><br><span class="line">           <span class="number">1.3</span> * SAL,</span><br><span class="line">           <span class="string">'SALESMAN'</span>,</span><br><span class="line">           <span class="number">1.5</span> * SAL,</span><br><span class="line">           SAL) <span class="keyword">AS</span> <span class="string">'new sal'</span></span><br><span class="line"><span class="keyword">FROM</span> EMP</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>多行函数：</strong>一次把多条记录当做参数输入给函数，返回一个结果。多行函数在 Oracle 中又称组函数（就是 SQL 中的聚合函数）</p>
+<ul>
+<li><code>MAX()</code>：最大值</li>
+<li><code>MIN()</code>：最小值</li>
+<li><code>AVG()</code>：平均值</li>
+<li><code>SUM()</code>：求和</li>
+<li><code>COUNT()</code>：计数</li>
+</ul>
+<p>组函数一般和 <code>group by</code> 子句一起使用，也可以单独使用。</p>
+<p>组函数可以嵌套使用，最多只能嵌套两层。如果嵌套使用，则必须和 <code>group by</code> 子句一起使用</p>
+<h2 id="Oracle-事务"><a href="#Oracle-事务" class="headerlink" title="Oracle 事务"></a>Oracle 事务</h2><p>在执行 增删改 语句时，Oracle 默认不会自动提交事务，需要手动 <code>commit</code> 进行提交。</p>
+<p>Oracle 中可以设置保存点（savepoint）：</p>
+<ul>
+<li><p>设置保存点：<code>Savepoint A</code></p>
+</li>
+<li><p>删除保存点：<code>Release Savepoint A</code></p>
+</li>
+</ul>
+<p>回滚事务：</p>
+<ul>
+<li><p>回滚事务到保存点：<code>Rollback To A</code></p>
+</li>
+<li><p>回滚全部事务：<code>Rollback</code></p>
+</li>
+</ul>
+<h2 id="Oracle-数据库对象"><a href="#Oracle-数据库对象" class="headerlink" title="Oracle 数据库对象"></a>Oracle 数据库对象</h2><p>数据库对象：<strong>表</strong>，<strong>约束</strong>，<strong>视图</strong>，<strong>索引</strong>，<strong>同义词</strong></p>
+<p>数据库对象的命名规则：</p>
+<ul>
+<li>必须以字母开头</li>
+<li>可包括字母，数字和 <code>#</code> <code>_</code> <code>$</code></li>
+<li>不能使用 Oracle 的保留字</li>
+<li>同一用户下的对象不能重名，即使是不同的对象类型</li>
+</ul>
+<h3 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h3><h3 id="索引（INDEX）"><a href="#索引（INDEX）" class="headerlink" title="索引（INDEX）"></a>索引（INDEX）</h3><p>创建索引：</p>
+<ul>
+<li>自动创建索引：Oracle 数据库会自动为<strong>主键约束</strong>和<strong>唯一约束</strong>的字段创建索引</li>
+<li>手动创建索引：<code>CREATE INDEX ENAME_INDEX ON EMP(ENAME)</code></li>
+</ul>
+<p>删除索引：<code>DROP INDEX ENAME_INDEX</code></p>
+<blockquote>
+<p>什么样的字段需要创建索引？</p>
+<p>​    经常被用来作为查询条件的字段。</p>
+</blockquote>
+<h3 id="视图（VIEWS）"><a href="#视图（VIEWS）" class="headerlink" title="视图（VIEWS）"></a>视图（VIEWS）</h3><p>概念：视图是给一次查询的结果（一张表）命名，所以又称命名查询。视图其实就是一张虚表。视图中数据来源表称为视图的基表。</p>
+<p>作用：</p>
+<ul>
+<li>限制用户对基表数据的访问</li>
+<li>可以简化查询</li>
+<li>增加了数据的独立性</li>
+</ul>
+<p>新建视图：<code>CREATE OR REPLACE VIEW view_name AS &lt;查询语句&gt;</code></p>
+<p>删除视图：<code>DROP VIEW view_name</code> （删除视图不会影响基表的数据）</p>
+<p>使用视图：<code>SELECT * FROM view_name</code> （和表的使用一样）</p>
+<blockquote>
+<p>创建视图的目的就是为了查询数据，所以最好不要往视图中插入数据，因为视图只是一个存在于内存中的虚表，往视图中插入数据时实际上是往基表中插入了数据。</p>
+<p>创建只读的视图：<code>WITH READ ONLY</code></p>
+</blockquote>
+<p>行内视图：就是存在于 FROM 子句后面的子查询。</p>
+<blockquote>
+<p>TOP-N 分析法：</p>
+<p>如果想要查询工资最高的三个人和工资最低的四个人的全部信息：</p>
+<p>工资最高的三个人：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">rownum</span>, E.*</span><br><span class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">ORDER</span> <span class="keyword">BY</span> sal <span class="keyword">DESC</span>) E</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">rownum</span> &lt;= <span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p>工资最低的四个人：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">rownum</span>, E.*</span><br><span class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">ORDER</span> <span class="keyword">BY</span> sal <span class="keyword">ASC</span>) E</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">rownum</span> &lt;= <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>rownum：表中每条记录的行号，从插入数据后表中的行号就确定了，跟后续的对表的排序操作没有关系</p>
+</blockquote>
+</blockquote>
+<h3 id="同义词（SYNONYM）"><a href="#同义词（SYNONYM）" class="headerlink" title="同义词（SYNONYM）"></a>同义词（SYNONYM）</h3><p>概念：同义词就是数据库对象的一个别名，可以简化访问 其他用户的数据库对象</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 不使用同义词</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">sysdate</span> <span class="keyword">FROM</span> sys.dual;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 为 sys 用户的 dual 对象创建同义词</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">SYNONYM</span> dual1 <span class="keyword">FOR</span> sys.dual;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 使用同义词</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">sysdate</span> <span class="keyword">FROM</span> dual1;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="序列（SEQUENCE）"><a href="#序列（SEQUENCE）" class="headerlink" title="序列（SEQUENCE）"></a>序列（SEQUENCE）</h3><blockquote>
+<p>数据库表中一般使用什么作为主键？</p>
+<p>一般使用和业务数据无关的一个流水号来作为主键。</p>
+</blockquote>
+<p>概念：序列就是用来维护数据库表的主键数据的（等同于 MySQL 中的自增主键）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建序列</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SEQUENCE</span> seq_stu</span><br><span class="line"><span class="keyword">MINVALUE</span> <span class="number">1</span></span><br><span class="line">MAXVALUE <span class="number">999</span></span><br><span class="line"><span class="keyword">START</span> <span class="keyword">WITH</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">INCREMENT</span> <span class="keyword">BY</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 使用序列</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> student <span class="keyword">VALUES</span> (seq_stu, <span class="string">"zhangsan"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Oracle/" rel="tag"># Oracle</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/13/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E9%AB%98%E7%BA%A7/" rel="prev" title="MySQL高级">
+      <i class="fa fa-chevron-left"></i> MySQL高级
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/06/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/Oracle%E5%AF%BC%E5%85%A5dmp%E6%96%87%E4%BB%B6/" rel="next" title="Oracle导入dmp文件">
+      Oracle导入dmp文件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle-函数"><span class="nav-number">1.</span> <span class="nav-text">Oracle 函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle-事务"><span class="nav-number">2.</span> <span class="nav-text">Oracle 事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle-数据库对象"><span class="nav-number">3.</span> <span class="nav-text">Oracle 数据库对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#约束"><span class="nav-number">3.1.</span> <span class="nav-text">约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引（INDEX）"><span class="nav-number">3.2.</span> <span class="nav-text">索引（INDEX）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视图（VIEWS）"><span class="nav-number">3.3.</span> <span class="nav-text">视图（VIEWS）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同义词（SYNONYM）"><span class="nav-number">3.4.</span> <span class="nav-text">同义词（SYNONYM）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列（SEQUENCE）"><span class="nav-number">3.5.</span> <span class="nav-text">序列（SEQUENCE）</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">pikachu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PikachuHL" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PikachuHL" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:faxiang.zhao@qq.com" title="E-Mail → mailto:faxiang.zhao@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pikachu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

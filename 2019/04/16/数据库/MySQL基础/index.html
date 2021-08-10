@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="MySQL 数据库是最受欢迎的关系型数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL基础">
+<meta property="og:url" content="http://yoursite.com/2019/04/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Pikachu&#39;s Blog">
+<meta property="og:description" content="MySQL 数据库是最受欢迎的关系型数据库">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-16T01:25:28.000Z">
+<meta property="article:modified_time" content="2021-05-19T02:10:08.000Z">
+<meta property="article:author" content="pikachu">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/04/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E5%9F%BA%E7%A1%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>MySQL基础 | Pikachu's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pikachu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="pikachu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pikachu's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-16 09:25:28" itemprop="dateCreated datePublished" datetime="2019-04-16T09:25:28+08:00">2019-04-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-19 10:10:08" itemprop="dateModified" datetime="2021-05-19T10:10:08+08:00">2021-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>MySQL 数据库是最受欢迎的关系型数据库</p>
+<a id="more"></a>
+
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p><strong>DB</strong>（<strong>D</strong>ata<strong>B</strong>ase）：数据库</p>
+<ul>
+<li>通过一个个的表(table)来保存数据</li>
+</ul>
+<p><strong>DBMS</strong>（<strong>D</strong>ata<strong>B</strong>ase <strong>M</strong>anagement <strong>S</strong>ystem）：数据库管理系统</p>
+<ul>
+<li>用来管理数据库（一个 DBMS 下可以由多个 DB）</li>
+</ul>
+<blockquote>
+<p>通常我们所说的数据库包含了<strong>数据库</strong>和<strong>数据库管理系统</strong></p>
+</blockquote>
+<p><strong>RDBMS</strong>：关系型数据库管理系统 = 管理员（manager）+仓库（database）</p>
+<p><strong>database：</strong>N 个 table</p>
+<p><strong>table：</strong></p>
+<ul>
+<li>表结构：定义表的列名和列类型</li>
+<li>表记录：一行一行的记录</li>
+</ul>
+<h2 id="MySQL-数据库"><a href="#MySQL-数据库" class="headerlink" title="MySQL 数据库"></a>MySQL 数据库</h2><p><strong>简介:</strong></p>
+<p>​    MySQL 是一个数据库管理系统，现在属于 Oracle 公司，版本号5.5及以下不收费，以上收费。</p>
+<p><strong>安装 MySQL：</strong></p>
+<blockquote>
+<p>安装方式:命令行安装的方式</p>
+</blockquote>
+<ol>
+<li><p>把下载的压缩包解压到一个文件夹(<code>D:\develop\MySQL</code>)里面, 此时文件夹中没有<code>data目录</code>和<code>ini文件</code></p>
+</li>
+<li><p>在MySQL目录下新建 <code>my.ini</code> 文件, 并复制以下内容</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">#设置3306端</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">port</span> = <span class="number">3306</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 设置mysql的安装目录</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">basedir</span>=D:\develop\MySQL</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 设置mysql数据库的数据的存放目录</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">datadir</span>=D:\develop\MySQL\data</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">200</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 服务端使用的字符集默认为8比特编码的latin1字符集</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br><span class="line"> </span><br><span class="line"><span class="attr">sql_mode</span>=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line"> </span><br><span class="line"><span class="section">[mysql]</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line"> </span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置MySQL的环境变量</p>
+<ul>
+<li>在系统变量中新建:<ul>
+<li>变量名: <code>MySQL_HOME</code> </li>
+<li>变量值: <code>D:\develop\MySQL</code></li>
+</ul>
+</li>
+<li>在系统变量 –&gt; Path 中新建: <code>D:\develop\MySQL\bin</code></li>
+</ul>
+</li>
+<li><p>以管理员身份打开cmd</p>
+<ol>
+<li>cd 到 <code>D:\develop\MySQL\bin</code></li>
+<li>运行 <code>mysqld --install</code> , 提示 <code>Services successfully installed</code> 说明安装成功, 如果提示已存在, 先运行 <code>mysqld --remove</code>, 再运行 <code>mysqld --install</code></li>
+<li>运行 <code>mysqld --initialize</code>, 生成 <code>data</code> 目录</li>
+<li>运行 <code>net start mysql</code> 启动服务</li>
+</ol>
+</li>
+<li><p>修改MySQL密码</p>
+<ol>
+<li>运行 <code>net stop mysql</code> 停止服务</li>
+<li>运行 <code>mysqld --skip-grant-tables</code> 开启无密码的mysql</li>
+<li>以管理员身份打开另一个cmd窗口, 运行 <code>mysql -u root -p</code> 回车, 不用输入密码, 直接回车</li>
+<li>运行 <code>update mysql.user set authentication_string=password(&quot;root&quot;) where user=&quot;root&quot;;</code> 更新root账户的密码为root</li>
+<li>运行 <code>flush privileges;</code> 执行刷新权限</li>
+<li>运行 <code>quit;</code> 结束本次操作</li>
+</ol>
+</li>
+<li><p>在密码的情况下修改密码</p>
+<ol>
+<li>运行 <code>mysql -u root -p</code>, 输入密码 root, 进入mysql操作界面</li>
+<li>依次运行下面命令, 就把密码更新成了 123456<ol>
+<li><code>SET PASSWORD = PASSWORD(&#39;123456&#39;);</code></li>
+<li><code>ALTER USER &#39;root&#39;@&#39;localhost&#39; PASSWORD EXPIRE NEVER;</code></li>
+<li><code>flush privileges;</code></li>
+</ol>
+</li>
+<li>运行 <code>quit;</code> 退出, 大功告成!</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p><strong>安装过程中遇到的问题及解决方案:</strong></p>
+<p>运行 <code>mysqld --install</code> 时弹窗提示</p>
+<ul>
+<li>“无法启动此程序，因为计算机丢失<code>MSVCP120.dll</code>“;  </li>
+<li>“无法启动此程序，因为计算机丢失<code>MSVCR120.dll</code>“;</li>
+</ul>
+<p>解决方案:</p>
+<ul>
+<li>这种错误是由于未安装<code>vcredist</code>引起的（而且版本是 2013版，32位/64位）；</li>
+<li>从微软官网下载 <code>vcredist 2013</code>: <a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=40784" target="_blank" rel="noopener">https://www.microsoft.com/zh-CN/download/details.aspx?id=40784</a></li>
+<li>根据电脑选择 32 or 64 位进行安装</li>
+<li>然后重新运行<code>mysqld --install</code>，成功解决.</li>
+</ul>
+</blockquote>
+<p><strong>启动 MySQL 服务：</strong></p>
+<ol>
+<li>我的电脑(右键) –&gt; 管理 –&gt; 服务和应用程序 –&gt; 服务 –&gt; MySQL（右键启动）</li>
+<li>cmd –&gt; services.msc –&gt; 服务和应用程序 –&gt; 服务 –&gt; MySQL（右键启动）</li>
+<li>cmd(<strong>以管理员模式打开</strong>) –&gt; <code>net start mysql</code> 【关闭服务：<code>net stop mysql</code>】</li>
+<li></li>
+</ol>
+<p><strong>登录MySQL服务器：</strong></p>
+<ul>
+<li>（本地）cmd  –&gt; <u>mysql -uroot -proot</u></li>
+<li>（网络）cmd  –&gt; <u>mysql -uroot -proot <strong>-h192.168.137.4</strong> <strong>-P3306</strong></u></li>
+</ul>
+<p><strong>在cmd窗口退出mysql：</strong></p>
+<ul>
+<li><p>exit</p>
+</li>
+<li><p>quit</p>
+</li>
+</ul>
+<p>数据库的备份与还原：</p>
+<ul>
+<li>备份：<ul>
+<li>命令行形式：<code>mysqldump  -u用户名  -p密码  数据库名 &gt; 保存路径</code></li>
+</ul>
+</li>
+<li>还原：<ul>
+<li>登录数据库 –&gt; 创建数据库 –&gt; 使用数据库 –&gt; 执行文件：<code>source 文件路径</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="MySQL-的数据类型"><a href="#MySQL-的数据类型" class="headerlink" title="MySQL 的数据类型"></a>MySQL 的数据类型</h3><p>MySQL有以下几种数据类型：</p>
+<ul>
+<li>int：整型</li>
+<li>double：浮点型；例如 double(5,2) 表示数字最长5位，且必须有2位小数，最大值999.99</li>
+<li>decimal：浮点型；在表示钱的时候用该类型，不会出现精度缺失的问题</li>
+<li>char：固定长度字符串类型；char(255) 数据长度不足指定长度时会自动补足</li>
+<li>varchar：可变长度字符串类型；varchar(65535)</li>
+<li>text(clob)：字符串类型，text为MySQL的方言，clob为SQL语句的标准语法<ul>
+<li>很小 –&gt; tinytext</li>
+<li>小 –&gt; text</li>
+<li>中 –&gt; mediumtext</li>
+<li>大 –&gt; longtext</li>
+</ul>
+</li>
+<li>blob：字节类型<ul>
+<li>很小 –&gt; tinyblob</li>
+<li>小 –&gt; blob</li>
+<li>中 –&gt; mediumblob</li>
+<li>大 –&gt; longblob</li>
+</ul>
+</li>
+<li>date：日期类型；YYYY-MM-DD</li>
+<li>time：时间类型；hh:mm:ss</li>
+<li>timestamp：时间戳类型；既有日期，又有时间</li>
+</ul>
+<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p><strong>概念：</strong>如果一个包含多个步骤的业务操作，被事务管理，那么这些操作要么同时成功，要么同时失败</p>
+<p><strong>操作：</strong></p>
+<ul>
+<li>开启事务：<code>start transaction;</code></li>
+<li>回滚事务：<code>rollback;</code></li>
+<li>提交事务：<code>commit;</code></li>
+</ul>
+<p><strong>事务的提交方式：</strong></p>
+<ul>
+<li>自动提交：<ul>
+<li>执行一次 DML 语句就会自动提交一次事务</li>
+<li>MySQL 数据库中的事务是默认自动提交的</li>
+</ul>
+</li>
+<li>手动提交：<ul>
+<li>需要先开启事务，再 commit 手动提交事务</li>
+<li>Oracle 数据库中的事务是默认手动提交的</li>
+</ul>
+</li>
+<li>修改事务的提交方式：<ul>
+<li>查询事务的默认提交方式：<code>select @@autocommit;</code><ul>
+<li>0 –&gt; 手动提交 </li>
+<li>1 –&gt; 自动提交</li>
+</ul>
+</li>
+<li>修改事务的默认提交方式：<code>select @@autocommit = 0;</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>☆事务的四大特征☆</strong></p>
+<ul>
+<li>原子性（<strong>A</strong>tomicity）：事务是不可分割的最小操作单位，要么同时成功，要么同时失败。</li>
+<li>一致性（<strong>C</strong>onsistency）：事务操作前后，数据库的完整性没有被破坏。</li>
+<li>隔离性（<strong>I</strong>solation）：多个事务之间相互独立。</li>
+<li>持久性（<strong>D</strong>urability）：事务操作后，数据库会持久化的保存数据，即使是故障也会保存。</li>
+</ul>
+<p><strong>并发操作可能出现的问题</strong>：</p>
+<ol start="0">
+<li><p><strong>更新丢失</strong>：两个事务更新同一个数据，一个事务对数据的更新把另一个事务对数据的更新覆盖了。</p>
+</li>
+<li><p><strong>脏读</strong>：一个事务读取到另一个事务未提交的数据。</p>
+</li>
+<li><p><strong>不可重复读</strong>：一个事务中两次读取同一个数据得到不一样的结果。</p>
+</li>
+<li><p><strong>幻读</strong>：一个事务中执行了两次查询，第二次查询结果相比较第一次查询结果多了/少了数据。</p>
+</li>
+</ol>
+<p><strong>☆事务的隔离级别☆</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">隔离级别</th>
+<th align="center">脏读</th>
+<th align="center">不可重复读</th>
+<th align="center">幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">读未提交（Read Uncommitted）</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+</tr>
+<tr>
+<td align="center">读已提交（Read Committed）</td>
+<td align="center">×</td>
+<td align="center">√</td>
+<td align="center">√</td>
+</tr>
+<tr>
+<td align="center">可重复读（Repeatable Read）</td>
+<td align="center">×</td>
+<td align="center">×</td>
+<td align="center">√</td>
+</tr>
+<tr>
+<td align="center">串行化（Serializable）</td>
+<td align="center">×</td>
+<td align="center">×</td>
+<td align="center">×</td>
+</tr>
+</tbody></table>
+<p>隔离级别越高，越能保证数据的完整性和一致性，但是对并发性能的影响也越大。</p>
+<p>四种隔离级别都不会出现更新丢失。</p>
+<p>MySQL 默认的隔离级别为<strong>可重复读（Repeatable Read）</strong></p>
+<h3 id="三大范式"><a href="#三大范式" class="headerlink" title="三大范式"></a>三大范式</h3><p>数据库范式：设计关系型数据库时，需要遵循的规范要求</p>
+<blockquote>
+<p>目前关系数据库有六种范式：第一范式（1NF）、第二范式（2NF）、第三范式（3NF）、巴斯-科德范式（BCNF）、第四范式(4NF）和第五范式（5NF，又称完美范式）</p>
+</blockquote>
+<p>一般只要遵循前三个范式即可</p>
+<ul>
+<li>第一范式：数据库表的每一列都是不可分割的原子数据项</li>
+<li>第二范式：在1NF的基础上，非码属性必须完全依赖于候选码（在1NF基础上消除非主属性对主码的部分函数依赖）</li>
+<li>第三范式：在2NF基础上，任何非主属性不依赖于其它非主属性（在2NF基础上消除传递依赖）</li>
+</ul>
+<p>对三大范式的简单理解：</p>
+<ul>
+<li>第一范式：每一列都要不可分割，也就是一个字段只存储一项信息</li>
+<li>第二范式：在存在多个主键（联合主键）的情况下才会发生不符合第二范式的情况，比如存在两个主键，如果有一个属性只依赖于一个主键而不依赖于另一个，这就是不符合第二范式</li>
+<li>第三范式：一张表中所有的非主键属性只能依赖主键属性</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/04/15/Java/2.JavaWeb/Tomcat%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="prev" title="Tomcat服务器">
+      <i class="fa fa-chevron-left"></i> Tomcat服务器
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/04/16/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL/" rel="next" title="SQL">
+      SQL <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库"><span class="nav-number">1.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-数据库"><span class="nav-number">2.</span> <span class="nav-text">MySQL 数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL-的数据类型"><span class="nav-number">2.1.</span> <span class="nav-text">MySQL 的数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务"><span class="nav-number">2.2.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三大范式"><span class="nav-number">2.3.</span> <span class="nav-text">三大范式</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">pikachu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PikachuHL" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PikachuHL" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:faxiang.zhao@qq.com" title="E-Mail → mailto:faxiang.zhao@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pikachu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

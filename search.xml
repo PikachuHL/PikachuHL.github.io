@@ -1,6 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>NGINX</title>
+    <url>/2021/08/05/Java/%E5%BE%AE%E6%9C%8D%E5%8A%A1/NGINX/</url>
+    <content><![CDATA[<a id="more"></a>
+
+
+
+<h3 id="NGINX-简介"><a href="#NGINX-简介" class="headerlink" title="NGINX 简介"></a>NGINX 简介</h3><p>NGINX：engine x 的简写</p>
+<p>主要功能：</p>
+<ul>
+<li>负载均衡</li>
+<li>反向代理</li>
+<li>动静分离</li>
+</ul>
+<h3 id="Linux-中安装-NGINX"><a href="#Linux-中安装-NGINX" class="headerlink" title="Linux 中安装 NGINX"></a>Linux 中安装 NGINX</h3><ol>
+<li><p>下载 NGINX：<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">http://nginx.org/en/download.html</a></p>
+</li>
+<li><p>把下载的压缩包 <code>nginx-1.21.1.tar.gz</code> 放到 <code>/usr/local/</code> 目录下，然后解压</p>
+</li>
+<li><p>进到解压后的 <code>nginx-1.21.1</code> 目录中，执行命令 <code>./configure --prefix=/usr/local/nginx-1.21.1</code></p>
+</li>
+<li><p>执行 <code>make</code> 命令，然后执行 <code>nake install</code> 命令，就安装完成了</p>
+</li>
+</ol>
+<p>进入 <code>nginx-1.21.1/sbin</code> 目录，执行 <code>./nginx</code> 开启服务</p>
+<blockquote>
+<p>开启服务的时候遇到一个保存</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx: [alert] could not open error <span class="built_in">log</span> file: open() <span class="string">"/usr/local/nginx-1.21.1/logs/error.log"</span> failed (2: No such file or directory)</span><br></pre></td></tr></table></figure>
+
+<p>是因为在 <code>nginx-1.21.1</code> 目录下没有 <code>logs</code> 目录，新建一个就好了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir logs</span><br><span class="line">chmod 700 logs</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="NGINX-使用"><a href="#NGINX-使用" class="headerlink" title="NGINX 使用"></a>NGINX 使用</h3><p>基本命令：</p>
+<ul>
+<li><code>nginx</code>：开启服务</li>
+<li><code>nginx -s reload</code>：重新加载配置文件</li>
+<li><code>nginx -t</code>：检查配置文件是否有错误</li>
+<li><code>nginx -s reopen</code>：重启服务</li>
+<li><code>nginx -s quit</code>：停止服务</li>
+<li><code>nginx -s stop</code>：强制停止服务</li>
+</ul>
+<p>NGINX 配置文件：</p>
+<p>位于 <code>nginx-1.21.1/conf/nginx.conf</code></p>
+<p>使用 NGINX 主要就是修改配置文件中的各种配置，从而实现不同的功能</p>
+]]></content>
+      <categories>
+        <category>Java EE</category>
+      </categories>
+      <tags>
+        <tag>NGINX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java/1.Java基础/Java8_Stream</title>
+    <url>/2021/07/31/Java/1.Java%E5%9F%BA%E7%A1%80/Java8_Stream/</url>
+    <content><![CDATA[<h1 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h1><blockquote>
+<p>Stream 是 Java 8 提供的一种以函数式的方式处理集合的 API</p>
+<p>像 SQL 一样操作 Java 集合中的数据</p>
+</blockquote>
+<p>使用 Stream 的三个步骤：</p>
+<ol>
+<li>创建流</li>
+<li>中间操作</li>
+<li>终止操作</li>
+</ol>
+<blockquote>
+<p>如果没有终止操作，那么所有的中间操作都不会执行</p>
+</blockquote>
+<h2 id="创建流"><a href="#创建流" class="headerlink" title="创建流"></a>创建流</h2><p>三种创建流的方式：</p>
+<ol>
+<li>通过 Collection 接口提供的默认方法： <code>stream()</code> 或 <code>parallelStream()</code><ul>
+<li><code>Stream()</code>：创建串行流</li>
+<li><code>parallelStream()</code>：创建并行流</li>
+</ul>
+</li>
+<li>通过 Arrays 工具类提供的静态方法：<code>stream()</code></li>
+<li>通过 Stream 类中的静态方法 <code>of()</code></li>
+</ol>
+<h2 id="中间操作"><a href="#中间操作" class="headerlink" title="中间操作"></a>中间操作</h2><ol>
+<li><p>筛选和切片</p>
+<p><code>filter()</code>：过滤（接收一个 Lambda）</p>
+<p><code>distinct()</code>：去重</p>
+<p><code>limit()</code>：保留前几个元素</p>
+<p><code>skip()</code>：排除前几个元素</p>
+</li>
+<li><p>映射</p>
+<p><code>map()</code>：传入一个 Function，这个 Function 会作用于集合中所有的元素</p>
+<p><code>flatMap()</code>：如果一个 Function 返回的是一个流，flatMap 会把返回的所有流合并成一个流</p>
+<blockquote>
+<p>map 和 flatMap 的关系类似于 List 中的 add 和 addAll</p>
+</blockquote>
+</li>
+<li><p>排序</p>
+<p><code>sort()</code>：自然排序</p>
+<p><code>sort(Comparator)</code>：传入一个比较器实例，自定义排序方式</p>
+</li>
+</ol>
+<h2 id="终止操作"><a href="#终止操作" class="headerlink" title="终止操作"></a>终止操作</h2><p>查找与匹配：</p>
+<ul>
+<li><code>allMatch()</code>：是否匹配全部元素</li>
+<li><code>anyMatch()</code>：是否匹配任意元素</li>
+<li><code>noneMatch()</code>：是否没有元素匹配</li>
+<li><code>findFirst()</code>：返回第一个</li>
+<li><code>findAny()</code>：返回任意一个</li>
+</ul>
+<p>归约：</p>
+<ul>
+<li><code>reduce()</code>：按照一定的规则对 Stream 中的值进行操作，最终得到一个最终结果</li>
+</ul>
+<p>收集：</p>
+<ul>
+<li><code>collect()</code>：将流转换成集合（List / Set / Map）</li>
+</ul>
+<p><code>forEach()</code>：内部迭代，遍历集合</p>
+<p><code>count()</code>：统计集合中元素的数量</p>
+<p><code>max()</code></p>
+<p><code>min()</code></p>
+<h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; list = Arrays.asList(<span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">9</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取流</span></span><br><span class="line">Stream&lt;Integer&gt; stream = list.stream();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中间操作，会返回一个流</span></span><br><span class="line">Stream&lt;Integer&gt; distinct = stream</span><br><span class="line">        .filter(x -&gt; x &gt; <span class="number">0</span>)  <span class="comment">// 使用lambda表达式过滤</span></span><br><span class="line">        .limit(<span class="number">3</span>)            <span class="comment">// 取前三个</span></span><br><span class="line">        .skip(<span class="number">1</span>)             <span class="comment">// 跳过第一个</span></span><br><span class="line">        .distinct();         <span class="comment">// 去重</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 终止操作</span></span><br><span class="line">distinct.forEach(System.out::println);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上面三个步骤一般会写在一起</span></span><br><span class="line">list.stream()</span><br><span class="line">        .filter(x -&gt; x &gt; <span class="number">0</span>)</span><br><span class="line">        .limit(<span class="number">3</span>)</span><br><span class="line">        .skip(<span class="number">1</span>)</span><br><span class="line">        .distinct()</span><br><span class="line">        .forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
     <title>jsoup</title>
     <url>/2021/07/22/Java/%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/jsoup/</url>
     <content><![CDATA[<p>jsoup 是 Java 中用来解析 HTML 的一个工具包</p>
@@ -25,7 +146,7 @@
   </entry>
   <entry>
     <title>SpringBoot前后端分离项目部署到云服务器</title>
-    <url>/2021/07/15/SpringBoot%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%AF%B9%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    <url>/2021/07/15/Java/SpringBoot%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
     <content><![CDATA[<p>第一次正式部署项目，把学习摸索的过程记录下来</p>
 <a id="more"></a>
 
@@ -46,12 +167,7 @@
 <p>关闭应用：<code>kill -9 进程号</code> （ <code>-</code> 后面就是数字 9）</p>
 </blockquote>
 <p>最后需要在阿里云的安全组中把项目运行的端口打开（就是在项目配置文件中配置的 <code>server.port</code>）</p>
-<h3 id="部署前端项目"><a href="#部署前端项目" class="headerlink" title="部署前端项目"></a>部署前端项目</h3><blockquote>
-<p>Vue 项目最好还是使用 Nginx 部署</p>
-<p>但是我现在还不会 Nginx，等我学会了就改成 Nginx 部署的方式</p>
-</blockquote>
-<p>使用 Tomcat 部署 Vue 应用：</p>
-<p>在打包 Vue 应用之前，需要对 Vue 应用做一些调整：</p>
+<h3 id="部署前端项目"><a href="#部署前端项目" class="headerlink" title="部署前端项目"></a>部署前端项目</h3><h4 id="1-使用-Tomcat-部署"><a href="#1-使用-Tomcat-部署" class="headerlink" title="1. 使用 Tomcat 部署"></a>1. 使用 Tomcat 部署</h4><p>在打包 Vue 应用之前，需要对 Vue 应用做一些调整：</p>
 <ol>
 <li><p>在 <code>src/router/index.js</code> 中，修改一处代码：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> router = createRouter(&#123;</span><br><span class="line">    history: createWebHistory(process.env.BASE_URL),</span><br><span class="line">    routes,</span><br><span class="line">    base: <span class="string">'/flash-note/'</span>   <span class="comment">//新加上这个，其他的都是原来有的</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -65,14 +181,48 @@
 <p>接下来在云服务器的 Tomcat 的 webapp 目录下新建一个 flash-note 文件夹（文件夹名需要和 index.js 中的 base 属性的值一样）</p>
 <p>然后把 dist 目录下的所有内容都拷贝到 Tomcat 中新建的 flash-note 文件夹</p>
 <p>重启 Tomcat，在浏览器中输入 <code>https://服务器ip:8080/flash-note</code> 就可以看到打开前端项目了（记得在安全组中开放 8080 端口）</p>
+<h4 id="2-使用-NGINX-部署"><a href="#2-使用-NGINX-部署" class="headerlink" title="2. 使用 NGINX 部署"></a>2. 使用 NGINX 部署</h4><ol>
+<li><p>在项目的根目录创建 <code>vue.config.js</code> 文件，其中添加代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    publicPath: process.env.NODE_ENV === <span class="string">"production"</span> ? <span class="string">"./"</span> : <span class="string">"/"</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 <code>yarn build</code> 打包项目，然后把打包生成的 dist 文件夹中的内容拷贝到服务器中（我放在了 <code>/home/flash-note/</code> 目录下）</p>
+</li>
+<li><p>打开 NGINX 的配置文件，修改 server 的 location，然后重新加载配置文件即可</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">    root   /home/flash-note;</span><br><span class="line">    autoindex on;</span><br><span class="line">    index  index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在浏览器输入 <code>服务器ip</code> 就能访问到项目了</p>
+</li>
+</ol>
+<h3 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h3><blockquote>
+<p> 域名备案：如果域名解析的服务器是国内的，则必须备案；如果是国外的则可以不备案</p>
+</blockquote>
+<p>解析域名到自己的阿里云服务器（39.108.93.55）</p>
+<ol>
+<li><p>使用 Tomcat 部署应用，需要修改 server.xml 文件</p>
+<ul>
+<li><p>修改 <code>&lt;Connector port=&quot;80&quot;&gt;</code>，prot 默认是 8080，这里修改为 80</p>
+</li>
+<li><p>修改 <code>&lt;Engine name=&quot;Catalina&quot; defaultHost=&quot;www.flashnote.top&quot;&gt;</code>，defaultHost 改为自己的 <code>&lt;Host&gt;</code> 中配置的 name</p>
+</li>
+<li><p>配置 Host        </p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">name</span>=<span class="string">"www.flashnote.top"</span> <span class="attr">appBase</span>=<span class="string">"webapps"</span> <span class="attr">unpackWARs</span>=<span class="string">"true"</span> <span class="attr">autoDeploy</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"flash-note"</span> <span class="attr">path</span>=<span class="string">""</span> <span class="attr">reloadable</span>=<span class="string">"true"</span> &gt;</span><span class="tag">&lt;/<span class="name">Context</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>使用 NGINX 部署应用，什么都不用修改</p>
+</li>
+</ol>
+<blockquote>
+<p>遇到的问题：tomcat server.xml 中改了 port=80 之后还是不生效，检查发现是阿里云中 80 端口被占用了，需要先解除 80 端口的占用：<code>sudo fuser -k 80/tcp</code></p>
+</blockquote>
 ]]></content>
       <categories>
         <category>Java EE</category>
       </categories>
       <tags>
+        <tag>Vue</tag>
         <tag>项目部署</tag>
         <tag>SpringBoot</tag>
-        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -110,15 +260,13 @@
   </entry>
   <entry>
     <title>Vue</title>
-    <url>/2021/07/10/VUE/</url>
-    <content><![CDATA[<a id="more"></a>
+    <url>/2021/07/10/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/VUE/</url>
+    <content><![CDATA[<p>Vue 是一套用于构建用户界面的渐进式 JavaScript 框架</p>
+<a id="more"></a>
 
 
 
-<h2 id="Vue-基本概念"><a href="#Vue-基本概念" class="headerlink" title="Vue 基本概念"></a>Vue 基本概念</h2><blockquote>
-<p>Vue 是一套用于构建用户界面的渐进式 JavaScript 框架</p>
-</blockquote>
-<p>Vue 基本特点：</p>
+<h2 id="Vue-基本概念"><a href="#Vue-基本概念" class="headerlink" title="Vue 基本概念"></a>Vue 基本概念</h2><p>Vue 基本特点：</p>
 <ul>
 <li>采用组件化模式，提高代码的复用率，且让代码更好维护。</li>
 <li>声明式编码，让开发人员无需操作 DOM，提高开发效率。</li>
@@ -710,8 +858,776 @@
       </tags>
   </entry>
   <entry>
+    <title>Oracle PL/SQL</title>
+    <url>/2021/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/Oracle%20PLSQL/</url>
+    <content><![CDATA[<p>PL/SQL 是 Oracle 自己的一种高级编程语言，可以独立编写程序</p>
+<a id="more"></a>
+
+
+
+<p>表类型，记录类型</p>
+<p>%Type。%Rowtype。嵌套块。</p>
+<p>PL/SQL 中使用 Oracle 中的函数（函数可以正常使用，但是使用组函数需要保证 select 只能返回一条记录）。</p>
+<p>PL/SQL 中的 SELECT 语句使用（只能返回一条记录，返回多条或零条都会报错）</p>
+<p>在 PL/SQL 中执行 DDL DML 语句，需要使用 execute Immediate</p>
+<h3 id="PL-SQL-基本概念："><a href="#PL-SQL-基本概念：" class="headerlink" title="PL/SQL 基本概念："></a>PL/SQL 基本概念：</h3><p>PL/SQL：Procedural Language / SQL</p>
+<p>PL/SQL 是 Oracle 数据库中对 SQL 的扩展，SQL 语言只能访问，操作数据库，PL/SQL 是一种高级编程语言，可以独立编写程序。</p>
+<p>PL/SQL 可以 使用所有的 SQL 数据操作，函数及运算符，支持 SQL 的全部数据类型。</p>
+<p><strong>PL/SQL 的优点：</strong></p>
+<ul>
+<li>可以把一组语句功能模块化</li>
+<li>可以使用过程性语言控制程序结构</li>
+<li>可以对程序中的错误捕获并处理</li>
+<li>集成在数据库，调用更快</li>
+<li>减少了网络交互，提高了程序性能</li>
+</ul>
+<p><strong>PL/SQL 提供的特性：</strong></p>
+<ul>
+<li>软件包</li>
+<li>触发器</li>
+<li>存储过程</li>
+<li>函数</li>
+<li>异常处理</li>
+</ul>
+<h3 id="PL-SQL-程序基本结构"><a href="#PL-SQL-程序基本结构" class="headerlink" title="PL/SQL 程序基本结构"></a>PL/SQL 程序基本结构</h3><p>PL/SQL 是块结构语言，其程序包括以下三个部分：</p>
+<ol>
+<li><strong>声明部分：</strong>以 <code>DECLARE</code> 关键字开头， 定义程序要使用的所有变量，游标，子程序和其它元素。为非必需部分</li>
+<li><strong>可执行命令部分：</strong>包含在 <code>BEGIN</code> 和 <code>END</code> 关键字之间，由可执行的 PL/SQL 语句组成，至少含有一个代码行，如果不执行任何操作，则只写一个 <code>NULL</code> 命令。为必需部分。</li>
+<li><strong>异常处理部分：</strong>以 <code>EXCEPTION</code> 关键字开头，由异常处理代码组成。非必需部分。</li>
+</ol>
+<blockquote>
+<p>每个 PL/SQL 语句以 <code>;</code> 结尾</p>
+</blockquote>
+<p><strong>注释：</strong></p>
+<ul>
+<li>单行注释：<code>--</code></li>
+<li>多行注释：<code>/* */</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- PL&#x2F;SQL demo</span><br><span class="line">DECLARE</span><br><span class="line">    -- 在 declare 部分声明变量，常量等</span><br><span class="line">    v_name    VARCHAR2(10);</span><br><span class="line">    v_age    NUMBER;</span><br><span class="line">BEGIN</span><br><span class="line">    -- 在 begin 部分写 SQL 语句，可以使用在 declare 中声明的变量和常量</span><br><span class="line">    </span><br><span class="line">    -- 这个就是被 PL&#x2F;SQL 增强的 SQL 语句</span><br><span class="line">    -- INTO 代表把查询出来的结果赋值给 v_name</span><br><span class="line">    SELECT name INTO v_name FROM students WHERE id&#x3D;1;</span><br><span class="line">    SELECT age INTO v_age FROM students WHERE id&#x3D;1;</span><br><span class="line">    </span><br><span class="line">    -- 输出字符串，相当于 Java 中的 system.out.print()</span><br><span class="line">    DBMS_OUTPUT.put_line(&#39;name: &#39; || v_name || &#39;, age: &#39; || v_age);</span><br><span class="line"></span><br><span class="line">EXCEPTION</span><br><span class="line">    &#x2F;*</span><br><span class="line">    在 exception 部分捕获异常并处理异常</span><br><span class="line">    exception 部分不是必须的，可以没有</span><br><span class="line">    *&#x2F;</span><br><span class="line">-- PL&#x2F;SQL 代码块以 END 结尾，END 后面是要有分号的，上面几个关键字没有</span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="PL-SQL-数据类型"><a href="#PL-SQL-数据类型" class="headerlink" title="PL/SQL 数据类型"></a>PL/SQL 数据类型</h3><p><strong>基本类型：</strong>没有内部组件的单个值，如 <code>NUMBER</code>，<code>DATE</code>，<code>BOOLEAN</code>等</p>
+<ul>
+<li><p>数字类型：</p>
+<ul>
+<li><code>NUMBER(precision, scale)</code>：可以表示实数范围的数字</li>
+</ul>
+</li>
+<li><p>字符类型：</p>
+<ul>
+<li><code>CHAR(maximum_length)</code>：定长字符串，最大 32767 字节</li>
+<li><code>VERCHAR2(maximum_length)</code>：可变长字符串，最大 32767 字节</li>
+</ul>
+</li>
+<li><p>日期类型：</p>
+<ul>
+<li><code>DATE</code></li>
+</ul>
+</li>
+<li><p>布尔类型：（<code>BOOLEAN</code> 类型的变量不能用在 SQL 语句中）</p>
+<ul>
+<li><code>BOOLEAN</code>：有效值（<code>TRUE</code>, <code>FALSE</code>, <code>NULL</code>）</li>
+</ul>
+</li>
+</ul>
+<p><strong>大对象类型：</strong>Large OBject (LOB)</p>
+<ul>
+<li><code>BLOB</code>：存储二进制文件（视频，音频，图片等）</li>
+<li><code>CLOB</code>：存储大型字符数据（小说）</li>
+</ul>
+<p><strong>复合类型：</strong></p>
+<blockquote>
+<p>复合类型的变量内部可以包含多个组件，每个组件有自己单独的值，一个复合变量可以存放多个值（概念有点类似 Java 的集合）</p>
+</blockquote>
+<ul>
+<li><p><code>TABLES</code>：表类型，类似于 Java 中的数组，也像 Map。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DECLARE</span><br><span class="line"></span><br><span class="line">BEGIN</span><br><span class="line"></span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p><code>RECORDS</code>：记录类型，类似于 Java 中的类，把多个不同类型的变量封装在一块。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DECLARE</span><br><span class="line"></span><br><span class="line">BEGIN</span><br><span class="line"></span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+</ul>
+<h3 id="PL-SQL-变量"><a href="#PL-SQL-变量" class="headerlink" title="PL/SQL 变量"></a>PL/SQL 变量</h3><p>PL/SQL 的变量名：</p>
+<ul>
+<li>可以由 <code>字母</code>，<code>数字</code>，<code>$</code>，<code>_</code> 组成</li>
+<li>长度不超过 30 个字符</li>
+<li>默认情况不区分大小写</li>
+<li>不能使用 PL/SQL 的关键字</li>
+</ul>
+<p>声明变量：<code>variable_name [CONSTANT] datatype [NOT NULL] [:= | DEFAULT initial_value]</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- 变量声明是在 DECLARE 部分</span><br><span class="line">DECLARE</span><br><span class="line">    name varchar2(10);</span><br><span class="line">    age number;</span><br><span class="line">    on_the_job boolean default true;</span><br><span class="line">    salary number :&#x3D; 3000;</span><br><span class="line">BEGIN</span><br><span class="line">    name :&#x3D; &quot;jack&quot;</span><br><span class="line">    dbms_output.put_line( name || &quot; salary is: &quot; || salary)</span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="PL-SQL-运算符"><a href="#PL-SQL-运算符" class="headerlink" title="PL/SQL 运算符"></a>PL/SQL 运算符</h3><ul>
+<li><p>数学运算符：<code>+, -, *, /, **(乘方)</code></p>
+</li>
+<li><p>赋值运算符：<code>:=</code></p>
+</li>
+<li><p>比较运算符：</p>
+<ul>
+<li>大于小于：<code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code></li>
+<li>相等：<code>=</code></li>
+<li>不相等：<code>!=</code>，<code>~=</code>，<code>&lt;&gt;</code></li>
+</ul>
+</li>
+<li><p>连接运算符：<code>||</code></p>
+</li>
+<li><p>逻辑运算符：<code>and</code>, <code>or</code>, <code>not</code></p>
+</li>
+</ul>
+<h3 id="PL-SQL-分支"><a href="#PL-SQL-分支" class="headerlink" title="PL/SQL 分支"></a>PL/SQL 分支</h3><p>基本的使用方式和 Java 没有什么区别，只是关键字不一样：</p>
+<p>基本结构：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">IF 条件1 THEN</span><br><span class="line">    语句1;</span><br><span class="line">ELSIF 条件2 THEN</span><br><span class="line">    语句2;</span><br><span class="line">ELSE</span><br><span class="line">    语句3;</span><br><span class="line">END IF;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>实例演示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DECLARE</span><br><span class="line">    v_score number(2) :&#x3D; 99; </span><br><span class="line">BEGIN</span><br><span class="line">   IF v_score &gt; 90 THEN</span><br><span class="line">     dbms_output.put_line(&#39;优秀&#39;);</span><br><span class="line">   ELSIF 60 &lt; v_score and v_score &lt; 90 THEN</span><br><span class="line">     dbms_output.put_line(&#39;合格&#39;);</span><br><span class="line">   ELSE</span><br><span class="line">     dbms_output.put_line(&#39;不及格&#39;);</span><br><span class="line">   END IF;</span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="PL-SQL-循环"><a href="#PL-SQL-循环" class="headerlink" title="PL/SQL 循环"></a>PL/SQL 循环</h3><p>使用 <code>LOOP</code> 关键字来定义循环语句：</p>
+<p>有三种循环：</p>
+<ul>
+<li>简单 LOOP 循环</li>
+<li>WHILE 循环</li>
+<li>FOR 循环</li>
+</ul>
+<p>基本结构：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- 简单 LOOP 循环</span><br><span class="line">LOOP</span><br><span class="line">    循环体;</span><br><span class="line">    迭代条件;</span><br><span class="line">    EXIT WHEN 结束循环条件;</span><br><span class="line">END LOOP;</span><br><span class="line"></span><br><span class="line">-- WHILE 循环</span><br><span class="line">WHILE 进入循环条件 LOOP</span><br><span class="line">	循环体;</span><br><span class="line">	迭代条件;</span><br><span class="line">END LOOP;</span><br><span class="line"></span><br><span class="line">-- FOR 循环</span><br><span class="line">-- 循环变量不需要提前定义</span><br><span class="line">-- 下限和上限都是整型数字</span><br><span class="line">FOR 循环变量 IN 下限..上限 LOOP</span><br><span class="line">	循环体;</span><br><span class="line">END LOOP;</span><br></pre></td></tr></table></figure>
+
+<p>实例演示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- 简单 LOOP 循环</span><br><span class="line">DECLARE</span><br><span class="line">  V_LOOP  NUMBER(2) :&#x3D; 0;</span><br><span class="line">BEGIN</span><br><span class="line">  LOOP</span><br><span class="line">    dbms_output.put_line(V_LOOP);</span><br><span class="line">    V_LOOP :&#x3D; V_LOOP + 1;</span><br><span class="line">    EXIT WHEN V_LOOP &gt; 10;</span><br><span class="line">  END LOOP;</span><br><span class="line">END;</span><br><span class="line"></span><br><span class="line">-- WHILE 循环</span><br><span class="line">DECLARE</span><br><span class="line">  V_LOOP  NUMBER(2) :&#x3D; 0;</span><br><span class="line">BEGIN</span><br><span class="line">  WHILE V_LOOP &lt; 10 LOOP</span><br><span class="line">    dbms_output.put_line(V_LOOP);</span><br><span class="line">    V_LOOP :&#x3D; V_LOOP + 1;</span><br><span class="line">  END LOOP;</span><br><span class="line">END;</span><br><span class="line">  </span><br><span class="line">-- FOR 循环</span><br><span class="line">-- 输出：1,2,3,4,5,6,7,8,9,10</span><br><span class="line">DECLARE</span><br><span class="line">  </span><br><span class="line">BEGIN</span><br><span class="line">  FOR V_LOOP IN 1 .. 10 LOOP</span><br><span class="line">    dbms_output.put_line(V_LOOP);</span><br><span class="line">  END LOOP;</span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="PL-SQL-程序单元"><a href="#PL-SQL-程序单元" class="headerlink" title="PL/SQL 程序单元"></a>PL/SQL 程序单元</h3><p>概念：数据库中命名的 PL/SQL 块</p>
+<p>主要有四种：</p>
+<blockquote>
+<p>普通的 PL/SQL 块，又叫<strong>匿名块</strong>，头部使用 <code>DECLARE</code></p>
+</blockquote>
+<ul>
+<li><p><strong>存储过程</strong>：没有返回值，主要用于执行动作</p>
+<p>头部使用：<code>CREATE OR REPLACE PROCEDURE name IS</code></p>
+</li>
+<li><p><strong>函数</strong>：有返回值，主要用于计算和返回值</p>
+<p>头部使用：<code>CREATE OR REPLACE FUNCTION name RETURN datatype IS</code></p>
+</li>
+<li><p><strong>包</strong>：将逻辑上相关的过程和函数组织在一起</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- 包头</span><br><span class="line">CREATE OR REPLACE PACKAGE p_name IS</span><br><span class="line">	函数声明;</span><br><span class="line">	过程声明;</span><br><span class="line">END p_name;</span><br><span class="line">-- 包体</span><br><span class="line">CREATE OR REPLACE PACKAGE BODY p_b_name IS</span><br><span class="line">	函数定义;</span><br><span class="line">	过程定义;</span><br><span class="line">END p_b_name;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>触发器</strong>：当出发某些事件时，执行相应的操作</p>
+<p><code>TRIGGER name BEFORE|AFTER IS</code></p>
+</li>
+</ul>
+<h4 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h4><p>创建存储过程：把 PL/SQL 块的 <code>DECLARE</code> 替换成 <code>CREATE OR REPLACE PROCEDURE P_NAME IS</code></p>
+<p>创建了存储过程，就相当于在 Java 中定义了方法，需要调用才能使方法生效：</p>
+<ul>
+<li><p>在命令行中调用：<code>EXEC p_name</code></p>
+</li>
+<li><p>在匿名块中调用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BEGIN</span><br><span class="line">	p_name;</span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>创建带参数的存储过程：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- 创建带参数的存储过程</span><br><span class="line">CREATE OR REPLACE PROCEDURE ADD_DEPT(P_DEPTNO NUMBER, P_DNAME VARCHAR2, P_LOC VARCHAR2) IS</span><br><span class="line">	-- 这里也可以定义变量</span><br><span class="line">BEGIN</span><br><span class="line">	INSERT INTO DEPT VALUES(P_DEPTNO, P_DNAME, P_LOC);</span><br><span class="line">	COMMIT;</span><br><span class="line">END;</span><br><span class="line"></span><br><span class="line">-- 调用带参数的存储过程，传参的时候有三种方式：</span><br><span class="line">DECLARE</span><br><span class="line">	V_DEPTNO    NUMBER(4)    :&#x3D; 50;</span><br><span class="line">	V_DNAME     VARCHAR2(20) :&#x3D; &#39;技术部&#39;;</span><br><span class="line">	V_LOC       VARCHAR2(30) :&#x3D; &#39;成都&#39;;</span><br><span class="line">BEGIN</span><br><span class="line">	-- 1.按照位置传参</span><br><span class="line">	ADD_DEPT(V_DEPTNO, V_DNAME, V_LOC);</span><br><span class="line">	</span><br><span class="line">	-- 2.按照名称传参，参数位置不受限制</span><br><span class="line">	ADD_DEPT(P_DEPTNO &#x3D;&gt; V_DEPTNO, P_LOC &#x3D;&gt; V_LOC, P_DNAME &#x3D;&gt; V_DNAME);</span><br><span class="line">	</span><br><span class="line">	-- 3.按照位置和名称混合传参，按位置的参数必须在指定的位置，按名称的参数位置随意</span><br><span class="line">	ADD_DEPT(V_DEPTNO, P_LOC &#x3D;&gt; V_LOC, P_DNAME &#x3D;&gt; V_DNAME)</span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>存储过程的参数除了有数据类型之外，还有一种特殊的类型：输入输出类型（<code>IN</code>, <code>OUT</code>, <code>IN OUT</code>）</p>
+<p><code>IN</code>：如果不写，默认就是 IN 类型，表示参数仅从外部传入存储过程</p>
+<p><code>OUT</code>：表示参数仅从存储过程返回给外部</p>
+<p><code>IN OUT</code>：表示参数既可以从外部传入存储过程，又可以返回给外部</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- 创建带有 IN OUT 参数类型的存储过程</span><br><span class="line">CREATE OR REPLACE PROCEDURE TEST_IN_OUT(P_IN IN VARCHAR2, P_OUT OUT VARCHAR2, P_IN_OUT IN OUT VARCHAR2) IS</span><br><span class="line"></span><br><span class="line">BEGIN</span><br><span class="line">	DBMS_OUTPUT.put_line(&#39;p_in: &#39; || P_IN);</span><br><span class="line">	DBMS_OUTPUT.put_line(&#39;p_out: &#39; || P_OUT);</span><br><span class="line">	DBMS_OUTPUT.put_line(&#39;p_in_out: &#39; || P_IN_OUT);</span><br><span class="line">	</span><br><span class="line">	P_IN :&#x3D; &#39;存储过程中设置的P_IN的值&#39;;</span><br><span class="line">	P_OUT :&#x3D; &#39;存储过程中设置的P_OUT的值&#39;;</span><br><span class="line">	P_IN_OUT :&#x3D; &#39;储过程中设置的P_IN_OUT的值&#39;;</span><br><span class="line">END;</span><br><span class="line"></span><br><span class="line">-- 调用存储过程</span><br><span class="line">DECLARE</span><br><span class="line">	V_IN      VARCHAR2(30) :&#x3D; &#39;外部设置的P_IN的值&#39;;</span><br><span class="line">	V_OUT     VARCHAR2(30) :&#x3D; &#39;外部设置的P_OUT的值&#39;;</span><br><span class="line">	V_IN_OUT  VARCHAR2(30) :&#x3D; &#39;外部设置的P_IN_OUT的值&#39;;</span><br><span class="line">BEGIN</span><br><span class="line">	TEST_IN_OUT(V_IN, V_OUT, V_IN_OUT);</span><br><span class="line">	</span><br><span class="line">	DBMS_OUTPUT.put_line(&#39;V_in: &#39; || V_IN);</span><br><span class="line">	DBMS_OUTPUT.put_line(&#39;V_out: &#39; || V_OUT);</span><br><span class="line">	DBMS_OUTPUT.put_line(&#39;V_in_out: &#39; || V_IN_OUT);</span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>创建函数：把 PL/SQL 块的 <code>DECLARE</code> 替换成 <code>CREATE OR REPLACE FUNCTION f_name RETURN datatype IS</code></p>
+<blockquote>
+<p>函数必须要有返回值</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- 定义一个函数</span><br><span class="line">CREATE OR REPLACE FUNCTION FULLNAME(P_FIRSTNAME VARCHAR2, P_LASTNAME VARCHAR2) RETURN VARCHAR2 IS</span><br><span class="line">	V_FULLNAME  VARCHAR2(50);</span><br><span class="line">BEGIN</span><br><span class="line">	V_FULLNAME &#x3D; P_FIRSTNAME || &#39;-&#39; || P_LASTNAME;</span><br><span class="line">	RETURN V_FULLNAME;</span><br><span class="line">END;</span><br><span class="line"></span><br><span class="line">-- 在匿名块中调用函数</span><br><span class="line">DECLARE</span><br><span class="line">	V_FIRSTNAME  VARCHAR2(20)  :&#x3D; &#39;ZHANG&#39;</span><br><span class="line">	V_LASTNAME   VARCHAR2(20)  :&#x3D; &#39;SAN&#39;</span><br><span class="line">	V_FULLNAME   VARCHAR2(50)</span><br><span class="line">BEGIN</span><br><span class="line">	V_FULLNAME :&#x3D; FULLNAME(V_FIRSTNAME, V_LASTNAME);</span><br><span class="line">	DBMS_OUTPUT.put_line(V_FULLNAEM)</span><br><span class="line">END;</span><br><span class="line"></span><br><span class="line">-- 在SQL语句中调用函数</span><br><span class="line">SELECT firstname, lastname, FULLNAME(firstname, lastname)</span><br><span class="line">FROM stu</span><br></pre></td></tr></table></figure>
+
+
+
+<p>函数使用的注意事项：</p>
+<ul>
+<li>函数最常用的地方就是 SQL 语句中</li>
+<li>函数中不可以有 DML 语句</li>
+<li>函数必须返回 Oracle 支持的数据类型，而不是 PL/SQL 支持的数据类型</li>
+<li>Oracle 中自带的函数可以在哪里使用，我们自己定义的函数就可以在哪里使用</li>
+</ul>
+<h4 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h4><p>概念：触发器是一个类似函数或者过程的命名 PL/SQL 块</p>
+<p>特点：在触发事件发生的前或后隐式的运行，不能接收参数</p>
+<p>触发事件：可以是对 DML 操作（INSERT，UPDATE，DELETE），也可以是系统事件（像数据库的启动与关闭等）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- 创建一个 DML 触发器，表示在向 EMP 表插入数据之前执行相关操作</span><br><span class="line">-- 触发时机有 BEFORE 和 AFTER</span><br><span class="line">CREATE OR REPLACE TRIGGER TR_NAME </span><br><span class="line">	BEFORE INSERT ON EMP</span><br><span class="line">BEGIN </span><br><span class="line">	-- 触发器执行的操作</span><br><span class="line">END;</span><br><span class="line"></span><br><span class="line">-- 触发事件可以有多个，表示更新或者删除 EMP 表的数据时执行相关操作</span><br><span class="line">CREATE OR REPLACE TRIGGER TR_NAME</span><br><span class="line">	BEFORE UPDATE OR DELETE ON EMP</span><br><span class="line">BEGIN</span><br><span class="line"></span><br><span class="line">END;</span><br><span class="line"></span><br><span class="line">------- 上面的触发器属于语句触发器，由相关语句触发 -----------</span><br><span class="line">------- 还有一种触发器是行级触发器，操作每行数据的时候都会执行触发器操作 -----------</span><br><span class="line">CREATE OR REPLACE TRIGGER TR_NAME </span><br><span class="line">	BEFORE INSERT OF SAL ON EMP</span><br><span class="line">	FOR EACH ROW</span><br><span class="line">BEGIN </span><br><span class="line">	-- 触发器执行的操作</span><br><span class="line">	-- 使用行级触发器的时候，使用 :NEW 获取新的数据，使用 :OLD 获取老的数据</span><br><span class="line">	-- 如 :NEW.JOB  :OLD.SAL </span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>注意：在触发器中不能使用事务</p>
+</blockquote>
+<h3 id="PL-SQL-游标"><a href="#PL-SQL-游标" class="headerlink" title="PL/SQL 游标"></a>PL/SQL 游标</h3><p>概念：在执行增删改查语句的时候，Oracle 都会开辟一块内存空间，用于暂时存放受 SQL 语句影响的数据，这块内存空间就被称为游标区域</p>
+<p>游标分为两类：</p>
+<ul>
+<li>隐式游标：增删改查语句都会自带隐式游标，隐式游标名称统一为 <code>SQL</code></li>
+<li>显式游标：为了 在 PL/SQL 中查询多条记录 而生</li>
+</ul>
+<p>游标的属性：（显式游标和隐式游标都有下面四个属性）</p>
+<ul>
+<li><code>%ROWCOUNT</code>：SQL 语句影响的行数</li>
+<li><code>%FOUND</code>：游标中是否有数据</li>
+<li><code>%NOTFOUND</code>：游标中是否没有数据</li>
+<li><code>%ISOPEN</code>：游标是否打开</li>
+</ul>
+<p>游标属性的使用：<code>游标名.属性</code></p>
+<blockquote>
+<p>游标在打开前和关闭后都不能使用</p>
+</blockquote>
+<p>显式游标：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DECLARE</span><br><span class="line">	-- 定义显式游标，游标天生就和一个有效的SELECT语句绑定</span><br><span class="line">	CURSOR CUR_EMP IS SELECT * FROM EMP;</span><br><span class="line">	-- 声明一个记录类型的变量，用于取出游标中的数据</span><br><span class="line">	V_REC_EMP EMP%ROWTYPE;</span><br><span class="line">BEGIN</span><br><span class="line">	-- 打开游标，会执行与游标绑定的SELECT语句，把查询出来的数据放到游标区域中</span><br><span class="line">	OPEN CUR_EMP;</span><br><span class="line">	-- 取出游标中的 一条 数据放到记录类型变量中</span><br><span class="line">	FETCH CUR_EMP INTO V_REC_EMP;</span><br><span class="line">	-- 从记录类型中取出数据进行使用</span><br><span class="line">	</span><br><span class="line">	-- 关闭游标</span><br><span class="line">	CLOSE CUR_EMP;</span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果要把游标区域中的数据全部取出来，需要游标搭配循环语句使用，分三种情况：</p>
+<ol>
+<li><p>LOOP 循环搭配 <code>%NOTFOUND</code> 属性使用</p>
+</li>
+<li><p>WHILE 循环搭配 <code>%FOUND</code> 属性使用</p>
+</li>
+<li><p>直接使用 FOR 循环，简单操作游标</p>
+<p>FOR 循环会自动声明记录类型变量，自动打开游标，自动取出数据放到变量中，自动关闭游标</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DECLARE</span><br><span class="line">	-- 定义游标</span><br><span class="line">	CURSOR CUR_EMP IS SELECT * FROM EMP;</span><br><span class="line">BEGIN</span><br><span class="line">	FOR V_REC_EMP IN CUR_EMP LOOP</span><br><span class="line">		-- 操作数据</span><br><span class="line">    END LOOP;</span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h3 id="PL-SQL-异常"><a href="#PL-SQL-异常" class="headerlink" title="PL/SQL 异常"></a>PL/SQL 异常</h3><p>PL/SQL 中的异常和 Java 中的异常概念和处理方式很相似，在 <code>BEGIN</code> 中出现的异常会在 <code>EXCEPTION</code> 中被捕获。</p>
+<p>如果异常不被捕获，会传递给调用者</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- PL&#x2F;SQL中处理异常的基本代码结构</span><br><span class="line">DECLARE</span><br><span class="line">	</span><br><span class="line">BEGIN</span><br><span class="line">	-- 可能出现异常的语句</span><br><span class="line">EXCEPTION</span><br><span class="line">	WHEN exception1 THEN</span><br><span class="line">		statement1;</span><br><span class="line">		statement2;</span><br><span class="line">	WHEN exception2 OR exception3 THEN</span><br><span class="line">		statement1;</span><br><span class="line">		statement1;</span><br><span class="line">	WHEN OTHERS THEN</span><br><span class="line">		statement1;</span><br><span class="line">		statement1;</span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>异常类型：</p>
+<ul>
+<li><p>预定义异常：</p>
+<ul>
+<li><code>NO_DATA_FOUND</code>：没有找到数据</li>
+<li><code>TOO_MANY_ROWS</code>：数据太多</li>
+<li><code>INVALID_CURSOR</code>：失效的游标</li>
+<li><code>ZERO_DIVID</code>：除零异常</li>
+<li><code>DUP_VAL_ON_INDEX</code>：向唯一索引列插入了重复数据</li>
+<li><code>VALUE_ERROR</code>：赋值异常</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>非预定义异常：</p>
+<p>如果代码违反了 Oracle 的规则，执行的时候会报错（错误代码 + 错误信息），这种报错 Oracle 并没有定义相应的异常类型，如果我们想要捕获这种错误信息，就需要我们自己去定义异常</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- 非预定义异常</span><br><span class="line">DECLARE</span><br><span class="line">	-- 自己定义一个异常，类型为EXCEPTION</span><br><span class="line">	E_MYEXCEPTION EXCEPTION;</span><br><span class="line">	-- 把异常和错误代码绑定</span><br><span class="line">	PRAGMA EXCEPTION_INIT(E_MYEXCEPTION, -02292);</span><br><span class="line">BEGIN</span><br><span class="line">	--产生相应异常的代码</span><br><span class="line">EXCEPTION</span><br><span class="line">	WHEN E_MYEXCEPTION THEN</span><br><span class="line">		DBMS_OUTPUT.PUT_LINE(&quot;出现了02292异常&quot;);</span><br><span class="line">	WHEN OTHERS THEN</span><br><span class="line">		DBMS_OUTPUT.PUT_LINE(&quot;出现了其他异常&quot;);</span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>用户自定义异常：</p>
+<p>当我们想要自己制定一些规则，代码违反规则的时候抛出异常，这种异常我们就需要自己定义</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DECLARE</span><br><span class="line">	-- 自己定义异常</span><br><span class="line">	E_MYEXCEPTION EXCEPTION;</span><br><span class="line">BEGIN</span><br><span class="line">	-- 产生异常的代码</span><br><span class="line">	</span><br><span class="line">	-- 提升自己的异常（其实就和Java中的抛出异常是一个道理）</span><br><span class="line">	RAISE E_MYEXCEPTION;</span><br><span class="line">EXCEPTION</span><br><span class="line">	WHEN E_MYEXCEPTION THEN</span><br><span class="line">		DBMS_OUTPUT.PUT_LINE(&quot;出现了自定义的E_MYEXCEPTION异常&quot;);</span><br><span class="line">	WHEN OTHERS THEN</span><br><span class="line">		DBMS_OUTPUT.PUT_LINE(&quot;出现了其他异常&quot;);</span><br><span class="line">END;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>对于可预见的异常，我们在 WHEN 后面使用特定的异常类型来捕获，但是对于不可预见的异常，我们就需要使用 <code>WHEN OTHERS THEN</code> 来捕获。</p>
+<blockquote>
+<p>对于非预期异常，通常处理方式是将异常信息写入数据库的错误日志表中</p>
+</blockquote>
+<p>为了更好的记录异常的日志，Oracle 提供了两个函数：</p>
+<ul>
+<li><code>SQLCODE</code>：错误代码，<code>NUMBER</code> 类型</li>
+<li><code>SQLERRM</code>：错误信息，<code>VARCHAR2</code> 类型</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>Oracle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在Linux上安装Oracle</title>
+    <url>/2021/05/08/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/Linux%E4%B8%8A%E5%AE%89%E8%A3%85Oracle/</url>
+    <content><![CDATA[<p>在 CentOS 上安装 Oracle 数据库的步骤</p>
+<a id="more"></a>
+
+<h2 id="在-Linux-上安装-Oracle"><a href="#在-Linux-上安装-Oracle" class="headerlink" title="在 Linux 上安装 Oracle"></a>在 Linux 上安装 Oracle</h2><blockquote>
+<p>Linux 版本：CentOS 7</p>
+<p>Oracle 版本：Oracle-XE-11.2.0</p>
+<p>Oracle 下载地址：<a href="https://www.oracle.com/database/technologies/xe-prior-releases.html" target="_blank" rel="noopener">https://www.oracle.com/database/technologies/xe-prior-releases.html</a></p>
+<p>参考安装步骤：<a href="https://docs.oracle.com/cd/E17781_01/install.112/e18802/toc.htm#XEINL102" target="_blank" rel="noopener">https://docs.oracle.com/cd/E17781_01/install.112/e18802/toc.htm#XEINL102</a></p>
+</blockquote>
+<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>打开下载页面，下载 for Linux 的 Oracle，如下图：</p>
+<p><img src="/images/Linux%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%E6%95%B0%E6%8D%AE%E5%BA%93/image-20210428145429061.png" alt="image-20210428145429061"></p>
+<p>下载下来的是一个压缩包 <code>oracle-xe-11.2.0-1.0.x86_64.rpm.zip</code>，解压后找到 <code>oracle-xe-11.2.0-1.0.x86_64.rpm</code> 文件，使用 Xftp 拷贝到 Linux 中</p>
+<blockquote>
+<p>使用压缩包中的 <code>xe.rsp</code> 文件，可以执行静默安装（本次安装采用的仍然是常规安装方式）</p>
+</blockquote>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol>
+<li><p>使用 root 用户登录到 Linux</p>
+</li>
+<li><p>使用 <code>rpm -ivh oracle-xe-11.2.0-1.0.x86_64.rpm</code> 安装 Oracle</p>
+<blockquote>
+<p>安装前要确保有足够的 swap 内存，swap 内存不足就无法安装 Oracle</p>
+</blockquote>
+</li>
+<li><p>安装过程中提示需要配置 Oracle 时，执行 <code>/etc/init.d/oracle-xe configure</code> 进行配置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 需要配置如下几项</span></span><br><span class="line"><span class="comment"># 前两项直接回车表示使用默认配置</span></span><br><span class="line">A valid HTTP port <span class="keyword">for</span> the Oracle Application Express (the default is 8080):</span><br><span class="line"></span><br><span class="line">A valid port <span class="keyword">for</span> the Oracle database listener (the default is 1521):</span><br><span class="line"></span><br><span class="line">A password <span class="keyword">for</span> the SYS and SYSTEM administrative user accounts:</span><br><span class="line"></span><br><span class="line">Confirm password <span class="keyword">for</span> SYS and SYSTEM administrative user accounts:</span><br><span class="line"></span><br><span class="line">Whether you want the database to start automatically when the computer starts (next reboot):</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置完成后会自动完成安装</p>
+</li>
+</ol>
+<h3 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h3><p>开启服务：<code>/etc/init.d/oracle-xe start</code></p>
+<p>关闭服务：<code>/etc/init.d/oracle-xe stop</code></p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><blockquote>
+<p>不需要手动配置，直接运行 Oracle 提供的文件就可以配置基本的环境变量</p>
+</blockquote>
+<ol>
+<li>cd 到 <code>/u01/app/oracle/product/11.2.0/xe/bin</code></li>
+<li><code>source oracle_env.sh</code></li>
+</ol>
+<p>上面两步可以为本次登录的当前 shell 设置环境变量，如果想要持久的修改环境变量，需要修改配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在下面两个文件最后添加：</span></span><br><span class="line"><span class="comment"># source /u01/app/oracle/product/11.2.0/xe/bin/oracle_env.sh</span></span><br><span class="line">/~/.bash_profile		<span class="comment"># 针对每次登录</span></span><br><span class="line">/~/.bashrc				<span class="comment"># 针对每个shell</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="远程连接"><a href="#远程连接" class="headerlink" title="远程连接"></a>远程连接</h3><p>默认情况下 Oracle 只支持本机连接，如果想要远程连接：</p>
+<ol>
+<li><p>先打开 SQL 命令行： sqlplus</p>
+</li>
+<li><p>然后使用 system 用户登录</p>
+</li>
+<li><p>登录成功后设置：<code>EXEC DBMS_XDB.SETLISTENERLOCALACCESS(FALSE);</code></p>
+</li>
+</ol>
+<p><img src="/images/Linux%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%E6%95%B0%E6%8D%AE%E5%BA%93/image-20210428153512136.png" alt="image-20210428153512136"></p>
+<blockquote>
+<p>Oracle的默认端口为1521，需要打开 Linux 防火墙的 1521 端口</p>
+</blockquote>
+<blockquote>
+<p><strong>远程连接时遇到的问题：</strong></p>
+<p>防火墙 1521 端口打开了，也设置 Oracle 支持远程连接了，但是远程 Navicat 中还是报连接超时的错误。</p>
+<p>解决：关闭 Linux 的防火墙，就可以连接成功了</p>
+<p>疑惑：第一次连接成功后，就算再把 Linux 的防火墙打开，还是可以连接成功，难道只有第一次连接需要关闭防火墙？？？</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>Oracle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Oracle导入dmp文件</title>
+    <url>/2021/05/06/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/Oracle%E5%AF%BC%E5%85%A5dmp%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<p>之前向Oracle 数据库中导入 dmp 文件的时候遇到了一些问题，在此记录一下</p>
+<a id="more"></a>
+
+<h2 id="Oracle-导入-dmp-文件"><a href="#Oracle-导入-dmp-文件" class="headerlink" title="Oracle 导入 dmp 文件"></a>Oracle 导入 dmp 文件</h2><blockquote>
+<p>dmp 文件：</p>
+</blockquote>
+<p>使用 sys 用户，登录 sql plus。</p>
+<ul>
+<li><p>用户名：sys</p>
+</li>
+<li><p>密码：<code>123456,orcl as sysdba</code>（密码后面加上口令，才能正常登录）</p>
+</li>
+</ul>
+<p>在 sql plus 界面执行下面操作：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 登录后默认在 CDB 中，需要手动切换到 PDB</span></span><br><span class="line">alter session <span class="built_in">set</span> container=orclpdb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建表空间</span></span><br><span class="line">CREATE TABLESPACE DATA DATAFILE <span class="string">'D:\develop\Oracle\database\oradata\orcl\orclpdb\DATA.DBF'</span> SIZE 500M AUTOEXTEND ON NEXT 5M MAXSIZE UNLIMITED;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建用户</span></span><br><span class="line">create user SCSP identified by 123456 default tbalespace DATA temporary tbalespace TEMP profile DEFAULT;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用户授权</span></span><br><span class="line">grant connect,resource,dba to scsp;</span><br><span class="line">grant sysdba to scsp;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在 cmd 中执行导入：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">imp scsp&#x2F;123456@127.0.0.1&#x2F;orclpdb file&#x3D;C:\Users\pikachu\Desktop\work\scsp.dmp full&#x3D;y;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p><strong>CDB 和 PDB：</strong></p>
+<blockquote>
+<p>CDB：Container DataBase（数据库容器）</p>
+<p>PDB：Pluggable DataBase（可插拔数据库）</p>
+</blockquote>
+<p>Oracle 12c 版本引入了 Multitenant Architecture（多租户体系结构），即一个 CDB 可以容纳多个 PDB。</p>
+<p>在 Oracle 12c 之前，一个数据库实例只能与一个数据库相关联，一个数据库可以被多个数据库实例加载。</p>
+<p>在 Oracle 12c 之后，一个数据库实例可以与多个数据库相关联，实例和数据库可以是一对多的关系。</p>
+<p><img src="/images/Oracle%E5%AF%BC%E5%85%A5dmp%E6%96%87%E4%BB%B6/GUID-3619FD1C-F8A0-40D2-B285-C2D0070519AD-default.png" alt="Description of Figure 17-7 follows"></p>
+</blockquote>
+<p><strong>CDB 和 PDB 相关操作：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">show pdbs				<span class="comment"># 查询 CDB 中所有的 PDB（需要在 CDB 模式下运行命令）</span></span><br><span class="line">show con_name			<span class="comment"># 查看当前模式</span></span><br><span class="line"></span><br><span class="line">alter session <span class="built_in">set</span> container=CDB<span class="variable">$ROOT</span>	<span class="comment"># 切换到 CDB</span></span><br><span class="line">alter session <span class="built_in">set</span> container=ORCLPDB		<span class="comment"># 切换到 PDB（数据库名为 ORCLPDB）</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>Oracle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Oracle基础</title>
+    <url>/2021/05/05/%E6%95%B0%E6%8D%AE%E5%BA%93/Oracle/Oracle%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<p>公司项目要用到 Oracle 数据库，学习一下</p>
+<a id="more"></a>
+
+
+
+<blockquote>
+<p>我使用的 Oracle 数据库版本：12c（12.2.0.1.0）</p>
+</blockquote>
+<p><strong>Oracle 数据库的特点：</strong></p>
+<ul>
+<li>支持大数据，多用户的事务处理</li>
+<li>遵守 SQL 标准</li>
+<li>实施安全性控制和完整性控制</li>
+<li>支持分布式数据库和分布式处理</li>
+<li>具有可移植性，可兼容性和可连接性</li>
+<li>全球化，跨平台的数据库</li>
+</ul>
+<p><strong>Oracle 数据库相关概念</strong></p>
+<ul>
+<li><p><strong>数据库：</strong>数据库相关的文件</p>
+</li>
+<li><p><strong>实例：</strong>内存中的一组进程和数据结构</p>
+<ul>
+<li>通过实例操作数据库</li>
+</ul>
+</li>
+<li><p><strong>表空间：</strong>硬盘中开辟的一块空间，用于存储用户的表</p>
+</li>
+<li><p><strong>表：</strong>存放数据</p>
+</li>
+<li><p><strong>用户：</strong>每个用户都有单独的表，可以给用户赋予相应的角色，从而使用户获得操作数据库的相关权限</p>
+</li>
+<li><p><strong>角色：</strong>一些权限的集合</p>
+<ul>
+<li>一般创建用户后会给用户赋予：resource，connect 两个角色，dba 角色看情况赋予。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>表空间，表和用户三者的关系：</strong></p>
+<p>用户 –&gt; 商户 </p>
+<p>表 –&gt; 商品</p>
+<p>表空间 –&gt; 仓库</p>
+<p>一个商户可以有多件商品，商户把商品放到仓库中，不同的商户可以把商品放到同一个仓库中。</p>
+</blockquote>
+<blockquote>
+<p><strong>sys 用户和 system 用户的区别：</strong></p>
+<p>sys 用户为 Oracle 数据库中权限最高的用户，具有 sysdba 角色，类似 Linux 中的 root 用户</p>
+<p>system 用户为 Oracle 数据库的默认用户，没有 sysdba 角色</p>
+<p><code>一般情况下，不要使用 sys 或 system 用户登录数据库。里面水很深，你把握不住啊！</code></p>
+</blockquote>
+<blockquote>
+<p><strong>dba 角色和 sysdba 角色的区别：</strong></p>
+<p>dba 角色具有操作<strong>数据库内容</strong>的所有权限，例如操作用户，操作角色，操作表等等</p>
+<p>sysdba 角色不仅拥有 dba 角色的所有权限，还可以对<strong>数据库</strong>进行开启，关闭等操作</p>
+</blockquote>
+<p><strong>Oracle 数据库常用数据类型：</strong></p>
+<ul>
+<li>字符型：<ul>
+<li><code>CHAR(10)</code>：定长字符串，如果长度不足 10，则会补空格</li>
+<li><code>VARCHAR2(10)</code>：变长字符串，以实际字符串长度为准，最大长度为 10</li>
+</ul>
+</li>
+<li>数值型<ul>
+<li><code>NUMBER(8)</code>：最大长度为 8 的整数</li>
+<li><code>NUMBER(8, 2)</code>：最大长度为 8 的浮点数，小数点后有两位</li>
+</ul>
+</li>
+<li>日期型<ul>
+<li><code>DATE</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Oracle 数据库中 SQL 语句的书写规则：</strong></p>
+<ul>
+<li>SQL 语句不区分大小写</li>
+<li>一般关键字大写，其余小写（为了提高可读性）</li>
+<li>子句一般位于独立行，便于编辑和阅读</li>
+</ul>
+<blockquote>
+<p>登录 Oracle 数据库时，用户名和密码大小写问题：</p>
+<p>Oracle 11g 之前，用户名密码<strong>不区分大小写</strong></p>
+<p>Oracle 11g 之后，用户名密码<strong>默认区分大小写</strong>，可以手动修改：</p>
+<p><code>alter system set sec_case_sensitive_logon=false</code> （需要 DBA 用户）</p>
+</blockquote>
+<blockquote>
+<p>如果忘记了 sys 用户的密码，应该如何更改：</p>
+<ol>
+<li>打开 cmd，输入 <code>sqlplus /nolog</code></li>
+<li>进入 SQLPLUS，输入 <code>conn /as sysdba</code></li>
+<li>显示 <code>已连接</code>，然后输入 <code>alter user sys identified by 123456</code> 修改密码</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>使用 PL/SQL Developer 连接 Oracle 12c（12.2.0） 的 PDB（数据库名为 <code>ORCLPDB</code>）：</strong></p>
+<ol>
+<li><p>修改 <code>Oracle安装目录\database\product\12.2.0\dbhome_1\network\admin\tnsnames.ora</code>  文件，在末尾添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ORCLPDB =</span><br><span class="line">	(DESCRIPTION =</span><br><span class="line">		(ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))</span><br><span class="line">		(CONNECT_DATA =</span><br><span class="line">		  (SERVER = DEDICATED)</span><br><span class="line">		  (SERVICE_NAME = orclpdb)</span><br><span class="line">		)</span><br><span class="line">	)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 sys 用户（密码：123456），以 sysdba 登录 PL/SQL Developer</p>
+</li>
+<li><p>打开 SQL 窗口，执行 <code>select con_id,name,open_mode from v$pdbs;</code> 查看 <code>ORCLPDB</code> 的 OPEN_MODE，如果不是 <code>READ WRITE</code> 状态，说明 <code>ORCLPDB</code> 未打开，需要手动开启。</p>
+<blockquote>
+<p>如果 ORCLPDB 未打开，登录的时候会报错：<code>ORA-01033: ORACLE正在初始化或关闭</code></p>
+</blockquote>
+</li>
+<li><p>执行 <code>alter pluggable database ORCLPDB open;</code> 开启 <code>ORCLPDB</code> 数据库</p>
+</li>
+<li><p>使用 system 用户连接 <code>ORCLPDB</code>，测试可以正常连接。</p>
+</li>
+</ol>
+<p><strong>添加 scott 用户：</strong></p>
+<blockquote>
+<p>从 Oracle 12 开始，Oracle 数据库中默认没有了 scott 用户，需要自己手动添加</p>
+</blockquote>
+<ol>
+<li>打开 <code>Oracle安装目录\database\product\12.2.0\dbhome_1\rdbms\admin</code> ，找到 <code>scott.sql</code></li>
+<li>在上面使用 system 登录的 ORCLPDB 中，直接执行 <code>scott.sql</code> 就 ok 了，会提示使用 scott 用户登录。</li>
+<li>使用 SCOTT 用户登录，密码为 TIGER（默认用户名密码都为<strong>大写</strong>）</li>
+</ol>
+</blockquote>
+<h2 id="Oracle-函数"><a href="#Oracle-函数" class="headerlink" title="Oracle 函数"></a>Oracle 函数</h2><blockquote>
+<p>函数可以出现在 SQL 语句的各个位置，最常见的是出现在查询列表中</p>
+</blockquote>
+<p><strong>单行函数：</strong>每次取一条记录，作为函数的参数，得到这条记录对应的单个结果</p>
+<p>单行函数可以对数据进行复杂的计算，也可以进行数据类型的转换，还可以对特殊数据进行处理</p>
+<p>单行函数可以分为以下几类：</p>
+<ul>
+<li><p>字符函数</p>
+<ul>
+<li><code>LOWER(c)</code>：把字符串转换为小写</li>
+<li><code>UPPER(c)</code>：把字符串转换为大写</li>
+<li><code>INITCAP(c)</code>：把字符串首字母大写，其余小写</li>
+<li><code>CONCAT(c1, c2)</code>：合并两个字符串，相当于 <code>c1 || c2</code></li>
+<li><code>SUBSTR(c1, n1 [,n2])</code>：从 c1 中第 n1 位置开始取 n2 个字符，如果不指定 n2 ，则去到 c1 最后</li>
+<li><code>LENGTH(c)</code>：获取字符串的长度</li>
+<li><code>INSTR(c1, c2)</code>：在 c1 中找 c2，找不到返回 0，找到则返回 c2 首次出现的位置（此时字符串从 <code>1</code> 开始索引）</li>
+<li><code>LPAD(c1, n [,c2])</code> / <code>RPAD(c1, n [,c2])</code>：在 c1 的左边 / 右边用 c2 填充，直到长度为 n 为止。c2 不写就填充空格</li>
+<li><code>TRIM(c)</code>：去除字符串两边的空字符串</li>
+<li><code>REPLACE(c1, c2 [,c3])</code>：把 c1 中的 c2 替换成 c3。如果不写 c3，则代表删除 c1 中的 c2</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>数字函数</p>
+<ul>
+<li><p><code>ROUND(x, n)</code>：将 x 四舍五入到 n 位小数</p>
+</li>
+<li><p><code>TRUNC(x, n)</code>：将 x 截断到 n 位小数</p>
+</li>
+<li><p><code>MOD(a, b)</code>：获得 a/b 的余数</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ROUND(12.456, 2)	<span class="comment"># 12.46</span></span><br><span class="line">ROUND(12.456, 0)	<span class="comment"># 12    四舍五入到个位</span></span><br><span class="line">ROUND(12.456, -1)	<span class="comment"># 10    四舍五入到十位</span></span><br><span class="line"></span><br><span class="line">TRUNC(12.456, 2)	<span class="comment"># 12.45</span></span><br><span class="line">MOD(10, 3)			<span class="comment"># 1</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>日期函数</p>
+<blockquote>
+<p>两个日期相减，得到相差的天数</p>
+<p>两个日期不能相加，相乘，相除</p>
+<p>日期加 或 减一个数字（天），得到一个新的日期</p>
+</blockquote>
+<ul>
+<li><p><code>SYSDATE</code>：Oracle 数据库内置的日期函数，返回当前日期</p>
+</li>
+<li><p><code>MONTHS_BETWEEN(date1, date2)</code>：返回两日期相差多少个月</p>
+</li>
+<li><p><code>ADD_MONTHS(date, m)</code>：date 加 m 个月，得到新日期</p>
+</li>
+<li><p><code>NEXT_DAY(date, w)</code>：从 date 开始算，下周 w 的日期（w 为 <code>&#39;星期一&#39; ... &#39;星期日&#39;</code>）</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- NEXT_DAY 日期函数示例</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="keyword">sysdate</span> 当前日期,</span><br><span class="line">	NEXT_DAY(<span class="keyword">sysdate</span>, <span class="string">'星期一'</span>) 下周星期一,</span><br><span class="line">	NEXT_DAY(<span class="keyword">sysdate</span>, <span class="string">'星期二'</span>) 下周星期二,</span><br><span class="line">	NEXT_DAY(<span class="keyword">sysdate</span>, <span class="string">'星期三'</span>) 下周星期三,</span><br><span class="line">	NEXT_DAY(<span class="keyword">sysdate</span>, <span class="string">'星期四'</span>) 下周星期四,</span><br><span class="line">	NEXT_DAY(<span class="keyword">sysdate</span>, <span class="string">'星期五'</span>) 下周星期五,</span><br><span class="line">	NEXT_DAY(<span class="keyword">sysdate</span>, <span class="string">'星期六'</span>) 下周星期六,</span><br><span class="line">	NEXT_DAY(<span class="keyword">sysdate</span>, <span class="string">'星期日'</span>) 下周星期日</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	emp;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><code>LAST_DAY(date)</code>：date 所在月的最后一天</p>
+</li>
+<li><p><code>ROUND(date [,c1])</code>：对 date 按照 c1 进行四舍五入（详见示例）</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- ROUND 日期函数示例</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	<span class="keyword">SYSDATE</span> 当前日期,</span><br><span class="line">	<span class="keyword">ROUND</span>(<span class="keyword">SYSDATE</span>) 最近 <span class="number">0</span> 点日期,</span><br><span class="line">	<span class="keyword">ROUND</span>(<span class="keyword">SYSDATE</span>, <span class="string">'day'</span>) 最近星期日,</span><br><span class="line">	<span class="keyword">ROUND</span>(<span class="keyword">SYSDATE</span>, <span class="string">'month'</span>) 最近月初日期,</span><br><span class="line">	<span class="keyword">ROUND</span>(<span class="keyword">SYSDATE</span>, <span class="string">'q'</span>) 最近季初日期,</span><br><span class="line">	<span class="keyword">ROUND</span>(<span class="keyword">SYSDATE</span>, <span class="string">'year'</span>) 最近年初日期</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	emp;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>转换函数</p>
+<ul>
+<li><p><code>TO_CHAR(date, fmt)</code>：日期转换为字符串（按照 fmt 指定的格式转换）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">YYYY	<span class="comment"># 年</span></span><br><span class="line">MM		<span class="comment"># 月</span></span><br><span class="line">DD		<span class="comment"># 日</span></span><br><span class="line">DAY		<span class="comment"># 星期的全拼</span></span><br><span class="line">AM		<span class="comment"># 上午/下午</span></span><br><span class="line">HH24	<span class="comment"># 时（24小时制）</span></span><br><span class="line">HH12	<span class="comment"># 时（12小时制）</span></span><br><span class="line">MI		<span class="comment"># 分</span></span><br><span class="line">SS		<span class="comment"># 秒</span></span><br><span class="line"></span><br><span class="line">TO_CHAR(sysdate, <span class="string">'YYYY-MM-DD HH24:MI:SS'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>TO_CHAR(num, fmt)</code>：数字转换为字符串（按照 fmt 指定格式转换）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">9	<span class="comment"># 代表一个数字（有就显示，没有就不显示）</span></span><br><span class="line">0	<span class="comment"># 代表一个数字（有就显示，没有就显示0）</span></span><br><span class="line">$	<span class="comment"># 显示一个 $ 符号</span></span><br><span class="line">L	<span class="comment"># 显示一个本地货币符号（￥）</span></span><br><span class="line">.	<span class="comment"># 显示小数点</span></span><br><span class="line">,	<span class="comment"># 显示千位指示符</span></span><br><span class="line"></span><br><span class="line">TO_CHAR(666, <span class="string">'$999,999.00'</span>)		<span class="comment"># '$666.00'</span></span><br><span class="line">TO_CHAR(7, <span class="string">'000'</span>)				<span class="comment"># '007'</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><code>TO_NUMBER(c, fmt)</code>：字符串转换为数字（字符串格式必须和 fmt 指定格式一致）</p>
+</li>
+<li><p><code>TO_DATE(c, fmt)</code>：字符串转换为日期（字符串格式必须和 fmt 指定格式一致）</p>
+</li>
+</ul>
+<ul>
+<li><p>其他函数</p>
+<ul>
+<li><p><code>NVL(data, newData)</code>：如果 data 为 null，则返回 newData（data 和 newData 数据类型必须一致）</p>
+</li>
+<li><p><code>NVL2(data, newData1, newData2)</code>：如果 data 不为 null，则返回 newData1，如果为 null，则返回 newData2</p>
+</li>
+<li><p><code>NULLIF(data1, data2)</code>：如果 data1 与 data2 相同，则返回 null，如果不相同，则返回 data1</p>
+</li>
+<li><p><code>CASE</code> </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- case 函数，实现类似 switch-case 的功能</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	ename,</span><br><span class="line">	job,</span><br><span class="line">	sal,</span><br><span class="line">	<span class="keyword">case</span> job</span><br><span class="line">		<span class="keyword">when</span> <span class="string">'CLERK'</span> <span class="keyword">THEN</span></span><br><span class="line">			<span class="number">1.1</span> * sal</span><br><span class="line">		<span class="keyword">when</span> <span class="string">'MANAGER'</span> <span class="keyword">THEN</span></span><br><span class="line">			<span class="number">1.3</span> * SAL</span><br><span class="line">		<span class="keyword">WHEN</span> <span class="string">'SALESMAN'</span> <span class="keyword">THEN</span></span><br><span class="line">			<span class="number">1.5</span> * SAL</span><br><span class="line">		<span class="keyword">ELSE</span> SAL</span><br><span class="line">		<span class="keyword">END</span> <span class="keyword">AS</span> <span class="string">'new sal'</span></span><br><span class="line"><span class="keyword">FROM</span> EMP</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>DECODE</code></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- decode 函数，case 函数的语法简化版</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	ename,</span><br><span class="line">	job,</span><br><span class="line">	sal,</span><br><span class="line">	<span class="keyword">decode</span>(job,</span><br><span class="line">           <span class="string">'CLERK'</span>,</span><br><span class="line">           <span class="number">1.1</span> * sal,</span><br><span class="line">           <span class="string">'MANAGER'</span>,</span><br><span class="line">           <span class="number">1.3</span> * SAL,</span><br><span class="line">           <span class="string">'SALESMAN'</span>,</span><br><span class="line">           <span class="number">1.5</span> * SAL,</span><br><span class="line">           SAL) <span class="keyword">AS</span> <span class="string">'new sal'</span></span><br><span class="line"><span class="keyword">FROM</span> EMP</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>多行函数：</strong>一次把多条记录当做参数输入给函数，返回一个结果。多行函数在 Oracle 中又称组函数（就是 SQL 中的聚合函数）</p>
+<ul>
+<li><code>MAX()</code>：最大值</li>
+<li><code>MIN()</code>：最小值</li>
+<li><code>AVG()</code>：平均值</li>
+<li><code>SUM()</code>：求和</li>
+<li><code>COUNT()</code>：计数</li>
+</ul>
+<p>组函数一般和 <code>group by</code> 子句一起使用，也可以单独使用。</p>
+<p>组函数可以嵌套使用，最多只能嵌套两层。如果嵌套使用，则必须和 <code>group by</code> 子句一起使用</p>
+<h2 id="Oracle-事务"><a href="#Oracle-事务" class="headerlink" title="Oracle 事务"></a>Oracle 事务</h2><p>在执行 增删改 语句时，Oracle 默认不会自动提交事务，需要手动 <code>commit</code> 进行提交。</p>
+<p>Oracle 中可以设置保存点（savepoint）：</p>
+<ul>
+<li><p>设置保存点：<code>Savepoint A</code></p>
+</li>
+<li><p>删除保存点：<code>Release Savepoint A</code></p>
+</li>
+</ul>
+<p>回滚事务：</p>
+<ul>
+<li><p>回滚事务到保存点：<code>Rollback To A</code></p>
+</li>
+<li><p>回滚全部事务：<code>Rollback</code></p>
+</li>
+</ul>
+<h2 id="Oracle-数据库对象"><a href="#Oracle-数据库对象" class="headerlink" title="Oracle 数据库对象"></a>Oracle 数据库对象</h2><p>数据库对象：<strong>表</strong>，<strong>约束</strong>，<strong>视图</strong>，<strong>索引</strong>，<strong>同义词</strong></p>
+<p>数据库对象的命名规则：</p>
+<ul>
+<li>必须以字母开头</li>
+<li>可包括字母，数字和 <code>#</code> <code>_</code> <code>$</code></li>
+<li>不能使用 Oracle 的保留字</li>
+<li>同一用户下的对象不能重名，即使是不同的对象类型</li>
+</ul>
+<h3 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h3><h3 id="索引（INDEX）"><a href="#索引（INDEX）" class="headerlink" title="索引（INDEX）"></a>索引（INDEX）</h3><p>创建索引：</p>
+<ul>
+<li>自动创建索引：Oracle 数据库会自动为<strong>主键约束</strong>和<strong>唯一约束</strong>的字段创建索引</li>
+<li>手动创建索引：<code>CREATE INDEX ENAME_INDEX ON EMP(ENAME)</code></li>
+</ul>
+<p>删除索引：<code>DROP INDEX ENAME_INDEX</code></p>
+<blockquote>
+<p>什么样的字段需要创建索引？</p>
+<p>​    经常被用来作为查询条件的字段。</p>
+</blockquote>
+<h3 id="视图（VIEWS）"><a href="#视图（VIEWS）" class="headerlink" title="视图（VIEWS）"></a>视图（VIEWS）</h3><p>概念：视图是给一次查询的结果（一张表）命名，所以又称命名查询。视图其实就是一张虚表。视图中数据来源表称为视图的基表。</p>
+<p>作用：</p>
+<ul>
+<li>限制用户对基表数据的访问</li>
+<li>可以简化查询</li>
+<li>增加了数据的独立性</li>
+</ul>
+<p>新建视图：<code>CREATE OR REPLACE VIEW view_name AS &lt;查询语句&gt;</code></p>
+<p>删除视图：<code>DROP VIEW view_name</code> （删除视图不会影响基表的数据）</p>
+<p>使用视图：<code>SELECT * FROM view_name</code> （和表的使用一样）</p>
+<blockquote>
+<p>创建视图的目的就是为了查询数据，所以最好不要往视图中插入数据，因为视图只是一个存在于内存中的虚表，往视图中插入数据时实际上是往基表中插入了数据。</p>
+<p>创建只读的视图：<code>WITH READ ONLY</code></p>
+</blockquote>
+<p>行内视图：就是存在于 FROM 子句后面的子查询。</p>
+<blockquote>
+<p>TOP-N 分析法：</p>
+<p>如果想要查询工资最高的三个人和工资最低的四个人的全部信息：</p>
+<p>工资最高的三个人：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">rownum</span>, E.*</span><br><span class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">ORDER</span> <span class="keyword">BY</span> sal <span class="keyword">DESC</span>) E</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">rownum</span> &lt;= <span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p>工资最低的四个人：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">rownum</span>, E.*</span><br><span class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">ORDER</span> <span class="keyword">BY</span> sal <span class="keyword">ASC</span>) E</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">rownum</span> &lt;= <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>rownum：表中每条记录的行号，从插入数据后表中的行号就确定了，跟后续的对表的排序操作没有关系</p>
+</blockquote>
+</blockquote>
+<h3 id="同义词（SYNONYM）"><a href="#同义词（SYNONYM）" class="headerlink" title="同义词（SYNONYM）"></a>同义词（SYNONYM）</h3><p>概念：同义词就是数据库对象的一个别名，可以简化访问 其他用户的数据库对象</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 不使用同义词</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">sysdate</span> <span class="keyword">FROM</span> sys.dual;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 为 sys 用户的 dual 对象创建同义词</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">SYNONYM</span> dual1 <span class="keyword">FOR</span> sys.dual;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 使用同义词</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">sysdate</span> <span class="keyword">FROM</span> dual1;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="序列（SEQUENCE）"><a href="#序列（SEQUENCE）" class="headerlink" title="序列（SEQUENCE）"></a>序列（SEQUENCE）</h3><blockquote>
+<p>数据库表中一般使用什么作为主键？</p>
+<p>一般使用和业务数据无关的一个流水号来作为主键。</p>
+</blockquote>
+<p>概念：序列就是用来维护数据库表的主键数据的（等同于 MySQL 中的自增主键）</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建序列</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SEQUENCE</span> seq_stu</span><br><span class="line"><span class="keyword">MINVALUE</span> <span class="number">1</span></span><br><span class="line">MAXVALUE <span class="number">999</span></span><br><span class="line"><span class="keyword">START</span> <span class="keyword">WITH</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">INCREMENT</span> <span class="keyword">BY</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 使用序列</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> student <span class="keyword">VALUES</span> (seq_stu, <span class="string">"zhangsan"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>Oracle</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL高级</title>
-    <url>/2021/04/13/Java/MySQL%E9%AB%98%E7%BA%A7/</url>
+    <url>/2021/04/13/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E9%AB%98%E7%BA%A7/</url>
     <content><![CDATA[<p>索引 、数据库优化、MySQL 锁机制</p>
 <a id="more"></a>
 
@@ -3564,40 +4480,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Typora + Hexo 图片相关设置</title>
-    <url>/2019/10/14/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/</url>
-    <content><![CDATA[<p>使用 Hexo 部署博客时，在 Typora 中添加图片的正确姿势</p>
-<a id="more"></a>
-
-
-
-<h3 id="需求"><a href="#需求" class="headerlink" title="需求:"></a>需求:</h3><ul>
-<li>在 Typora 中写笔记的时候能够方便的添加图片, 把需要添加的图片直接拖进去就可以, 而不需要手写图片路径</li>
-<li>直接拖到 Typora 里面的图片可以自动放到 <code>source/images</code> 文件夹中</li>
-<li>图片在 Typora 里面和 Hexo 渲染之后都可以正常的显示 (需要图片的路径适合两种情况)</li>
-</ul>
-<h3 id="设置"><a href="#设置" class="headerlink" title="设置:"></a>设置:</h3><ol>
-<li><p>在 Typora  <code>文件--&gt;偏好设置--&gt;图像</code>  设置如下: </p>
-<p>(直接拖入或者复制进Typora的图片会被复制到images文件夹下面的 以笔记文件名命名的文件夹中)</p>
-<p><img src="/images/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/image-20210322100052295.png" alt="image-20210322100052295"></p>
-</li>
-</ol>
-<ol start="2">
-<li><p>在 Typora <code>格式--&gt;图像--&gt;设置图片根目录</code> 中设置根目录为 <code>source</code> 目录</p>
-<p>设置了图片根目录之后, 在markdown笔记文件的头部信息中会出现 <code>typora-root-url</code></p>
-<p><img src="/images/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/image-20210322100713968.png" alt="image-20210322100713968"></p>
-</li>
-</ol>
-<p>经过以上两步设置之后就可以直接将图片放到markdown笔记中了</p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项:"></a>注意事项:</h3><ul>
-<li>一定要先设置 <code>图片根目录</code>, 再往笔记中添加图片, 否则图片路径会不正确, 在 Hexo 渲染后就无法显示</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Typora - Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>YAML</title>
     <url>/2019/10/14/YAML/</url>
     <content><![CDATA[<p>YAML 是Spring Boot 官方推荐的配置文件格式</p>
@@ -3716,8 +4598,42 @@
       </tags>
   </entry>
   <entry>
+    <title>Typora + Hexo 图片相关设置</title>
+    <url>/2019/10/14/%E5%85%B6%E5%AE%83%E7%AC%94%E8%AE%B0/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<p>使用 Hexo 部署博客时，在 Typora 中添加图片的正确姿势</p>
+<a id="more"></a>
+
+
+
+<h3 id="需求"><a href="#需求" class="headerlink" title="需求:"></a>需求:</h3><ul>
+<li>在 Typora 中写笔记的时候能够方便的添加图片, 把需要添加的图片直接拖进去就可以, 而不需要手写图片路径</li>
+<li>直接拖到 Typora 里面的图片可以自动放到 <code>source/images</code> 文件夹中</li>
+<li>图片在 Typora 里面和 Hexo 渲染之后都可以正常的显示 (需要图片的路径适合两种情况)</li>
+</ul>
+<h3 id="设置"><a href="#设置" class="headerlink" title="设置:"></a>设置:</h3><ol>
+<li><p>在 Typora  <code>文件--&gt;偏好设置--&gt;图像</code>  设置如下: </p>
+<p>(直接拖入或者复制进Typora的图片会被复制到images文件夹下面的 以笔记文件名命名的文件夹中)</p>
+<p><img src="/images/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/image-20210322100052295.png" alt="image-20210322100052295"></p>
+</li>
+</ol>
+<ol start="2">
+<li><p>在 Typora <code>格式--&gt;图像--&gt;设置图片根目录</code> 中设置根目录为 <code>source</code> 目录</p>
+<p>设置了图片根目录之后, 在markdown笔记文件的头部信息中会出现 <code>typora-root-url</code></p>
+<p><img src="/images/Typora+Hexo%20%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/image-20210322100713968.png" alt="image-20210322100713968"></p>
+</li>
+</ol>
+<p>经过以上两步设置之后就可以直接将图片放到markdown笔记中了</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项:"></a>注意事项:</h3><ul>
+<li>一定要先设置 <code>图片根目录</code>, 再往笔记中添加图片, 否则图片路径会不正确, 在 Hexo 渲染后就无法显示</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Typora - Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Thymeleaf</title>
-    <url>/2019/10/09/Thymeleaf/</url>
+    <url>/2019/10/09/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/Thymeleaf/</url>
     <content><![CDATA[<p>Thymeleaf 是 Spring Boot 官方推荐使用的模板引擎</p>
 <a id="more"></a>
 
@@ -4119,7 +5035,7 @@
     <content><![CDATA[<p>Java 集合是所有知识点中最重要的</p>
 <a id="more"></a>
 
-<h2 id="集合的基本继承结构"><a href="#集合的基本继承结构" class="headerlink" title="集合的基本继承结构"></a>集合的基本继承结构</h2><p><img src="../../../images/%E9%9B%86%E5%90%88/image-20210426210028013.png" alt="image-20210426210028013"></p>
+<h2 id="集合的基本继承结构"><a href="#集合的基本继承结构" class="headerlink" title="集合的基本继承结构"></a>集合的基本继承结构</h2><p><img src="images/%E9%9B%86%E5%90%88/image-20210426210028013.png" alt="image-20210426210028013"></p>
 <h2 id="Collection-常用方法"><a href="#Collection-常用方法" class="headerlink" title="Collection 常用方法"></a>Collection 常用方法</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Colection&lt;String&gt; c = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"></span><br><span class="line">c.add(<span class="string">"AA"</span>);  <span class="comment">// 向集合中添加元素</span></span><br><span class="line">c.add(<span class="string">"BB"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> size = c.size();  <span class="comment">// 集合的大小</span></span><br><span class="line">Boolean isContains = c.contains(<span class="string">"AA"</span>);  <span class="comment">// 判断集合中是否包含某个元素</span></span><br><span class="line">Boolean isEmpty = c.isEmpty();  <span class="comment">// 判断集合是否为空</span></span><br><span class="line">Object[] array = c.toArray();  <span class="comment">// 把集合转换为数组</span></span><br><span class="line">c.remove(<span class="string">"BB"</span>);  <span class="comment">// 从集合中移除元素</span></span><br><span class="line">c.clear();  <span class="comment">// 清空集合</span></span><br></pre></td></tr></table></figure>
 
 
@@ -4205,7 +5121,7 @@
 <li><p>实现 Comparable 接口</p>
 </li>
 <li><p>重写 CompareTo 方法（Comparable 接口中唯一的方法）</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Emp</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Emp</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> salary;</span><br><span class="line">       </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Emp o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.salary &lt; o.salary) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;			<span class="comment">// 返回负数表示小于</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.salary &gt; o.salary) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;			<span class="comment">// 返回正数表示大于</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;			<span class="comment">// 返回 0 表示等于（等于的时候还可以定义其他排序规则，比如根据id排序）</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Emp</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Emp</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> salary;</span><br><span class="line">          </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Emp o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.salary &lt; o.salary) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;			<span class="comment">// 返回负数表示小于</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.salary &gt; o.salary) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;			<span class="comment">// 返回正数表示大于</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;			<span class="comment">// 返回 0 表示等于（等于的时候还可以定义其他排序规则，比如根据id排序）</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 </li>
@@ -4885,7 +5801,7 @@
   </entry>
   <entry>
     <title>Redis</title>
-    <url>/2019/05/26/Java/Redis/</url>
+    <url>/2019/05/26/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis/</url>
     <content><![CDATA[<p>Redis 是一款典型的内存数据库</p>
 <a id="more"></a>
 
@@ -5881,15 +6797,17 @@
     <content><![CDATA[<p>C3P0 &amp; druid</p>
 <a id="more"></a>
 
-<h2 id="JDBC-数据库连接池"><a href="#JDBC-数据库连接池" class="headerlink" title="JDBC 数据库连接池"></a>JDBC 数据库连接池</h2><p>1、数据库连接池的<strong>概念</strong>：数据库连接池就是一个容器，里面存放的是数据库的连接对象</p>
-<p>2、JDBC 中提供的接口：DataSource</p>
+
+
+<p>数据库连接池的<strong>概念</strong>：数据库连接池就是一个容器，里面存放的是数据库的连接对象</p>
+<p>JDBC 中提供的接口：DataSource</p>
 <ul>
 <li>获取连接的方法：<code>getConnection()</code> </li>
 </ul>
 <blockquote>
 <p>如果连接是从连接池中获取，当连接对象调用 close() 方法时，并不是关闭连接，而是归还连接</p>
 </blockquote>
-<p>3、学习两种数据库连接池：</p>
+<p>学习两种数据库连接池：</p>
 <ul>
 <li>C3P0：一款比较老的数据库连接池（仅学习一下）</li>
 <li>druid：阿里巴巴出品的一款效率很高的、使用很广的数据库连接池（以后就用这个）</li>
@@ -6304,7 +7222,7 @@
 <li><code>nextXxx()</code>: 获取下一个输入项</li>
 </ul>
 <blockquote>
-<p>Scanner 的读取操作可能被<strong>阻塞</strong>，因为Scanner要等待信息的输入</p>
+<p>Scanner 的读取操作可能被<strong>阻塞</strong>，因为 Scanner 要等待信息的输入</p>
 </blockquote>
 <blockquote>
 <p><strong>匿名对象：</strong>没有对象名，只是使用 new 来创建对象。</p>
@@ -6385,18 +7303,18 @@
 <li><p>String 对象是不可变的，因为 String 类底层是使用 final 字符数组存放字符串</p>
 <p><code>private final char value[];</code></p>
 <blockquote>
-<p>JDK 8及之前使用的是字符数组，JDK 9之后使用的是字节数组</p>
+<p>JDK 8 及之前使用的是字符数组，JDK 9 之后使用的是字节数组</p>
 </blockquote>
 </li>
 </ul>
-<p>字符串的创建方式（1+3）：</p>
+<p>字符串的创建方式</p>
 <ul>
-<li><p>1种直接创建：</p>
+<li><p>直接创建：</p>
 <ul>
 <li><code>String str = “Hello”；</code></li>
 </ul>
 </li>
-<li><p>3种构造方法创建：</p>
+<li><p>构造方法创建：</p>
 <ul>
 <li><code>public String();</code> –&gt; 创建一个空的字符串</li>
 <li><code>public String(char[] array)</code> –&gt; 根据<strong>字符数组</strong>创建字符串</li>
@@ -7396,8 +8314,6 @@
     <content><![CDATA[<p>Java 数据库连接器</p>
 <a id="more"></a>
 
-
-
 <p>JDBC：Java DataBase Connectivity</p>
 <ul>
 <li>JDBC 是 Java 官方编写的一套接口，用于操作所有的关系型数据库</li>
@@ -7408,15 +8324,15 @@
 <p><strong>JDBC 中常用的接口及其方法</strong></p>
 <ul>
 <li>DriverManager<ul>
-<li><code>static void registerDriver(Driver driver)</code> –&gt; 注册驱动</li>
-<li><code>static Connection getConnection(String url, String user, String password)</code> –&gt; 获取 Connection 对象</li>
+<li><code>static void registerDriver(Driver driver)</code>：注册驱动</li>
+<li><code>static Connection getConnection(String url, String user, String password)</code>：获取 Connection 对象</li>
 </ul>
 </li>
 <li>Connection<ul>
-<li><code>Statement createStatement()</code> –&gt; 获取 Statement 对象</li>
-<li><code>PreparedStatement prepareStatement(String sql)</code> –&gt; 获取 PreparedStatement 对象</li>
+<li><code>Statement createStatement()</code>：获取 Statement 对象</li>
+<li><code>PreparedStatement prepareStatement(String sql)</code>：获取 PreparedStatement 对象</li>
 <li><strong>事务相关方法</strong><ul>
-<li>开启事务：<code>setAutoCommit(boolean autoCommit)</code> –&gt; 参数为 false，开启事务</li>
+<li>开启事务：<code>setAutoCommit(boolean autoCommit)</code>：参数为 false 时，开启事务</li>
 <li>回滚事务：<code>roolback()</code></li>
 <li>提交事务：<code>commit()</code></li>
 </ul>
@@ -7424,8 +8340,8 @@
 </ul>
 </li>
 <li>Statement<ul>
-<li><code>int executeUpdate(String sql)</code> –&gt; 执行 DML 和 DDL（基本不用）语句，返回被修改行数，可以通过返回值判断 DML 语句是否执行成功，返回值 &lt; 0,则表示执行失败</li>
-<li><code>ResultSet executeQuery(String sql)</code> –&gt; 执行 DQL 语句，返回 ResultSet</li>
+<li><code>int executeUpdate(String sql)</code>：执行 DML 和 DDL（基本不用）语句，返回被修改行数，可以通过返回值判断 DML 语句是否执行成功，返回值 &lt; 0,则表示执行失败</li>
+<li><code>ResultSet executeQuery(String sql)</code>：执行 DQL 语句，返回 ResultSet</li>
 </ul>
 </li>
 <li>PreparedStatement<ul>
@@ -7437,8 +8353,8 @@
 </ul>
 </li>
 <li>ResultSet<ul>
-<li><code>boolean next()</code> –&gt; 将<strong>行光标</strong>向下移动一行，并判断该行是否有数据，返回boolean</li>
-<li>getXxx(列编号/列名称) –&gt; 获取该行中某一列的属性值，Xxx为类型名称</li>
+<li><code>boolean next()</code>：将<strong>行光标</strong>向下移动一行，并判断该行是否有数据，返回boolean</li>
+<li><code>getXxx(列编号/列名称)</code>：获取该行中某一列的属性值，Xxx为类型名称</li>
 </ul>
 </li>
 </ul>
@@ -7447,11 +8363,11 @@
 <p>1、导 jar 包</p>
 <p>2、注册驱动</p>
 <ul>
-<li><p>使用<code>Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</code>注册驱动</p>
+<li><p>使用 <code>Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</code> 注册驱动</p>
 <ul>
 <li><p><strong>注册驱动底层原理：</strong></p>
 <p>使用反射加载 Driver 驱动类之后，自动调用 Driver 类的静态初始化块，</p>
-<p>其中调用了<code>DriverManager.registerDriver(Driver driver)</code>方法</p>
+<p>其中调用了 <code>DriverManager.registerDriver(Driver driver)</code> 方法</p>
 <p>这个方法为注册驱动的核心方法</p>
 </li>
 </ul>
@@ -7464,12 +8380,12 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);<span class="comment">// 加载驱动类</span></span><br><span class="line"></span><br><span class="line">String url = <span class="string">"jdbc:mysql://localhost:3306/exam"</span>;</span><br><span class="line">String username = <span class="string">"root"</span>;</span><br><span class="line">String password = <span class="string">"root"</span>;</span><br><span class="line"><span class="comment">// 得到连接对象</span></span><br><span class="line">Connection conn = DriverManager.getConnection(url,username,password);</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>如果是连接本机的MySQL，且端口为默认的3306，那么url可以简写为：<code>jdbc:mysql:///exam</code></p>
+<p>如果是连接本机的 MySQL，且端口为默认的 3306，那么 url 可以简写为：<code>jdbc:mysql:///exam</code></p>
 </blockquote>
 <p><strong>二、对数据库进行增、删、改</strong></p>
 <ol>
-<li>通过 Connection 对象创建 Statement（语句发送器，向数据库发送sql语句）</li>
-<li>调用 Statement 的 executeUpdate(String sql) ，可以发送 DDL、DML</li>
+<li>通过 Connection 对象创建 Statement（语句发送器，向数据库发送 sql 语句）</li>
+<li>调用 Statement 的 <code>executeUpdate(String sql)</code>，可以发送 DDL、DML</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 对数据进行增 删 改</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过 Connection 对象创建 Statement</span></span><br><span class="line">Statement stmt = conn.createStatement();</span><br><span class="line">String sql =  <span class="string">"create table jdbctable(name varchar(30), age int)"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用Statement的 executeUpdate(String sql),返回一个int，代表所修改的行数</span></span><br><span class="line"><span class="keyword">int</span> count = stmt.executeUpdate(sql);</span><br></pre></td></tr></table></figure>
 
@@ -7478,7 +8394,7 @@
 <p><strong>三、对数据进行查询操作</strong></p>
 <ol>
 <li>通过 Connection 对象创建 Statement</li>
-<li>调用 Statement 的 ResultSet rs = stmt.executeQuery(String querysql)，发送DQL</li>
+<li>调用 Statement 的 <code>ResultSet rs = stmt.executeQuery(String querysql)</code>，发送 DQL</li>
 <li>解析 ResultSet <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建 Statement </span></span><br><span class="line">Statement stmt = conn.createStatement();</span><br><span class="line"><span class="comment">// 调用 executeQuery()方法</span></span><br><span class="line">ResultSet rs = stmt.executeQuery(<span class="string">"select * from emp"</span>);</span><br><span class="line"><span class="comment">// 解析 ResultSet</span></span><br><span class="line"><span class="keyword">while</span>(rs.next())&#123; <span class="comment">// 将行光标移动到下一行，并判断下一行是否存在，返回boolean</span></span><br><span class="line">    <span class="keyword">int</span> empno = rs.getInt(<span class="number">1</span>);<span class="comment">// 通过编号来获取该列的值</span></span><br><span class="line">    String ename = rs.getString(<span class="string">"ename"</span>);<span class="comment">// 通过列名来获取该列的值</span></span><br><span class="line">    <span class="keyword">double</span> sal = rs.getDouble(<span class="string">"sal"</span>);</span><br><span class="line">    </span><br><span class="line">    System.out.println(empno + <span class="string">","</span> + ename +<span class="string">","</span> + sal);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">rs.close();</span><br><span class="line">stmt.close();</span><br><span class="line">conn.close();</span><br></pre></td></tr></table></figure>
 
 
@@ -7488,12 +8404,12 @@
 </ol>
 <h2 id="JDBC-中相关接口及类的介绍"><a href="#JDBC-中相关接口及类的介绍" class="headerlink" title="JDBC 中相关接口及类的介绍"></a>JDBC 中相关接口及类的介绍</h2><p><strong>ResultSet</strong><br>ResultSet 表示结果集，它是一个二维的表格，其内部有一个<strong>行光标</strong>    </p>
 <ul>
-<li><strong>previous()</strong> –&gt; 把光标向上移动一行</li>
-<li><strong>next()</strong> –&gt; 把光标向下移动一行</li>
-<li><strong>getRow()</strong> –&gt; 返回当前光标所在行<br>获取结果集<strong>元数据</strong>：</li>
-<li>得到元数据 <strong>rs.getMetaData()</strong> ,返回值为 <strong>ResultSetMetaData</strong></li>
-<li>获取结果集列数：<strong>getColumnCount()</strong></li>
-<li>获取指定列名：<strong>getColumnName(int index)</strong></li>
+<li><code>previous()</code> –&gt; 把光标向上移动一行</li>
+<li><code>next()</code> –&gt; 把光标向下移动一行</li>
+<li><code>getRow()</code> –&gt; 返回当前光标所在行<br>获取结果集<strong>元数据</strong>：</li>
+<li>得到元数据 <code>rs.getMetaData()</code> ,返回值为 <strong>ResultSetMetaData</strong></li>
+<li>获取结果集列数：<code>getColumnCount()</code></li>
+<li>获取指定列名：<code>getColumnName(int index)</code></li>
 </ul>
 <p><strong>preparedStatement</strong><br>PreparedStatement 是 Statement 接口的子接口<br>PreparedStatement 的<strong>优点</strong>：</p>
 <ul>
@@ -7542,7 +8458,7 @@
   </entry>
   <entry>
     <title>SQL</title>
-    <url>/2019/04/16/Java/SQL/</url>
+    <url>/2019/04/16/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL/</url>
     <content><![CDATA[<p>SQL 是关系型数据库的通用语言标准</p>
 <a id="more"></a>
 
@@ -7893,7 +8809,7 @@
   </entry>
   <entry>
     <title>MySQL基础</title>
-    <url>/2019/04/16/Java/MySQL%E5%9F%BA%E7%A1%80/</url>
+    <url>/2019/04/16/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<p>MySQL 数据库是最受欢迎的关系型数据库</p>
 <a id="more"></a>
 
@@ -9017,21 +9933,21 @@
   <entry>
     <title>CSS</title>
     <url>/2019/04/08/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/2.CSS/</url>
-    <content><![CDATA[<p>CSS 主要是给 HTML “美容”的</p>
+    <content><![CDATA[<p>CSS 主要是给 HTML “美容” 的</p>
 <a id="more"></a>
 
 
 
-<h3 id="一、CSS-的基本概念"><a href="#一、CSS-的基本概念" class="headerlink" title="一、CSS 的基本概念"></a>一、CSS 的基本概念</h3><p><strong>CSS</strong>（Cascading Style Sheets）：层叠样式表</p>
+<h3 id="CSS-的基本概念"><a href="#CSS-的基本概念" class="headerlink" title="CSS 的基本概念"></a>CSS 的基本概念</h3><p><strong>CSS</strong>（Cascading Style Sheets）：层叠样式表</p>
 <p><strong>作用：</strong>给 HTML 添加样式</p>
-<h3 id="二、CSS-的声明"><a href="#二、CSS-的声明" class="headerlink" title="二、CSS 的声明"></a>二、CSS 的声明</h3><ol>
-<li><p>在标签上使用 style 属性进行声明 (<em>内联样式</em>) – <u>不常用</u></p>
+<h3 id="CSS-的声明"><a href="#CSS-的声明" class="headerlink" title="CSS 的声明"></a>CSS 的声明</h3><ol>
+<li><p>在标签上使用 style 属性进行声明 （<em>内联样式</em>） – <u>不常用</u></p>
 <p>作用：此声明会将 css 样式直接作用于<strong>当前标签</strong></p>
 </li>
-<li><p>在 head 标签中使用 style 标签声明 (<em>内部样式</em>)</p>
+<li><p>在 head 标签中使用 style 标签声明 （<em>内部样式</em>）</p>
 <p>作用：此声明一般声明<strong>当前网页</strong>的公共样式</p>
 </li>
-<li><p>在 head 标签中使用 link 标签引入外部声明好的 css 文件 (<em>外部样式</em>)</p>
+<li><p>在 head 标签中使用 link 标签引入外部声明好的 css 文件 （<em>外部样式</em>）</p>
 <p>作用：此声明适用于<strong>不同网页</strong>间样式重复使用的问题</p>
 </li>
 </ol>
@@ -9040,7 +9956,7 @@
 <blockquote>
 <p>不同的声明给同一个标签操作了同一个样式，遵循就近原则进行显示</p>
 </blockquote>
-<h3 id="三、CSS-的选择器"><a href="#三、CSS-的选择器" class="headerlink" title="三、CSS 的选择器"></a>三、CSS 的选择器</h3><ol>
+<h3 id="CSS-的选择器"><a href="#CSS-的选择器" class="headerlink" title="CSS 的选择器"></a>CSS 的选择器</h3><ol>
 <li><p><strong>标签选择器</strong>：将当前网页内的所有该标签增加相同的样式</p>
 <p><code>标签名{样式名1:样式值1;......}</code></p>
 </li>
@@ -9204,8 +10120,7 @@
     <content><![CDATA[<p>HTML 是互联网的三大基石之一</p>
 <a id="more"></a>
 
-
-
+<p><img src="/images/1.HTML/HTML.jpg" alt="HTML"></p>
 <h2 id="HTML-的基本概念"><a href="#HTML-的基本概念" class="headerlink" title="HTML 的基本概念"></a>HTML 的基本概念</h2><p><strong>1、</strong>HTML（Hyper Text Markup Language）：<strong>超文本标记语言</strong></p>
 <ul>
 <li>HTML 是由<strong>浏览器</strong>解析执行的</li>
@@ -9442,6 +10357,11 @@
 <p>使用框架标签时要<strong>删除 body 标签</strong></p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>框架标签<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">frameset</span> <span class="attr">rows</span>=<span class="string">"50%,*"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">"http://www.baidu.com"</span>&gt;</span><span class="tag">&lt;/<span class="name">frame</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">frame</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">name</span>=<span class="string">"_bottom"</span>&gt;</span><span class="tag">&lt;/<span class="name">frame</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">frameset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+
+
+<h4 id="容器标签"><a href="#容器标签" class="headerlink" title="容器标签"></a>容器标签</h4><p>HTML 中提供了两个容器标签：<code>&lt;div&gt;</code> 和 <code>&lt;span&gt;</code></p>
+<p><code>&lt;div&gt;</code>：用于 HTML 页面布局，可以组合其他的 HTML 元素，属于块级元素</p>
+<p><code>&lt;span&gt;</code>：用作文本的容器，属于内联标签</p>
 ]]></content>
       <categories>
         <category>前端技术</category>
@@ -9533,7 +10453,7 @@
   </entry>
   <entry>
     <title>XML</title>
-    <url>/2019/04/04/Java/1.Java%E5%9F%BA%E7%A1%80/XML/</url>
+    <url>/2019/04/04/XML/</url>
     <content><![CDATA[<p>XML 是一种非常灵活的语言，通常用于信息的记录和传递</p>
 <a id="more"></a>
 
@@ -9609,23 +10529,23 @@
     <content><![CDATA[<p>正则表达式适用于复杂的文本处理</p>
 <a id="more"></a>
 
-<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p><strong>1、正则表达式（Regular Expression）简介：</strong></p>
+
+
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>正则表达式（Regular Expression）</p>
 <ul>
 <li><strong>定义</strong>：正则表达式描述了一个规则，通过这个规则可以匹配一类字符串</li>
-<li>正则表达式适用于<strong>文本的复杂处理</strong></li>
+<li>适用于<strong>复杂的文本处理</strong></li>
 <li>大部分<strong>编程语言</strong>，<strong>数据库</strong>，<strong>文本编辑器</strong>，<strong>开发环境</strong>都支持正则表达式</li>
 <li>学习正则表达式就是学习它的<strong>语法规则</strong></li>
 </ul>
 <hr>
-<p><strong>2、开发中使用正则表达式的流程</strong></p>
-<ul>
+<h2 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h2><ul>
 <li><strong>分析</strong>所要匹配的数据，写出测试用的典型数据</li>
 <li>在<strong>工具软件（RegexBuddy）</strong>中进行匹配<strong>测试</strong></li>
 <li>在程序中<strong>调用</strong>通过测试的正则表达式</li>
 </ul>
 <hr>
-<p><strong>3、正则表达式语法</strong></p>
-<ul>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><ul>
 <li><p><strong>普通字符</strong></p>
 <p>字母、数字、汉字、下划线以及没有特殊定义的标点符号，都是”普通字符“，表达式中的普通字符，<strong>匹配一个与之相同的字符</strong></p>
 </li>
@@ -9633,7 +10553,7 @@
 <ul>
 <li><code>\n</code> –&gt; 换行符</li>
 <li><code>\t</code> –&gt; 制表符</li>
-<li><code>\\</code>–&gt; 匹配 <code>\</code></li>
+<li><code>\\</code> –&gt; 匹配 <code>\</code></li>
 <li><code>\^</code>，<code>\$</code>，<code>\.</code> 等 –&gt; 匹配这些字符本身</li>
 </ul>
 </li>
@@ -9641,7 +10561,7 @@
 <ul>
 <li><code>\d</code> –&gt; 匹配 0~9 中任意一个数字</li>
 <li><code>\D</code> –&gt; 匹配 0~9 之外的所有字符（大写表示相反，下同）</li>
-<li><code>\w</code> –&gt; 匹配任意一个<strong>字母</strong>或<strong>数字</strong>或<strong>下滑线</strong>，A<del>Z，a</del>z，0~9，_</li>
+<li><code>\w</code> –&gt; 匹配任意一个<strong>字母</strong>或<strong>数字</strong>或<strong>下划线</strong>，A<del>Z，a</del>z，0~9，_</li>
 <li><code>\s</code> –&gt; 匹配任意一个<strong>空白字符</strong>，空格，制表符，换行符等</li>
 <li><code>.</code> –&gt; 小数点可以匹配任意一个字符（不包括 <code>\n</code>），匹配 <code>\n</code> 在内的所有字符用 <code>[\s\S]</code></li>
 </ul>
@@ -9659,7 +10579,7 @@
 </li>
 <li><p><strong>[c-s]</strong> –&gt; 匹配 <code>c</code> ~ <code>s</code> 之间的任意一个字符</p>
 </li>
-<li><p><strong>[^2-7b-g]</strong> –&gt; 匹配 <code>2</code> ~ <code>7</code>，<code>b</code> ~ `g <strong>之外</strong>的任意一个字符</p>
+<li><p><strong>[^2-7b-g]</strong> –&gt; 匹配 <code>2</code> ~ <code>7</code>，<code>b</code> ~ <code>g</code> <strong>之外</strong>的任意一个字符</p>
 <blockquote>
 <p>正则表达式中的特殊符号，被包含到中括号中，则失去了特殊含义，除了 <code>^</code> 和 <code>-</code></p>
 <p>标准字符集合，除小数点外，如果被包含于中括号，自定义字符集合也将包含该集合</p>
@@ -9757,7 +10677,6 @@
 
 ]]></content>
       <tags>
-        <tag>学习笔记</tag>
         <tag>正则表达式</tag>
       </tags>
   </entry>
@@ -10107,44 +11026,55 @@
 <p><img src="/images/%E5%93%88%E5%B8%8C%E8%A1%A8&%E6%8E%92%E5%BA%8F/4.2.jpg" alt="4.2"></p>
 <h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><h3 id="结构和特点"><a href="#结构和特点" class="headerlink" title="结构和特点"></a>结构和特点</h3><p>哈希表（hashtable）：也叫散列表</p>
 <p><strong>结构：</strong>有很多种，最流行的是<strong>顺序表</strong>+<strong>链表</strong></p>
-<p><strong>特点：</strong>快，<strong>很快</strong>，非常快</p>
+<p><strong>特点：</strong>快</p>
 <h3 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h3><p><strong>三步：</strong></p>
-<ul>
-<li>1、计算哈希码（hashcode，调用 <code>hashCode()</code> 方法获得）</li>
-<li>2、计算在哈希表中的存储位置</li>
-<li>3、存入哈希表</li>
-</ul>
+<ol>
+<li><p>计算哈希码（hashcode，调用 <code>hashCode()</code> 方法获得）</p>
+</li>
+<li><p>计算在哈希表中的存储位置</p>
+</li>
+<li><p>存入哈希表</p>
+</li>
+</ol>
 <p>存入哈希表中的数据<strong>唯一</strong>且<strong>无序</strong></p>
 <h3 id="hashCode-和-equals-的作用"><a href="#hashCode-和-equals-的作用" class="headerlink" title="hashCode() 和 equals() 的作用"></a>hashCode() 和 equals() 的作用</h3><p><strong>hashCode()：</strong>获取哈希码，返回一个 <strong>int</strong>，根据哈希码计算出数据在哈希表中的存储位置</p>
 <p><strong>equals()：</strong>添加或查询数据是需要使用 <code>equals()</code> 进行对比，判断是否有相同数据</p>
 <h3 id="如何获取哈希码"><a href="#如何获取哈希码" class="headerlink" title="如何获取哈希码"></a>如何获取哈希码</h3><p><strong>int：</strong>调用 <code>hashCode()</code> 方法，其实就是取自身</p>
 <p><strong>其他类型：</strong>调用默认的 <code>hashCode()</code> 方法获取</p>
-<h3 id="如何减少冲突"><a href="#如何减少冲突" class="headerlink" title="如何减少冲突"></a>如何减少冲突</h3><p><strong>1、装填因子</strong>：</p>
+<h3 id="如何减少冲突"><a href="#如何减少冲突" class="headerlink" title="如何减少冲突"></a>如何减少冲突</h3><ol>
+<li><p>装填因子：</p>
 <p>装填因子 = 表中的记录数 / 哈希表的长度</p>
 <p>装填因子越小，发生冲突的可能性就越小</p>
 <p>研究标明：当装填因子为 0.5 时，哈希表的性能达到最优</p>
 <p><strong>因此，一般情况下，装填因子取 0.5</strong></p>
-<hr>
-<p><strong>2、哈希函数的选择</strong></p>
+</li>
+<li><p>哈希函数的选择</p>
 <p>直接定址法、平方取中法、折叠法、除留取余法等</p>
-<hr>
-<p><strong>3、处理冲突的方法</strong></p>
+</li>
+<li><p>处理冲突的方法</p>
 <p>链地址法、开放地址法、再散列法等</p>
-<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="排序的分类"><a href="#排序的分类" class="headerlink" title="排序的分类"></a>排序的分类</h3><p><strong>1、内部排序和外部排序</strong></p>
+</li>
+</ol>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="排序的分类"><a href="#排序的分类" class="headerlink" title="排序的分类"></a>排序的分类</h3><ol>
+<li><p>内部排序 &amp; 外部排序</p>
 <ul>
 <li>内部排序：整个排序过程都在<strong>内存</strong>中进行。<em>本章介绍的排序都是内部排序</em></li>
-<li>外部排序：数据量太大，无法全部放入内存，需要<strong>借助外存</strong>完成。</li>
+<li>外部排序：数据量太大，无法全部放入内存，需要<strong>借助外存</strong>完成</li>
 </ul>
-<p><strong>2、稳定排序和不稳定排序</strong></p>
+</li>
+<li><p>稳定排序 &amp; 不稳定排序</p>
 <ul>
-<li>稳定排序：排序完成后，相同关键字的<strong>前后</strong>相对位置<strong>没有发生变化</strong>。</li>
-<li>不稳定排序：排序完成后，相同关键字的<strong>前后</strong>相对位置<strong>发生变化</strong>。</li>
+<li>稳定排序：排序完成后，相同关键字的<strong>前后</strong>相对位置<strong>没有发生变化</strong></li>
+<li>不稳定排序：排序完成后，相同关键字的<strong>前后</strong>相对位置<strong>发生变化</strong></li>
 </ul>
-<p><strong>3、比较排序和非比较排序</strong></p>
+</li>
+<li><p>比较排序和非比较排序</p>
 <ul>
-<li>比较排序：通过比较来判断大小，作为排序的依据。</li>
-<li>非比较排序：不需要通过比较就能排序，如基数排序，计数排序。</li>
+<li>比较排序：通过比较来判断大小，作为排序的依据</li>
+<li>非比较排序：不需要通过比较就能排序，如基数排序，计数排序</li>
 </ul>
+</li>
+</ol>
 <h3 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h3><ul>
 <li><p>比较排序</p>
 <ul>
@@ -10181,7 +11111,7 @@
 </blockquote>
 <h3 id="冒泡排序（Bubble-Sort）"><a href="#冒泡排序（Bubble-Sort）" class="headerlink" title="冒泡排序（Bubble Sort）"></a>冒泡排序（Bubble Sort）</h3><blockquote>
 <p>定义（摘自百度百科）：</p>
-<p>​        它重复地走访过要排序的元素列，依次比较两个相邻的元素，如果顺序（如从大到小、首字母从Z到A）错误就把他们交换过来。走访元素的工作是重复地进行直到没有相邻元素需要交换，也就是说该元素列已经排序完成。</p>
+<p>​        它重复地走访过要排序的元素列，依次比较两个相邻的元素，如果顺序（如从大到小、首字母从 Z 到 A）错误就把他们交换过来。走访元素的工作是重复地进行直到没有相邻元素需要交换，也就是说该元素列已经排序完成。</p>
 </blockquote>
 <p>时间复杂度：O(n2)</p>
 <p>代码实现（ Java ）</p>
@@ -10191,15 +11121,18 @@
 
 
 
-<h3 id="快速排序（Quicksort）"><a href="#快速排序（Quicksort）" class="headerlink" title="快速排序（Quicksort）"></a>快速排序（Quicksort）</h3><blockquote>
+<h3 id="快速排序（QuickSort）"><a href="#快速排序（QuickSort）" class="headerlink" title="快速排序（QuickSort）"></a>快速排序（QuickSort）</h3><blockquote>
 <p>快速排序是冒泡排序的改进版，也是最好的一种内部排序，涉及分治和递归的思想，必须掌握</p>
 </blockquote>
 <p><strong>基本思想：</strong></p>
-<ul>
-<li>1、先从数列中取出一个数作为<strong>基准数</strong>（第一个数）</li>
-<li>2、将比基准数小的放到它的左边，大于或等于它的放到右边（<strong>分区</strong>）</li>
-<li>3、对左、右分区重复第一步、第二步，直到各区间只有一个数（<strong>递归</strong>）</li>
-</ul>
+<ol>
+<li><p>先从数列中取出一个数作为<strong>基准数</strong>（第一个数）</p>
+</li>
+<li><p>将比基准数小的放到它的左边，大于或等于它的放到右边（<strong>分区</strong>）</p>
+</li>
+<li><p>对左、右分区重复第一步、第二步，直到各区间只有一个数（<strong>递归</strong>）</p>
+</li>
+</ol>
 <p><strong>代码实现:</strong></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 实现排序算法</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">int</span>[] quickSort(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)&#123;</span><br><span class="line">    <span class="comment">// 如果起点坐标大于等于终点坐标，则直接返回</span></span><br><span class="line">    <span class="keyword">if</span>(begin&gt;=end)&#123;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> left = begin;</span><br><span class="line">    <span class="keyword">int</span> right = end;</span><br><span class="line">    <span class="keyword">int</span> pivot = arr[left];  <span class="comment">// 把第一个值设为基准 </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right &amp;&amp; arr[right]&gt;=pivot)&#123;</span><br><span class="line">            right--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(left&lt;right)&#123;</span><br><span class="line">            arr[left] = arr[right];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(left&lt;right &amp;&amp; arr[left]&lt;pivot)&#123;</span><br><span class="line">            left++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(left&lt;right)&#123;</span><br><span class="line">            arr[right] = arr[left];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    arr[left] = pivot;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">// 递归排序pivot左边的元素</span></span><br><span class="line">    quickSort(arr, begin, right-<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 递归排序pivot右边的元素</span></span><br><span class="line">    quickSort(arr, right+<span class="number">1</span>, end);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -10225,8 +11158,7 @@
 <a id="more"></a>
 
 <p><img src="/images/%E6%9F%A5%E6%89%BE/4.1.jpg" alt="4.1"></p>
-<h1 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h1><h2 id="一、线性表查找"><a href="#一、线性表查找" class="headerlink" title="一、线性表查找"></a>一、线性表查找</h2><h3 id="1、顺序查找"><a href="#1、顺序查找" class="headerlink" title="1、顺序查找"></a>1、顺序查找</h3><p><em>非常简单</em></p>
-<p><strong>查找方法</strong>：逐个比较查询，如果找到，返回数据或者索引，如果没找到，返回 null</p>
+<h1 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h1><h2 id="一、线性表查找"><a href="#一、线性表查找" class="headerlink" title="一、线性表查找"></a>一、线性表查找</h2><h3 id="1、顺序查找"><a href="#1、顺序查找" class="headerlink" title="1、顺序查找"></a>1、顺序查找</h3><p><strong>查找方法</strong>：逐个比较查询，如果找到，返回数据或者索引，如果没找到，返回 null</p>
 <p>时间复杂度：T(n) = O(n)</p>
 <h3 id="2、折半（二分）查找"><a href="#2、折半（二分）查找" class="headerlink" title="2、折半（二分）查找"></a>2、折半（二分）查找</h3><p>查找表进行折半查找必须满足<strong>两个条件</strong>：</p>
 <ul>
@@ -10310,7 +11242,7 @@
 <p>2、图的存储</p>
 <ul>
 <li>顺序结构：邻接矩阵 –&gt; 二维数组</li>
-<li>链表结构：邻接表 –&gt; 类似于HashMap的存储结构</li>
+<li>链表结构：邻接表 –&gt; 类似于 HashMap 的存储结构</li>
 </ul>
 <p>3、图的遍历</p>
 <ul>
@@ -10455,8 +11387,8 @@
 <h2 id="五、双端队列"><a href="#五、双端队列" class="headerlink" title="五、双端队列"></a>五、双端队列</h2><p><strong>双端队列 deque</strong>（double ended queue）<em>音：deck</em></p>
 <p>顾名思义：队列的两端都可以进行入队和出队的操作</p>
 <p>栈和队列都可以用双端队列实现</p>
-<h2 id="六、Java-中的栈和队列类"><a href="#六、Java-中的栈和队列类" class="headerlink" title="六、Java 中的栈和队列类"></a>六、Java 中的栈和队列类</h2><p>Queue: 队列接口</p>
-<p>Deque: 双端队列接口（栈操作时使用）</p>
+<h2 id="六、Java-中的栈和队列类"><a href="#六、Java-中的栈和队列类" class="headerlink" title="六、Java 中的栈和队列类"></a>六、Java 中的栈和队列类</h2><p>Queue：队列接口</p>
+<p>Deque：双端队列接口（栈操作时使用）</p>
 <p>实现类：LinkedList，栈和队列操作都用这个</p>
 ]]></content>
       <tags>
@@ -10567,14 +11499,7 @@
 <li>散列结构</li>
 </ul>
 </li>
-<li>数据运算<ul>
-<li>插入</li>
-<li>删除</li>
-<li>修改</li>
-<li>查询</li>
-<li>排序</li>
-</ul>
-</li>
+<li>数据运算：插入、删除、修改、查询、排序</li>
 </ul>
 <blockquote>
 <p>逻辑结构唯一<br>存储结构不唯一<br>运算的实现依赖与存储结构</p>
@@ -10586,7 +11511,7 @@
 <ul>
 <li>找出算法中的基本语句（执行次数最多的语句就是基本语句）</li>
 <li>计算基本语句执行次数的数量级</li>
-<li>将求得的数量级放入O()中</li>
+<li>将求得的数量级放入 <code>O()</code> 中</li>
 </ul>
 <p><strong>6、</strong>常见的时间复杂度</p>
 <ul>
@@ -10599,10 +11524,10 @@
 <li>…</li>
 <li>k次方阶 O(n<sup>k</sup>)</li>
 <li>指数阶 O(2<sup>n</sup>)</li>
-<li>阶乘阶 O(n!    )</li>
+<li>阶乘阶 O(n!)</li>
 </ul>
 <blockquote>
-<p>上面的时间复杂度级别，执行效率越来越低</p>
+<p>上面的时间复杂度越来越高，执行效率越来越低</p>
 </blockquote>
 <h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>S(n) = O(g(n))<br>空间复杂度比时间复杂度分析要少；<br>在使用递归时算法的空间复杂度会比较高</p>
 ]]></content>
@@ -11485,7 +12410,7 @@
     <content><![CDATA[<p>requests 库为专业的爬虫第三方库</p>
 <a id="more"></a>
 
-<h2 id="requests-库主要有7个方法："><a href="#requests-库主要有7个方法：" class="headerlink" title="requests 库主要有7个方法："></a>requests 库主要有7个方法：</h2><pre><code>requests.request()        构造一个请求，支撑以下各方法的基础方法
+<h2 id="requests-库主要有-7-个方法："><a href="#requests-库主要有-7-个方法：" class="headerlink" title="requests 库主要有 7 个方法："></a>requests 库主要有 7 个方法：</h2><pre><code>requests.request()        构造一个请求，支撑以下各方法的基础方法
 requests.get()            获取HTML网页的主要方法，对应于HTTP的GET
 requests.head()            获取HTML网页头信息的方法，对应于HTTP的HEAD
 requests.post()            向HTML网页提交POST请求的方法，对应于HTTP的POST
@@ -11825,17 +12750,17 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
 </ul>
 <p><strong>字符串的索引:</strong> </p>
 <ul>
-<li>正向递增序号: 从左至右，从 0 开始</li>
-<li>反向递减序号: 从右至左，从 -1 开始</li>
+<li>正向递增序号：从左至右，从 0 开始</li>
+<li>反向递减序号：从右至左，从 -1 开始</li>
 </ul>
 <p><strong>字符串切片:</strong> </p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s = <span class="string">'pikachu'</span></span><br><span class="line">s[<span class="number">0</span>]      <span class="comment"># 'p'</span></span><br><span class="line">s[<span class="number">0</span>:<span class="number">2</span>]    <span class="comment"># 'pi'</span></span><br><span class="line">s[<span class="number">2</span>:]     <span class="comment"># 'kachu'</span></span><br><span class="line">s[:<span class="number">-1</span>]    <span class="comment"># 'pikach'</span></span><br><span class="line">s[<span class="number">0</span>:<span class="number">-1</span>:<span class="number">2</span>] <span class="comment"># 'pkc'</span></span><br><span class="line">s[::<span class="number">-1</span>]   <span class="comment"># 'uhcakip' (字符串逆序输出)</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>字符串操作符:</strong></p>
 <ul>
-<li><code>s1 + s2</code> : 连接两个字符串</li>
-<li><code>s1 * 3</code> : 重复 s1 三次</li>
-<li><code>s1 in s2</code> : 判断 s1 是否为 s2 的子串, 返回 <code>True / False</code></li>
+<li><code>s1 + s2</code>：连接两个字符串</li>
+<li><code>s1 * 3</code>：重复 s1 三次</li>
+<li><code>s1 in s2</code>：判断 s1 是否为 s2 的子串, 返回 <code>True / False</code></li>
 </ul>
 <blockquote>
 <p>  转义符 <code>\</code> : 表达特定字符的本意<br>  <code>&quot;这里有个双引号(\&quot;)&quot;</code> –&gt;  <code>&quot;这里有个双引号(&quot;)&quot;</code></p>
@@ -11910,8 +12835,7 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
 
 
 
-<h2 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h2><p>分支结构分为: </p>
-<ul>
+<h2 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h2><ul>
 <li>单分支结构</li>
 <li>二分支结构</li>
 <li>多分支结构</li>
@@ -12042,15 +12966,15 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
 <p><code>S-=T</code>：更新集合 S，包括在集合 S 但不在 T 中的元素</p>
 <p><code>S&amp;=T</code>：更新集合 S，包括同时在集合 S 和 T 中的元素</p>
 <p><code>S^=T</code>：更新集合 S，包括集合 S 和 T 中的非相同元素</p>
-<h3 id="集合处理方法"><a href="#集合处理方法" class="headerlink" title="集合处理方法"></a>集合处理方法</h3><p><code>S.add(x)</code>  如果 x 不在集合中，将 x 添加到 S 中</p>
-<p><code>S.discard(x)</code>  移除 S 中元素 x，如果 x 不在集合 S 中，不报错</p>
-<p><code>S.remove(x)</code>  移除 S 中元素 x，如果 x 不在集合 S 中，则产生 KeyError 异常</p>
-<p><code>S.clear()</code>  移除 S 中所有元素</p>
-<p><code>S.pop()</code>  随机返回 S 中的一个元素，更新 S，如果 S 为空产生 KeyError 异常</p>
-<p><code>S.copy()</code>  返回集合 S 的一个副本</p>
-<p><code>len(S)</code>  返回集合 S 的元素个数</p>
-<p><code>x in S</code>  判断 x 是否在集合 S 中，返回 True 或 False</p>
-<p><code>x not in S</code>  判断 x 是否在集合 S 中，返回 True或 False</p>
+<h3 id="集合处理方法"><a href="#集合处理方法" class="headerlink" title="集合处理方法"></a>集合处理方法</h3><p><code>S.add(x)</code>：如果 x 不在集合中，将 x 添加到 S 中</p>
+<p><code>S.discard(x)</code>：移除 S 中元素 x，如果 x 不在集合 S 中，不报错</p>
+<p><code>S.remove(x)</code>：移除 S 中元素 x，如果 x 不在集合 S 中，则产生 KeyError 异常</p>
+<p><code>S.clear()</code>：移除 S 中所有元素</p>
+<p><code>S.pop()</code>：随机返回 S 中的一个元素，更新 S，如果 S 为空产生 KeyError 异常</p>
+<p><code>S.copy()</code>：返回集合 S 的一个副本</p>
+<p><code>len(S)</code>：返回集合 S 的元素个数</p>
+<p><code>x in S</code>：判断 x 是否在集合 S 中</p>
+<p><code>x not in S</code>：判断 x 是否在集合 S 中</p>
 <p><code>set(x)</code>  将其他数据变量 x 转变为集合类型</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A = &#123;<span class="string">"ha"</span>,<span class="string">"ha"</span>,<span class="number">666</span>&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> A    <span class="comment">#一般情况下遍历集合用for  in  就可以</span></span><br><span class="line">    print(i,end=<span class="string">""</span>)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        print(A.pop(),end=<span class="string">""</span>)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
@@ -12113,13 +13037,13 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
 <p>3、文件的关闭</p>
 <p><code>变量名.close()</code></p>
 <p>4、文件的读取</p>
-<p><code>变量名.read(size)</code>    读入全部内容，如果给出参数，读入前 size 长度</p>
-<p><code>变量名.rendline(size)</code>   读入一行内容，如果给出参数，读入该行前 size 长度</p>
-<p><code>变量名.readlines(hint)</code>   读入所有行，以每行为元素形成列表，如果给出参数，读入前 hint 行</p>
+<p><code>变量名.read(size)</code>：读入全部内容，如果给出参数，读入前 size 长度</p>
+<p><code>变量名.rendline(size)</code>：读入一行内容，如果给出参数，读入该行前 size 长度</p>
+<p><code>变量名.readlines(hint)</code>：读入所有行，以每行为元素形成列表，如果给出参数，读入前 hint 行</p>
 <hr>
-<p><code>a.wtite(s)</code>    向文件写入一个字符串或字节流</p>
-<p><code>a.writelines(lines)</code>    将一个元素全为字符串的列表写入文件</p>
-<p><code>a.seek(offset)</code>    改变当前文件操作指针的位置，0 - 文件开头； 1 - 当前位置； 2 - 文件结尾</p>
+<p><code>a.wtite(s)</code>：向文件写入一个字符串或字节流</p>
+<p><code>a.writelines(lines)</code>：将一个元素全为字符串的列表写入文件</p>
+<p><code>a.seek(offset)</code>：改变当前文件操作指针的位置，0 - 文件开头； 1 - 当前位置； 2 - 文件结尾</p>
 <p>5、一维数据</p>
 <p>一维数据的表示：列表类型（有序）、集合类型（无序）</p>
 <p>一维数据的存储：空格分隔，逗号分隔，或者特殊字符分隔</p>
@@ -12146,7 +13070,7 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
   </entry>
   <entry>
     <title>Markdown语法</title>
-    <url>/2018/08/01/Markdown%E8%AF%AD%E6%B3%95/</url>
+    <url>/2018/08/01/%E5%85%B6%E5%AE%83%E7%AC%94%E8%AE%B0/Markdown%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<p>用 markdown 写笔记，简直爽歪歪</p>
 <a id="more"></a>
 

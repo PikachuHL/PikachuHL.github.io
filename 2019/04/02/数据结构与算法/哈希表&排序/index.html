@@ -55,7 +55,7 @@
 <meta property="og:image" content="http://yoursite.com/images/%E5%93%88%E5%B8%8C%E8%A1%A8&%E6%8E%92%E5%BA%8F/4.2.jpg">
 <meta property="og:image" content="http://yoursite.com/images/%E5%93%88%E5%B8%8C%E8%A1%A8&%E6%8E%92%E5%BA%8F/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.png">
 <meta property="article:published_time" content="2019-04-02T01:06:54.000Z">
-<meta property="article:modified_time" content="2021-05-24T00:54:15.000Z">
+<meta property="article:modified_time" content="2021-08-06T07:28:43.635Z">
 <meta property="article:author" content="pikachu">
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="哈希表">
@@ -241,10 +241,17 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-24 08:54:15" itemprop="dateModified" datetime="2021-05-24T08:54:15+08:00">2021-05-24</time>
+                <time title="修改时间：2021-08-06 15:28:43" itemprop="dateModified" datetime="2021-08-06T15:28:43+08:00">2021-08-06</time>
               </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
 
         </div>
       </header>
@@ -261,44 +268,55 @@
 <p><img src="/images/%E5%93%88%E5%B8%8C%E8%A1%A8&%E6%8E%92%E5%BA%8F/4.2.jpg" alt="4.2"></p>
 <h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><h3 id="结构和特点"><a href="#结构和特点" class="headerlink" title="结构和特点"></a>结构和特点</h3><p>哈希表（hashtable）：也叫散列表</p>
 <p><strong>结构：</strong>有很多种，最流行的是<strong>顺序表</strong>+<strong>链表</strong></p>
-<p><strong>特点：</strong>快，<strong>很快</strong>，非常快</p>
+<p><strong>特点：</strong>快</p>
 <h3 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h3><p><strong>三步：</strong></p>
-<ul>
-<li>1、计算哈希码（hashcode，调用 <code>hashCode()</code> 方法获得）</li>
-<li>2、计算在哈希表中的存储位置</li>
-<li>3、存入哈希表</li>
-</ul>
+<ol>
+<li><p>计算哈希码（hashcode，调用 <code>hashCode()</code> 方法获得）</p>
+</li>
+<li><p>计算在哈希表中的存储位置</p>
+</li>
+<li><p>存入哈希表</p>
+</li>
+</ol>
 <p>存入哈希表中的数据<strong>唯一</strong>且<strong>无序</strong></p>
 <h3 id="hashCode-和-equals-的作用"><a href="#hashCode-和-equals-的作用" class="headerlink" title="hashCode() 和 equals() 的作用"></a>hashCode() 和 equals() 的作用</h3><p><strong>hashCode()：</strong>获取哈希码，返回一个 <strong>int</strong>，根据哈希码计算出数据在哈希表中的存储位置</p>
 <p><strong>equals()：</strong>添加或查询数据是需要使用 <code>equals()</code> 进行对比，判断是否有相同数据</p>
 <h3 id="如何获取哈希码"><a href="#如何获取哈希码" class="headerlink" title="如何获取哈希码"></a>如何获取哈希码</h3><p><strong>int：</strong>调用 <code>hashCode()</code> 方法，其实就是取自身</p>
 <p><strong>其他类型：</strong>调用默认的 <code>hashCode()</code> 方法获取</p>
-<h3 id="如何减少冲突"><a href="#如何减少冲突" class="headerlink" title="如何减少冲突"></a>如何减少冲突</h3><p><strong>1、装填因子</strong>：</p>
+<h3 id="如何减少冲突"><a href="#如何减少冲突" class="headerlink" title="如何减少冲突"></a>如何减少冲突</h3><ol>
+<li><p>装填因子：</p>
 <p>装填因子 = 表中的记录数 / 哈希表的长度</p>
 <p>装填因子越小，发生冲突的可能性就越小</p>
 <p>研究标明：当装填因子为 0.5 时，哈希表的性能达到最优</p>
 <p><strong>因此，一般情况下，装填因子取 0.5</strong></p>
-<hr>
-<p><strong>2、哈希函数的选择</strong></p>
+</li>
+<li><p>哈希函数的选择</p>
 <p>直接定址法、平方取中法、折叠法、除留取余法等</p>
-<hr>
-<p><strong>3、处理冲突的方法</strong></p>
+</li>
+<li><p>处理冲突的方法</p>
 <p>链地址法、开放地址法、再散列法等</p>
-<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="排序的分类"><a href="#排序的分类" class="headerlink" title="排序的分类"></a>排序的分类</h3><p><strong>1、内部排序和外部排序</strong></p>
+</li>
+</ol>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="排序的分类"><a href="#排序的分类" class="headerlink" title="排序的分类"></a>排序的分类</h3><ol>
+<li><p>内部排序 &amp; 外部排序</p>
 <ul>
 <li>内部排序：整个排序过程都在<strong>内存</strong>中进行。<em>本章介绍的排序都是内部排序</em></li>
-<li>外部排序：数据量太大，无法全部放入内存，需要<strong>借助外存</strong>完成。</li>
+<li>外部排序：数据量太大，无法全部放入内存，需要<strong>借助外存</strong>完成</li>
 </ul>
-<p><strong>2、稳定排序和不稳定排序</strong></p>
+</li>
+<li><p>稳定排序 &amp; 不稳定排序</p>
 <ul>
-<li>稳定排序：排序完成后，相同关键字的<strong>前后</strong>相对位置<strong>没有发生变化</strong>。</li>
-<li>不稳定排序：排序完成后，相同关键字的<strong>前后</strong>相对位置<strong>发生变化</strong>。</li>
+<li>稳定排序：排序完成后，相同关键字的<strong>前后</strong>相对位置<strong>没有发生变化</strong></li>
+<li>不稳定排序：排序完成后，相同关键字的<strong>前后</strong>相对位置<strong>发生变化</strong></li>
 </ul>
-<p><strong>3、比较排序和非比较排序</strong></p>
+</li>
+<li><p>比较排序和非比较排序</p>
 <ul>
-<li>比较排序：通过比较来判断大小，作为排序的依据。</li>
-<li>非比较排序：不需要通过比较就能排序，如基数排序，计数排序。</li>
+<li>比较排序：通过比较来判断大小，作为排序的依据</li>
+<li>非比较排序：不需要通过比较就能排序，如基数排序，计数排序</li>
 </ul>
+</li>
+</ol>
 <h3 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h3><ul>
 <li><p>比较排序</p>
 <ul>
@@ -335,7 +353,7 @@
 </blockquote>
 <h3 id="冒泡排序（Bubble-Sort）"><a href="#冒泡排序（Bubble-Sort）" class="headerlink" title="冒泡排序（Bubble Sort）"></a>冒泡排序（Bubble Sort）</h3><blockquote>
 <p>定义（摘自百度百科）：</p>
-<p>​        它重复地走访过要排序的元素列，依次比较两个相邻的元素，如果顺序（如从大到小、首字母从Z到A）错误就把他们交换过来。走访元素的工作是重复地进行直到没有相邻元素需要交换，也就是说该元素列已经排序完成。</p>
+<p>​        它重复地走访过要排序的元素列，依次比较两个相邻的元素，如果顺序（如从大到小、首字母从 Z 到 A）错误就把他们交换过来。走访元素的工作是重复地进行直到没有相邻元素需要交换，也就是说该元素列已经排序完成。</p>
 </blockquote>
 <p>时间复杂度：O(n2)</p>
 <p>代码实现（ Java ）</p>
@@ -345,15 +363,18 @@
 
 
 
-<h3 id="快速排序（Quicksort）"><a href="#快速排序（Quicksort）" class="headerlink" title="快速排序（Quicksort）"></a>快速排序（Quicksort）</h3><blockquote>
+<h3 id="快速排序（QuickSort）"><a href="#快速排序（QuickSort）" class="headerlink" title="快速排序（QuickSort）"></a>快速排序（QuickSort）</h3><blockquote>
 <p>快速排序是冒泡排序的改进版，也是最好的一种内部排序，涉及分治和递归的思想，必须掌握</p>
 </blockquote>
 <p><strong>基本思想：</strong></p>
-<ul>
-<li>1、先从数列中取出一个数作为<strong>基准数</strong>（第一个数）</li>
-<li>2、将比基准数小的放到它的左边，大于或等于它的放到右边（<strong>分区</strong>）</li>
-<li>3、对左、右分区重复第一步、第二步，直到各区间只有一个数（<strong>递归</strong>）</li>
-</ul>
+<ol>
+<li><p>先从数列中取出一个数作为<strong>基准数</strong>（第一个数）</p>
+</li>
+<li><p>将比基准数小的放到它的左边，大于或等于它的放到右边（<strong>分区</strong>）</p>
+</li>
+<li><p>对左、右分区重复第一步、第二步，直到各区间只有一个数（<strong>递归</strong>）</p>
+</li>
+</ol>
 <p><strong>代码实现:</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 实现排序算法</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">int</span>[] quickSort(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)&#123;</span><br><span class="line">    <span class="comment">// 如果起点坐标大于等于终点坐标，则直接返回</span></span><br><span class="line">    <span class="keyword">if</span>(begin&gt;=end)&#123;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> left = begin;</span><br><span class="line">    <span class="keyword">int</span> right = end;</span><br><span class="line">    <span class="keyword">int</span> pivot = arr[left];  <span class="comment">// 把第一个值设为基准 </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right &amp;&amp; arr[right]&gt;=pivot)&#123;</span><br><span class="line">            right--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(left&lt;right)&#123;</span><br><span class="line">            arr[left] = arr[right];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(left&lt;right &amp;&amp; arr[left]&lt;pivot)&#123;</span><br><span class="line">            left++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(left&lt;right)&#123;</span><br><span class="line">            arr[right] = arr[left];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    arr[left] = pivot;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">// 递归排序pivot左边的元素</span></span><br><span class="line">    quickSort(arr, begin, right-<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 递归排序pivot右边的元素</span></span><br><span class="line">    quickSort(arr, right+<span class="number">1</span>, end);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -429,7 +450,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希表"><span class="nav-number">1.</span> <span class="nav-text">哈希表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构和特点"><span class="nav-number">1.1.</span> <span class="nav-text">结构和特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加数据"><span class="nav-number">1.2.</span> <span class="nav-text">添加数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hashCode-和-equals-的作用"><span class="nav-number">1.3.</span> <span class="nav-text">hashCode() 和 equals() 的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何获取哈希码"><span class="nav-number">1.4.</span> <span class="nav-text">如何获取哈希码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何减少冲突"><span class="nav-number">1.5.</span> <span class="nav-text">如何减少冲突</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">2.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#排序的分类"><span class="nav-number">2.1.</span> <span class="nav-text">排序的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序算法"><span class="nav-number">2.2.</span> <span class="nav-text">排序算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冒泡排序（Bubble-Sort）"><span class="nav-number">2.3.</span> <span class="nav-text">冒泡排序（Bubble Sort）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序（Quicksort）"><span class="nav-number">2.4.</span> <span class="nav-text">快速排序（Quicksort）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序总结"><span class="nav-number">2.5.</span> <span class="nav-text">排序总结</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希表"><span class="nav-number">1.</span> <span class="nav-text">哈希表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构和特点"><span class="nav-number">1.1.</span> <span class="nav-text">结构和特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加数据"><span class="nav-number">1.2.</span> <span class="nav-text">添加数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hashCode-和-equals-的作用"><span class="nav-number">1.3.</span> <span class="nav-text">hashCode() 和 equals() 的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何获取哈希码"><span class="nav-number">1.4.</span> <span class="nav-text">如何获取哈希码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何减少冲突"><span class="nav-number">1.5.</span> <span class="nav-text">如何减少冲突</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">2.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#排序的分类"><span class="nav-number">2.1.</span> <span class="nav-text">排序的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序算法"><span class="nav-number">2.2.</span> <span class="nav-text">排序算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冒泡排序（Bubble-Sort）"><span class="nav-number">2.3.</span> <span class="nav-text">冒泡排序（Bubble Sort）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序（QuickSort）"><span class="nav-number">2.4.</span> <span class="nav-text">快速排序（QuickSort）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序总结"><span class="nav-number">2.5.</span> <span class="nav-text">排序总结</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -443,7 +464,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">92</span>
+          <span class="site-state-item-count">98</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -456,11 +477,19 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">114</span>
+        <span class="site-state-item-count">116</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PikachuHL" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PikachuHL" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:faxiang.zhao@qq.com" title="E-Mail → mailto:faxiang.zhao@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
 
 
 
@@ -493,6 +522,9 @@
   <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
   </div>
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
 
 
 
