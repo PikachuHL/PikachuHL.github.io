@@ -53,7 +53,7 @@
 <meta property="og:description" content="深入理解设计模式能够帮助自己更好的体会编程的思想">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-04-15T06:16:05.000Z">
-<meta property="article:modified_time" content="2021-04-11T15:58:22.000Z">
+<meta property="article:modified_time" content="2021-08-17T06:33:55.946Z">
 <meta property="article:author" content="pikachu">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
@@ -236,7 +236,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-11 23:58:22" itemprop="dateModified" datetime="2021-04-11T23:58:22+08:00">2021-04-11</time>
+                <time title="修改时间：2021-08-17 14:33:55" itemprop="dateModified" datetime="2021-08-17T14:33:55+08:00">2021-08-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -320,7 +320,92 @@
 <li>LoD（迪米特法则，Law of Demeter）：只与直接朋友通信，而避免和陌生人通信</li>
 </ul>
 </blockquote>
-<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2>
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><h3 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h3><blockquote>
+<p>代理类和被代理类实现实现同一个接口</p>
+</blockquote>
+<p>代码实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticProxy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> WeddingCompany(<span class="keyword">new</span> You()).happyMarry();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Marry</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">happyMarry</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 真实角色</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">You</span> <span class="keyword">implements</span> <span class="title">Marry</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">happyMarry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"结婚啦"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 代理角色</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WeddingCompany</span> <span class="keyword">implements</span> <span class="title">Marry</span></span>&#123;</span><br><span class="line">    <span class="comment">// 代理类中需要被代理类的对象</span></span><br><span class="line">    <span class="keyword">private</span> Marry target;</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WeddingCompany</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 获取被代理类的对象</span></span><br><span class="line">        <span class="keyword">this</span>.target = <span class="keyword">new</span> You();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">happyMarry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 在代理的前后可以执行一些额外的操作</span></span><br><span class="line">        System.out.println(<span class="string">"布置会场"</span>);</span><br><span class="line">        target.happyMarry();</span><br><span class="line">        System.out.println(<span class="string">"收拾会场"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h3><p>特点：字节码随用随创建，随用随加载</p>
+<p>作用：不修改源码的基础上，对方法进行增强</p>
+<p>分类：</p>
+<ul>
+<li>基于接口的动态代理</li>
+<li>基于子类的动态代理</li>
+</ul>
+<hr>
+<h4 id="基于接口的动态代理"><a href="#基于接口的动态代理" class="headerlink" title="基于接口的动态代理"></a>基于接口的动态代理</h4><p><strong>涉及的类：</strong>Proxy</p>
+<p><strong>提供者：</strong>JDK 官方</p>
+<p><strong>如何创建代理对象：</strong>使用 Proxy 类中的<code>newProxyInstance</code>方法</p>
+<p><strong>创建代理对象的要求：</strong>被代理类至少实现一个接口，没有则不能创建</p>
+<p><strong>newProxyInstance 方法的参数：</strong></p>
+<ul>
+<li>ClassLoader：类加载器<ul>
+<li>用于加载代理对象字节码，和被代理对象使用相同的类加载器，<strong>固定写法</strong></li>
+</ul>
+</li>
+<li>Class[]：字节码数组<ul>
+<li>用于让代理对象和被代理对象有相同的方法，<strong>固定写法</strong></li>
+</ul>
+</li>
+<li>InvocationHandler(接口)：用于提供增强的代码<ul>
+<li>它让我们写如何进行代理。一般都是写InvocationHandler的实现类（匿名内部类）</li>
+</ul>
+</li>
+</ul>
+<p>代码体现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Consumer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 该处成员方法设置为final，</span></span><br><span class="line"><span class="comment">         * 是因为在匿名内部类中要想调用外部类的方法，</span></span><br><span class="line"><span class="comment">         * 那么该外部类的方法必须是 final 的</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">final</span> IProducer producer = <span class="keyword">new</span> Producer();</span><br><span class="line">		</span><br><span class="line">        <span class="comment">// 使用Proxy创建一个代理对象</span></span><br><span class="line">        IProducer proxyProducer = (IProducer) Proxy.newProxyInstance(producer.getClass().getClassLoader(),</span><br><span class="line">                producer.getClass().getInterfaces(),</span><br><span class="line">                <span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">                    <span class="comment">/**</span></span><br><span class="line"><span class="comment">                     * 执行被代理对象的任何接口方法都会经过该方法</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@param</span> proxy     代理对象的引用(一般用不到)</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@param</span> method    当前执行的方法</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@param</span> args      当前执行的方法的参数</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@return</span>          和被代理对象有相同的返回值</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@throws</span> Throwable</span></span><br><span class="line"><span class="comment">                     */</span></span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                        <span class="comment">// 提供增强的代码</span></span><br><span class="line">                        Object returnValue = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">                        <span class="comment">// 1、获取方法执行的参数</span></span><br><span class="line">                        Integer money = (Integer) args[<span class="number">0</span>];</span><br><span class="line">                        <span class="comment">// 2、判断当前方法是不是销售</span></span><br><span class="line">                        <span class="keyword">if</span>(<span class="string">"saleProduct"</span>.equals(method.getName()))&#123;</span><br><span class="line">                            returnValue = method.invoke(producer,(<span class="keyword">int</span>)(money*<span class="number">0.8</span>));</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">return</span> returnValue;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">        <span class="comment">// 使用代理对象调用方法</span></span><br><span class="line">        proxyProducer.saleProduct(<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="基于子类的动态代理"><a href="#基于子类的动态代理" class="headerlink" title="基于子类的动态代理"></a>基于子类的动态代理</h4><p><strong>涉及的类：</strong>Enhancer</p>
+<p><strong>提供者：</strong>第三方cglib库</p>
+<blockquote>
+<p>maven坐标：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cglib<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cglib<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1_3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<p><strong>如何创建代理对象：</strong>使用Enhancer类中的<code>create</code>方法</p>
+<p><strong>创建代理对象的要求：</strong>被代理的类不能被final修饰（不能为最终类）</p>
+<p><strong>create方法的参数：</strong></p>
+<ul>
+<li>Class：字节码<ul>
+<li>用于指定被代理对象的字节码</li>
+</ul>
+</li>
+<li>Callback(接口)：用于提供增强的代码<ul>
+<li>我们一般写的都是该接口的子接口的实现类：MethodInterceptor</li>
+</ul>
+</li>
+</ul>
+<p>代码体现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Consumer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> Producer producer = <span class="keyword">new</span> Producer();</span><br><span class="line">		</span><br><span class="line">        <span class="comment">// 创建代理对象</span></span><br><span class="line">        Producer cglibProducer = (Producer) Enhancer.create(producer.getClass(),</span><br><span class="line">                <span class="keyword">new</span> MethodInterceptor() &#123;</span><br><span class="line">                    <span class="comment">/**</span></span><br><span class="line"><span class="comment">                     *  执行被代理对象的任何方法都会经过该方法</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@param</span> o</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@param</span> method</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@param</span> objects</span></span><br><span class="line"><span class="comment">                     *      以上三个方法参数和基于接口的动态代理中invoke方法的参数是一样的</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@param</span> methodProxy   当前执行方法的代理对象（一般用不到）</span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">                     * <span class="doctag">@throws</span> Throwable</span></span><br><span class="line"><span class="comment">                     */</span></span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object o, Method method, Object[] objects, MethodProxy methodProxy)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                        <span class="comment">// 提供增强的代码</span></span><br><span class="line">                        Object returnValue = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">                        <span class="comment">// 1、获取方法执行的参数</span></span><br><span class="line">                        Integer money = (Integer) objects[<span class="number">0</span>];</span><br><span class="line">                        <span class="comment">// 2、判断当前方法是不是销售</span></span><br><span class="line">                        <span class="keyword">if</span>(<span class="string">"saleProduct"</span>.equals(method.getName()))&#123;</span><br><span class="line">                            returnValue = method.invoke(producer,(<span class="keyword">int</span>)(money*<span class="number">0.8</span>));</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">return</span> returnValue;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">        <span class="comment">// 使用代理对象调用方法</span></span><br><span class="line">        cglibProducer.saleProduct(<span class="number">20000</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h2><p>特点：可以动态的往一个类中添加新的行为</p>
+<p>实现：</p>
+<ul>
+<li>装饰类和被装饰类实现同一个接口</li>
+<li>被装饰类作为装饰类构造方法的参数</li>
+</ul>
+<p>代码实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 共同的接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Computer</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">compute</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 被装饰类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Laptop</span> <span class="keyword">implements</span> <span class="title">Computer</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">compute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"具备电脑的基本功能"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 装饰类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LaptopWithHub</span> <span class="keyword">implements</span> <span class="title">Computer</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Computer computer;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LaptopWithHub</span><span class="params">(Computer computer)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.computer = computer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">compute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        computer.compute();</span><br><span class="line">        System.out.println(<span class="string">"有了扩展坞，可以外接很多设备"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDecorate</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// 使用装饰类的时候，把被装饰类作为构造方法参数传入</span></span><br><span class="line">    LaptopWithHub laptopWithHub = <span class="keyword">new</span> LaptopWithHub(<span class="keyword">new</span> Laptop());</span><br><span class="line">    laptopWithHub.compute();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>装饰模式和静态代理模式非常相似，差别在于：</p>
+<ul>
+<li>静态代理：代理类创建时就得到了被代理对象</li>
+<li>装饰器模式：装饰类在使用的时候才得到被装饰对象</li>
+</ul>
+</blockquote>
+
     </div>
 
     
@@ -382,7 +467,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-number">1.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式"><span class="nav-number">2.</span> <span class="nav-text">工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理模式"><span class="nav-number">3.</span> <span class="nav-text">代理模式</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-number">1.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式"><span class="nav-number">2.</span> <span class="nav-text">工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理模式"><span class="nav-number">3.</span> <span class="nav-text">代理模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态代理"><span class="nav-number">3.1.</span> <span class="nav-text">静态代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态代理"><span class="nav-number">3.2.</span> <span class="nav-text">动态代理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于接口的动态代理"><span class="nav-number">3.2.1.</span> <span class="nav-text">基于接口的动态代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于子类的动态代理"><span class="nav-number">3.2.2.</span> <span class="nav-text">基于子类的动态代理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰器模式"><span class="nav-number">4.</span> <span class="nav-text">装饰器模式</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -396,7 +481,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -409,7 +494,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-count">114</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
