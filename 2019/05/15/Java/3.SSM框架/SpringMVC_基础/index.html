@@ -54,7 +54,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/SpringMVC_%E5%9F%BA%E7%A1%80/springmvc%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%8E%9F%E7%90%86.jpg">
 <meta property="article:published_time" content="2019-05-15T07:34:52.000Z">
-<meta property="article:modified_time" content="2021-07-30T05:48:41.365Z">
+<meta property="article:modified_time" content="2021-08-24T02:39:25.792Z">
 <meta property="article:author" content="pikachu">
 <meta property="article:tag" content="SpringMVC">
 <meta name="twitter:card" content="summary">
@@ -238,7 +238,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-30 13:48:41" itemprop="dateModified" datetime="2021-07-30T13:48:41+08:00">2021-07-30</time>
+                <time title="修改时间：2021-08-24 10:39:25" itemprop="dateModified" datetime="2021-08-24T10:39:25+08:00">2021-08-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -275,17 +275,14 @@
 
 
 
-<h2 id="基本概念："><a href="#基本概念：" class="headerlink" title="基本概念："></a>基本概念：</h2><ul>
-<li><p><strong>MVC 模型（Model View Controller）：</strong></p>
+<h2 id="基本概念："><a href="#基本概念：" class="headerlink" title="基本概念："></a>基本概念：</h2><p><strong>SpringMVC：</strong>基于 MVC 设计模式的轻量级 web 框架</p>
+<p><strong>MVC 模型（Model View Controller）：</strong></p>
 <ul>
-<li>Model：数据模型，JavaBean 的类，用来进行数据封装。</li>
+<li>Model：数据模型，JavaBean 的类，用来进行数据封装</li>
 <li>View：指 JSP、HTML 用来展示数据给用户</li>
-<li>Controller：用来接收用户的请求，整个流程的控制器。用来进行数据校验等。 </li>
+<li>Controller：用来接收用户的请求，整个流程的控制器。用来进行数据校验等</li>
 </ul>
-</li>
-<li><p><strong>SpringMVC：</strong>基于 MVC 设计模式的轻量级 web 框架</p>
-</li>
-<li><p><strong>SpringMVC 有清晰的角色划分：</strong></p>
+<p><strong>SpringMVC 组件：</strong></p>
 <ul>
 <li>前端控制器（DispatcherServlet）</li>
 <li>处理器映射器（HandlerMapping）</li>
@@ -296,10 +293,8 @@
 <li>命令对象（Command 请求参数绑定到的对象就是命令对象）</li>
 <li>表单对象（Form Object 提供给表单展示或提交到的对象就是表单对象）</li>
 </ul>
-</li>
-</ul>
 <h2 id="入门案例"><a href="#入门案例" class="headerlink" title="入门案例"></a>入门案例</h2><blockquote>
-<p>入门案例需求:</p>
+<p>入门案例需求：</p>
 <p>​    在 <code>index.jsp</code> 中写一个超链接, 点击超链接, 跳转到 <code>success.jsp</code></p>
 </blockquote>
 <p>*<em>在<code>index.jsp</code>中写一个超链接标签: *</em></p>
@@ -307,7 +302,7 @@
 <p><strong>创建 <code>success.jsp</code> 页面</strong></p>
 <p>在 <code>WEB-INF</code> 文件夹下创建 <code>pages</code> 文件夹, 并在 <code>pages</code> 文件夹中创建 <code>success.jsp</code></p>
 <p><strong>创建一个 Controller 类, 并写一个方法, 在方法上添加 <code>@RequestMapping</code> 注解, 返回一个字符串:</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(path = <span class="string">"/hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"HelloController"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"HelloController"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -321,6 +316,8 @@
 <p>配置成 <code>/*</code> 会导致访问 <code>.jsp</code> 时出现 <code>404</code> 的情况</p>
 </blockquote>
 </li>
+</ul>
+<ul>
 <li><p>处理器映射器（HandlerMapping）&amp; 处理器适配器（HandlerAdapter）</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 开启SpringMVC框架注解的支持</span></span><br><span class="line"><span class="comment">使用此标签会自动加载 处理器映射器（RequestMappingHandlerMapping） 和 </span></span><br><span class="line"><span class="comment">处理器适配器（RequestMappingHandlerAdapter）</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -330,7 +327,7 @@
 </ul>
 <ul>
 <li><p>视图解析器（ViewResolver）</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在 SpringMVC 的配置文件中进行配置 --&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- 配置视图解析器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"internalResourceViewResolver"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/pages/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在 SpringMVC 的配置文件中进行配置 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 配置视图解析器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"internalResourceViewResolver"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/pages/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -339,17 +336,6 @@
 <hr>
 <p><strong>入门案例的流程总结:</strong></p>
 <p><img src="/images/SpringMVC_%E5%9F%BA%E7%A1%80/springmvc%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%8E%9F%E7%90%86.jpg" alt="springmvc执行流程原理"></p>
-<p><strong>@RequestMapping 注解：</strong></p>
-<p><strong>作用：</strong>用于建立 <strong>请求 URL</strong> 和 <strong>处理请求方法</strong> 之间的对应关系</p>
-<p><strong>作用范围：类</strong> 和 <strong>方法</strong></p>
-<p><strong>属性：</strong></p>
-<ul>
-<li><code>path</code> –&gt; 指定请求路径的 url</li>
-<li><code>value</code> –&gt; 和 path 属性是一样的</li>
-<li><code>method</code> –&gt; 指定该方法的请求方式( get / post /…)</li>
-<li><code>params</code> –&gt; 指定限制请求参数的条件</li>
-<li><code>headers</code> –&gt; 发送的请求中必须包含的请求头</li>
-</ul>
 
     </div>
 
@@ -426,7 +412,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-count">99</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -439,7 +425,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">114</span>
+        <span class="site-state-item-count">115</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

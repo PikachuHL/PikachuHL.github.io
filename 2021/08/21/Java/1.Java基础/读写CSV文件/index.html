@@ -45,20 +45,20 @@
   };
 </script>
 
-  <meta name="description" content="fastjson 可以将 Java 对象和 JSON 字符串相互转换">
+  <meta name="description" content="使用 Java 读写 CSV 文件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="fastjson">
-<meta property="og:url" content="http://yoursite.com/2021/07/08/Java/%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/fastjson/index.html">
+<meta property="og:title" content="读写CSV文件">
+<meta property="og:url" content="http://yoursite.com/2021/08/21/Java/1.Java%E5%9F%BA%E7%A1%80/%E8%AF%BB%E5%86%99CSV%E6%96%87%E4%BB%B6/index.html">
 <meta property="og:site_name" content="Pikachu&#39;s Blog">
-<meta property="og:description" content="fastjson 可以将 Java 对象和 JSON 字符串相互转换">
+<meta property="og:description" content="使用 Java 读写 CSV 文件">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-07-08T08:30:00.000Z">
-<meta property="article:modified_time" content="2021-07-08T12:25:53.000Z">
+<meta property="article:published_time" content="2021-08-21T07:15:22.000Z">
+<meta property="article:modified_time" content="2021-08-21T08:06:13.865Z">
 <meta property="article:author" content="pikachu">
-<meta property="article:tag" content="fastjson">
+<meta property="article:tag" content="CSV">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2021/07/08/Java/%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/fastjson/">
+<link rel="canonical" href="http://yoursite.com/2021/08/21/Java/1.Java%E5%9F%BA%E7%A1%80/%E8%AF%BB%E5%86%99CSV%E6%96%87%E4%BB%B6/">
 
 
 <script id="page-configurations">
@@ -72,7 +72,7 @@
   };
 </script>
 
-  <title>fastjson | Pikachu's Blog</title>
+  <title>读写CSV文件 | Pikachu's Blog</title>
   
 
 
@@ -206,7 +206,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/07/08/Java/%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/fastjson/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/08/21/Java/1.Java%E5%9F%BA%E7%A1%80/%E8%AF%BB%E5%86%99CSV%E6%96%87%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -219,7 +219,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          fastjson
+          读写CSV文件
         </h1>
 
         <div class="post-meta">
@@ -230,7 +230,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-07-08 16:30:00 / 修改时间：20:25:53" itemprop="dateCreated datePublished" datetime="2021-07-08T16:30:00+08:00">2021-07-08</time>
+              <time title="创建时间：2021-08-21 15:15:22 / 修改时间：16:06:13" itemprop="dateCreated datePublished" datetime="2021-08-21T15:15:22+08:00">2021-08-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -238,8 +238,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7%E5%8C%85/" itemprop="url" rel="index">
-                    <span itemprop="name">第三方工具包</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
             </span>
@@ -262,53 +262,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>fastjson 可以将 Java 对象和 JSON 字符串相互转换</p>
+        <p>使用 Java 读写 CSV 文件</p>
 <a id="more"></a>
 
-<h2 id="基础信息："><a href="#基础信息：" class="headerlink" title="基础信息："></a>基础信息：</h2><p>文档地址：<a href="https://github.com/alibaba/fastjson/wiki" target="_blank" rel="noopener">https://github.com/alibaba/fastjson/wiki</a></p>
-<p>Maven 依赖：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.76<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>写出 CSV 文件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Student&gt; studentList = Arrays.asList(</span><br><span class="line">    <span class="keyword">new</span> Student(<span class="string">"zhangsan"</span>, <span class="number">18</span>, <span class="string">"北京"</span>),</span><br><span class="line">    <span class="keyword">new</span> Student(<span class="string">"lisi"</span>, <span class="number">19</span>, <span class="string">"南京"</span>),</span><br><span class="line">    <span class="keyword">new</span> Student(<span class="string">"wangwu"</span>, <span class="number">17</span>, <span class="string">"东京"</span>)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    PrintWriter printWriter = <span class="keyword">new</span> PrintWriter(<span class="string">"D:/temp/files/student.csv"</span>, <span class="string">"GBK"</span>);</span><br><span class="line">    <span class="keyword">for</span>(Student student : studentList)&#123;</span><br><span class="line">        printWriter.println(student.getName() + <span class="string">","</span> + student.getAge() + <span class="string">","</span> + student.getAddress());</span><br><span class="line">    &#125;</span><br><span class="line">    printWriter.flush();</span><br><span class="line">    printWriter.close();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-
-
-<h2 id="基础用法："><a href="#基础用法：" class="headerlink" title="基础用法："></a>基础用法：</h2><p>Java Bean：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>序列化：把 Java Bean 转换为 JSON 字符串</p>
-<p><code>JSON.toJSONString(Object object)</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User user = <span class="keyword">new</span> User(<span class="string">"1001"</span>, <span class="string">"zhangsan"</span>, <span class="number">18</span>);</span><br><span class="line">String jsonString = JSON.toJSONString(user);  <span class="comment">// &#123;"age":18,"id":"1001","name":"zhangsan"&#125;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>反序列化：把 JSON 字符串转换为 Java Bean</p>
-<p><code>JSON.parseObject(String jsonString, Class&lt;T&gt; clazz)</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// jsonString是上面序列化得到的json字符串</span></span><br><span class="line">User newUser = JSON.parseObject(jsonString, User<span class="class">.<span class="keyword">class</span>)</span>;</span><br></pre></td></tr></table></figure>
+<p>读取 CSV 文件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    Scanner scanner = <span class="keyword">new</span> Scanner(<span class="keyword">new</span> FileInputStream(<span class="string">"D:/temp/files/student.csv"</span>), <span class="string">"GBK"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(scanner.hasNext())&#123;</span><br><span class="line">        String line = scanner.nextLine();</span><br><span class="line">        String[] lineList = line.split(<span class="string">","</span>);</span><br><span class="line">        System.out.println(<span class="keyword">new</span> Student(lineList[<span class="number">0</span>], Integer.parseInt(lineList[<span class="number">1</span>]), lineList[<span class="number">2</span>]));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    scanner.close();</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 <blockquote>
-<p>如果只是想获取到 JSON 字符串中的数据进行简单处理，就不用单独创建一个类</p>
-<p>直接把 JSON 字符串转成 Map 即可</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Map map = JSON.parseObject(jsonString, Map<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">System.out.println(map);  <span class="comment">// &#123;name=zhangsan, id=1001, age=18&#125;</span></span><br></pre></td></tr></table></figure>
+<p>注意事项：读写 CSV 文件时注意把编码设置为 GBK，因为在 windows 系统中，CSV 默认使用 EXCEL 打开，而 EXCEL 的默认编码为 GBK</p>
 </blockquote>
-<p><code>@JSONField</code> 的用法</p>
-<blockquote>
-<p>该注解用在 Java Bean 的属性上</p>
-</blockquote>
-<p>属性：</p>
-<ul>
-<li><code>name</code>：指定字段的名称</li>
-<li><code>format</code>：指定字段的格式，对日期格式有用</li>
-<li><code>ordinal</code>：指定序列化和反序列化的顺序</li>
-<li><code>serialize</code>：是否序列化</li>
-<li><code>deserialize</code>：是否反序列化</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@JSONField</span>(name = <span class="string">"ID"</span>)  <span class="comment">// 表示该字段序列化后名称为 ID</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@JSONField</span>(serialize = <span class="keyword">false</span>)  <span class="comment">// 表示该字段不进行序列化</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">User user = <span class="keyword">new</span> User(<span class="string">"1001"</span>, <span class="string">"zhangsan"</span>, <span class="number">18</span>);</span><br><span class="line">String jsonString = JSON.toJSONString(user);  <span class="comment">// &#123;"ID":"1001","name":"zhangsan"&#125;</span></span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -318,7 +287,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/fastjson/" rel="tag"># fastjson</a>
+              <a href="/tags/CSV/" rel="tag"># CSV</a>
           </div>
 
         
@@ -327,13 +296,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/07/08/Java/%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/CollectionUtils/" rel="prev" title="CollectionUtils">
-      <i class="fa fa-chevron-left"></i> CollectionUtils
+    <a href="/2021/08/21/Java/%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7%E7%B1%BB/Commons%20IO/" rel="prev" title="Java/常用第三方工具类/Commons IO">
+      <i class="fa fa-chevron-left"></i> Java/常用第三方工具类/Commons IO
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/07/10/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/VUE/" rel="next" title="Vue">
-      Vue <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -371,7 +337,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础信息："><span class="nav-number">1.</span> <span class="nav-text">基础信息：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础用法："><span class="nav-number">2.</span> <span class="nav-text">基础用法：</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -385,7 +350,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-count">99</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -398,7 +363,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">114</span>
+        <span class="site-state-item-count">115</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -53,7 +53,7 @@
 <meta property="og:description" content="jQuery 是 JavaScript 的一个框架，可以简化 js 代码的书写">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-28T02:20:24.000Z">
-<meta property="article:modified_time" content="2021-07-28T09:38:33.737Z">
+<meta property="article:modified_time" content="2021-08-24T09:19:25.964Z">
 <meta property="article:author" content="pikachu">
 <meta property="article:tag" content="jQuery">
 <meta name="twitter:card" content="summary">
@@ -236,7 +236,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-28 17:38:33" itemprop="dateModified" datetime="2021-07-28T17:38:33+08:00">2021-07-28</time>
+                <time title="修改时间：2021-08-24 17:19:25" itemprop="dateModified" datetime="2021-08-24T17:19:25+08:00">2021-08-24</time>
               </span>
 
           
@@ -260,6 +260,8 @@
         <p>jQuery 是 JavaScript 的一个框架，可以简化 js 代码的书写</p>
 <a id="more"></a>
 
+<h2 id="jQuery-基本概念"><a href="#jQuery-基本概念" class="headerlink" title="jQuery 基本概念"></a>jQuery 基本概念</h2><p>jQuery官网：<a href="https://jquery.com/" target="_blank" rel="noopener">jQuery</a></p>
+<p>引入 jQuery：去官网下载 jQuery 的 js 文件，然后在 HTML 中使用 <code>&lt;script&gt;</code> 引入</p>
 <h2 id="jQuery-对象和-js-对象的区别和转换"><a href="#jQuery-对象和-js-对象的区别和转换" class="headerlink" title="jQuery 对象和 js 对象的区别和转换"></a>jQuery 对象和 js 对象的区别和转换</h2><ol>
 <li><p>jQuery 对象在操作时，更加方便</p>
 </li>
@@ -272,7 +274,7 @@
 </ol>
 </li>
 </ol>
-<h2 id="jQuery的选择器"><a href="#jQuery的选择器" class="headerlink" title="jQuery的选择器"></a>jQuery的选择器</h2><blockquote>
+<h2 id="jQuery-选择器"><a href="#jQuery-选择器" class="headerlink" title="jQuery 选择器"></a>jQuery 选择器</h2><blockquote>
 <ol>
 <li>事件绑定<ol>
 <li>规则：<code>$(&quot;#div1&quot;).click(function(){ alert(123) });</code></li>
@@ -394,10 +396,10 @@
 </ol>
 </li>
 </ol>
-<h2 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h2><h3 id="内容操作"><a href="#内容操作" class="headerlink" title="内容操作"></a>内容操作</h3><ol>
-<li><code>html()</code> –&gt; 获取/设置元素的标签体内容</li>
+<h2 id="DOM-操作"><a href="#DOM-操作" class="headerlink" title="DOM 操作"></a>DOM 操作</h2><h3 id="内容操作"><a href="#内容操作" class="headerlink" title="内容操作"></a>内容操作</h3><ol>
+<li><code>html()</code> –&gt; 获取 / 设置元素的标签体内容</li>
 <li><code>text()</code> –&gt; 获取元素的标签体纯文本内容，设置元素的标签体内容</li>
-<li><code>val()</code> –&gt; 获取/设置元素的value属性值</li>
+<li><code>val()</code> –&gt; 获取 / 设置元素的 value 属性值</li>
 </ol>
 <h3 id="属性操作"><a href="#属性操作" class="headerlink" title="属性操作"></a>属性操作</h3><ol>
 <li><p>通用属性操作</p>
@@ -417,19 +419,19 @@
 </li>
 </ol>
 <h3 id="CRUD操作"><a href="#CRUD操作" class="headerlink" title="CRUD操作"></a>CRUD操作</h3><ol>
-<li>append():父元素将子元素追加到末尾<ul>
+<li>append()：父元素将子元素追加到末尾<ul>
 <li><code>对象1.append(对象2)</code>：将对象 2 添加到对象 1 元素内部，并且在末尾</li>
 </ul>
 </li>
-<li>prepend():父元素将子元素追加到开头<ul>
+<li>prepend()：父元素将子元素追加到开头<ul>
 <li><code>对象1.prepend(对象2)</code>：将对象 2 添加到对象 1 元素内部，并且在开头</li>
 </ul>
 </li>
-<li>appendTo():<ul>
+<li>appendTo()<ul>
 <li><code>对象1.appendTo(对象2)</code>：将对象 1 添加到对象 2 内部，并且在末尾</li>
 </ul>
 </li>
-<li>prependTo()：<ul>
+<li>prependTo()<ul>
 <li><code>对象1.prependTo(对象2)</code>：将对象 1 添加到对象 2 内部，并且在开头</li>
 </ul>
 </li>
@@ -456,14 +458,14 @@
 </ol>
 <hr>
 <ol start="9">
-<li><p>remove():移除元素</p>
+<li><p><code>remove()</code>：移除元素</p>
 <ul>
-<li>对象.remove():将对象删除掉</li>
+<li><code>obj.remove()</code>：将对象删除掉</li>
 </ul>
 </li>
-<li><p>empty():清空元素的所有后代元素。</p>
+<li><p><code>empty()</code>：清空元素的所有后代元素。</p>
 <ul>
-<li>对象.empty():将对象的后代元素全部清空，但是保留当前对象以及其属性节点</li>
+<li><code>obj.empty()</code>：将对象的后代元素全部清空，但是保留当前对象以及其属性节点</li>
 </ul>
 </li>
 </ol>
@@ -529,7 +531,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery-对象和-js-对象的区别和转换"><span class="nav-number">1.</span> <span class="nav-text">jQuery 对象和 js 对象的区别和转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery的选择器"><span class="nav-number">2.</span> <span class="nav-text">jQuery的选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM操作"><span class="nav-number">3.</span> <span class="nav-text">DOM操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内容操作"><span class="nav-number">3.1.</span> <span class="nav-text">内容操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性操作"><span class="nav-number">3.2.</span> <span class="nav-text">属性操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CRUD操作"><span class="nav-number">3.3.</span> <span class="nav-text">CRUD操作</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery-基本概念"><span class="nav-number">1.</span> <span class="nav-text">jQuery 基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery-对象和-js-对象的区别和转换"><span class="nav-number">2.</span> <span class="nav-text">jQuery 对象和 js 对象的区别和转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery-选择器"><span class="nav-number">3.</span> <span class="nav-text">jQuery 选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM-操作"><span class="nav-number">4.</span> <span class="nav-text">DOM 操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内容操作"><span class="nav-number">4.1.</span> <span class="nav-text">内容操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性操作"><span class="nav-number">4.2.</span> <span class="nav-text">属性操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CRUD操作"><span class="nav-number">4.3.</span> <span class="nav-text">CRUD操作</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -543,7 +545,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-count">99</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -556,7 +558,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">114</span>
+        <span class="site-state-item-count">115</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

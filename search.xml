@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>读写CSV文件</title>
+    <url>/2021/08/21/Java/1.Java%E5%9F%BA%E7%A1%80/%E8%AF%BB%E5%86%99CSV%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<p>使用 Java 读写 CSV 文件</p>
+<a id="more"></a>
+
+<p>写出 CSV 文件：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Student&gt; studentList = Arrays.asList(</span><br><span class="line">    <span class="keyword">new</span> Student(<span class="string">"zhangsan"</span>, <span class="number">18</span>, <span class="string">"北京"</span>),</span><br><span class="line">    <span class="keyword">new</span> Student(<span class="string">"lisi"</span>, <span class="number">19</span>, <span class="string">"南京"</span>),</span><br><span class="line">    <span class="keyword">new</span> Student(<span class="string">"wangwu"</span>, <span class="number">17</span>, <span class="string">"东京"</span>)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    PrintWriter printWriter = <span class="keyword">new</span> PrintWriter(<span class="string">"D:/temp/files/student.csv"</span>, <span class="string">"GBK"</span>);</span><br><span class="line">    <span class="keyword">for</span>(Student student : studentList)&#123;</span><br><span class="line">        printWriter.println(student.getName() + <span class="string">","</span> + student.getAge() + <span class="string">","</span> + student.getAddress());</span><br><span class="line">    &#125;</span><br><span class="line">    printWriter.flush();</span><br><span class="line">    printWriter.close();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>读取 CSV 文件：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    Scanner scanner = <span class="keyword">new</span> Scanner(<span class="keyword">new</span> FileInputStream(<span class="string">"D:/temp/files/student.csv"</span>), <span class="string">"GBK"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(scanner.hasNext())&#123;</span><br><span class="line">        String line = scanner.nextLine();</span><br><span class="line">        String[] lineList = line.split(<span class="string">","</span>);</span><br><span class="line">        System.out.println(<span class="keyword">new</span> Student(lineList[<span class="number">0</span>], Integer.parseInt(lineList[<span class="number">1</span>]), lineList[<span class="number">2</span>]));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    scanner.close();</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>注意事项：读写 CSV 文件时注意把编码设置为 GBK，因为在 windows 系统中，CSV 默认使用 EXCEL 打开，而 EXCEL 的默认编码为 GBK</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>CSV</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java/常用第三方工具类/Commons IO</title>
+    <url>/2021/08/21/Java/%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7%E7%B1%BB/Commons%20IO/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>Java8新特性</title>
     <url>/2021/08/10/Java/1.Java%E5%9F%BA%E7%A1%80/Java8%E6%96%B0%E7%89%B9%E6%80%A7/</url>
     <content><![CDATA[<p>Java 8 提供的新特性，今后开发会常用</p>
@@ -189,7 +221,7 @@
   </entry>
   <entry>
     <title>jsoup</title>
-    <url>/2021/07/22/Java/%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/jsoup/</url>
+    <url>/2021/07/22/Java/%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7%E7%B1%BB/jsoup/</url>
     <content><![CDATA[<p>jsoup 是 Java 中用来解析 HTML 的一个工具包</p>
 <a id="more"></a>
 
@@ -454,7 +486,7 @@
   </entry>
   <entry>
     <title>fastjson</title>
-    <url>/2021/07/08/Java/%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/fastjson/</url>
+    <url>/2021/07/08/Java/%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7%E7%B1%BB/fastjson/</url>
     <content><![CDATA[<p>fastjson 可以将 Java 对象和 JSON 字符串相互转换</p>
 <a id="more"></a>
 
@@ -512,7 +544,7 @@
   </entry>
   <entry>
     <title>CollectionUtils</title>
-    <url>/2021/07/08/Java/%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/CollectionUtils/</url>
+    <url>/2021/07/08/Java/%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7%E7%B1%BB/CollectionUtils/</url>
     <content><![CDATA[<p>Apache 下面的一个操作集合的工具类，还挺好用的</p>
 <a id="more"></a>
 
@@ -548,7 +580,7 @@
   </entry>
   <entry>
     <title>OkHttp</title>
-    <url>/2021/07/08/Java/%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7/OkHttp/</url>
+    <url>/2021/07/08/Java/%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7%E7%B1%BB/OkHttp/</url>
     <content><![CDATA[<p>调用第三方接口时，发送 http 请求</p>
 <a id="more"></a>
 
@@ -799,11 +831,14 @@
     <content><![CDATA[<p>两个注解都可以自动注入bean，他们俩有啥不一样呢？</p>
 <a id="more"></a>
 
-<blockquote>
-<p>TODO</p>
-</blockquote>
+
+
 <p>@Autowired</p>
+<p>是 Spring 的一个注解，按照类型注入 bean，如果想要按照名称注入 bean，需要搭配 <code>@Qualifier</code> 注解使用</p>
+<p>可以作用在：构造器、方法、参数、成员变量和注解上</p>
 <p>@Resource</p>
+<p>是 JDK 提供的一个注解，Spring 支持其注入 bean，默认按照名称注入，也可通过配置 type 属性实现按照类型注入。</p>
+<p>可以作用在：类、成员变量和方法上</p>
 ]]></content>
       <categories>
         <category>Java EE</category>
@@ -2246,7 +2281,7 @@
 <hr>
 <p><strong>请求参数中文乱码的解决</strong>：</p>
 <p>在 web.xml 中使用 SpringMVC 提供的 CharacterEncodingFilter</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置过滤器，解决中文乱码的问题 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 指定字符集 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置过滤器，解决中文乱码的问题 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 指定字符集 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <hr>
 <p><strong>自定义类型转换器：</strong></p>
@@ -2255,19 +2290,35 @@
 <p>但是并不是所有的字符串都可以被成功转换, 有些时候需要自定义类型转换器</p>
 </blockquote>
 <p>1、自己写一个类，并<strong>实现 Converter 的接口</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 把字符串转换成日期的转换器</span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span> pika</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringToDateConverter</span> <span class="keyword">implements</span> <span class="title">Converter</span>&lt;<span class="title">String</span>, <span class="title">Date</span>&gt;</span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 进行类型转换的方法</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Date <span class="title">convert</span><span class="params">(String source)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 判断</span></span><br><span class="line">        <span class="keyword">if</span>(source == <span class="keyword">null</span>) &#123;</span><br><span class="line">        	<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"参数不能为空"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            DateFormat df = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">            <span class="comment">// 解析字符串</span></span><br><span class="line">            Date date = df.parse(source);</span><br><span class="line">            <span class="keyword">return</span> date;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        	<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"类型转换错误"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 把字符串转换成日期的转换器</span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span> pika</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringToDateConverter</span> <span class="keyword">implements</span> <span class="title">Converter</span>&lt;<span class="title">String</span>, <span class="title">Date</span>&gt;</span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 进行类型转换的方法</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Date <span class="title">convert</span><span class="params">(String source)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 判断</span></span><br><span class="line">        <span class="keyword">if</span>(source == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"参数不能为空"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            DateFormat df = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">            <span class="comment">// 解析字符串</span></span><br><span class="line">            Date date = df.parse(source);</span><br><span class="line">            <span class="keyword">return</span> date;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"类型转换错误"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<p>2、注册自定义的类型转换器，在springmvc.xml配置文件中编写配置</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注册自定义类型转换器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"conversionService"</span></span></span><br><span class="line"><span class="tag"><span class="attr">class</span>=<span class="string">"org.springframework.context.support.ConversionServiceFactoryBean"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"converters"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"cn.pika.utils.StringToDateConverter"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 开启Spring对MVC注解的支持 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span> <span class="attr">conversion-service</span>=<span class="string">"conversionService"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>2、注册自定义的类型转换器，在 springmvc.xml 配置文件中编写配置</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注册自定义类型转换器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"conversionService"</span></span></span><br><span class="line"><span class="tag"><span class="attr">class</span>=<span class="string">"org.springframework.context.support.ConversionServiceFactoryBean"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"converters"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"cn.pika.utils.StringToDateConverter"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 开启Spring对MVC注解的支持 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span> <span class="attr">conversion-service</span>=<span class="string">"conversionService"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
 <hr>
-<p><strong>在控制器中使用原生的ServletAPI对象</strong></p>
+<p><strong>在控制器中使用原生的 ServletAPI 对象</strong></p>
 <ul>
 <li>只需要在控制器的方法参数定义 <code>HttpServletRequest</code> 和 <code>HttpServletResponse</code> 对象即可</li>
 </ul>
-<h2 id="SpringMVC-常用注解"><a href="#SpringMVC-常用注解" class="headerlink" title="SpringMVC 常用注解"></a>SpringMVC 常用注解</h2><p> <code>@RequestParam()</code></p>
+<h2 id="SpringMVC-常用注解"><a href="#SpringMVC-常用注解" class="headerlink" title="SpringMVC 常用注解"></a>SpringMVC 常用注解</h2><p><code>@RequestMapping()</code></p>
+<ul>
+<li><p>作用：用于建立 <strong>请求 URL</strong> 和 <strong>处理请求方法</strong> 之间的对应关系</p>
+</li>
+<li><p>作用范围：类 和 方法</p>
+</li>
+<li><p>属性：</p>
+<ul>
+<li><code>path</code> –&gt; 指定请求路径的 url</li>
+<li><code>value</code> –&gt; 和 path 属性是一样的</li>
+<li><code>method</code> –&gt; 指定该方法的请求方式( get / post /…)</li>
+<li><code>params</code> –&gt; 指定限制请求参数的条件</li>
+<li><code>headers</code> –&gt; 发送的请求中必须包含的请求头</li>
+</ul>
+</li>
+</ul>
+<p> <code>@RequestParam()</code></p>
 <ul>
 <li><p>作用：把请求中的指定名称的参数传递给控制器中的形参赋值</p>
 </li>
@@ -2275,12 +2326,11 @@
 <ul>
 <li>value<strong>/</strong>name：请求参数的名称, 不写则默认为形参的名称</li>
 <li>required：请求参数中是否必须提供此参数，默认值是 true，必须提供</li>
+<li>defaultValue：参数的默认值</li>
 </ul>
 </li>
-<li><p>defaultValue：参数的默认值</p>
-</li>
 <li><p>代码如下</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 接收请求</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(path=<span class="string">"/hello"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">(@RequestParam(value=<span class="string">"username"</span>,required=<span class="keyword">false</span>)</span>String name) </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"aaaa"</span>);</span><br><span class="line">    System.out.println(name);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 接收请求</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">(@RequestParam(value=<span class="string">"username"</span>,required=<span class="keyword">false</span>)</span>String name) </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"aaaa"</span>);</span><br><span class="line">    System.out.println(name);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -2288,7 +2338,7 @@
 </ul>
 <p><code>@RequestBody()</code></p>
 <ul>
-<li><p>作用：用于获取请求体的内容（注意：get 方法不可以）</p>
+<li><p>作用：用于获取请求体的内容（只能用于 POST 请求）</p>
 </li>
 <li><p>属性</p>
 <ul>
@@ -2296,22 +2346,31 @@
 </ul>
 </li>
 <li><p>代码如下</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 接收请求</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(path=<span class="string">"/hello"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">(@RequestBody String body)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"aaaa"</span>);</span><br><span class="line">    System.out.println(body);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 接收请求</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">(@RequestBody String body)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"aaaa"</span>);</span><br><span class="line">    System.out.println(body);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
-<p><code>PathVariable()</code></p>
+<p><code>@PathVariable()</code></p>
 <ul>
-<li><p>作用：拥有绑定url中的占位符的。例如：url 中有 /delete/{id}，{id}就是占位符</p>
+<li><p>作用：获取路径 url 中占位符传入的实际值。例如：url 中有 <code>/delete/{id}</code>，<code>{id}</code> 就是占位符</p>
 </li>
 <li><p>属性</p>
 <ul>
-<li>value：指定 url 中的占位符名称</li>
+<li>value：指定 url 中占位符名称</li>
 </ul>
 </li>
-<li><p><strong>Restful</strong> 风格的 URL</p>
+<li><p>代码如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// &lt;a href="user/hello/aaa"&gt;入门案例&lt;/a&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 接收请求</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/hello/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">(@PathVariable(value=<span class="string">"id"</span>)</span> String id) </span>&#123;</span><br><span class="line">    System.out.println(id);  <span class="comment">// id: aaa</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+</ul>
+<blockquote>
+<p><strong>Restful</strong> 风格的 URL</p>
 <ul>
 <li>请求路径一样，可以根据不同的请求方式去执行后台的不同方法</li>
 <li>restful 风格的 URL 优点<ul>
@@ -2322,14 +2381,7 @@
 </ul>
 </li>
 </ul>
-</li>
-<li><p>代码如下</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// &lt;a href="user/hello/1"&gt;入门案例&lt;/a&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 接收请求</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(path=<span class="string">"/hello/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">(@PathVariable(value=<span class="string">"id"</span>)</span> String id) </span>&#123;</span><br><span class="line">    System.out.println(id);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
+</blockquote>
 <p><code>@RequestHeader()</code></p>
 <ul>
 <li><p>作用：获取指定请求头的值</p>
@@ -2340,7 +2392,7 @@
 </ul>
 </li>
 <li><p>代码如下</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(path=<span class="string">"/hello"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">(@RequestHeader(value=<span class="string">"Accept"</span>)</span> String header) </span>&#123;</span><br><span class="line">    System.out.println(header);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">(@RequestHeader(value=<span class="string">"Accept"</span>)</span> String header) </span>&#123;</span><br><span class="line">    System.out.println(header);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -2348,24 +2400,25 @@
 </ul>
 <p><code>@CookieValue()</code></p>
 <ul>
-<li><p>作用：用于获取指定 cookie 的名称的值</p>
+<li><p>作用：获取 cookie 值</p>
 </li>
 <li><p>属性</p>
-</li>
-<li><p>value：cookie 的名称</p>
+<ul>
+<li>value：cookie 的名称</li>
+</ul>
 </li>
 <li><p>代码如下</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(path=<span class="string">"/hello"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">(@CookieValue(value=<span class="string">"JSESSIONID"</span>)</span> String cookieValue) </span>&#123;</span><br><span class="line">    System.out.println(cookieValue);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">(@CookieValue(value=<span class="string">"JSESSIONID"</span>)</span> String cookieValue) </span>&#123;</span><br><span class="line">    System.out.println(cookieValue);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
-<p> <code>@ModelAttribute()</code></p>
+<p> <code>@ModelAttribute</code></p>
 <ul>
 <li><p>作用</p>
 <ul>
-<li>出现在方法上：表示当前方法会在控制器方法执行前执行。</li>
+<li>出现在方法上：该方法会先于 Controller 中其它方法执行</li>
 <li>出现在参数上：获取指定的数据给参数赋值。</li>
 </ul>
 </li>
@@ -2375,16 +2428,18 @@
 </ul>
 </li>
 <li><p>具体的代码</p>
-<p>1、修饰的方法有返回值</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 作用在方法，先执行</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@ModelAttribute</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">showUser</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">	System.out.println(<span class="string">"showUser执行了..."</span>);</span><br><span class="line">    <span class="comment">// 模拟从数据库中查询对象</span></span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setName(<span class="string">"哈哈"</span>);</span><br><span class="line">    user.setPassword(<span class="string">"123"</span>);</span><br><span class="line">    user.setMoney(<span class="number">100</span>d);</span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 修改user的方法</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> cookieValue</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(path=<span class="string">"/updateUser"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">updateUser</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">    System.out.println(user);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2、修饰的方法没有返回值</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 作用在方法，先执行</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@ModelAttribute</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showUser</span><span class="params">(String name,Map&lt;String, User&gt; map)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"showUser执行了..."</span>);</span><br><span class="line">    <span class="comment">// 模拟从数据库中查询对象</span></span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setName(<span class="string">"哈哈"</span>);</span><br><span class="line">    user.setPassword(<span class="string">"123"</span>);</span><br><span class="line">    user.setMoney(<span class="number">100</span>d);</span><br><span class="line">    map.put(<span class="string">"abc"</span>, user);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 修改用户的方法</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> cookieValue</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(path=<span class="string">"/updateUser"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">updateUser</span><span class="params">(@ModelAttribute(value=<span class="string">"abc"</span>)</span> User user) </span>&#123;</span><br><span class="line">    System.out.println(user);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法有返回值</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 作用在方法，先执行</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@ModelAttribute</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">showUser</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"showUser执行了..."</span>);</span><br><span class="line">    <span class="comment">// 模拟从数据库中查询对象</span></span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setName(<span class="string">"哈哈"</span>);</span><br><span class="line">    user.setPassword(<span class="string">"123"</span>);</span><br><span class="line">    user.setMoney(<span class="number">100</span>d);</span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 修改user的方法</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> cookieValue</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/updateUser"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">updateUser</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">    System.out.println(user);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 </li>
 </ul>
+<p>  方法没有返回值</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 作用在方法，先执行</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@ModelAttribute</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showUser</span><span class="params">(String name,Map&lt;String, User&gt; map)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"showUser执行了..."</span>);</span><br><span class="line">    <span class="comment">// 模拟从数据库中查询对象</span></span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setName(<span class="string">"哈哈"</span>);</span><br><span class="line">    user.setPassword(<span class="string">"123"</span>);</span><br><span class="line">    user.setMoney(<span class="number">100</span>d);</span><br><span class="line">    map.put(<span class="string">"abc"</span>, user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 修改用户的方法</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> cookieValue</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/updateUser"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">updateUser</span><span class="params">(@ModelAttribute(value=<span class="string">"abc"</span>)</span> User user) </span>&#123;</span><br><span class="line">    System.out.println(user);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <p><code>@SessionAttributes()</code></p>
 <ul>
 <li><p>作用：用于多次执行控制器方法间的参数共享</p>
@@ -2395,7 +2450,7 @@
 </ul>
 </li>
 <li><p>代码如下</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(path=<span class="string">"/user"</span>)</span><br><span class="line"><span class="meta">@SessionAttributes</span>(value= &#123;<span class="string">"username"</span>,<span class="string">"password"</span>,<span class="string">"age"</span>&#125;,types=</span><br><span class="line">&#123;String<span class="class">.<span class="keyword">class</span>,<span class="title">Integer</span>.<span class="title">class</span>&#125;) // 把数据存入到<span class="title">session</span>域对象中</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 向session中存入值</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(path=<span class="string">"/save"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">save</span><span class="params">(Model model)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"向session域中保存数据"</span>);</span><br><span class="line">        model.addAttribute(<span class="string">"username"</span>, <span class="string">"root"</span>);</span><br><span class="line">        model.addAttribute(<span class="string">"password"</span>, <span class="string">"123"</span>);</span><br><span class="line">        model.addAttribute(<span class="string">"age"</span>, <span class="number">20</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 从session中获取值</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(path=<span class="string">"/find"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">find</span><span class="params">(ModelMap modelMap)</span> </span>&#123;</span><br><span class="line">        String username = (String) modelMap.get(<span class="string">"username"</span>);</span><br><span class="line">        String password = (String) modelMap.get(<span class="string">"password"</span>);</span><br><span class="line">        Integer age = (Integer) modelMap.get(<span class="string">"age"</span>);</span><br><span class="line">        System.out.println(username + <span class="string">" : "</span>+password +<span class="string">" : "</span>+age);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 清除值</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(path=<span class="string">"/delete"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">delete</span><span class="params">(SessionStatus status)</span> </span>&#123;</span><br><span class="line">        status.setComplete();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user"</span>)</span><br><span class="line"><span class="meta">@SessionAttributes</span>(value= &#123;<span class="string">"username"</span>,<span class="string">"password"</span>,<span class="string">"age"</span>&#125;,types=</span><br><span class="line">&#123;String<span class="class">.<span class="keyword">class</span>,<span class="title">Integer</span>.<span class="title">class</span>&#125;) // 把数据存入到<span class="title">session</span>域对象中</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 向session中存入值</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/save"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">save</span><span class="params">(Model model)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"向session域中保存数据"</span>);</span><br><span class="line">        model.addAttribute(<span class="string">"username"</span>, <span class="string">"root"</span>);</span><br><span class="line">        model.addAttribute(<span class="string">"password"</span>, <span class="string">"123"</span>);</span><br><span class="line">        model.addAttribute(<span class="string">"age"</span>, <span class="number">20</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 从session中获取值</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/find"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">find</span><span class="params">(ModelMap modelMap)</span> </span>&#123;</span><br><span class="line">        String username = (String) modelMap.get(<span class="string">"username"</span>);</span><br><span class="line">        String password = (String) modelMap.get(<span class="string">"password"</span>);</span><br><span class="line">        Integer age = (Integer) modelMap.get(<span class="string">"age"</span>);</span><br><span class="line">        System.out.println(username + <span class="string">" : "</span>+password +<span class="string">" : "</span>+age);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 清除值</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/delete"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">delete</span><span class="params">(SessionStatus status)</span> </span>&#123;</span><br><span class="line">        status.setComplete();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -4019,9 +4074,7 @@
 <li><p>关闭客户端与服务器端的连接（HTTP 1.1 之后不会马上关闭）</p>
 </li>
 </ol>
-<h4 id="HTTP-协议-–-请求格式："><a href="#HTTP-协议-–-请求格式：" class="headerlink" title="HTTP 协议 – 请求格式："></a>HTTP 协议 – 请求格式：</h4><p>结构：</p>
-<ul>
-<li><p><strong>请求行：</strong>请求方式、请求地址（url）、HTTP 协议版本</p>
+<h2 id="请求格式"><a href="#请求格式" class="headerlink" title="请求格式"></a>请求格式</h2><p><strong>请求行：</strong>请求方式、请求地址（url）、HTTP 协议版本</p>
 <p>请求方式：HTTP 协议有 7 种请求方式，主要还是 get 和 post</p>
 <ul>
 <li>get 请求：<ul>
@@ -4036,8 +4089,7 @@
 </ul>
 </li>
 </ul>
-</li>
-<li><p><strong>请求头</strong>：消息报头，浏览器告诉服务器的一些信息</p>
+<p><strong>请求头</strong>：消息报头，浏览器告诉服务器的一些信息</p>
 <p>常见请求头：</p>
 <ul>
 <li><p><code>User-Agent</code>：浏览器的版本信息</p>
@@ -4047,32 +4099,21 @@
 <p>作用：防盗链、做相关统计</p>
 </li>
 </ul>
-</li>
-<li><p><strong>空行：</strong>用于分隔请求头和请求体，必须要有</p>
-</li>
-<li><p><strong>请求体：</strong>get 方式没有，post 方式有</p>
-</li>
-</ul>
-<h4 id="HTTP-协议-–-响应格式："><a href="#HTTP-协议-–-响应格式：" class="headerlink" title="HTTP 协议 – 响应格式："></a>HTTP 协议 – 响应格式：</h4><p>结构：</p>
-<ul>
-<li><p>响应行：HTTP 版本，状态码，状态消息</p>
-</li>
-<li><p>响应头：消息报头，客户端使用的附加信息</p>
+<p><strong>空行：</strong>用于分隔请求头和请求体，必须要有</p>
+<p><strong>请求体：</strong>get 方式没有，post 方式有</p>
+<h2 id="响应格式"><a href="#响应格式" class="headerlink" title="响应格式"></a>响应格式</h2><p><strong>响应行</strong>：HTTP 版本，状态码，状态消息</p>
+<p><strong>响应头</strong>：消息报头，客户端使用的附加信息</p>
 <p>常见响应头：</p>
 <ul>
-<li><code>Content-Type</code>: 响应体数据格式 及 字符编码</li>
-<li><code>Content-disposition</code>: 打开响应体数据的位置<ul>
-<li><code>in-line</code>: 默认值，在当前页面打开响应体</li>
-<li><code>attachment; filename=xxx</code>: 以附件形式打开响应体（文件下载）</li>
+<li><code>Content-Type</code>：响应体数据格式 及 字符编码</li>
+<li><code>Content-disposition</code>：打开响应体数据的位置<ul>
+<li><code>in-line</code>：默认值，在当前页面打开响应体</li>
+<li><code>attachment; filename=xxx</code>：以附件形式打开响应体（文件下载）</li>
 </ul>
 </li>
 </ul>
-</li>
-<li><p>空行：响应行和响应实体之间，必须要有</p>
-</li>
-<li><p>响应体（数据）：正文，服务器返回给浏览器的信息</p>
-</li>
-</ul>
+<p><strong>空行</strong>：响应行和响应实体之间，必须要有</p>
+<p><strong>响应体（数据）</strong>：正文，服务器返回给浏览器的信息</p>
 <p><strong>HTTP 常见响应状态码含义：</strong></p>
 <p>HTTP 状态码都是三位数，共分为 5 种类型：</p>
 <ul>
@@ -5336,12 +5377,12 @@
   <entry>
     <title>AJAX</title>
     <url>/2019/05/30/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/AJAX/</url>
-    <content><![CDATA[<p>AJAX：Asynchronous JavaScript and XML <code>异步的 JavaScript和XML</code></p>
+    <content><![CDATA[<p>AJAX：Asynchronous JavaScript and XML <code>异步的 JavaScript 和 XML</code></p>
 <a id="more"></a>
 
 
 
-<p>AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术</p>
+<h2 id="Ajax-简介"><a href="#Ajax-简介" class="headerlink" title="Ajax 简介"></a>Ajax 简介</h2><p>AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术</p>
 <blockquote>
 <p>浏览器和服务器通信中的<strong>同步和异步</strong>：</p>
 <ul>
@@ -5349,32 +5390,70 @@
 <li>异步： 浏览器不需要等待服务器的响应，在等待期间可以进行其他操作</li>
 </ul>
 </blockquote>
-<p>AJAX 不是新的语言, 而是一种基于现有 Internet 标准的新方法, 并联合使用它们:</p>
+<p>Ajax 优点：</p>
 <ul>
-<li>XMLHttpRequest 对象(异步与服务器交换数据, 该对象为浏览器内置)</li>
-<li>JavaScript / DOM</li>
-<li>CSS</li>
-<li>XML</li>
+<li>无需刷新页面就可以更新页面的内容</li>
+<li>可以根据用户的事件来更新网页</li>
 </ul>
-<h3 id="使用-jQuery-实现-AJAX"><a href="#使用-jQuery-实现-AJAX" class="headerlink" title="使用 jQuery 实现 AJAX"></a>使用 jQuery 实现 AJAX</h3><ol>
+<p>Ajax 缺点：</p>
+<ul>
+<li>没有浏览历史，不能回退</li>
+<li>存在跨域问题</li>
+<li>SEO 不友好</li>
+</ul>
+<h2 id="使用原生-Ajax"><a href="#使用原生-Ajax" class="headerlink" title="使用原生 Ajax"></a>使用原生 Ajax</h2><blockquote>
+<p>Ajax 是通过 XMLHttpRequest 对象异步与服务器交换数据，来实现异步请求。该对象为所有现代浏览器内置（IE 5 、IE 6 等上古时期的浏览器不支持）</p>
+</blockquote>
+<ol>
+<li><p>获取 XMLHttpRequest 对象：<code>var xhr = new XMLHttpRequest()</code></p>
+</li>
+<li><p>发送请求：</p>
+<ul>
+<li>设置请求方式及请求地址：<code>xhr.open(&quot;Get&quot;, &quot;url&quot;, true)</code> // 最后一个布尔值为是否开启异步</li>
+<li>发送请求：<code>xhr.send()</code></li>
+</ul>
+</li>
+<li><p>绑定事件，处理响应结果：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(xhr.readyState === <span class="number">4</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.status === <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(xhr.responseText);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h2 id="XMLHttpRequest-详解"><a href="#XMLHttpRequest-详解" class="headerlink" title="XMLHttpRequest 详解"></a>XMLHttpRequest 详解</h2><p><code>xhr.open(请求方式, 请求地址, 是否开启异步)</code></p>
+<p><code>xhr.setRequestHeader(&quot;名称&quot;, &quot;值&quot;)</code>：设置请求头（一次设置一个，想要设置多个请多次调用该方法）</p>
+<p><code>xhr.send(string)</code>：发送请求（发送 POST 请求时才需要 string）</p>
+<p><code>xhr.readyState</code>：异步请求的状态</p>
+<ul>
+<li>0：请求未初始化</li>
+<li>1：服务器连接已建立</li>
+<li>2：请求已接收</li>
+<li>3：请求处理中</li>
+<li>4：请求已完成，且响应已就绪</li>
+</ul>
+<p><code>xhr.onreadystatechange</code>：readystate 改变时触发的事件</p>
+<p><code>xhr.status</code>：响应的状态码</p>
+<p><code>xhr.responseText</code>：响应的字符串形式的数据</p>
+<p><code>xhr.responseXML</code>：响应的 XML 形式的数据</p>
+<h2 id="使用-jQuery-AJAX（常用）"><a href="#使用-jQuery-AJAX（常用）" class="headerlink" title="使用 jQuery AJAX（常用）"></a>使用 jQuery AJAX（常用）</h2><ol>
 <li>基础语法：<code>$.ajax({name:value, name:value, ...});</code></li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    url:<span class="string">"请求路径"</span>,</span><br><span class="line">    type:<span class="string">"POST"</span>, <span class="comment">// 请求方式，默认为GET</span></span><br><span class="line">    data:&#123;<span class="string">"username"</span>:<span class="string">"tom"</span>,<span class="string">"age"</span>:<span class="number">23</span>&#125;, <span class="comment">// 请求参数</span></span><br><span class="line">    success:<span class="function"><span class="keyword">function</span> (<span class="params">a</span>)</span>&#123; <span class="comment">// 响应成功后执行的回调函数，a 表示服务器响应的数据</span></span><br><span class="line">        alert(a);</span><br><span class="line">    &#125;,</span><br><span class="line">    error:<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">"出错了"</span>); <span class="comment">// 请求响应出错时执行的回调函数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    url: <span class="string">"请求路径"</span>,</span><br><span class="line">    method: <span class="string">"POST"</span>,  <span class="comment">// 请求方式，默认为GET</span></span><br><span class="line">    data: &#123;<span class="string">"username"</span>:<span class="string">"tom"</span>, <span class="string">"age"</span>:<span class="number">23</span>&#125;,  <span class="comment">// 请求数据</span></span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">result</span>)</span>&#123;  <span class="comment">// 响应成功后执行的回调函数，a 表示服务器响应的数据</span></span><br><span class="line">        alert(result);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">"请求出错"</span>);  <span class="comment">// 请求响应出错时执行的回调函数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 
 <ol start="2">
-<li><p><code>$.get()</code></p>
+<li><p><code>$.get()</code>：发送 GET 请求</p>
 <p>语法：<code>$.get(url, [data], [callback], [type]);</code></p>
 <ul>
 <li>url：请求路径</li>
-<li>data：请求参数</li>
+<li>data：请求数据</li>
 <li>callback：回调函数</li>
 <li>type：响应数据类型</li>
 </ul>
 </li>
 </ol>
 <ol start="3">
-<li><p><code>$.post()</code></p>
+<li><p><code>$.post()</code>：发送 POST 请求</p>
 <p>语法：<code>$.get(url, [data], [callback], [type]);</code></p>
 </li>
 </ol>
@@ -5505,6 +5584,8 @@
     <content><![CDATA[<p>jQuery 是 JavaScript 的一个框架，可以简化 js 代码的书写</p>
 <a id="more"></a>
 
+<h2 id="jQuery-基本概念"><a href="#jQuery-基本概念" class="headerlink" title="jQuery 基本概念"></a>jQuery 基本概念</h2><p>jQuery官网：<a href="https://jquery.com/" target="_blank" rel="noopener">jQuery</a></p>
+<p>引入 jQuery：去官网下载 jQuery 的 js 文件，然后在 HTML 中使用 <code>&lt;script&gt;</code> 引入</p>
 <h2 id="jQuery-对象和-js-对象的区别和转换"><a href="#jQuery-对象和-js-对象的区别和转换" class="headerlink" title="jQuery 对象和 js 对象的区别和转换"></a>jQuery 对象和 js 对象的区别和转换</h2><ol>
 <li><p>jQuery 对象在操作时，更加方便</p>
 </li>
@@ -5517,7 +5598,7 @@
 </ol>
 </li>
 </ol>
-<h2 id="jQuery的选择器"><a href="#jQuery的选择器" class="headerlink" title="jQuery的选择器"></a>jQuery的选择器</h2><blockquote>
+<h2 id="jQuery-选择器"><a href="#jQuery-选择器" class="headerlink" title="jQuery 选择器"></a>jQuery 选择器</h2><blockquote>
 <ol>
 <li>事件绑定<ol>
 <li>规则：<code>$(&quot;#div1&quot;).click(function(){ alert(123) });</code></li>
@@ -5639,10 +5720,10 @@
 </ol>
 </li>
 </ol>
-<h2 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h2><h3 id="内容操作"><a href="#内容操作" class="headerlink" title="内容操作"></a>内容操作</h3><ol>
-<li><code>html()</code> –&gt; 获取/设置元素的标签体内容</li>
+<h2 id="DOM-操作"><a href="#DOM-操作" class="headerlink" title="DOM 操作"></a>DOM 操作</h2><h3 id="内容操作"><a href="#内容操作" class="headerlink" title="内容操作"></a>内容操作</h3><ol>
+<li><code>html()</code> –&gt; 获取 / 设置元素的标签体内容</li>
 <li><code>text()</code> –&gt; 获取元素的标签体纯文本内容，设置元素的标签体内容</li>
-<li><code>val()</code> –&gt; 获取/设置元素的value属性值</li>
+<li><code>val()</code> –&gt; 获取 / 设置元素的 value 属性值</li>
 </ol>
 <h3 id="属性操作"><a href="#属性操作" class="headerlink" title="属性操作"></a>属性操作</h3><ol>
 <li><p>通用属性操作</p>
@@ -5662,19 +5743,19 @@
 </li>
 </ol>
 <h3 id="CRUD操作"><a href="#CRUD操作" class="headerlink" title="CRUD操作"></a>CRUD操作</h3><ol>
-<li>append():父元素将子元素追加到末尾<ul>
+<li>append()：父元素将子元素追加到末尾<ul>
 <li><code>对象1.append(对象2)</code>：将对象 2 添加到对象 1 元素内部，并且在末尾</li>
 </ul>
 </li>
-<li>prepend():父元素将子元素追加到开头<ul>
+<li>prepend()：父元素将子元素追加到开头<ul>
 <li><code>对象1.prepend(对象2)</code>：将对象 2 添加到对象 1 元素内部，并且在开头</li>
 </ul>
 </li>
-<li>appendTo():<ul>
+<li>appendTo()<ul>
 <li><code>对象1.appendTo(对象2)</code>：将对象 1 添加到对象 2 内部，并且在末尾</li>
 </ul>
 </li>
-<li>prependTo()：<ul>
+<li>prependTo()<ul>
 <li><code>对象1.prependTo(对象2)</code>：将对象 1 添加到对象 2 内部，并且在开头</li>
 </ul>
 </li>
@@ -5701,14 +5782,14 @@
 </ol>
 <hr>
 <ol start="9">
-<li><p>remove():移除元素</p>
+<li><p><code>remove()</code>：移除元素</p>
 <ul>
-<li>对象.remove():将对象删除掉</li>
+<li><code>obj.remove()</code>：将对象删除掉</li>
 </ul>
 </li>
-<li><p>empty():清空元素的所有后代元素。</p>
+<li><p><code>empty()</code>：清空元素的所有后代元素。</p>
 <ul>
-<li>对象.empty():将对象的后代元素全部清空，但是保留当前对象以及其属性节点</li>
+<li><code>obj.empty()</code>：将对象的后代元素全部清空，但是保留当前对象以及其属性节点</li>
 </ul>
 </li>
 </ol>
@@ -6668,16 +6749,16 @@
 
 
 
-<p>Spring的响应分为几种类型 (根据控制器中的方法返回值不同):</p>
+<p>SpringMVC 的响应分为几种类型 (根据控制器中的方法返回值不同):</p>
 <ul>
 <li>返回 <code>String</code>，<ul>
 <li>字符串名为页面名称，通过视图解析器来把字符串匹配到要响应的页面</li>
-<li>字符串为<code>关键字+页面地址</code>，通过<code>forward</code>、<code>redirect</code> 两个关键字来实现转发和重定向</li>
+<li>字符串为 <code>关键字+页面地址</code>，通过 <code>forward</code>、<code>redirect</code> 两个关键字来实现转发和重定向</li>
 </ul>
 </li>
-<li>返回 <code>void</code>，通过request、response来转发、重定向到指定页面</li>
+<li>返回 <code>void</code>，通过 request、response 来转发、重定向到指定页面</li>
 <li>返回 <code>ModelAndView</code></li>
-<li>返回<code>json</code>格式数据（实际返回的是javabean，通过<code>@ResponseBody</code>注解实现转换为json数据）</li>
+<li>返回 <code>json</code> 格式数据（实际返回的是 JavaBean，通过 <code>@ResponseBody</code> 注解实现转换为 Json 数据）</li>
 </ul>
 <blockquote>
 <p>Model model</p>
@@ -6700,17 +6781,14 @@
 
 
 
-<h2 id="基本概念："><a href="#基本概念：" class="headerlink" title="基本概念："></a>基本概念：</h2><ul>
-<li><p><strong>MVC 模型（Model View Controller）：</strong></p>
+<h2 id="基本概念："><a href="#基本概念：" class="headerlink" title="基本概念："></a>基本概念：</h2><p><strong>SpringMVC：</strong>基于 MVC 设计模式的轻量级 web 框架</p>
+<p><strong>MVC 模型（Model View Controller）：</strong></p>
 <ul>
-<li>Model：数据模型，JavaBean 的类，用来进行数据封装。</li>
+<li>Model：数据模型，JavaBean 的类，用来进行数据封装</li>
 <li>View：指 JSP、HTML 用来展示数据给用户</li>
-<li>Controller：用来接收用户的请求，整个流程的控制器。用来进行数据校验等。 </li>
+<li>Controller：用来接收用户的请求，整个流程的控制器。用来进行数据校验等</li>
 </ul>
-</li>
-<li><p><strong>SpringMVC：</strong>基于 MVC 设计模式的轻量级 web 框架</p>
-</li>
-<li><p><strong>SpringMVC 有清晰的角色划分：</strong></p>
+<p><strong>SpringMVC 组件：</strong></p>
 <ul>
 <li>前端控制器（DispatcherServlet）</li>
 <li>处理器映射器（HandlerMapping）</li>
@@ -6721,10 +6799,8 @@
 <li>命令对象（Command 请求参数绑定到的对象就是命令对象）</li>
 <li>表单对象（Form Object 提供给表单展示或提交到的对象就是表单对象）</li>
 </ul>
-</li>
-</ul>
 <h2 id="入门案例"><a href="#入门案例" class="headerlink" title="入门案例"></a>入门案例</h2><blockquote>
-<p>入门案例需求:</p>
+<p>入门案例需求：</p>
 <p>​    在 <code>index.jsp</code> 中写一个超链接, 点击超链接, 跳转到 <code>success.jsp</code></p>
 </blockquote>
 <p>*<em>在<code>index.jsp</code>中写一个超链接标签: *</em></p>
@@ -6732,7 +6808,7 @@
 <p><strong>创建 <code>success.jsp</code> 页面</strong></p>
 <p>在 <code>WEB-INF</code> 文件夹下创建 <code>pages</code> 文件夹, 并在 <code>pages</code> 文件夹中创建 <code>success.jsp</code></p>
 <p><strong>创建一个 Controller 类, 并写一个方法, 在方法上添加 <code>@RequestMapping</code> 注解, 返回一个字符串:</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(path = <span class="string">"/hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"HelloController"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"HelloController"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -6746,6 +6822,8 @@
 <p>配置成 <code>/*</code> 会导致访问 <code>.jsp</code> 时出现 <code>404</code> 的情况</p>
 </blockquote>
 </li>
+</ul>
+<ul>
 <li><p>处理器映射器（HandlerMapping）&amp; 处理器适配器（HandlerAdapter）</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 开启SpringMVC框架注解的支持</span></span><br><span class="line"><span class="comment">使用此标签会自动加载 处理器映射器（RequestMappingHandlerMapping） 和 </span></span><br><span class="line"><span class="comment">处理器适配器（RequestMappingHandlerAdapter）</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -6755,7 +6833,7 @@
 </ul>
 <ul>
 <li><p>视图解析器（ViewResolver）</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在 SpringMVC 的配置文件中进行配置 --&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- 配置视图解析器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"internalResourceViewResolver"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/pages/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在 SpringMVC 的配置文件中进行配置 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 配置视图解析器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"internalResourceViewResolver"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/pages/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -6764,17 +6842,6 @@
 <hr>
 <p><strong>入门案例的流程总结:</strong></p>
 <p><img src="/images/SpringMVC_%E5%9F%BA%E7%A1%80/springmvc%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%8E%9F%E7%90%86.jpg" alt="springmvc执行流程原理"></p>
-<p><strong>@RequestMapping 注解：</strong></p>
-<p><strong>作用：</strong>用于建立 <strong>请求 URL</strong> 和 <strong>处理请求方法</strong> 之间的对应关系</p>
-<p><strong>作用范围：类</strong> 和 <strong>方法</strong></p>
-<p><strong>属性：</strong></p>
-<ul>
-<li><code>path</code> –&gt; 指定请求路径的 url</li>
-<li><code>value</code> –&gt; 和 path 属性是一样的</li>
-<li><code>method</code> –&gt; 指定该方法的请求方式( get / post /…)</li>
-<li><code>params</code> –&gt; 指定限制请求参数的条件</li>
-<li><code>headers</code> –&gt; 发送的请求中必须包含的请求头</li>
-</ul>
 ]]></content>
       <categories>
         <category>Java</category>
@@ -7238,6 +7305,10 @@
 <p>System 中的变量和方法都为 static</p>
 <ul>
 <li><p>提供了代表<strong>标准输入（System.in）</strong>、<strong>标准输出（System.out）</strong>、<strong>错误输出（System.err）</strong>的类变量</p>
+<ul>
+<li><code>System.in</code>：从键盘输入</li>
+<li><code>System.out</code>：输出到控制台</li>
+</ul>
 </li>
 <li><p>提供了获取系统当前时间的方法：</p>
 <ul>
@@ -7264,9 +7335,9 @@
 <ul>
 <li><p><code>Scanner sc = new Scanner(System.in);</code></p>
 </li>
-<li><p>从键盘获取int：<code>int a = sc.nextInt();</code></p>
+<li><p>从键盘获取 int：<code>int a = sc.nextInt();</code></p>
 </li>
-<li><p>从键盘获取String：<code>String str = sc.next();</code></p>
+<li><p>从键盘获取 String：<code>String str = sc.next();</code></p>
 </li>
 </ul>
 <p>也可用于<strong>读取文件内容</strong>：<code>Scanner scanner = new Scanner(new File(&quot;ScannerFileTest.java&quot;))</code></p>
@@ -7336,6 +7407,17 @@
 <li>static：JVM 调用 main 方法时，直接通过类来调用，所以使用 static 修饰</li>
 <li>void：将值返回给 JVM 没有意义，故 main 方法返回值为 void</li>
 </ul>
+<h2 id="Serializable-接口"><a href="#Serializable-接口" class="headerlink" title="Serializable 接口"></a>Serializable 接口</h2><p>该接口是 Java 的序列化接口，接口本身是一个空接口，Java 中的类如果想要实现序列化，则必须实现该接口</p>
+<p>所有实现了 Serializable 接口的类，最好都显示的声明 <code>serialVersionUID</code> 属性：</p>
+<p><code>private static final long serialVersionUID = 234325432542L;</code></p>
+<blockquote>
+<p>这个属性，必须是 static final long 类型的，名称必须是 serialVersionUID，值随机即可</p>
+<p>为什么需要这个属性：</p>
+<ul>
+<li>如果自己不显示的声明，Java 会默认提供一个 serialVersionUID，值是根据类的各个方面综合算出来的，当类发生改变的时候，属性值也会随之改变。</li>
+<li>如果将一个类序列化之后，改变了类，那么在进行反序列化的时候对比 serialVersionUID 就不通过了，就会报 <code>InvalidClassException</code> 异常</li>
+</ul>
+</blockquote>
 <h2 id="Integer"><a href="#Integer" class="headerlink" title="Integer"></a>Integer</h2><p>Integer 为 int 的包装类，可创建对象。</p>
 <ul>
 <li>Integer 与 int 类型的相互转换</li>
@@ -7590,6 +7672,7 @@
 <blockquote>
 <p>NIO：Non-blocking IO，非阻塞式 IO</p>
 <p>传统 IO 为 BIO：Blocking IO，阻塞式 IO</p>
+<p>NIO 的性能一般情况下要比 BIO 要好，所以，可以使用 NIO 进行的操作尽量使用 NIO</p>
 </blockquote>
 <p>Files 类需要搭配 Path 类使用，path 类是 nio 包中的一个接口</p>
 <blockquote>
@@ -7615,7 +7698,7 @@
 </ul>
 </li>
 <li><p>重命名 &amp; 剪切</p>
-<p><code>Files.move(Path source, Path target, CopyOption... options)</code>：重命名或剪切文件</p>
+<p><code>Files.move(Path source, Path target)</code>：重命名或剪切文件</p>
 <ul>
 <li>若 source 和 target 的路径相同，文件名不同，则重命名文件</li>
 <li>若 source 和 target 的路径不同，文件名相同，则剪切文件</li>
@@ -8315,19 +8398,14 @@
 <ul>
 <li>在给类成员注入时<strong>无法单独使用</strong>（需配合 AutoWired 使用），但在给方法参数注入时可以单独使用</li>
 </ul>
-</li>
-<li><p><code>@Resource</code>：直接按照 bean 的 id 注入，可以单独使用</p>
-<ul>
-<li>属性：name，用于指定 bean 的 id</li>
-</ul>
 <blockquote>
-<p>以上三个注解都只能注入其他 bean 类型的数据，无法注入基本数据类型和 String 类型，且集合类型的注入只能通过 XML 来实现</p>
+<p>上面两个注解只能注入其他 bean 类型的数据，无法注入基本数据类型和 String 类型，且集合类型的注入只能通过 XML 来实现</p>
 </blockquote>
 </li>
-<li><p><code>@Value</code>：用于注入基本数据类型和String类型</p>
+<li><p><code>@Value</code>：用于注入基本数据类型和 String 类型</p>
 <ul>
-<li>属性：value –&gt; 用于指定属性的值，可以使用 SpEl 表达式（Spring中的el表达式）<ul>
-<li>SpEl 的写法：${表达式}</li>
+<li>属性：value –&gt; 用于指定属性的值，可以使用 SpEl 表达式（ Spring 中的 el 表达式）<ul>
+<li>SpEl 的写法：<code>${表达式}</code></li>
 </ul>
 </li>
 </ul>
@@ -8352,7 +8430,7 @@
 <p><strong>在有配置文件的情况下如何使用注解：</strong></p>
 <ul>
 <li><p>先在相应位置添加注解，然后在配置文件中告诉 Spring 在创建容器时要扫描的包</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        https://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">        https://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">    <span class="comment">&lt;!-- 使用该标签配置要扫描的包 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.hellopika"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        https://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">        https://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">    <span class="comment">&lt;!-- 使用该标签配置要扫描的包 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.hellopika"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -8378,7 +8456,7 @@
 
 
 
-<h3 id="使用注解配置AOP"><a href="#使用注解配置AOP" class="headerlink" title="使用注解配置AOP"></a>使用注解配置AOP</h3><p>几种常用注解：</p>
+<h3 id="使用注解配置-AOP"><a href="#使用注解配置-AOP" class="headerlink" title="使用注解配置 AOP"></a>使用注解配置 AOP</h3><p>几种常用注解：</p>
 <ul>
 <li><code>@Component</code><ul>
 <li>相当于<code>&lt;bean/&gt;</code></li>
@@ -8407,7 +8485,7 @@
 
 
 
-<p>Demo类：</p>
+<p>Demo 类：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Pointcut</span>(<span class="string">"execution(* com.pika.sxt.Demo.demo01())"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">demo01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"demo01"</span>);</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -8432,7 +8510,7 @@
 </li>
 <li><p>byType：根据类型匹配自动注入</p>
 <blockquote>
-<p>使用 byType 时在 Spring 容器中不能出现两个相同类型的<code>&lt;bean&gt;</code></p>
+<p>使用 byType 时在 Spring 容器中不能出现两个相同类型的 <code>&lt;bean&gt;</code></p>
 </blockquote>
 </li>
 </ul>
@@ -8443,7 +8521,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Spring-新注解"><a href="#Spring-新注解" class="headerlink" title="Spring-新注解"></a>Spring-新注解</h2><p>如果想要完全使用注解配置 Spring 的 IOC，就需要使用一些其他的注解</p>
+<h2 id="Spring-新注解"><a href="#Spring-新注解" class="headerlink" title="Spring 新注解"></a>Spring 新注解</h2><p>如果想要完全使用注解配置 Spring 的 IOC，就需要使用一些其他的注解</p>
 <blockquote>
 <p>完全使用注解配置 Spring 的 IOC 的步骤：</p>
 <p>1、首先，需要新建一个配置类，把需要配置的内容都放到配置类中</p>
@@ -9462,9 +9540,10 @@
 <ul>
 <li>装饰类和被装饰类实现同一个接口</li>
 <li>被装饰类作为装饰类构造方法的参数</li>
+<li>装饰类是一个接口或者抽象类，被装饰类的行为增强通过装饰类的一个个具体实现类来完成</li>
 </ul>
 <p>代码实现：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 共同的接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Computer</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">compute</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 被装饰类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Laptop</span> <span class="keyword">implements</span> <span class="title">Computer</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">compute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"具备电脑的基本功能"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 装饰类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LaptopWithHub</span> <span class="keyword">implements</span> <span class="title">Computer</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Computer computer;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LaptopWithHub</span><span class="params">(Computer computer)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.computer = computer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">compute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        computer.compute();</span><br><span class="line">        System.out.println(<span class="string">"有了扩展坞，可以外接很多设备"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDecorate</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// 使用装饰类的时候，把被装饰类作为构造方法参数传入</span></span><br><span class="line">    LaptopWithHub laptopWithHub = <span class="keyword">new</span> LaptopWithHub(<span class="keyword">new</span> Laptop());</span><br><span class="line">    laptopWithHub.compute();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 共同的接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Computer</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">compute</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 被装饰类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Laptop</span> <span class="keyword">implements</span> <span class="title">Computer</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">compute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"具备电脑的基本功能"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 装饰类</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputerDecorator</span> <span class="keyword">implements</span> <span class="title">Computer</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Computer computer;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ComputerDecorator</span><span class="params">(Computer computer)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.computer = computer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">compute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        computer.compute();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 装饰类的具体实现</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LaptopWithHub</span> <span class="keyword">extends</span> <span class="title">ComputerDecorator</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LaptopWithHub</span><span class="params">(Computer computer)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(computer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">compute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.compute();</span><br><span class="line">        System.out.println(<span class="string">"有了扩展坞，可以外接很多设备"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDecorate</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// 使用装饰类的时候，把被装饰类作为构造方法参数传入</span></span><br><span class="line">    LaptopWithHub laptopWithHub = <span class="keyword">new</span> LaptopWithHub(<span class="keyword">new</span> Laptop());</span><br><span class="line">    laptopWithHub.compute();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -12126,36 +12205,26 @@
 <a id="more"></a>
 
 <p><img src="/images/IO/3.6.jpg" alt="3.6"></p>
-<h2 id="IO-中的四大抽象基类"><a href="#IO-中的四大抽象基类" class="headerlink" title="IO 中的四大抽象基类"></a>IO 中的四大抽象基类</h2><ul>
-<li><strong>字节</strong>输入、输出流：<code>InputStream</code>，<code>OutputStream</code></li>
-</ul>
-<p>  <strong>InputStream</strong> 类常用方法：</p>
+<h2 id="IO-中的四大抽象基类"><a href="#IO-中的四大抽象基类" class="headerlink" title="IO 中的四大抽象基类"></a>IO 中的四大抽象基类</h2><blockquote>
+<p><strong>字节</strong>输入、输出流：<code>InputStream</code>，<code>OutputStream</code></p>
+</blockquote>
+<p><strong>InputStream</strong> 类常用方法：</p>
 <ol>
 <li><p><code>read()</code>：每次读取一个字节的数据，返回读到的字节对应的 int 整数（0~255），没读到数据返回 <code>-1</code></p>
 </li>
 <li><p><code>read(byte[] b)</code>：每次读取 <code>b.length</code> 个字节，存到 b 中，返回本次读到的字节数量。没读到数据返回 <code>-1</code>（<strong>调用了 3</strong>）</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">byte</span> b[])</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> read(b, <span class="number">0</span>, b.length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
-</ol>
-<ol start="3">
 <li><p><code>read(byte[] b, int off, int len)</code>：每次读取 len 个字节，存到 b 中，从下标为 off 的位置开始存，返回本次读到的字节数量。没读到数据返回 <code>-1</code></p>
 </li>
 <li><p><code>close()</code>：通知操作系统释放资源</p>
 </li>
 </ol>
-<p>  <strong>OutputStream</strong> 类常用方法：</p>
+<p><strong>OutputStream</strong> 类常用方法：</p>
 <ol>
 <li><p><code>write(byte[] b)</code>：将 b 中的数据输出（<strong>调用了 2</strong>）</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">byte</span> b[])</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    write(b, <span class="number">0</span>, b.length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
-</ol>
-<ol start="2">
 <li><p><code>write(byte[] b, int off, int len)</code>：将 b 中从 off 下标位置开始的 len 个字节输出</p>
 </li>
 <li><p><code>flush()</code>：刷新此次输出流，强制写出缓冲的数据。</p>
@@ -12163,33 +12232,24 @@
 <li><p><code>close()</code>：通知操作系统释放资源（带有 flush 功能）</p>
 </li>
 </ol>
-<ul>
-<li><strong>字符</strong>输入、输出流：<code>Reader</code>， <code>Writer</code></li>
-</ul>
-<p>  <strong>Reader</strong> 类常用方法：</p>
+<blockquote>
+<p><strong>字符</strong>输入、输出流：<code>Reader</code>， <code>Writer</code></p>
+</blockquote>
+<p><strong>Reader</strong> 类常用方法：</p>
 <ol>
 <li><p><code>read()</code>：每次读取一个字符，返回该字符对应的编码数字（int 0 ~ 65535）</p>
 </li>
 <li><p><code>read(char[] cbuf)</code>：每次读取 <code>cbuf.length</code> 个字符，存到 cbuf 中，返回本次读到的字符数量。没读到数据返回 <code>-1</code>（<strong>调用了 3</strong>）</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">char</span> cbuf[])</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> read(cbuf, <span class="number">0</span>, cbuf.length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+</li>
+<li><p><code>read(char[] cbuf, int off, int len)</code>：每次读取 len 个字符，存到 cbuf 中，从下标为 off 的位置开始存，返回本次读到的字符数量。没读到数据返回 <code>-1</code></p>
 </li>
 </ol>
-<ol start="3">
-<li><code>read(char[] cbuf, int off, int len)</code>：每次读取 len 个字符，存到 b 中，从下标为 off 的位置开始存，返回本次读到的字符数量。没读到数据返回 <code>-1</code></li>
-</ol>
-<p>  <strong>Writer</strong> 类常用方法：</p>
+<p><strong>Writer</strong> 类常用方法：</p>
 <ol>
 <li><p><code>write(char[] cbuf)</code>：将 cbuf 中的数据写出（<strong>调用了 2</strong>）</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">char</span> cbuf[])</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    write(cbuf, <span class="number">0</span>, cbuf.length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
-</ol>
-<ol start="2">
 <li><p><code>write(char[] cbuf, int off. int len)</code>：将 cbuf 中从 off 下标位置开始的 len 个字符输出</p>
 </li>
 <li><p><code>append(CharSequence csq)</code>：返回 Writer 对象，流式连续输出 <code>writer.append(a).append(b).append(c)</code>。</p>
@@ -12202,12 +12262,11 @@
 
 </li>
 </ol>
-<h2 id="IO-流操作的标准步骤"><a href="#IO-流操作的标准步骤" class="headerlink" title="IO 流操作的标准步骤"></a>IO 流操作的标准步骤</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * IO 操作基本步骤：</span></span><br><span class="line"><span class="comment"> * 		1. 创建源</span></span><br><span class="line"><span class="comment"> * 		2. 选择流</span></span><br><span class="line"><span class="comment"> * 		3. 操作</span></span><br><span class="line"><span class="comment"> * 		4. 释放资源</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestInputStream01</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 1. 创建源</span></span><br><span class="line">		File src = <span class="keyword">new</span> File(<span class="string">"C:/Users/pikachu/eclipse-workspace/sxt.Io/src/sxt.txt"</span>);</span><br><span class="line">		<span class="comment">// 2. 选择流</span></span><br><span class="line">		InputStream is = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			is = <span class="keyword">new</span> FileInputStream(src);</span><br><span class="line">			<span class="keyword">int</span> temp;</span><br><span class="line">			<span class="comment">// 3. 操作</span></span><br><span class="line">			<span class="keyword">while</span>((temp=is.read())!=-<span class="number">1</span>) &#123;</span><br><span class="line">				System.out.print((<span class="keyword">char</span>)temp);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">			<span class="comment">// 4. 释放资源</span></span><br><span class="line">			<span class="keyword">if</span>(is!=<span class="keyword">null</span>) &#123;</span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					is.close();</span><br><span class="line">				&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">					e.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="IO-流操作的标准步骤"><a href="#IO-流操作的标准步骤" class="headerlink" title="IO 流操作的标准步骤"></a>IO 流操作的标准步骤</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * IO 操作基本步骤：</span></span><br><span class="line"><span class="comment"> *         1. 创建源</span></span><br><span class="line"><span class="comment"> *         2. 选择流</span></span><br><span class="line"><span class="comment"> *         3. 操作</span></span><br><span class="line"><span class="comment"> *         4. 释放资源</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 创建源</span></span><br><span class="line">File src = <span class="keyword">new</span> File(<span class="string">"D:\\temp\\aaa.txt"</span>);</span><br><span class="line"><span class="comment">// 2. 选择流</span></span><br><span class="line">InputStream is = <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    is = <span class="keyword">new</span> FileInputStream(src);</span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line">    <span class="comment">// 3. 操作</span></span><br><span class="line">    <span class="keyword">while</span>((temp=is.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">        System.out.print((<span class="keyword">char</span>)temp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">// 4. 释放资源</span></span><br><span class="line">    <span class="keyword">if</span>(is!=<span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            is.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// -------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 上面代码简化版，使用了JDK1.7提供的try-with-resource</span></span><br><span class="line"> <span class="keyword">try</span>(InputStream is = <span class="keyword">new</span> FileInputStream(<span class="string">"D:\\temp\\aaa.txt"</span>)) &#123;     </span><br><span class="line">     <span class="keyword">int</span> temp;</span><br><span class="line">     <span class="comment">// 操作</span></span><br><span class="line">     <span class="keyword">while</span> ((temp = is.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">         System.out.print((<span class="keyword">char</span>) temp);</span><br><span class="line">     &#125;</span><br><span class="line"> &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">     e.printStackTrace();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="文件字节流"><a href="#文件字节流" class="headerlink" title="文件字节流"></a>文件字节流</h2><ul>
-<li><p><strong>FileInputStream：</strong>文件字节输入流，通过字节方式读取文件</p>
+<h2 id="文件字节流"><a href="#文件字节流" class="headerlink" title="文件字节流"></a>文件字节流</h2><p><strong>FileInputStream：</strong>文件字节输入流，通过字节方式读取文件</p>
 <p>构造方法：</p>
 <ol>
 <li><p><code>new FileInputStream(File file)</code>：传入文件对象创建流，如果对应文件不存在，则抛出 <code>FileNotFoundException</code></p>
@@ -12219,43 +12278,32 @@
 
 </li>
 </ol>
-</li>
-</ul>
-<ul>
-<li><p><strong>FileOutputStream：</strong>文件字节输出流，通过字节的方式写出或追加数据到文件</p>
+<p><strong>FileOutputStream：</strong>文件字节输出流，通过字节的方式写出或追加数据到文件</p>
 <p>构造方法：</p>
 <ol>
 <li><p><code>new FileOutputStream(File file)</code>：传入文件对象创建流（这个文件可以不存在，不存在则会新建文件）（<strong>调用了 2</strong>）</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">FileOutputStream</span><span class="params">(File file)</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">    <span class="comment">// append为false，每次write都从头添加</span></span><br><span class="line">    <span class="keyword">this</span>(file, <span class="keyword">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
-</ol>
-</li>
-</ul>
-<ol start="2">
 <li><p><code>new FileOutputStream(File file, boolean append)</code>：传入文件对象同时传入是否开启追加模式</p>
 </li>
 <li><p><code>new FileOutputStream(String name)</code>：传入文件名（<strong>调用了 1</strong>）</p>
 </li>
 <li><p><code>new FileOutputStream(String name, boolean append)</code>：传入文件名和是否开启追加模式（<strong>调用了 2</strong>）</p>
+</li>
+</ol>
 <blockquote>
 <p>追加模式：</p>
 <p>在创建输出流对象的时候相当于打开了一次文件，而是否开启追加模式决定了这次对文件的操作是<strong>清空文件内容后再写</strong>还是<strong>在原有内容后追加</strong>。</p>
 <p>一个输出流对象多次调用 <code>write()</code> 方法和追加模式无关，就是追加往文件里面写，后面的 <code>write()</code> 不会覆盖前面 <code>write()</code> 的内容</p>
 </blockquote>
-</li>
-</ol>
 <blockquote>
 <p>try-with-resource 简化流的释放（JDK1.7 开始提供）</p>
 <p>把流的创建写在 try 后面的括号里面，就不用在 finally 里面手动关闭流了。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 多个流直接使用 分号 分隔</span></span><br><span class="line"><span class="keyword">try</span>(InputStream is = <span class="keyword">new</span> FileInputStream(src))&#123;</span><br><span class="line">    </span><br><span class="line">&#125;<span class="keyword">catch</span>()&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
 </blockquote>
-<h2 id="文件拷贝"><a href="#文件拷贝" class="headerlink" title="文件拷贝"></a>文件拷贝</h2><p>利用 <strong>FileInputStream</strong> 和 <strong>FileOutputStream</strong> 进行文件的拷贝</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">// 创建源</span></span><br><span class="line">	File src = <span class="keyword">new</span> File(<span class="string">"C:/Users/pikachu/eclipse-workspace/sxt.Io/Java学习路线图.jpg"</span>);</span><br><span class="line">	File dest = <span class="keyword">new</span> File(<span class="string">"dest2.jpg"</span>);</span><br><span class="line">    </span><br><span class="line">	<span class="comment">// 选择流</span></span><br><span class="line">	<span class="keyword">try</span>(InputStream is = <span class="keyword">new</span> FileInputStream(src);</span><br><span class="line">        OutputStream os = <span class="keyword">new</span> FileOutputStream(dest)) &#123;</span><br><span class="line">        </span><br><span class="line">		<span class="comment">// 操作</span></span><br><span class="line">		<span class="keyword">byte</span>[] datas = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">		<span class="keyword">int</span> len = -<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span>((len = is.read(datas))!= -<span class="number">1</span>) &#123;</span><br><span class="line">			os.write(datas, <span class="number">0</span>, len); <span class="comment">// 写入	</span></span><br><span class="line">		&#125;</span><br><span class="line">		os.flush(); <span class="comment">// 强制刷新</span></span><br><span class="line">	&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="文件拷贝"><a href="#文件拷贝" class="headerlink" title="文件拷贝"></a>文件拷贝</h2><p>多种方式实现文件拷贝</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 一个字节一个字节的拷贝</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">try</span> (InputStream inputStream = <span class="keyword">new</span> FileInputStream(<span class="string">"D:/temp/abc.exe"</span>);</span><br><span class="line">     OutputStream outputStream = <span class="keyword">new</span> FileOutputStream(<span class="string">"D:/temp/files/abc.exe"</span>)) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> read;</span><br><span class="line">    <span class="keyword">while</span> ((read = inputStream.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">        outputStream.write(read);</span><br><span class="line">    &#125;</span><br><span class="line">    outputStream.flush();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用缓冲数组拷贝</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">try</span>(InputStream inputStream = <span class="keyword">new</span> FileInputStream(<span class="string">"D:/temp/abc.exe"</span>);</span><br><span class="line">    OutputStream outputStream = <span class="keyword">new</span> FileOutputStream(<span class="string">"D:/temp/files/abc.exe"</span>)) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">    <span class="keyword">int</span> len;</span><br><span class="line">    <span class="keyword">while</span>((len = inputStream.read(datas)) != -<span class="number">1</span>) &#123;</span><br><span class="line">        outputStream.write(datas, <span class="number">0</span>, len);</span><br><span class="line">    &#125;</span><br><span class="line">    outputStream.flush(); <span class="comment">// 强制写出</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用专门的缓冲流拷贝</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">try</span>(BufferedInputStream bufferedInputStream = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"D:/temp/abc.exe"</span>));</span><br><span class="line">    BufferedOutputStream bufferedOutputStream = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"D:/temp/files/abc.exe"</span>)))&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> len;</span><br><span class="line">    <span class="keyword">while</span>((len = bufferedInputStream.read()) != -<span class="number">1</span>)&#123;</span><br><span class="line">        bufferedOutputStream.write(len);</span><br><span class="line">    &#125;</span><br><span class="line">    bufferedOutputStream.flush();</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用 Files 拷贝</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">Path source = Paths.get(<span class="string">"D:/temp/abc.exe"</span>);</span><br><span class="line">Path target = Paths.get(<span class="string">"D:/temp/files/abc.exe"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    Files.copy(source, target);</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用 FileChannel 拷贝</span></span><br><span class="line"><span class="comment"> * java.nio.channels.FileChannel</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="keyword">try</span>(FileChannel sourceChannel = <span class="keyword">new</span> FileInputStream(<span class="string">"D:/temp/abc.exe"</span>).getChannel();</span><br><span class="line">     FileChannel targetChannel = <span class="keyword">new</span> FileOutputStream(<span class="string">"D:/temp/files/abc.exe"</span>).getChannel()) &#123;</span><br><span class="line">	 <span class="comment">// 使用源通道的transferTo把文件运到目标通道</span></span><br><span class="line">     <span class="comment">//sourceChannel.transferTo(0,sourceChannel.size(), targetChannel);</span></span><br><span class="line">     </span><br><span class="line">	 <span class="comment">// 使用目标通道的transferFrom把文件从源通道运过来</span></span><br><span class="line">     targetChannel.transferFrom(sourceChannel, <span class="number">0</span>, sourceChannel.size());</span><br><span class="line"></span><br><span class="line"> &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">     e.printStackTrace();</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用 RandomAccessFile 拷贝</span></span><br><span class="line"><span class="comment"> * java.io.RandomAccessFile</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">try</span>(RandomAccessFile readFile = <span class="keyword">new</span> RandomAccessFile(<span class="string">"D:/temp/abc.exe"</span>, <span class="string">"r"</span>);</span><br><span class="line">    RandomAccessFile writeFile = <span class="keyword">new</span> RandomAccessFile(<span class="string">"D:/temp/files/abc.exe"</span>, <span class="string">"rw"</span>)) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> len;</span><br><span class="line">    <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">    <span class="keyword">while</span>((len=readFile.read(buffer)) != -<span class="number">1</span>)&#123;</span><br><span class="line">        writeFile.write(buffer, <span class="number">0</span>, len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -12263,12 +12311,18 @@
 
 <h2 id="文件字符流"><a href="#文件字符流" class="headerlink" title="文件字符流"></a>文件字符流</h2><blockquote>
 <p>在各种字符集中，一个字符可能占一个字节、两个字节或三个字节，所以如果使用字节流操作字符，可能会出现乱码的情况。</p>
-<p>字符流可以消除不同字符集的编码差异，让我们可以自己对字符进行随心所欲的操作，而不需要考虑乱码。</p>
+<p>字符流可以消除不同字符集的编码差异，让我们可以自己对字符进行随心所欲的操作，而不用担心乱码。</p>
 </blockquote>
 <ul>
 <li><code>FileReader</code>：文件字符输入流</li>
 <li><code>FileWriter</code>：文件字符输出流</li>
 </ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// FileReader</span></span><br><span class="line"><span class="keyword">try</span> (Reader reader = <span class="keyword">new</span> FileReader(<span class="string">"D:/temp/xyz.txt"</span>))&#123;</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">int</span> read;</span><br><span class="line">    <span class="keyword">while</span>((read = reader.read())!=-<span class="number">1</span>)&#123;</span><br><span class="line">        System.out.print((<span class="keyword">char</span>)read);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// FileWriter （创建时第二个参数为是否开启 追加写模式）</span></span><br><span class="line"><span class="keyword">try</span>(Writer writer = <span class="keyword">new</span> FileWriter(<span class="string">"D:/temp/xyz.txt"</span>, <span class="keyword">true</span>)) &#123;</span><br><span class="line"></span><br><span class="line">    writer.write(<span class="string">"hello"</span>);</span><br><span class="line">    writer.write(<span class="string">"\r\n"</span>);</span><br><span class="line">    writer.write(<span class="string">"你好"</span>);</span><br><span class="line"></span><br><span class="line">    writer.flush();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <h2 id="字节数组流"><a href="#字节数组流" class="headerlink" title="字节数组流"></a>字节数组流</h2><ul>
 <li>ByteArrayInputStream</li>
 <li>ByteArrayOutputStream</li>
@@ -12282,7 +12336,7 @@
 <p>以上介绍的流都是节点流，属于直接操作数据源，但是效率可能不是特别高，为了提高 IO 流效率，所以对节点流进行包装处理，提升效率，简化操作，就出现了处理流。</p>
 <p>处理流并不能直接操作数据，只是对节点流的包装，这其中使用到了设计模式中的<strong>装饰器模式</strong></p>
 </blockquote>
-<h2 id="字节缓冲流"><a href="#字节缓冲流" class="headerlink" title="字节缓冲流"></a>字节缓冲流</h2><p>字节缓冲流内部定义了一个缓冲区（默认大小为8k），可以提高字节流处理的效率。</p>
+<h2 id="字节缓冲流"><a href="#字节缓冲流" class="headerlink" title="字节缓冲流"></a>字节缓冲流</h2><p>字节缓冲流内部定义了一个缓冲区（默认大小为 8 kb），可以提高字节流处理的效率。</p>
 <p>常用方法和 InputStream 中一致。</p>
 <ul>
 <li><p><strong>BufferedInputStream</strong></p>
@@ -12290,16 +12344,12 @@
 <ol>
 <li><p><code>BufferedInputStream(InputStream in)</code>：传入字节输入流对象（<strong>调用了 2</strong>）</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 内部定义的缓冲区大小默认为 8k</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> DEFAULT_BUFFER_SIZE = <span class="number">8192</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">BufferedInputStream</span><span class="params">(InputStream in)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>(in, DEFAULT_BUFFER_SIZE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+</li>
+<li><p><code>BufferedInputStream(InputStream in, int size)</code>：传入字节输入流对象和缓冲区大小</p>
 </li>
 </ol>
 </li>
 </ul>
-<ol start="2">
-<li><code>BufferedInputStream(InputStream in, int size)</code>：传入字节输入流对象和缓冲区大小</li>
-</ol>
 <ul>
 <li><p><strong>BufferedOutputStream</strong></p>
 <p>构造方法：</p>
@@ -12309,47 +12359,44 @@
 </ol>
 </li>
 </ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用字节缓冲流(一般情况下使用默认的缓冲区大小就行)</span></span><br><span class="line">InputStream in = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(src));</span><br><span class="line">OutputStream out = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutoutStream(dest));</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用字节缓冲流(一般情况下使用默认的缓冲区大小就行)</span></span><br><span class="line">BufferedInputStream bufferedInputStream = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(src));</span><br><span class="line">BufferedOutputStream bufferedOutputStream = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutoutStream(dest));</span><br></pre></td></tr></table></figure>
 
 
 
 
 
-<h2 id="字符缓冲流"><a href="#字符缓冲流" class="headerlink" title="字符缓冲流"></a>字符缓冲流</h2><p>字符缓冲流包装了字符流，提高了字符处理的效率，同时提供了一些新方法简化操作。</p>
+<h2 id="字符缓冲流"><a href="#字符缓冲流" class="headerlink" title="字符缓冲流"></a>字符缓冲流</h2><p>字符缓冲流使用装饰者模式，给字符流增加了缓冲功能</p>
 <ul>
 <li><p><strong>BufferedReader</strong></p>
 <p>构造方法：</p>
 <ol>
 <li><p><code>BufferedReader(Reader in)</code>：传入一个 Reader 对象（<strong>调用了 2</strong>）</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 内部缓存字符数组的默认大小默认为 8192</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> defaultCharBufferSize = <span class="number">8192</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">BufferedReader</span><span class="params">(Reader in)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>(in, defaultCharBufferSize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+</li>
+<li><p><code>BufferedReader(Reader in, int size)</code>：传入一个 Reader 对象和内部缓冲字符数组大小</p>
 </li>
 </ol>
-</li>
-</ul>
-<ol start="2">
-<li><code>BufferedReader(Reader in, int size)</code>：传入一个 Reader 对象和内部缓冲字符数组大小</li>
-</ol>
-<p>  新增方法：</p>
+<p>新增方法：</p>
 <ul>
 <li><code>readLine()</code>：每次读取一行（会自动去寻找换行符）</li>
+</ul>
+</li>
 </ul>
 <ul>
 <li><p><strong>BufferedWriter</strong></p>
 <p>构造方法：</p>
 <ol>
-<li><code>BufferedWriter(Writer out)</code>：类似 <strong>BufferedReader</strong></li>
-<li><code>BufferedWriter(Writer out, int size)</code>：类似 <strong>BufferedReader</strong></li>
+<li><code>BufferedWriter(Writer out)</code>：传入一个 Writer 对象</li>
+<li><code>BufferedWriter(Writer out, int size)</code>：传入一个 Writer 对象和 缓冲字符数组大小</li>
 </ol>
-</li>
-</ul>
-<p>  新增方法：</p>
+<p>新增方法：</p>
 <ul>
 <li><code>newLine()</code>：换行，就不用在写的时候手动加 <code>\r\n</code> 了</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用字符缓冲流</span></span><br><span class="line">BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(src));</span><br><span class="line">BufferedWriter writer = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(dest));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>基本使用：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// BufferedReader 使用</span></span><br><span class="line"><span class="keyword">try</span> (BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"D:/temp/xyz.txt"</span>)))&#123;</span><br><span class="line">    </span><br><span class="line">     String line;</span><br><span class="line">     <span class="keyword">while</span>(( line = bufferedReader.readLine()) != <span class="keyword">null</span>)&#123;</span><br><span class="line">         System.out.println(line);</span><br><span class="line">     &#125;</span><br><span class="line">    </span><br><span class="line"> &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">     e.printStackTrace();</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// BufferedWriter 使用</span></span><br><span class="line"><span class="keyword">try</span> (BufferedWriter bufferedWriter = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="string">"D:/temp/xyz.txt"</span>))) &#123;</span><br><span class="line">    </span><br><span class="line">      bufferedWriter.write(<span class="string">"aabbcc"</span>);</span><br><span class="line">      bufferedWriter.newLine();</span><br><span class="line">      bufferedWriter.write(<span class="string">"你好你好"</span>);</span><br><span class="line">    </span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -12360,7 +12407,7 @@
 <li>InputStreamReader</li>
 <li>OutpurStreamWriter</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用转换流</span></span><br><span class="line">BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(src)));</span><br><span class="line">BufferedWriter writer = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(dest)));</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用转换流</span></span><br><span class="line">Reader reader = <span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> FileInputStream(src));</span><br><span class="line">Writer writer = <span class="keyword">new</span> OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(dest));</span><br></pre></td></tr></table></figure>
 
 
 
@@ -12376,10 +12423,25 @@
 <li>ObjectInputStream</li>
 <li>ObjectOutputStream</li>
 </ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 序列化</span></span><br><span class="line"><span class="keyword">try</span>(ObjectOutputStream objectOutputStream = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"D:/temp/student.obj"</span>))) &#123;</span><br><span class="line"></span><br><span class="line">    Student student = <span class="keyword">new</span> Student(<span class="string">"张三"</span>, <span class="number">17</span>, <span class="string">"济宁"</span>);</span><br><span class="line">    objectOutputStream.writeObject(student);</span><br><span class="line"></span><br><span class="line">    objectOutputStream.flush();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 反序列化</span></span><br><span class="line"><span class="keyword">try</span>(ObjectInputStream objectInputStream = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"D:/temp/student.obj"</span>))) &#123;</span><br><span class="line">    Student student = (Student)objectInputStream.readObject();</span><br><span class="line">    System.out.println(student);</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException | ClassNotFoundException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <h2 id="打印流"><a href="#打印流" class="headerlink" title="打印流"></a>打印流</h2><ul>
-<li>PrintStream</li>
+<li>PrintStream：字节打印流</li>
+<li>PrintWriter：字符打印流</li>
 </ul>
-<h2 id="Commons-IO"><a href="#Commons-IO" class="headerlink" title="Commons IO"></a>Commons IO</h2>]]></content>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// PrintStream的基本使用</span></span><br><span class="line"><span class="keyword">try</span>(PrintStream printStream = <span class="keyword">new</span> PrintStream(<span class="string">"D:/temp/zzz.txt"</span>)) &#123;</span><br><span class="line"></span><br><span class="line">    printStream.println(<span class="string">"你好"</span>);</span><br><span class="line">    printStream.println(<span class="string">"printStream"</span>);</span><br><span class="line"></span><br><span class="line">    printStream.flush();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// PrintWriter的基本使用</span></span><br><span class="line"><span class="keyword">try</span>(PrintWriter printWriter = <span class="keyword">new</span> PrintWriter(<span class="string">"D:/temp/zzz.txt"</span>)) &#123;</span><br><span class="line"></span><br><span class="line">    printWriter.println(<span class="string">"这个是"</span>);</span><br><span class="line">    printWriter.println(<span class="string">"printWriter"</span>);</span><br><span class="line"></span><br><span class="line">    printWriter.flush();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>从上面的代码可以看出，PrintStream 和 PrintWriter 的用法基本一样，实际上，PrintStream 可以有的功能，PrintWriter 都具有，而且更强大。由于 PrintWriter 出来的比较晚，<code>System.out</code> 使用 PrintStream 做了实现，故为了兼容性保留了 PrintStream</p>
+<p>我们自己用的时候直接用 PrintWriter 就可以</p>
+</blockquote>
+]]></content>
       <tags>
         <tag>IO</tag>
       </tags>
@@ -13261,49 +13323,58 @@ requests.Timeout           请求URL超时，产生超时异常</code></pre><h2 
     <content><![CDATA[<p>用 markdown 写笔记，简直爽歪歪</p>
 <a id="more"></a>
 
-<h1 id="一、标题"><a href="#一、标题" class="headerlink" title="一、标题"></a>一、标题</h1><pre><code># 这是一级标题
+<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><pre><code># 这是一级标题
 ## 这是二级标题
 ### 这是三级标题
 #### 这是四级标题
 ##### 这是五级标题
 ###### 这是六级标题
 
-标题最多六级</code></pre><h1 id="二、字体"><a href="#二、字体" class="headerlink" title="二、字体"></a>二、字体</h1><pre><code>1.倾斜
+标题最多六级</code></pre><h1 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h1><pre><code>1.倾斜
     * 这样倾斜 *
 2.加粗
     ** 这是加粗 **
 3.倾斜加粗
     *** 这是倾斜加粗 ***
 4.删除线
-    ~~ 这是删除线 ~~</code></pre><h1 id="三、引用"><a href="#三、引用" class="headerlink" title="三、引用"></a>三、引用</h1><pre><code>&gt; 这是引用的内容
+    ~~ 这是删除线 ~~</code></pre><h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><pre><code>&gt; 这是引用的内容
 &gt;&gt; 这个也是引用的内容
 
-引用可以嵌套</code></pre><h1 id="四、分割线"><a href="#四、分割线" class="headerlink" title="四、分割线"></a>四、分割线</h1><pre><code>三个或者三个以上的 - 或者 * 都可以
+引用可以嵌套</code></pre><h1 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h1><pre><code>三个或者三个以上的 - 或者 * 都可以
 ---
 这个东西就是分割线
 ----
-这个东西也是分割线</code></pre><h1 id="五、代码"><a href="#五、代码" class="headerlink" title="五、代码"></a>五、代码</h1><pre><code>单行代码  ` 代码内容 `</code></pre><hr>
+这个东西也是分割线</code></pre><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">单行代码  &#96;代码内容&#96;</span><br></pre></td></tr></table></figure>
+
+
+
 <pre><code>多行代码
 
-    这是三个 `
-
-        代码内容
-
-    这也是三个 `</code></pre><p>下面我就试一下单行代码和多行代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">代码内容</span><br></pre></td></tr></table></figure></code></pre><p>下面我就试一下单行代码和多行代码</p>
 <pre><code>1.单行代码 </code></pre><p><code>print(&quot;Hello World&quot;)</code></p>
 <pre><code>2.多行代码</code></pre><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">input(&quot;请输入我爱你:&quot;)</span><br><span class="line">print(&quot;I Love You&quot;)</span><br></pre></td></tr></table></figure>
 <pre><code>2.多行代码(加高亮)</code></pre><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">input(<span class="string">"请输入我爱你:"</span>)</span><br><span class="line">print(<span class="string">"I Love You"</span>)</span><br></pre></td></tr></table></figure>
 
 
 
-<h1 id="六、超链接"><a href="#六、超链接" class="headerlink" title="六、超链接"></a>六、超链接</h1><p>书写格式：<code>[链接名称](链接网址)</code></p>
+<h1 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h1><p>书写格式：<code>[链接名称](链接网址)</code></p>
 <p>例：<a href="https://www.baidu.com/" target="_blank" rel="noopener">百度一下</a></p>
 <hr>
+<h1 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h1><h2 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h2><p>使用 <code>-</code> 或 <code>*</code> 或 <code>+</code> 作为无序列表的标记，标记和内容直接需要有一个空格</p>
+<ul>
+<li>aaa</li>
+<li>bbb</li>
+<li>ccc</li>
+</ul>
+<h2 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h2><p>数字 + <code>.</code> + 空格</p>
+<ol>
+<li>一</li>
+<li>二</li>
+<li>三</li>
+</ol>
 <pre><code>另外还有关于
-    列表
     表格
     图片
-
     流程图
 等内容，现在用到的不多，以后再做记录。</code></pre>]]></content>
       <categories>
